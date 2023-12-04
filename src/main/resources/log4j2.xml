@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Appenders>
+        <JDBC name="databaseAppender" tableName="logs">
+            <DataSource jndiName="java:comp/env/jdbc/DataSource"/>
+            <Column name="log_date" isEventTimestamp="true"/>
+            <Column name="logger_name" pattern="%logger"/>
+            <Column name="log_level" pattern="%level"/>
+            <Column name="message" pattern="%message"/>
+            <Column name="exception" pattern="%ex"/>
+        </JDBC>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="databaseAppender"/>
+        </Root>
+    </Loggers>
+</Configuration>
