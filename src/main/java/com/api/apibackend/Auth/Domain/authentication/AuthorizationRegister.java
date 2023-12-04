@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.api.apibackend.Auth.Domain.service.UserDetailsService;
 import com.api.apibackend.Auth.Domain.token.GeneratedTokenAuthorizationService;
 import com.api.apibackend.Auth.Infra.entity.UserEntity;
 import com.api.apibackend.Auth.Validation.AutheticationValidationServiceHandler;
@@ -20,6 +21,8 @@ import com.api.apibackend.Customer.Infra.persistence.entity.CustomerEntity;
 import com.api.apibackend.CustomerAddress.Domain.helpers.CustomerAddressModelMapper;
 import com.api.apibackend.CustomerAddress.infra.entity.AddressEntity;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class AuthorizationRegister {
 
@@ -31,6 +34,7 @@ public class AuthorizationRegister {
     private CustomerModelMapper customerModelMapper;
     private CustomerAddressModelMapper customerAddressModelMapper;
     private ApplicationEventPublisher eventPublisher;
+    private UserDetailsService userDetailsService;
     
     @Autowired
     public AuthorizationRegister(
@@ -41,7 +45,8 @@ public class AuthorizationRegister {
         GeneratedTokenAuthorizationService generatedTokenAuthorizationService,
         CustomerAddressModelMapper customerAddressModelMapper,
         CustomerModelMapper customerModelMapper,
-        ApplicationEventPublisher eventPublisher
+        ApplicationEventPublisher eventPublisher,
+        UserDetailsService userDetailsService
     ) {
         this.autheticationValidationServiceHandler = autheticationValidationServiceHandler;
         this.clientSearchService = clientSearchService;
@@ -51,12 +56,13 @@ public class AuthorizationRegister {
         this.customerAddressModelMapper = customerAddressModelMapper;
         this.customerModelMapper = customerModelMapper;
         this.eventPublisher = eventPublisher;
+        this.userDetailsService = userDetailsService;
     }
 
+    @Transactional
     public ResponseEntity<String> registerUserWithSeparateData(CustomerDTO customerDTO, CustomerAddressDTO CustomerAddressDTO) {
         try {
             CustomerEntity existingClient = clientSearchService.searchClientByEmail(customerDTO.getEmail());
-
             if (existingClient != null) {
                 return ResponseEntity.badRequest().body("E-mail já está em uso.");
             }
@@ -67,7 +73,6 @@ public class AuthorizationRegister {
 
             String emailValidation = autheticationValidationServiceHandler.isValidEmail(customerDTO.getEmail());
             String passwordValidation = autheticationValidationServiceHandler.isValidPassword(customerDTO.getPassword());
-
             if (emailValidation != null || passwordValidation != null) {
                 return ResponseEntity.badRequest()
                         .body("Erro de validação: " + emailValidation + ", " + passwordValidation + " inválidos");
@@ -80,19 +85,20 @@ public class AuthorizationRegister {
             newCustomerModelMapperEntity.setPassword(hashedPassword);
             AddressEntity newAddressEntityCustomer = customerAddressModelMapper.toCustomerDTOFromAddressEntity(CustomerAddressDTO);
             
-            UserEntity userEntity = new UserEntity();
-            userEntity.setUsername(customerDTO.getName());
-            userEntity.setPassword(hashedPassword);
-            userEntity.setRoles(customerDTO.getIsAdmin());
-            userEntity.setCustomer(newCustomerModelMapperEntity);
+            UserEntity newUserEntity = new UserEntity();
+            newUserEntity.setUsername(customerDTO.getName());
+            newUserEntity.setPassword(hashedPassword);
+            newUserEntity.setRoles(customerDTO.getIsAdmin());
+            newUserEntity.setCustomer(newCustomerModelMapperEntity);
 
             CustomerEntity savedCustomer = clientServiceImp.createClient(newCustomerModelMapperEntity, newAddressEntityCustomer);
-            // String jwtToken = generatedTokenAuthorizationService.generateToken(userEntity.getUsername());
+            String jwtToken = generatedTokenAuthorizationService.generateToken(newUserEntity);
+            UserEntity savedUserEntity = userDetailsService.createUser(newUserEntity, savedCustomer);
             
             CustomerCreated newCustomerCreated = new CustomerCreated(this, newCustomerModelMapperEntity.getId());
             eventPublisher.publishEvent(newCustomerCreated);
 
-            return ResponseEntity.status(HttpStatus.CREATED).body("usuario registrado com sucesso!");
+            return ResponseEntity.status(HttpStatus.CREATED).body("usuario registrado com sucesso! " + jwtToken);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Erro ao registrar o cliente: " + e.getMessage());

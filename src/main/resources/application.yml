@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:mariadb://localhost:3306/delivery
     username: root
-    password: Bont
+    password:
   jpa:
     hibernate:
       ddl-auto: update
