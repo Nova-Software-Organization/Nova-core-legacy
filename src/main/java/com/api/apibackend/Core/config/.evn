@@ -1,0 +1,13 @@
+# Configurações de banco de dados local
+
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=
+DB_NAME=novaEcommerce
+
+# Configurações de banco de dados produção
+
+DB_HOST=localhost
+DB_USER=usuario_db
+DB_PASSWORD=senha_secreta
+DB_NAME=nome_banco_dados

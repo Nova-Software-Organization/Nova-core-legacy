@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mariadb://localhost:3306/delivery
+    url: jdbc:mariadb://localhost:3306/novaEcommerce
     username: root
     password:
   jpa:

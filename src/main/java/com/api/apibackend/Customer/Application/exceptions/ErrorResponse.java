@@ -6,6 +6,8 @@ import java.util.Objects;
 
 import com.api.apibackend.Exception.ValidationError;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -29,8 +31,12 @@ public class ErrorResponse {
     }
 
     public String toJson() {
-        return "{\"status\": " + getStatus() + ", " +
-                "\"message\": \"" + getMessage() + "\"}";
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            return objectMapper.writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return "";
+        }
     }
-
 }

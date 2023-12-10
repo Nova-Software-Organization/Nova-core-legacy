@@ -5,8 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.api.apibackend.Auth.Domain.authentication.AuthenticationManagerService;
-import com.api.apibackend.Auth.Domain.authentication.AuthorizationRegister;
+import com.api.apibackend.Auth.Domain.authentication.AutheticationRegister;
+import com.api.apibackend.Auth.Domain.authentication.AuthorizationLogin;
 import com.api.apibackend.Auth.Domain.model.LoginRequest;
 import com.api.apibackend.Customer.Application.DTOs.CustomerAddressDTO;
 import com.api.apibackend.Customer.Application.DTOs.CustomerDTO;
@@ -14,18 +14,18 @@ import com.api.apibackend.Customer.Application.DTOs.CustomerDTO;
 @Service
 public class CustomerUseCase {
     
-    private final AuthenticationManagerService authenticationManager;
-    private final AuthorizationRegister authorizationRegister;
+    private AuthorizationLogin authenticationManager;
+    private AutheticationRegister authorizationRegister;
 
     @Autowired
-    public CustomerUseCase (AuthenticationManagerService authenticationManagerService, AuthorizationRegister authorizationRegister) {
+    public CustomerUseCase (AuthorizationLogin authenticationManagerService, AutheticationRegister authorizationRegister) {
         this.authenticationManager = authenticationManagerService;
         this.authorizationRegister = authorizationRegister;
     }
 
     public ResponseEntity<String> executeLoginUser(LoginRequest loginRequest) throws Exception {
         if (loginRequest != null) {
-            return authenticationManager.login(loginRequest);
+            return ResponseEntity.status(HttpStatus.OK).body(authenticationManager.login(loginRequest));
         }
 
          return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro: dados não existem");

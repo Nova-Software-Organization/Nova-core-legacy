@@ -1,6 +1,8 @@
 package com.api.apibackend.Auth.Domain.Enum;
 
-public enum TypeUser {
+import org.springframework.security.core.GrantedAuthority;
+
+public enum TypeUser implements GrantedAuthority {
     ROLE_USER(1),
     ROLE_ADMIN(0);
 
@@ -8,5 +10,10 @@ public enum TypeUser {
     
     TypeUser(int typeUser) {
         this.typeUser = typeUser;
+    }
+
+    @Override
+    public String getAuthority() {
+        return name();
     }
 }
