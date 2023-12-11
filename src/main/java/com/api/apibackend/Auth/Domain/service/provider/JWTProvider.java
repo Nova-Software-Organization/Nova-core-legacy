@@ -1,12 +1,17 @@
 package com.api.apibackend.Auth.Domain.service.provider;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import com.api.apibackend.Auth.Domain.service.MyUserDetails;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 
+import io.jsonwebtoken.Jwts;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.Data;
 
 @Data
@@ -14,22 +19,40 @@ import lombok.Data;
 public class JWTProvider {
 
     @Value("${api.security.token.secret}")
-    private String secret;
+    private String secretKey;
+    private MyUserDetails myUserDetails;
 
     public String validateToken(String token) {
         token = token.replace("Bearer", "");
-        Algorithm algorithm = Algorithm.HMAC256(secret);
+        Algorithm algorithm = Algorithm.HMAC256(secretKey);
 
         try {
             String subject = JWT.require(algorithm)
-                .build()
-                .verify(token)
-                .getSubject();
+                    .build()
+                    .verify(token)
+                    .getSubject();
 
             return subject;
         } catch (JWTVerificationException exception) {
             exception.printStackTrace();
             return "";
         }
+    }
+
+    public UsernamePasswordAuthenticationToken getAuthentication(String token) {
+        UserDetails userDetails = myUserDetails.loadUserByUsername(getUsername(token));
+        return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
+    }
+
+    public String getUsername(String token) {
+        return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
+    }
+
+    public String resolveToken(HttpServletRequest req) {
+        String bearerToken = req.getHeader("Authorization");
+        if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
+            return bearerToken.substring(7);
+        }
+        return null;
     }
 }

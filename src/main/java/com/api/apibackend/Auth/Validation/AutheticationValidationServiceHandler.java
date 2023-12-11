@@ -1,10 +1,17 @@
 package com.api.apibackend.Auth.Validation;
 
+import java.util.Hashtable;
 import java.util.Set;
+
+import javax.naming.NamingException;
+import javax.naming.directory.Attributes;
+import javax.naming.directory.InitialDirContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.api.apibackend.Customer.Application.DTOs.CustomerAddressDTO;
+import com.api.apibackend.Customer.Application.DTOs.CustomerDTO;
 import com.api.apibackend.Customer.Infra.persistence.entity.CustomerEntity;
 import com.api.apibackend.CustomerAddress.infra.entity.AddressEntity;
 
@@ -114,4 +121,45 @@ public class AutheticationValidationServiceHandler {
 
 		return null;
 	}
+
+	public boolean isValidEmailBoolean(String email) {
+		return email != null && email.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}");
+	}
+
+	public String isValidCustomerAndCustomerAndCustomerAddress(CustomerDTO customerDTO, CustomerAddressDTO customerAddressDTO) {
+		if (!isValidEmailBoolean(customerDTO.getEmail())) {
+			return "E-mail inválido.";
+		}
+	
+		if (!isValidCPF(customerDTO.getCpf())) {
+			return "CPF inválido.";
+		}
+	
+		if (customerDTO.getName() == null || customerDTO.getName().isEmpty()) {
+			return "Nome do cliente não pode estar vazio.";
+		}
+
+		return null;
+	}
+
+	public boolean isEmailDomainValid(String email) {
+        String[] parts = email.split("@");
+        if (parts.length != 2) {
+            return false;
+        }
+
+        String domain = parts[1];
+
+        try {
+            Hashtable<String, String> env = new Hashtable<>();
+            env.put("java.naming.factory.initial", "com.sun.jndi.dns.DnsContextFactory");
+            InitialDirContext ctx = new InitialDirContext(env);
+
+            Attributes attrs = ctx.getAttributes(domain, new String[] { "MX" });
+
+            return attrs != null && attrs.size() > 0;
+        } catch (NamingException e) {
+            return false;
+        }
+    }
 }

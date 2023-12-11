@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.api.apibackend.Auth.Infra.entity.UserEntity;
 
 @Repository
-public interface UserRepository extends JpaRepository<UserEntity, Long> { }
+public interface UserRepository extends JpaRepository<UserEntity, Long> {
+    UserEntity findByUsername(String username);
+}

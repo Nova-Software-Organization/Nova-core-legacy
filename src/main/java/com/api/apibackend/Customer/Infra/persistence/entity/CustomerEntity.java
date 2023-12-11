@@ -3,7 +3,6 @@ package com.api.apibackend.Customer.Infra.persistence.entity;
 import java.io.Serializable;
 import java.util.List;
 
-import com.api.apibackend.Auth.Domain.Enum.TypeUser;
 import com.api.apibackend.Auth.Infra.entity.UserEntity;
 import com.api.apibackend.CustomerAddress.infra.entity.AddressEntity;
 import com.api.apibackend.Order.infra.entity.OrderEntity;
@@ -13,8 +12,6 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -45,11 +42,7 @@ public class CustomerEntity implements Serializable {
     @JoinColumn(name = "idendereco")
     @JsonManagedReference
     private AddressEntity address;
-    
-    @Enumerated(EnumType.ORDINAL)
-    @Column(name = "tipo_usuario")
-    private TypeUser typeUser;
-    
+
     @NotBlank(message = "O nome não pode estar em branco")
     @Size(max = 50, message = "O nome deve ter no máximo 255 caracteres")
     @Column(name = "nome")
@@ -79,7 +72,7 @@ public class CustomerEntity implements Serializable {
     @NotBlank(message = "O email não pode estar em branco")
     @Email(message = "O email deve ser válido")
     @Size(max = 100, message = "O email deve ter no máximo 255 caracteres")
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
     
     @NotBlank(message = "A senha não pode estar em branco")
