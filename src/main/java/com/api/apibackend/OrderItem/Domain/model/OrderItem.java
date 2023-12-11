@@ -9,17 +9,11 @@ import lombok.Data;
 
 @Data
 public class OrderItem {
-    
     private Long productId;
-    
     private String productName;
-    
     private int quantity;
-    
     private double price;
-    
     private OrderItem[] items;
-    
     private ProductEntity product;
 
     public List<ProductEntity> getProducts() {

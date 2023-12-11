@@ -27,7 +27,6 @@ public class AutheticationValidationServiceHandler {
     @Autowired
     public AutheticationValidationServiceHandler(Validator validator) {
         this.validator = validator;
-		System.out.println("AutheticationValidationServiceHandler constructor called!");
     }
 
     public void validateClient(CustomerEntity customerEntity) {
