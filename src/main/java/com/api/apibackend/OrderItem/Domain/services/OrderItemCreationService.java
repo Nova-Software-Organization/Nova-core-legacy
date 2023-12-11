@@ -16,6 +16,10 @@ import com.api.apibackend.Product.infra.repository.ProductRepository;
 public class OrderItemCreationService {
 
     private ProductRepository productRepository;
+
+    public OrderItemCreationService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
     
     public List<OrderItemEntity> createOrderItems(List<OrderItem> items, OrderEntity orderEntity) {
         if (items == null) {

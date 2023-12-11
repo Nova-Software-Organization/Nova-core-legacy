@@ -5,7 +5,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.client.RestTemplate;
+
+import com.api.apibackend.Core.config.environment.DevConfig;
+import com.api.apibackend.Core.config.environment.ProdConfig;
 
 import jakarta.validation.Validation;
 
@@ -27,4 +31,16 @@ public class BackEndApplication {
 	public jakarta.validation.Validator validator() {
 		return Validation.buildDefaultValidatorFactory().getValidator();
 	}
+
+	@Bean
+    @Profile("dev")
+    public DevConfig devBean() {
+        return new DevConfig();
+    }
+
+    @Bean
+    @Profile("prod")
+    public ProdConfig prodBean() {
+        return new ProdConfig();
+    }
 }
