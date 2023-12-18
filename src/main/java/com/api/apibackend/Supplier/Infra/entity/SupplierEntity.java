@@ -8,6 +8,7 @@ import javax.validation.constraints.NotBlank;
 import org.hibernate.annotations.CurrentTimestamp;
 import org.hibernate.validator.constraints.br.CNPJ;
 
+import com.api.apibackend.Product.Domain.model.Supplier;
 import com.api.apibackend.SupplierAddress.infra.entity.SupplierAddressEntity;
 
 import jakarta.persistence.Column;
@@ -24,14 +25,14 @@ import lombok.EqualsAndHashCode;
 @Data
 @Entity
 @Table(name = "fornecedor")
-@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode(of = "idSupplier")
 public class SupplierEntity implements Serializable {
     
     @Id
     @NotBlank
     @Column(name = "idfornecedor")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idsupplier;
+    private Long idSupplier;
 
     @Column(name = "nm_empresa")
     private String nameCompany;

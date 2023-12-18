@@ -23,7 +23,6 @@ import com.api.apibackend.Product.Domain.model.Product;
 @RestController
 @RequestMapping("v1/produto")
 public class ProductController implements IProductController {
-
 	private ProductUseCase productUseCase;
 	private GetAllProductService getAllProductsService;
 	private GetFirstProductService getFirstProduct;

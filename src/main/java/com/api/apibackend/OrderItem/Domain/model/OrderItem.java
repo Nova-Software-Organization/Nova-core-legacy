@@ -3,7 +3,7 @@ package com.api.apibackend.OrderItem.Domain.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.api.apibackend.Product.infra.entity.ProductEntity;
+import com.api.apibackend.Product.Infra.entity.ProductEntity;
 
 import lombok.Data;
 
@@ -21,7 +21,7 @@ public class OrderItem {
 
         for (OrderItem item : items) {
             ProductEntity product = new ProductEntity();
-            product.setId(item.getProductId());
+            product.setIdProduct(item.getProductId());
             product.setName(item.getProductName());
             product.setPrice(item.getPrice());
 

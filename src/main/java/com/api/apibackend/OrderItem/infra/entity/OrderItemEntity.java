@@ -3,7 +3,7 @@ package com.api.apibackend.OrderItem.infra.entity;
 import java.io.Serializable;
 
 import com.api.apibackend.Order.infra.entity.OrderEntity;
-import com.api.apibackend.Product.infra.entity.ProductEntity;
+import com.api.apibackend.Product.Infra.entity.ProductEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

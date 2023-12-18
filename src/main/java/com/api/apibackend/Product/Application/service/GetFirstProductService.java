@@ -9,16 +9,16 @@ import org.springframework.stereotype.Service;
 
 import com.api.apibackend.Midia.infra.entity.MidiaEntity;
 import com.api.apibackend.Product.Domain.model.Product;
-import com.api.apibackend.Product.infra.entity.ProductEntity;
-import com.api.apibackend.Product.infra.repository.ProductRepository;
+import com.api.apibackend.Product.Infra.entity.ProductEntity;
+import com.api.apibackend.Product.Infra.repository.ProductRepository;
 
 @Service
 public class GetFirstProductService {
-    
-    @Autowired
+
+	@Autowired
 	private ProductRepository productRepository;
 
-    @Cacheable(value = "produtos", key = "'getFirst12Products'")
+	@Cacheable(value = "produtos", key = "'getFirst12Products'")
 	public List<Product> execute() {
 		List<ProductEntity> products = productRepository.findAll();
 
@@ -29,18 +29,17 @@ public class GetFirstProductService {
 		for (int i = 0; i < limit; i++) {
 			ProductEntity product = products.get(i);
 			MidiaEntity midia = product.getMidia();
-			
+
 			Product productDTO = new Product(
-				product.getId(),
-				product.getName(),
-				midia != null ? midia.getUrl() : null,
-				product.getDescription(),
-				product.getCategory().getName(),
-				product.getPrice(),
-				product.getDePrice(),
-				product.getQuantityInStock()
-			);
-			
+					product.getIdProduct(),
+					product.getName(),
+					midia != null ? midia.getUrl() : null,
+					product.getDescription(),
+					product.getCategory().getName(),
+					product.getPrice(),
+					product.getDePrice(),
+					product.getQuantityInStock());
+
 			productDTOs.add(productDTO);
 		}
 

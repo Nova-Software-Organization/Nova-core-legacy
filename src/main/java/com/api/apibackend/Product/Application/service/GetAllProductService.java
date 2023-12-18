@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.api.apibackend.Midia.infra.entity.MidiaEntity;
 import com.api.apibackend.Product.Domain.model.Product;
-import com.api.apibackend.Product.infra.entity.ProductEntity;
-import com.api.apibackend.Product.infra.repository.ProductRepository;
+import com.api.apibackend.Product.Infra.entity.ProductEntity;
+import com.api.apibackend.Product.Infra.repository.ProductRepository;
 
 @Service
 public class GetAllProductService {
@@ -29,7 +29,7 @@ public class GetAllProductService {
     private Product mapToProduct(ProductEntity product) {
         MidiaEntity midia = product.getMidia();
         return new Product(
-            product.getId(),
+            product.getIdProduct(),
             product.getName(),
             midia != null ? midia.getUrl() : null,
             product.getDescription(),

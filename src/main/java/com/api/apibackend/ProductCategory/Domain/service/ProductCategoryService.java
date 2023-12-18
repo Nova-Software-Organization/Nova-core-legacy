@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.api.apibackend.Product.Domain.model.Product;
 import com.api.apibackend.Product.Domain.repository.IProductService;
-import com.api.apibackend.Product.infra.entity.ProductEntity;
-import com.api.apibackend.Product.infra.repository.ProductRepository;
+import com.api.apibackend.Product.Infra.entity.ProductEntity;
+import com.api.apibackend.Product.Infra.repository.ProductRepository;
 import com.api.apibackend.ProductCategory.infra.entity.ProductCategoryEntity;
 import com.api.apibackend.ProductCategory.infra.repository.ProductCategoryRepository;
 
@@ -50,7 +50,7 @@ public class ProductCategoryService implements IProductService {
 		product.setUrl(productEntity.getMidia().getUrl());
 		product.setDescription(product.getDescription());
 		product.setCategory(category != null ? category.getName() : null);
-		product.setPrice(product.getPrice());
+		product.setPriceEntity(product.getPriceEntity());
 		product.setQuantityInStock(product.getQuantityInStock());
 
 		return product;

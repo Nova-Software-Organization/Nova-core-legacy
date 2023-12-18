@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import com.api.apibackend.Customer.Infra.persistence.entity.CustomerEntity;
 import com.api.apibackend.CustomerAddress.infra.entity.AddressEntity;
 import com.api.apibackend.Order.infra.entity.OrderEntity;
-import com.api.apibackend.Product.infra.entity.ProductEntity;
+import com.api.apibackend.Product.Infra.entity.ProductEntity;
 
 @Service
 public class MyRequestCustomerService {

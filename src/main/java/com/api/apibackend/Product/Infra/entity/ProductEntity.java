@@ -1,9 +1,11 @@
-package com.api.apibackend.Product.infra.entity;
+package com.api.apibackend.Product.Infra.entity;
 
 import java.io.Serializable;
 
 import com.api.apibackend.Midia.infra.entity.MidiaEntity;
+import com.api.apibackend.Product.Domain.model.Price;
 import com.api.apibackend.ProductCategory.infra.entity.ProductCategoryEntity;
+import com.api.apibackend.Supplier.Infra.entity.SupplierEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -20,13 +22,13 @@ import lombok.EqualsAndHashCode;
 @Data
 @Entity
 @Table(name = "Produto")
-@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode(of = "idProduct")
 public class ProductEntity implements Serializable {
 
     @Id
     @Column(name = "idproduto")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idProduct;
 
     @OneToOne
     @JoinColumn(name = "idmid")
@@ -45,11 +47,16 @@ public class ProductEntity implements Serializable {
     @Column(name = "preco_de")
     private Double dePrice;
 
+    @ManyToOne
+    @JoinColumn(name = "idfornecedor", referencedColumnName = "idfornecedor")
+    private SupplierEntity supplierEntity;
+
     @Column(name = "estoque")
     private int quantityInStock;
 
     @Column(name = "descricao")
     private String description;
+
+    @Column(name = "ativo")
+    private int status;
 }
-
-
