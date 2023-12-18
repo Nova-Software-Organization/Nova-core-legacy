@@ -8,15 +8,19 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.api.apibackend.Midia.infra.entity.MidiaEntity;
+import com.api.apibackend.Price.infra.entity.PriceEntity;
 import com.api.apibackend.Product.Domain.model.Product;
 import com.api.apibackend.Product.Infra.entity.ProductEntity;
 import com.api.apibackend.Product.Infra.repository.ProductRepository;
 
 @Service
 public class GetAllProductService {
+    private ProductRepository productRepository;
     
     @Autowired
-	private ProductRepository productRepository;
+    public GetAllProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
     @Cacheable(value = "produtos", key = "'getAllProductsFromCache'")
     public List<Product> getAllProductsFromCache() {
@@ -28,14 +32,15 @@ public class GetAllProductService {
 
     private Product mapToProduct(ProductEntity product) {
         MidiaEntity midia = product.getMidia();
+        PriceEntity price = product.getPriceEntity();
         return new Product(
             product.getIdProduct(),
             product.getName(),
             midia != null ? midia.getUrl() : null,
             product.getDescription(),
             product.getCategory().getName(),
-            product.getPrice(),
-            product.getDePrice(),
+            price.getPrice(),
+            price.getDiscountPrice(),
             product.getQuantityInStock()
             );
         }

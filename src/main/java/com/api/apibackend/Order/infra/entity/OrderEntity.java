@@ -95,7 +95,7 @@ public class OrderEntity implements Serializable {
     public void calculateTotal() {
         float total = 0.0f;
         for (ProductEntity product : products) {
-            total += product.getPrice();
+            total += product.getPriceEntity().getPrice();
         }
         setTotalValue(total);
     }

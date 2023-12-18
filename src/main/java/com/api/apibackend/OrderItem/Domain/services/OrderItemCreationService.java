@@ -41,10 +41,10 @@ public class OrderItemCreationService {
                     OrderItemEntity orderItemEntity = new OrderItemEntity();
                     orderItemEntity.setProduct(productEntity);
                     orderItemEntity.setQuantity(item.getQuantity());
-                    orderItemEntity.setUnitPrice(productEntity.getPrice());
+                    orderItemEntity.setUnitPrice(productEntity.getPriceEntity().getPrice());
                     orderItemEntity.setOrder(orderEntity);
 
-                    Double itemTotal = item.getQuantity() * productEntity.getPrice();
+                    Double itemTotal = item.getQuantity() * productEntity.getPriceEntity().getPrice();
                     total[0] += itemTotal;
 
                     orderItems.add(orderItemEntity);

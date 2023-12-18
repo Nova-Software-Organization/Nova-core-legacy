@@ -14,19 +14,12 @@ import lombok.Data;
 @Data
 @JsonPropertyOrder("orderRequest")
 public class OrderRequest {
-	
 	private Long numberOrder;
-	
 	private List<OrderItem> items;
-	
 	private String customerName;
-	
 	private CustomerAddressRequest customerAddress;
-	
 	private ClientRequest clientRequest;
-	
 	private String customerEmail;
-	
 	private String paymentMethod;
 	
 	public List<ProductEntity> getProducts() {

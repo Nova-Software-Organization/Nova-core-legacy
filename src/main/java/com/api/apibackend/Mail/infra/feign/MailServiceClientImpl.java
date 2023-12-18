@@ -5,6 +5,7 @@ package com.api.apibackend.Mail.infra.feign;
 
 //     private MailServiceClient mailServiceClient;
 
+    //    @Autowired
 //     public MailServiceClientImpl(MailServiceClient mailServiceClient) {
 //         this.mailServiceClient = mailServiceClient;
 //     }

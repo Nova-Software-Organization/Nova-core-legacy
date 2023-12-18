@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.api.apibackend.Midia.infra.entity.MidiaEntity;
 import com.api.apibackend.Midia.infra.repository.MidiaRepository;
+import com.api.apibackend.Price.infra.entity.PriceEntity;
+import com.api.apibackend.Price.infra.repository.PriceRepository;
 import com.api.apibackend.Product.Domain.model.Price;
 import com.api.apibackend.Product.Domain.model.Product;
 import com.api.apibackend.Product.Domain.model.Supplier;
@@ -20,8 +22,6 @@ import com.api.apibackend.ProductCategory.infra.entity.ProductCategoryEntity;
 import com.api.apibackend.ProductCategory.infra.repository.ProductCategoryRepository;
 import com.api.apibackend.Supplier.Infra.entity.SupplierEntity;
 import com.api.apibackend.Supplier.Infra.repository.SupplierRepository;
-import com.api.apibackend.Price.infra.entity.PriceEntity;
-import com.api.apibackend.Price.infra.repository.PriceRepository;
 
 @Service
 public class ProductAddService {

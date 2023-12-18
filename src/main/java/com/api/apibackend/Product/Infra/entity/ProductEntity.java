@@ -3,7 +3,7 @@ package com.api.apibackend.Product.Infra.entity;
 import java.io.Serializable;
 
 import com.api.apibackend.Midia.infra.entity.MidiaEntity;
-import com.api.apibackend.Product.Domain.model.Price;
+import com.api.apibackend.Price.infra.entity.PriceEntity;
 import com.api.apibackend.ProductCategory.infra.entity.ProductCategoryEntity;
 import com.api.apibackend.Supplier.Infra.entity.SupplierEntity;
 
@@ -14,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -41,15 +42,13 @@ public class ProductEntity implements Serializable {
     @Column(name = "nome")
     private String name;
 
-    @Column(name = "preco")
-    private Double price;
-
-    @Column(name = "preco_de")
-    private Double dePrice;
-
     @ManyToOne
     @JoinColumn(name = "idfornecedor", referencedColumnName = "idfornecedor")
     private SupplierEntity supplierEntity;
+
+    @OneToMany
+    @JoinColumn(name = "idpreco", referencedColumnName = "idpreco")
+    private PriceEntity priceEntity;
 
     @Column(name = "estoque")
     private int quantityInStock;
