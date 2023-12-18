@@ -26,8 +26,8 @@ import com.api.apibackend.Order.infra.repository.OrderRepository;
 import com.api.apibackend.OrderItem.Domain.services.OrderItemCreationService;
 import com.api.apibackend.OrderItem.infra.entity.OrderItemEntity;
 import com.api.apibackend.OrderItem.infra.repository.OrderItemRepository;
-import com.api.apibackend.Product.infra.entity.ProductEntity;
-import com.api.apibackend.Product.infra.repository.ProductRepository;
+import com.api.apibackend.Product.Infra.entity.ProductEntity;
+import com.api.apibackend.Product.Infra.repository.ProductRepository;
 
 import jakarta.transaction.Transactional;
 

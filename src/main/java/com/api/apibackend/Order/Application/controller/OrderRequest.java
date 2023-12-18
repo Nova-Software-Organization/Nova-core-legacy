@@ -6,7 +6,7 @@ import java.util.List;
 import com.api.apibackend.Customer.Application.controller.ClientRequest;
 import com.api.apibackend.CustomerAddress.Domain.model.CustomerAddressRequest;
 import com.api.apibackend.OrderItem.Domain.model.OrderItem;
-import com.api.apibackend.Product.infra.entity.ProductEntity;
+import com.api.apibackend.Product.Infra.entity.ProductEntity;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import lombok.Data;

@@ -7,7 +7,7 @@ import java.util.List;
 
 import com.api.apibackend.Customer.Infra.persistence.entity.CustomerEntity;
 import com.api.apibackend.OrderItem.infra.entity.OrderItemEntity;
-import com.api.apibackend.Product.infra.entity.ProductEntity;
+import com.api.apibackend.Product.Infra.entity.ProductEntity;
 import com.api.apibackend.Transaction.infra.entity.TransactionEntity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonInclude;

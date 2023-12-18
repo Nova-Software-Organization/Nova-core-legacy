@@ -14,8 +14,8 @@ import com.api.apibackend.Order.Domain.repository.IUpdateOrderService;
 import com.api.apibackend.Order.infra.entity.OrderEntity;
 import com.api.apibackend.Order.infra.repository.OrderRepository;
 import com.api.apibackend.OrderItem.Domain.model.OrderItem;
-import com.api.apibackend.Product.infra.entity.ProductEntity;
-import com.api.apibackend.Product.infra.repository.ProductRepository;
+import com.api.apibackend.Product.Infra.entity.ProductEntity;
+import com.api.apibackend.Product.Infra.repository.ProductRepository;
 
 @Service
 public class UpdateOrderService implements IUpdateOrderService {

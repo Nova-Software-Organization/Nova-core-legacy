@@ -11,8 +11,8 @@ import com.api.apibackend.CustomerAddress.Domain.model.CustomerAddressRequest;
 import com.api.apibackend.Order.Application.controller.OrderRequest;
 import com.api.apibackend.Order.Domain.service.OrderCreationService;
 import com.api.apibackend.OrderItem.Domain.model.OrderItem;
-import com.api.apibackend.Product.infra.entity.ProductEntity;
-import com.api.apibackend.Product.infra.repository.ProductRepository;
+import com.api.apibackend.Product.Infra.entity.ProductEntity;
+import com.api.apibackend.Product.Infra.repository.ProductRepository;
 
 import jakarta.transaction.Transactional;
 
