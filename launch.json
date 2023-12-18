@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot Application Nova Core",
+            "request": "launch",
+            "mainClass": "com.api.apibackend.BackEndApplication",
+            "args": [
+                "--spring.profiles.active=dev"
+            ]
+        }
+    ]
+}
