@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.api.apibackend.Product.Domain.model.Product;
 import com.api.apibackend.Product.Infra.entity.ProductEntity;
 import com.api.apibackend.ProductCategory.infra.entity.ProductCategoryEntity;
 
@@ -17,4 +18,8 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
     List<ProductEntity> findByCategoryName(@Param("categoryName") String categoryName);
 
     List<ProductEntity> findByCategory(ProductCategoryEntity category);
+
+    Product findById(int productId);
+    
+    void update(Product product);
 }
