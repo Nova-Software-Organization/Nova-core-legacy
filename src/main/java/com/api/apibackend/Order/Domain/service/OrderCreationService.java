@@ -23,7 +23,7 @@ import com.api.apibackend.Order.Domain.event.OrderCreatedEvent;
 import com.api.apibackend.Order.Domain.repository.IOrderService;
 import com.api.apibackend.Order.infra.entity.OrderEntity;
 import com.api.apibackend.Order.infra.repository.OrderRepository;
-import com.api.apibackend.OrderItem.Domain.services.OrderItemCreationService;
+import com.api.apibackend.OrderItem.Domain.service.OrderItemCreationService;
 import com.api.apibackend.OrderItem.infra.entity.OrderItemEntity;
 import com.api.apibackend.OrderItem.infra.repository.OrderItemRepository;
 import com.api.apibackend.Product.Infra.entity.ProductEntity;

@@ -28,6 +28,8 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(of = "id")
 public class UserEntity implements UserDetails {
     
+    private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

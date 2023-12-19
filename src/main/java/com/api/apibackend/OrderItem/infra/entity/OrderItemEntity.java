@@ -2,6 +2,8 @@ package com.api.apibackend.OrderItem.infra.entity;
 
 import java.io.Serializable;
 
+import org.springframework.context.annotation.Lazy;
+
 import com.api.apibackend.Order.infra.entity.OrderEntity;
 import com.api.apibackend.Product.Infra.entity.ProductEntity;
 
@@ -16,11 +18,14 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+@Lazy
 @Data
 @Entity
 @Table(name = "PedidoItem")
 @EqualsAndHashCode(of = "id")
 public class OrderItemEntity implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

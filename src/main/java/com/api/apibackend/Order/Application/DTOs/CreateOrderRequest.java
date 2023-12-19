@@ -1,4 +1,4 @@
-package com.api.apibackend.Order.Domain.model;
+package com.api.apibackend.Order.Application.DTOs;
 
 import com.api.apibackend.Customer.Application.controller.ClientRequest;
 import com.api.apibackend.CustomerAddress.Domain.model.CustomerAddressRequest;

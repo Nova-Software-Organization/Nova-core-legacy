@@ -13,9 +13,9 @@ import com.api.apibackend.Core.config.environment.ProdConfig;
 
 import jakarta.validation.Validation;
 
+@EnableCaching
 @SpringBootApplication
 @ComponentScan("com.api.apibackend")
-@EnableCaching
 public class BackEndApplication {
 
 	public static void main(String[] args) {

@@ -1,10 +1,9 @@
-package com.api.apibackend.Customer.Application.exceptions;
+package com.api.apibackend.Exception;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import com.api.apibackend.Exception.ValidationError;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

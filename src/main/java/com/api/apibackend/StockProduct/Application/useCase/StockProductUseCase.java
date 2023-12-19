@@ -11,13 +11,12 @@ import com.api.apibackend.StockProduct.Domain.model.StockProduct;
 
 @Service
 public class StockProductUseCase {
-    private final ProductRepository productRepository;
-    private final StockProduct stockProduct;
+    private ProductRepository productRepository;
+    private StockProduct stockProduct;
 
     @Autowired
-    public StockProductUseCase(ProductRepository productRepository, StockProduct stockProduct) {
+    public StockProductUseCase(ProductRepository productRepository) {
         this.productRepository = productRepository;
-        this.stockProduct = stockProduct;
     }
 
     public boolean checkProductStock(Long idProduct, int quantityToCheck) {

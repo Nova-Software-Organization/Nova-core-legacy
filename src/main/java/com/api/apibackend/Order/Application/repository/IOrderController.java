@@ -4,8 +4,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.api.apibackend.Order.Application.DTOs.CreateOrderRequest;
 import com.api.apibackend.Order.Application.controller.OrderRequest;
-import com.api.apibackend.Order.Domain.model.CreateOrderRequest;
 
 public interface IOrderController {
 	ResponseEntity<?> listOrders();

@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.api.apibackend.Order.Application.DTOs.CreateOrderRequest;
 import com.api.apibackend.Order.Application.repository.IOrderController;
 import com.api.apibackend.Order.Application.useCase.OrderUseCase;
-import com.api.apibackend.Order.Domain.model.CreateOrderRequest;
 import com.api.apibackend.Order.Domain.service.OrderCompletionReturnProcessor;
 import com.api.apibackend.Order.Domain.service.OrderCreationService;
 import com.api.apibackend.Order.Domain.service.UpdateOrderService;

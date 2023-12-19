@@ -1,4 +1,4 @@
-package com.api.apibackend.OrderItem.Domain.services;
+package com.api.apibackend.OrderItem.Domain.service;
 
 import java.util.ArrayList;
 import java.util.List;

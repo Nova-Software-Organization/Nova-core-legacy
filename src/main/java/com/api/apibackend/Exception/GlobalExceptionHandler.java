@@ -21,7 +21,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import com.api.apibackend.Auth.Domain.service.exception.AuthorizationException;
 import com.api.apibackend.Auth.Domain.service.exception.DataBindingViolationException;
-import com.api.apibackend.Customer.Application.exceptions.ErrorResponse;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

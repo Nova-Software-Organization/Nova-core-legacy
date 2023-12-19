@@ -7,8 +7,8 @@ import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.CurrentTimestamp;
 import org.hibernate.validator.constraints.br.CNPJ;
+import org.springframework.context.annotation.Lazy;
 
-import com.api.apibackend.Product.Domain.model.Supplier;
 import com.api.apibackend.SupplierAddress.infra.entity.SupplierAddressEntity;
 
 import jakarta.persistence.Column;
@@ -22,11 +22,14 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+@Lazy
 @Data
 @Entity
 @Table(name = "fornecedor")
 @EqualsAndHashCode(of = "idSupplier")
 public class SupplierEntity implements Serializable {
+    
+    private static final long serialVersionUID = 1L;
     
     @Id
     @NotBlank

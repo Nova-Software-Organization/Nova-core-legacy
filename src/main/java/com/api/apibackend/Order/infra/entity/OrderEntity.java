@@ -1,9 +1,10 @@
 package com.api.apibackend.Order.infra.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import org.springframework.context.annotation.Lazy;
 
 import com.api.apibackend.Customer.Infra.persistence.entity.CustomerEntity;
 import com.api.apibackend.OrderItem.infra.entity.OrderItemEntity;
@@ -25,12 +26,15 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+@Lazy
 @Data
 @Entity
 @Table(name = "Pedido")
 @EqualsAndHashCode(of = "id")
 public class OrderEntity implements Serializable {
     
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_numero_pedido")
@@ -87,34 +91,38 @@ public class OrderEntity implements Serializable {
     @ManyToOne
     @JoinColumn(name = "idtransacao", referencedColumnName = "idtransacao")
     private TransactionEntity transactionEntity;
-    
-    public OrderEntity() {
-        this.products = new ArrayList<>();
-    }
 
+    /**
+     * TODO - refactor 
+     * colocar regras de calculo na DOMAIN
+     * Deixando a entidade orderEntity sem nenhuma resposibilidade do banco de dados propriamente!
+     */
     public void calculateTotal() {
         float total = 0.0f;
         for (ProductEntity product : products) {
-            total += product.getPriceEntity().getPrice();
+            if (product.getPriceEntity().getPrice() != null && product.getPriceEntity().getPrice() != 0.0f) {
+                total += product.getPriceEntity().getPrice();
+            }
         }
         setTotalValue(total);
     }
     
-    public void clearProducts() {
-        products.clear();
-    }
-
+    
     public void addProduct(ProductEntity product) {
         if (product != null) {
             this.products.add(product);
         }
     }
-
+    
     public void setProducts(List<OrderItemEntity> orderItems) {
         this.products.clear();
         for (OrderItemEntity orderItem : orderItems) {
             ProductEntity product = orderItem.getProduct();
             this.products.add(product);
         }
+    }
+
+    public void clearProducts() {
+        products.clear();
     }
 }

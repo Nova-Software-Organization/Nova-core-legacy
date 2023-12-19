@@ -19,7 +19,9 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(of = "id")
 @Table(name = "endereco_fornecedor")
 public class SupplierAddressEntity implements Serializable {
-    
+
+    private static final long serialVersionUID = 1L;
+
     @Id
     @NotBlank
     @Column(name = "id_ed_fornecedor")

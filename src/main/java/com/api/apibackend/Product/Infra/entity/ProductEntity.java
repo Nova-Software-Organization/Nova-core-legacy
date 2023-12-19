@@ -2,6 +2,8 @@ package com.api.apibackend.Product.Infra.entity;
 
 import java.io.Serializable;
 
+import org.springframework.context.annotation.Lazy;
+
 import com.api.apibackend.Midia.infra.entity.MidiaEntity;
 import com.api.apibackend.Price.infra.entity.PriceEntity;
 import com.api.apibackend.ProductCategory.infra.entity.ProductCategoryEntity;
@@ -14,18 +16,20 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+@Lazy
 @Data
 @Entity
 @Table(name = "Produto")
 @EqualsAndHashCode(of = "idProduct")
 public class ProductEntity implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+    
     @Id
     @Column(name = "idproduto")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,7 +50,7 @@ public class ProductEntity implements Serializable {
     @JoinColumn(name = "idfornecedor", referencedColumnName = "idfornecedor")
     private SupplierEntity supplierEntity;
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "idpreco", referencedColumnName = "idpreco")
     private PriceEntity priceEntity;
 

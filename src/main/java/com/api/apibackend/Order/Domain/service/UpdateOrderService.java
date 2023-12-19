@@ -19,14 +19,15 @@ import com.api.apibackend.Product.Infra.repository.ProductRepository;
 
 @Service
 public class UpdateOrderService implements IUpdateOrderService {
-    
-    @Autowired
-    private OrderRepository orderRepository;
-
     private static final Logger logger = LogManager.getLogger(UpdateOrderService.class);
+    private OrderRepository orderRepository;
+    private ProductRepository productRepository;
     
     @Autowired
-    private ProductRepository productRepository;
+    public UpdateOrderService(OrderRepository orderRepository, ProductRepository productRepository) {
+        this.orderRepository = orderRepository;
+        this.productRepository = productRepository;
+    }
      
      public ResponseEntity<OrderEntity> updateAddressOrder(OrderRequest numberOrder) {
         Optional<OrderEntity> order = orderRepository.findById(numberOrder.getNumberOrder());

@@ -20,6 +20,8 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(of = "idPrice")
 public class PriceEntity implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+    
     @Id
     @Column(name = "idpreco")
     private Long idPrice;

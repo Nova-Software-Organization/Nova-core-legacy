@@ -6,15 +6,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
-import com.api.apibackend.Order.Domain.model.CreateOrderRequest;
+import com.api.apibackend.Order.Application.DTOs.CreateOrderRequest;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Component
 public class OrderCircuitBreaker {
     
     @CircuitBreaker(name = "criarpedido", fallbackMethod = "fallbackCreateOrder")
     public ResponseEntity<String> executeCreateOrder(CreateOrderRequest createOrderRequest, Supplier<ResponseEntity<String>> supplier) {
+        log.info("Pedido foi direcionado para para circuit breaker");
         return supplier.get();
     }
 
