@@ -1,4 +1,4 @@
-package com.api.apibackend.Core.config;
+package com.api.apibackend.Core.config.web;
 
 import java.util.List;
 

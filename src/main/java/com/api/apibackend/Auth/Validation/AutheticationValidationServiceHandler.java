@@ -10,8 +10,8 @@ import javax.naming.directory.InitialDirContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.api.apibackend.Customer.Application.DTOs.CustomerAddressDTO;
-import com.api.apibackend.Customer.Application.DTOs.CustomerDTO;
+import com.api.apibackend.Customer.Application.DTOs.registration.CustomerAddressDTO;
+import com.api.apibackend.Customer.Application.DTOs.registration.CustomerDTO;
 import com.api.apibackend.Customer.Infra.persistence.entity.CustomerEntity;
 import com.api.apibackend.CustomerAddress.infra.entity.AddressEntity;
 

@@ -1,4 +1,4 @@
-package com.api.apibackend.Customer.Application.DTOs;
+package com.api.apibackend.Customer.Application.DTOs.registration;
 
 import lombok.Data;
 

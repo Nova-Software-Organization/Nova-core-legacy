@@ -1,4 +1,4 @@
-package com.api.apibackend.Core.config;
+package com.api.apibackend.Core.config.modelMapperHelpers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

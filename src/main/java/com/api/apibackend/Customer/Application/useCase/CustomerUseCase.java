@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import com.api.apibackend.Auth.Domain.authentication.AutheticationRegister;
 import com.api.apibackend.Auth.Domain.authentication.AuthorizationLogin;
 import com.api.apibackend.Auth.Domain.model.LoginRequest;
-import com.api.apibackend.Customer.Application.DTOs.CustomerAddressDTO;
-import com.api.apibackend.Customer.Application.DTOs.CustomerDTO;
+import com.api.apibackend.Customer.Application.DTOs.registration.CustomerAddressDTO;
+import com.api.apibackend.Customer.Application.DTOs.registration.CustomerDTO;
 
 @Service
 public class CustomerUseCase {

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.api.apibackend.Auth.Domain.model.LoginRequest;
 import com.api.apibackend.Auth.Domain.service.exception.RegistrationFailedException;
-import com.api.apibackend.Customer.Application.DTOs.RegistrationRequest;
+import com.api.apibackend.Customer.Application.DTOs.registration.RegistrationRequest;
 import com.api.apibackend.Customer.Application.repository.ICustomerController;
 import com.api.apibackend.Customer.Application.useCase.CustomerUseCase;
 import com.api.apibackend.Customer.Domain.handler.ClientNotFoundException;
