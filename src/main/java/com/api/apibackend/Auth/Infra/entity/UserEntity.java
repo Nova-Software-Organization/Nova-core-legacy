@@ -93,5 +93,6 @@ public class UserEntity implements UserDetails {
     }
 
     public void setRoles(Boolean isAdmin) {
+        this.setRoles(isAdmin);
     }
 }

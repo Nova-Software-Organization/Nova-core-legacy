@@ -16,12 +16,14 @@ import com.api.apibackend.ProductCategory.infra.repository.ProductCategoryReposi
 
 @Service
 public class ProductCategoryService implements IProductService {
-
-	@Autowired
 	private ProductCategoryRepository productCategoryRepository;
-
-	@Autowired
 	private ProductRepository productRepository;
+	
+	@Autowired
+	public ProductCategoryService(ProductCategoryRepository productCategoryRepository, ProductRepository productRepository) {
+		this.productCategoryRepository = productCategoryRepository;
+		this.productRepository = productRepository;
+	}
 
 	public List<Product> getProductsByCategoryName(String categoryName) {
 		ProductCategoryEntity category = productCategoryRepository.findCategoryByName(categoryName);

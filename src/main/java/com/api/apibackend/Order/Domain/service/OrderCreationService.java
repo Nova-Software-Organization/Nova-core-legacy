@@ -1,7 +1,9 @@
 package com.api.apibackend.Order.Domain.service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 
 import com.api.apibackend.Customer.Application.controller.ClientRequest;
 import com.api.apibackend.Customer.Domain.service.CustomerOrderService;
@@ -20,6 +23,8 @@ import com.api.apibackend.CustomerAddress.Domain.service.CustomerAddressOrderSer
 import com.api.apibackend.CustomerAddress.infra.entity.AddressEntity;
 import com.api.apibackend.Order.Application.controller.OrderRequest;
 import com.api.apibackend.Order.Domain.event.OrderCreatedEvent;
+import com.api.apibackend.Order.Domain.exception.InsufficientStockException;
+import com.api.apibackend.Order.Domain.exception.OrderCannotBeCreated;
 import com.api.apibackend.Order.Domain.repository.IOrderService;
 import com.api.apibackend.Order.infra.entity.OrderEntity;
 import com.api.apibackend.Order.infra.repository.OrderRepository;
@@ -32,6 +37,7 @@ import com.api.apibackend.Product.Infra.repository.ProductRepository;
 import jakarta.transaction.Transactional;
 
 @Service
+@Transactional
 public class OrderCreationService implements IOrderService {
 
     private OrderRepository orderRepository;
@@ -67,30 +73,26 @@ public class OrderCreationService implements IOrderService {
         this.eventPublisher = eventPublisher;
     }
 
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = Exception.class)
     public ResponseEntity<String> createOrder(OrderRequest orderRequest, CustomerAddressRequest customerAddress, ClientRequest clientRequest) {
-        try {
-            validateOrderRequest(orderRequest);
+        validateOrderRequest(orderRequest);
 
-            OrderEntity newOrder = createOrderEntity(orderRequest, customerAddress, clientRequest);
-            updateClientAndAddress(newOrder, clientRequest, customerAddress);
-            List<OrderItemEntity> orderItems = orderItemCreationService.createOrderItems(orderRequest.getItems(), newOrder);
+        OrderEntity newOrder = createOrderEntity(orderRequest, customerAddress, clientRequest);
+        updateClientAndAddress(newOrder, clientRequest, customerAddress);
+        List<OrderItemEntity> orderItems = orderItemCreationService.createOrderItems(orderRequest.getItems(), newOrder);
 
-            saveOrderAndItems(newOrder, orderItems);
-            finalizeOrder(orderItems);
+        saveOrderAndItems(newOrder, orderItems);
+        finalizeOrder(orderItems);
 
-            OrderCreatedEvent orderCreated = new OrderCreatedEvent(this, newOrder.getNumberOrder());
-            eventPublisher.publishEvent(orderCreated);
+        OrderCreatedEvent orderCreated = new OrderCreatedEvent(this, newOrder.getNumberOrder());
+        eventPublisher.publishEvent(orderCreated);
 
-            return ResponseEntity.status(HttpStatus.CREATED).body("Pedido Criado com sucesso");
-        } catch (Exception ex) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno do servidor: " + ex.getMessage());
-        }
+        return ResponseEntity.status(HttpStatus.CREATED).body("Pedido Criado com sucesso");
     }
 
-    private void validateOrderRequest(OrderRequest orderRequest) {
+    private void validateOrderRequest(OrderRequest orderRequest) throws OrderCannotBeCreated {
         if (orderRequest == null) {
-            throw new IllegalArgumentException("Pedido não pode ser criado, objeto inválido");
+            throw new OrderCannotBeCreated("Pedido não pode ser criado, objeto inválido");
         }
     }
 
@@ -152,15 +154,34 @@ public class OrderCreationService implements IOrderService {
         orderItemRepository.saveAll(orderItems);
     }
 
-    private void finalizeOrder(List<OrderItemEntity> orderItems) {
-        orderItems.forEach(this::updateProductStock);
+    private void finalizeOrder(List<OrderItemEntity> orderItems) throws InsufficientStockException {
+        Map<ProductEntity, Integer> stockUpdates = new HashMap<>();
+    
+        for (OrderItemEntity orderItem : orderItems) {
+            updateProductStock(orderItem, stockUpdates);
+        }
+    
+        // Aplicar todas as atualizações em uma única transação
+        applyStockUpdates(stockUpdates);
     }
-
-    private void updateProductStock(OrderItemEntity orderItem) {
+    
+    private void updateProductStock(OrderItemEntity orderItem, Map<ProductEntity, Integer> stockUpdates) throws InsufficientStockException {
         ProductEntity productEntity = orderItem.getProduct();
-        int newStock = productEntity.getQuantityInStock() - orderItem.getQuantity();
-        productEntity.setQuantityInStock(newStock);
-
-        productRepository.save(productEntity);
+        int currentStock = productEntity.getQuantityInStock();
+        int requestedQuantity = orderItem.getQuantity();
+    
+        if (currentStock < requestedQuantity) {
+            throw new InsufficientStockException("Estoque insuficiente para o produto " + productEntity.getIdProduct());
+        }
+    
+        int newStock = currentStock - requestedQuantity;
+        stockUpdates.put(productEntity, newStock);
+    }
+    
+    private void applyStockUpdates(Map<ProductEntity, Integer> stockUpdates) {
+        stockUpdates.forEach((productEntity, newStock) -> {
+            productEntity.setQuantityInStock(newStock);
+            productRepository.save(productEntity);
+        });
     }
 }
