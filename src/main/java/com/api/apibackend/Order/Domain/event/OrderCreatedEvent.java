@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import org.springframework.context.ApplicationEvent;
 
 public class OrderCreatedEvent extends ApplicationEvent {
-
     private final Long createdOrder;
     private final LocalDate dateCreated;
 

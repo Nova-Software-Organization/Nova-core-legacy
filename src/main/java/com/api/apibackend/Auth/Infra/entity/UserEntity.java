@@ -91,7 +91,4 @@ public class UserEntity implements UserDetails {
                 .map(role -> new SimpleGrantedAuthority(role.getAuthority()))
                 .collect(Collectors.toSet());
     }
-
-    public void setRoles(Boolean isAdmin) {
-    }
 }
