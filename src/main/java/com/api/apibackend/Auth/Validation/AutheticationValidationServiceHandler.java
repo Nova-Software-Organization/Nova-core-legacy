@@ -21,7 +21,6 @@ import jakarta.validation.Validator;
 
 @Service
 public class AutheticationValidationServiceHandler {
-    
     private Validator validator;
 
     @Autowired

@@ -6,6 +6,8 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Profile;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.client.RestTemplate;
 
 import com.api.apibackend.Core.config.environment.DevConfig;
@@ -31,7 +33,7 @@ public class BackEndApplication {
 	public jakarta.validation.Validator validator() {
 		return Validation.buildDefaultValidatorFactory().getValidator();
 	}
-
+    
 	@Bean
     @Profile("dev")
     public DevConfig devBean() {
@@ -42,5 +44,10 @@ public class BackEndApplication {
     @Profile("prod")
     public ProdConfig prodBean() {
         return new ProdConfig();
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }

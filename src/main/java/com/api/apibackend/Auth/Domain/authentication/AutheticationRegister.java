@@ -30,6 +30,7 @@ import jakarta.transaction.Transactional;
 @Service
 public class AutheticationRegister {
 
+    @Autowired
     private PasswordEncoder passwordEncoder;
     private CustomerServiceImp clientServiceImp;
     private UserDetailsService userService;
@@ -49,17 +50,18 @@ public class AutheticationRegister {
         CustomerAddressModelMapper customerAddressModelMapper,
         CustomerModelMapper customerModelMapper,
         ApplicationEventPublisher eventPublisher,
-        UserDetailsService userService
+        UserDetailsService userService,
+        PasswordEncoder passwordEncoder
     ) {
         this.autheticationValidationServiceHandler = autheticationValidationServiceHandler;
         this.clientSearchService = clientSearchService;
         this.clientServiceImp = clientServiceImp;
-        this.passwordEncoder = passwordEncoder;
         this.generatedTokenAuthorizationService = generatedTokenAuthorizationService;
         this.customerAddressModelMapper = customerAddressModelMapper;
         this.customerModelMapper = customerModelMapper;
         this.eventPublisher = eventPublisher;
         this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Transactional

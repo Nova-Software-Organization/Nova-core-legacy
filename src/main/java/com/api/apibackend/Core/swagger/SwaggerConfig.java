@@ -12,9 +12,7 @@ public class SwaggerConfig {
     
     @Bean
     public OpenAPI myOpenAPI() {
-
         Contact contact = new Contact();
-
         contact.setEmail("ikauedeveloper@gmail.com");
         contact.setName("Kauê de Matos Oliveira");
         contact.setUrl("");
