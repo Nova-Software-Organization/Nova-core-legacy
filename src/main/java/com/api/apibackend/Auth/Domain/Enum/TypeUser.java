@@ -3,8 +3,8 @@ package com.api.apibackend.Auth.Domain.Enum;
 import org.springframework.security.core.GrantedAuthority;
 
 public enum TypeUser implements GrantedAuthority {
-    ROLE_USER(1),
-    ROLE_ADMIN(0);
+    ROLE_USER(0),
+    ROLE_ADMIN(1);
 
     private int typeUser;
     

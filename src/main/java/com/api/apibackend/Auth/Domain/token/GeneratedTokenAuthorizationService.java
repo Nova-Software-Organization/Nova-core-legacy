@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.api.apibackend.Auth.Domain.Enum.CustomGrantedAuthority;
+import com.api.apibackend.Auth.Domain.exception.GenerateTokenError;
+import com.api.apibackend.Auth.Domain.exception.InvalidGenerateToken;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
@@ -28,7 +30,7 @@ public class GeneratedTokenAuthorizationService {
         this.secret = secret;
     }
 
-    public String generateToken(String username, Set<CustomGrantedAuthority> customGrantedAuthorities) {
+    public String generateToken(String username, Set<CustomGrantedAuthority> customGrantedAuthorities) throws GenerateTokenError {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             Date expirationDate = this.dateExpiration();
@@ -44,11 +46,11 @@ public class GeneratedTokenAuthorizationService {
                     .withExpiresAt(expirationDate)
                     .sign(algorithm);
         } catch (JWTCreationException e) {
-            throw new RuntimeException("Erro ao gerar token JWT", e);
+            throw new GenerateTokenError(e);
         }
     }
     
-    public String getSubject(String tokenJWT) {
+    public String getSubject(String tokenJWT) throws InvalidGenerateToken {
         try {
             var algoritm = Algorithm.HMAC256(secret);
             return JWT.require(algoritm)
@@ -57,7 +59,7 @@ public class GeneratedTokenAuthorizationService {
                     .verify(tokenJWT)
                     .getSubject();
         } catch (JWTVerificationException exception) {
-            throw new RuntimeException("Token JWT inválido ou expirado!");
+            throw new InvalidGenerateToken("Token JWT inválido ou expirado!");
         }
     }
 

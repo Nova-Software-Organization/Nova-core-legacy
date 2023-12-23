@@ -29,8 +29,6 @@ import jakarta.transaction.Transactional;
 
 @Service
 public class AutheticationRegister {
-
-    @Autowired
     private PasswordEncoder passwordEncoder;
     private CustomerServiceImp clientServiceImp;
     private UserDetailsService userService;
