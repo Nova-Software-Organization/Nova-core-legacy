@@ -3,13 +3,18 @@ package com.api.apibackend.Product.Domain.model;
 import java.io.Serializable;
 import java.util.Date;
 
-import com.api.apibackend.Price.infra.entity.PriceEntity;
-import com.api.apibackend.Supplier.Infra.entity.SupplierEntity;
+import com.fasterxml.jackson.annotation.JsonAlias;
 
 import lombok.Data;
 
 @Data
 public class Product implements Serializable {
+    @JsonAlias("supplier")
+    private Supplier supplier;
+
+    @JsonAlias("price")
+    private Price price;
+
     private Long id;
     private String name;
     private String url;
@@ -18,8 +23,6 @@ public class Product implements Serializable {
     private String category;
     private int quantityInStock;
     private int status;
-    private SupplierEntity supplierEntity;
-    private PriceEntity priceEntity;
 
     public Product(
             Long idProduct,

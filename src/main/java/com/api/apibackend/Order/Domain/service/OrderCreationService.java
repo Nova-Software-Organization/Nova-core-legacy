@@ -11,7 +11,6 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 
 import com.api.apibackend.Customer.Application.controller.ClientRequest;
 import com.api.apibackend.Customer.Domain.service.CustomerOrderService;
@@ -73,8 +72,8 @@ public class OrderCreationService implements IOrderService {
         this.eventPublisher = eventPublisher;
     }
 
-    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = Exception.class)
-    public ResponseEntity<String> createOrder(OrderRequest orderRequest, CustomerAddressRequest customerAddress, ClientRequest clientRequest) {
+    @Transactional
+    public ResponseEntity<String> createOrder(OrderRequest orderRequest, CustomerAddressRequest customerAddress, ClientRequest clientRequest) throws InsufficientStockException, OrderCannotBeCreated {
         validateOrderRequest(orderRequest);
 
         OrderEntity newOrder = createOrderEntity(orderRequest, customerAddress, clientRequest);
@@ -99,7 +98,7 @@ public class OrderCreationService implements IOrderService {
     private OrderEntity createOrderEntity(OrderRequest orderRequest, CustomerAddressRequest customerAddress, ClientRequest clientRequest) {
         OrderEntity orderEntity = new OrderEntity();
 
-        orderEntity.setStatus("Pendente");
+        orderEntity.setStatus("Aguardando confirmação de pagamento");
         orderEntity.setCustomerEmail(orderRequest.getCustomerEmail());
         orderEntity.setDatePayment(new Date());
         orderEntity.setPaymentMethod(orderRequest.getPaymentMethod());

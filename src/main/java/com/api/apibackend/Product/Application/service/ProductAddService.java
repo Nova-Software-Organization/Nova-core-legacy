@@ -45,7 +45,7 @@ public class ProductAddService {
 		this.supplierRepository = supplierRepository;
 	}
 
-	public ResponseEntity<?> addProducts(@RequestBody List<Product> productDTOList) {
+	public ResponseEntity<List<Product>> addProducts(@RequestBody List<Product> productDTOList) {
 		List<Product> addedProducts = new ArrayList<>();
 		List<String> errorMessages = new ArrayList<>();
 
@@ -62,21 +62,21 @@ public class ProductAddService {
 				productCategoryRepository.save(category);
 
 				SupplierEntity supplier = new SupplierEntity();
-				supplier.setNameCompany(productDTO.getSupplierEntity().getNameCompany());
+				supplier.setNameCompany(productDTO.getSupplier().getNameCompany());
 				supplierRepository.save(supplier);
 
 				PriceEntity price = new PriceEntity();
-				price.setPrice(productDTO.getPriceEntity().getPrice());
-				price.setDiscountPrice(productDTO.getPriceEntity().getDiscountPrice());
-				price.setStartDate(productDTO.getPriceEntity().getStartDate());
-				price.setEndDate(productDTO.getPriceEntity().getEndDate());
-				price.setCurrency(productDTO.getPriceEntity().getCurrency());
-				price.setUnitOfMeasure(productDTO.getPriceEntity().getUnitOfMeasure());
-				price.setStatus(productDTO.getPriceEntity().getStatus());
-				price.setDiscountType(productDTO.getPriceEntity().getDiscountType());
-				price.setPriceOrigin(productDTO.getPriceEntity().getPriceOrigin());
-				price.setNotes(productDTO.getPriceEntity().getNotes());
-				price.setUpdatedBy(productDTO.getPriceEntity().getUpdatedBy());
+				price.setPrice(productDTO.getPrice().getPrice());
+				price.setDiscountPrice(productDTO.getPrice().getDiscountPrice());
+				price.setStartDate(productDTO.getPrice().getStartDate());
+				price.setEndDate(productDTO.getPrice().getEndDate());
+				price.setCurrency(productDTO.getPrice().getCurrency());
+				price.setUnitOfMeasure(productDTO.getPrice().getUnitOfMeasure());
+				price.setStatus(productDTO.getPrice().getStatus());
+				price.setDiscountType(productDTO.getPrice().getDiscountType());
+				price.setPriceOrigin(productDTO.getPrice().getPriceOrigin());
+				price.setNotes(productDTO.getPrice().getNotes());
+				price.setUpdatedBy(productDTO.getPrice().getUpdatedBy());
 				priceRepository.save(price);
 
 				ProductEntity newProduct = new ProductEntity();
@@ -128,7 +128,7 @@ public class ProductAddService {
 		});
 
 		if (addedProducts.isEmpty()) {
-			return new ResponseEntity<>(errorMessages, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(addedProducts, HttpStatus.BAD_REQUEST);
 		}
 
 		return new ResponseEntity<>(addedProducts, HttpStatus.CREATED);

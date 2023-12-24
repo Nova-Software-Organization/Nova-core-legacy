@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import com.api.apibackend.Customer.Application.controller.ClientRequest;
 import com.api.apibackend.CustomerAddress.Domain.model.CustomerAddressRequest;
 import com.api.apibackend.Order.Application.controller.OrderRequest;
+import com.api.apibackend.Order.Domain.exception.InsufficientStockException;
+import com.api.apibackend.Order.Domain.exception.OrderCannotBeCreated;
 import com.api.apibackend.Order.Domain.service.OrderCreationService;
 import com.api.apibackend.OrderItem.Domain.model.OrderItem;
 import com.api.apibackend.Product.Infra.entity.ProductEntity;
@@ -29,7 +31,7 @@ public class OrderRequestControllerHandler {
     }
 
     @Transactional
-    public ResponseEntity<String> checkout(OrderRequest orderRequest, CustomerAddressRequest customerAddress, ClientRequest clientRequest) {
+    public ResponseEntity<String> checkout(OrderRequest orderRequest, CustomerAddressRequest customerAddress, ClientRequest clientRequest) throws InsufficientStockException, OrderCannotBeCreated {
         validateOrder(orderRequest);
         validateClient(clientRequest);
         validateCustomerAddress(customerAddress);

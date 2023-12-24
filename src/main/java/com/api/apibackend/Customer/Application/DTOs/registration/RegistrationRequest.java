@@ -1,9 +1,7 @@
 package com.api.apibackend.Customer.Application.DTOs.registration;
 
 public class RegistrationRequest {
-	
 	private CustomerDTO customerDTO;
-	
 	private CustomerAddressDTO customerAddressDTO;
 
 	public CustomerDTO getCustomerDTO() {

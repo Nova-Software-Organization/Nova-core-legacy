@@ -52,7 +52,7 @@ public class ProductCategoryService implements IProductService {
 		product.setUrl(productEntity.getMidia().getUrl());
 		product.setDescription(product.getDescription());
 		product.setCategory(category != null ? category.getName() : null);
-		product.setPriceEntity(product.getPriceEntity());
+		product.setPrice(product.getPrice());
 		product.setQuantityInStock(product.getQuantityInStock());
 
 		return product;
