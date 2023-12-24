@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 
 import com.api.apibackend.SupplierAddress.infra.entity.SupplierAddressEntity;
 import com.fasterxml.jackson.annotation.JsonAlias;
-import com.fasterxml.jackson.annotation.JsonCreator;
 
 import lombok.Data;
 
@@ -21,7 +20,6 @@ public class Supplier {
     @JsonAlias("supplierAddress")
     private SupplierAddressEntity supplierAddressEntity;
 
-    @JsonCreator
     public Supplier(Long idSupplier, String nameCompany, String region, String officeSupplier, LocalDateTime date_created, String contact, String cnpj, SupplierAddressEntity supplierAddressEntity) {
         this.idSupplier = idSupplier;
         this.nameCompany = nameCompany;

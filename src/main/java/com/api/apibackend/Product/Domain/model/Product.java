@@ -31,9 +31,7 @@ public class Product implements Serializable {
             String description,
             String nameCompany,
             int quantityInStock,
-            int status,
-            Supplier supplier,
-            Price price) {
+            int status) {
     }
 
     public Product(Long idProduct,

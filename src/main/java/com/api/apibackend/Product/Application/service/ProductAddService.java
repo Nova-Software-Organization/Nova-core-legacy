@@ -47,6 +47,8 @@ public class ProductAddService {
 
 	public ResponseEntity<List<Product>> addProducts(@RequestBody List<Product> productDTOList) {
 		List<Product> addedProducts = new ArrayList<>();
+		List<Supplier> addedSupplierProducts = new ArrayList<>();
+		List<Price> addedPriceProducts = new ArrayList<>();
 		List<String> errorMessages = new ArrayList<>();
 
 		productDTOList.forEach(productDTO -> {
@@ -96,8 +98,10 @@ public class ProductAddService {
 						newProduct.getDescription(),
 						category.getName(),
 						newProduct.getQuantityInStock(),
-						newProduct.getStatus(),
-						new Supplier(
+						newProduct.getStatus()
+						);
+
+				Supplier supplierProdutoDTO =  new Supplier(
 								supplier.getIdSupplier(),
 								supplier.getNameCompany(),
 								supplier.getRegion(),
@@ -105,23 +109,26 @@ public class ProductAddService {
 								supplier.getDate_creaated(),
 								supplier.getContact(),
 								supplier.getCnpj(),
-								supplier.getSupplierAddressEntity()),
-						new Price(
-								price.getIdPrice(),
-								price.getProductEntity(),
-								price.getPrice(),
-								price.getDiscountPrice(),
-								price.getStartDate(),
-								price.getEndDate(),
-								price.getCurrency(),
-								price.getUnitOfMeasure(),
-								price.getStatus(),
-								price.getDiscountType(),
-								price.getPriceOrigin(),
-								price.getNotes(),
-								price.getUpdatedBy()));
+								supplier.getSupplierAddressEntity());
 
+				Price priceProductDTO = new Price(
+						price.getIdPrice(),
+						price.getProductEntity(),
+						price.getPrice(),
+						price.getDiscountPrice(),
+						price.getStartDate(),
+						price.getEndDate(),
+						price.getCurrency(),
+						price.getUnitOfMeasure(),
+						price.getStatus(),
+						price.getDiscountType(),
+						price.getPriceOrigin(),
+						price.getNotes(),
+						price.getUpdatedBy());
+						
 				addedProducts.add(addedProductDTO);
+				addedPriceProducts.add(priceProductDTO);
+				addedSupplierProducts.add(supplierProdutoDTO);
 			} catch (RuntimeException e) {
 				errorMessages.add("Erro ao tentar adicionar o produto " + productDTO.getName() + ": " + e.getMessage());
 			}
