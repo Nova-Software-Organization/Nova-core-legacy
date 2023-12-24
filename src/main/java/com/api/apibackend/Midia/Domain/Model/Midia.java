@@ -11,5 +11,5 @@ public class Midia {
     private String description;
     private String price;
     private String category;
-    private Date date_create;
+    private Date dateCreate;
 }

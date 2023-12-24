@@ -15,7 +15,7 @@ public class ProductUseCase {
     @Autowired
     private ProductAddService productAddService;
 
-    public ResponseEntity<List<Product>> productAdd(List<Product> productDTOList) {
+    public ResponseEntity<String> productAdd(List<Product> productDTOList) {
         return productAddService.addProducts(productDTOList);
     }
 }

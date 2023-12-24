@@ -21,7 +21,7 @@ public class Product implements Serializable {
     private String name;
     private String url;
     private String description;
-    private Date date_create;
+    private Date dateCreate;
     private String category;
     private int quantityInStock;
     private int status;

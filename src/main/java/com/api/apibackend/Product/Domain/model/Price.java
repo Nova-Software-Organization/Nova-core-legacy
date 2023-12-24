@@ -20,13 +20,13 @@ public class Price {
     private Date endDate;
     private String currency;
     private String unitOfMeasure;
-    private String status;
+    private int status;
     private String discountType;
     private String priceOrigin;
     private String notes;
     private String updatedBy;
     
-    public Price(Long idPrice, ProductEntity productEntity, BigDecimal price, BigDecimal discountPrice, Date startDate, Date endDate, String currency, String unitOfMeasure, String status, String discountType, String priceOrigin, String notes, String updatedBy) {
+    public Price(Long idPrice, ProductEntity productEntity, BigDecimal price, BigDecimal discountPrice, Date startDate, Date endDate, String currency, String unitOfMeasure, int status, String discountType, String priceOrigin, String notes, String updatedBy) {
         this.idPrice = idPrice;
         this.productEntity = productEntity;
         this.price = price;

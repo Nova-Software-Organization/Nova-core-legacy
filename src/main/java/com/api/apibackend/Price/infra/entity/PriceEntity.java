@@ -32,10 +32,6 @@ public class PriceEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idpreco")
     private Long id;
-
-    @OneToOne
-    @JoinColumn(name = "idproduto", referencedColumnName = "idproduto")
-    private ProductEntity productEntity;
     
     @Column(name = "preco")
     private BigDecimal price;
@@ -55,8 +51,8 @@ public class PriceEntity implements Serializable {
     @Column(name = "unidade_medida")
     private String unitOfMeasure;
 
-    @Column(name = "status")
-    private String status;
+    @Column(name = "Ativo")
+    private int status;
 
     @Column(name = "tipo_desconto")
     private String discountType;
@@ -69,4 +65,8 @@ public class PriceEntity implements Serializable {
 
     @Column(name = "usuario_atualizacao")
     private String updatedBy;
+
+    @OneToOne
+    @JoinColumn(name = "idproduto")
+    private ProductEntity productEntity;
 }

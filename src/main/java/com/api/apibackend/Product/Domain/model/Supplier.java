@@ -12,15 +12,15 @@ public class Supplier {
     private String officeSupplier;
     private String contact;
     private String cnpj;
-    private LocalDateTime date_created;
+    private LocalDateTime dateCreated;
     private SupplierAddress supplierAddress;
 
-    public Supplier(Long idSupplier, String nameCompany, String region, String officeSupplier, LocalDateTime date_created, String contact, String cnpj, SupplierAddress supplierAddress) {
+    public Supplier(Long idSupplier, String nameCompany, String region, String officeSupplier, LocalDateTime dateCreated, String contact, String cnpj, SupplierAddress supplierAddress) {
         this.idSupplier = idSupplier;
         this.nameCompany = nameCompany;
         this.region = region;
         this.officeSupplier = officeSupplier;
-        this.date_created = date_created;
+        this.dateCreated = dateCreated;
         this.contact = contact;
         this.cnpj = cnpj;
         this.supplierAddress = supplierAddress;

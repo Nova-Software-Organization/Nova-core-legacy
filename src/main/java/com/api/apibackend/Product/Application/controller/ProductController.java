@@ -39,7 +39,7 @@ public class ProductController implements IProductController {
 	}
 	
 	@PostMapping("/adicionar")
-	public ResponseEntity<List<Product>> addProducts(@RequestBody List<Product> productDTOList) {
+	public ResponseEntity<String> addProducts(@RequestBody List<Product> productDTOList) {
 		return productUseCase.productAdd(productDTOList);
 	}
 

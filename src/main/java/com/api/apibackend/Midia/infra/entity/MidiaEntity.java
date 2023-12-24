@@ -31,7 +31,7 @@ public class MidiaEntity implements Serializable {
     private String url;
 
     @Column(name = "data_criacao")
-    private Date date_create;
+    private Date dateCreate;
 
     @Column(name = "categoria")
     private String category;

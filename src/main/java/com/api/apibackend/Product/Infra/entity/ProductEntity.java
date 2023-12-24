@@ -51,7 +51,7 @@ public class ProductEntity implements Serializable {
     @JoinColumn(name = "idfornecedor", referencedColumnName = "idfornecedor")
     private SupplierEntity supplierEntity;
 
-    @OneToOne(mappedBy = "productEntity", cascade = CascadeType.PERSIST)
+    @OneToOne(mappedBy = "productEntity", cascade = CascadeType.ALL)
     private PriceEntity priceEntity;
 
     @Column(name = "estoque")

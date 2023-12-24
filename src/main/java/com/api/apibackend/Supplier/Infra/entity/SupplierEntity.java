@@ -1,11 +1,10 @@
 package com.api.apibackend.Supplier.Infra.entity;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.validation.constraints.NotBlank;
 
-import org.hibernate.annotations.CurrentTimestamp;
 import org.springframework.context.annotation.Lazy;
 
 import com.api.apibackend.SupplierAddress.infra.entity.SupplierAddressEntity;
@@ -45,9 +44,8 @@ public class SupplierEntity implements Serializable {
     @Column(name = "cargo_fornecedor")
     private String officeSupplier;
     
-    @CurrentTimestamp
     @Column(name = "dt_criacao")
-    private LocalDateTime date_created;
+    private Date dateCreated;
 
     @Column(name = "contato")
     private String contact;

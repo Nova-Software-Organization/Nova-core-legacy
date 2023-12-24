@@ -1,13 +1,13 @@
 package com.api.apibackend.Product.Application.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.api.apibackend.Midia.infra.entity.MidiaEntity;
 import com.api.apibackend.Midia.infra.repository.MidiaRepository;
@@ -25,39 +25,38 @@ import com.api.apibackend.SupplierAddress.infra.repository.SupplierAddressReposi
 
 @Service
 public class ProductAddService {
-	private final ProductRepository productRepository;
-	private final ProductCategoryRepository productCategoryRepository;
-	private final MidiaRepository midiaRepository;
-	private final PriceRepository priceRepository;
-	private final SupplierRepository supplierRepository;
-	private final SupplierAddressRepository supplierAddressRepository;
+    private final ProductRepository productRepository;
+    private final ProductCategoryRepository productCategoryRepository;
+    private final MidiaRepository midiaRepository;
+    private final PriceRepository priceRepository;
+    private final SupplierRepository supplierRepository;
+    private final SupplierAddressRepository supplierAddressRepository;
 
-	@Autowired
-	public ProductAddService(
-			ProductRepository productRepository,
-			ProductCategoryRepository productCategoryRepository,
-			MidiaRepository midiaRepository,
-			PriceRepository priceRepository,
-			SupplierRepository supplierRepository,
-			SupplierAddressRepository supplierAddressRepository) {
-		this.productRepository = productRepository;
-		this.productCategoryRepository = productCategoryRepository;
-		this.midiaRepository = midiaRepository;
-		this.priceRepository = priceRepository;
-		this.supplierRepository = supplierRepository;
-		this.supplierAddressRepository = supplierAddressRepository;
-	}
+    @Autowired
+    public ProductAddService(
+            ProductRepository productRepository,
+            ProductCategoryRepository productCategoryRepository,
+            MidiaRepository midiaRepository,
+            PriceRepository priceRepository,
+            SupplierRepository supplierRepository,
+            SupplierAddressRepository supplierAddressRepository) {
+        this.productRepository = productRepository;
+        this.productCategoryRepository = productCategoryRepository;
+        this.midiaRepository = midiaRepository;
+        this.priceRepository = priceRepository;
+        this.supplierRepository = supplierRepository;
+        this.supplierAddressRepository = supplierAddressRepository;
+    }
 
-	public ResponseEntity<List<Product>> addProducts(@RequestBody List<Product> productDTOList) {
-		List<Product> addedProducts = new ArrayList<>();
-		List<String> errorMessages = new ArrayList<>();
+    public ResponseEntity<String> addProducts(List<Product> productDTOList) {
+        List<String> errorMessages = new ArrayList<>();
 
-		productDTOList.forEach(productDTO -> {
-			try {
-				MidiaEntity midia = new MidiaEntity();
+        for (Product productDTO : productDTOList) {
+            try {
+                MidiaEntity midia = new MidiaEntity();
                 midia.setUrl(productDTO.getUrl());
                 midia.setCategory(productDTO.getCategory());
-                midia.setDate_create(productDTO.getDate_create());
+                midia.setDateCreate(new Date());
                 midia = midiaRepository.save(midia);
 
                 ProductCategoryEntity category = new ProductCategoryEntity();
@@ -69,62 +68,52 @@ public class ProductAddService {
                 supplierAddress.setRoad(productDTO.getSupplier().getSupplierAddress().getRoad());
                 supplierAddress.setNeighborhood(productDTO.getSupplier().getSupplierAddress().getNeighborhood());
                 supplierAddress.setNumberHouseOrCompany(productDTO.getSupplier().getSupplierAddress().getNumberHouseOrCompany());
-				supplierAddressRepository.save(supplierAddress);
+                supplierAddressRepository.save(supplierAddress);
 
                 SupplierEntity supplier = new SupplierEntity();
                 supplier.setNameCompany(productDTO.getSupplier().getNameCompany());
                 supplier.setCnpj(productDTO.getSupplier().getCnpj());
                 supplier.setRegion(productDTO.getSupplier().getRegion());
                 supplier.setOfficeSupplier(productDTO.getSupplier().getOfficeSupplier());
-                supplier.setDate_created(productDTO.getSupplier().getDate_created());
+                supplier.setDateCreated(new Date());
                 supplier.setContact(productDTO.getSupplier().getContact());
                 supplier.setSupplierAddressEntity(supplierAddress);
                 supplier = supplierRepository.save(supplier);
-				
-				PriceEntity price = new PriceEntity();
-				price.setPrice(productDTO.getPrice().getPrice());
-				price.setDiscountPrice(productDTO.getPrice().getDiscountPrice());
-				price.setStartDate(productDTO.getPrice().getStartDate());
-				price.setEndDate(productDTO.getPrice().getEndDate());
-				price.setCurrency(productDTO.getPrice().getCurrency());
-				price.setUnitOfMeasure(productDTO.getPrice().getUnitOfMeasure());
-				price.setStatus(productDTO.getPrice().getStatus());
-				price.setDiscountType(productDTO.getPrice().getDiscountType());
-				price.setPriceOrigin(productDTO.getPrice().getPriceOrigin());
-				price.setNotes(productDTO.getPrice().getNotes());
-				price.setUpdatedBy(productDTO.getPrice().getUpdatedBy());
-				priceRepository.save(price);
 
-				ProductEntity newProduct = new ProductEntity();
-				newProduct.setName(productDTO.getName());
-				newProduct.setDescription(productDTO.getDescription());
-				newProduct.setQuantityInStock(productDTO.getQuantityInStock());
-				newProduct.setStatus(productDTO.getStatus());
-				newProduct.setCategory(category);
-				newProduct.setMidia(midia);
-				newProduct.setSupplierEntity(supplier);
-				newProduct = productRepository.save(newProduct);
+                ProductEntity newProduct = new ProductEntity();
+                newProduct.setName(productDTO.getName());
+                newProduct.setDescription(productDTO.getDescription());
+                newProduct.setQuantityInStock(productDTO.getQuantityInStock());
+                newProduct.setStatus(productDTO.getStatus());
+                newProduct.setCategory(category);
+                newProduct.setMidia(midia);
+                newProduct.setSupplierEntity(supplier);
+                newProduct = productRepository.save(newProduct);
 
-				Product addedProductDTO = new Product(
-						newProduct.getIdProduct(),
-						newProduct.getName(),
-						midia.getUrl(),
-						newProduct.getDescription(),
-						category.getName(),
-						newProduct.getQuantityInStock(),
-						newProduct.getStatus()
-						);
-						
-				addedProducts.add(addedProductDTO);
-			} catch (RuntimeException e) {
-				errorMessages.add("Erro ao tentar adicionar o produto " + productDTO.getName() + ": " + e.getMessage());
-			}
-		});
+                PriceEntity price = new PriceEntity();
+                price.setPrice(productDTO.getPrice().getPrice());
+                price.setDiscountPrice(productDTO.getPrice().getDiscountPrice());
+                price.setStartDate(productDTO.getPrice().getStartDate());
+                price.setEndDate(productDTO.getPrice().getEndDate());
+                price.setCurrency(productDTO.getPrice().getCurrency());
+                price.setUnitOfMeasure(productDTO.getPrice().getUnitOfMeasure());
+                price.setStatus(productDTO.getPrice().getStatus());
+                price.setDiscountType(productDTO.getPrice().getDiscountType());
+                price.setPriceOrigin(productDTO.getPrice().getPriceOrigin());
+                price.setNotes(productDTO.getPrice().getNotes());
+                price.setUpdatedBy(productDTO.getPrice().getUpdatedBy());
+				price.setProductEntity(newProduct);
+                priceRepository.save(price);
 
-		if (addedProducts.isEmpty()) {
-			return new ResponseEntity<>(addedProducts, HttpStatus.BAD_REQUEST);
-		}
+            } catch (RuntimeException e) {
+                errorMessages.add("Erro ao tentar adicionar os produtos: " + e.getMessage());
+            }
+        }
 
-		return new ResponseEntity<>(addedProducts, HttpStatus.CREATED);
-	}
+        if (!errorMessages.isEmpty()) {
+            return ResponseEntity.badRequest().body(String.join("\n", errorMessages));
+        }
+
+        return ResponseEntity.status(HttpStatus.CREATED).body("Produtos adicionandos com sucesso!");
+    }
 }
