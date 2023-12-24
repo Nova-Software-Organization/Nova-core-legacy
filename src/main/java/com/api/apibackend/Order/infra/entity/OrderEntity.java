@@ -1,6 +1,7 @@
 package com.api.apibackend.Order.infra.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -100,8 +101,9 @@ public class OrderEntity implements Serializable {
     public void calculateTotal() {
         float total = 0.0f;
         for (ProductEntity product : products) {
-            if (product.getPriceEntity().getPrice() != null && product.getPriceEntity().getPrice() != 0.0f) {
-                total += product.getPriceEntity().getPrice();
+            BigDecimal valuePrice = product.getPriceEntity().getPrice();
+            if (product.getPriceEntity().getPrice() != null && valuePrice.floatValue() != 0.0f) {
+                total += valuePrice.floatValue();
             }
         }
         setTotalValue(total);

@@ -6,7 +6,6 @@ import java.time.LocalDateTime;
 import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.CurrentTimestamp;
-import org.hibernate.validator.constraints.br.CNPJ;
 import org.springframework.context.annotation.Lazy;
 
 import com.api.apibackend.SupplierAddress.infra.entity.SupplierAddressEntity;
@@ -48,12 +47,11 @@ public class SupplierEntity implements Serializable {
     
     @CurrentTimestamp
     @Column(name = "dt_criacao")
-    private LocalDateTime date_creaated;
+    private LocalDateTime date_created;
 
     @Column(name = "contato")
     private String contact;
-
-    @CNPJ
+    
     @Column(name = "cnpj")
     private String cnpj;
 

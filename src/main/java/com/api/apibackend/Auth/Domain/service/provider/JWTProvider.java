@@ -1,6 +1,5 @@
 package com.api.apibackend.Auth.Domain.service.provider;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -17,27 +16,28 @@ import lombok.Data;
 @Data
 @Service
 public class JWTProvider {
-
-    @Value("${api.security.token.secret}")
-    private String secretKey;
+    private String secretKey = "12345678";
     private MyUserDetails myUserDetails;
 
     public String validateToken(String token) {
-        token = token.replace("Bearer", "");
+        token = token.replace("Bearer", "").trim();
         Algorithm algorithm = Algorithm.HMAC256(secretKey);
-
+    
         try {
             String subject = JWT.require(algorithm)
                     .build()
                     .verify(token)
                     .getSubject();
-
+    
             return subject;
         } catch (JWTVerificationException exception) {
+
+            System.out.println("Erro ao validar o token: " + exception.getMessage());
             exception.printStackTrace();
             return "";
         }
     }
+    
 
     public UsernamePasswordAuthenticationToken getAuthentication(String token) {
         UserDetails userDetails = myUserDetails.loadUserByUsername(getUsername(token));

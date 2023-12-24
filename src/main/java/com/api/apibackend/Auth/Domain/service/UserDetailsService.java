@@ -13,7 +13,6 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @Service
 public class UserDetailsService {
-    
     private UserRepository userRepository;
     private JWTProvider jwtTokenProvider;
     private GeneratedTokenAuthorizationService generatedTokenAuthorizationService;

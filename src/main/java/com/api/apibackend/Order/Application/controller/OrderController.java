@@ -63,7 +63,7 @@ public class OrderController implements IOrderController {
         }
     }
 
-	@PostMapping("/criar")
+	@PostMapping("/criar/pedido")
 	@CircuitBreaker(name = "criarpedido", fallbackMethod = "fallbackCreateOrder")
 	public ResponseEntity<?> createOrder(@RequestBody CreateOrderRequest createOrderRequest) {
         return orderCircuitBreaker.executeCreateOrder(createOrderRequest, () -> {

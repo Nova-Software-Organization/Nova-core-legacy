@@ -9,6 +9,7 @@ import com.api.apibackend.Price.infra.entity.PriceEntity;
 import com.api.apibackend.ProductCategory.infra.entity.ProductCategoryEntity;
 import com.api.apibackend.Supplier.Infra.entity.SupplierEntity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -50,8 +51,7 @@ public class ProductEntity implements Serializable {
     @JoinColumn(name = "idfornecedor", referencedColumnName = "idfornecedor")
     private SupplierEntity supplierEntity;
 
-    @ManyToOne
-    @JoinColumn(name = "idpreco", referencedColumnName = "idpreco")
+    @OneToOne(mappedBy = "productEntity", cascade = CascadeType.PERSIST)
     private PriceEntity priceEntity;
 
     @Column(name = "estoque")

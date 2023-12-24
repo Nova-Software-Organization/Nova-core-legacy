@@ -13,15 +13,15 @@ import com.api.apibackend.Midia.infra.entity.MidiaEntity;
 import com.api.apibackend.Midia.infra.repository.MidiaRepository;
 import com.api.apibackend.Price.infra.entity.PriceEntity;
 import com.api.apibackend.Price.infra.repository.PriceRepository;
-import com.api.apibackend.Product.Domain.model.Price;
 import com.api.apibackend.Product.Domain.model.Product;
-import com.api.apibackend.Product.Domain.model.Supplier;
 import com.api.apibackend.Product.Infra.entity.ProductEntity;
 import com.api.apibackend.Product.Infra.repository.ProductRepository;
 import com.api.apibackend.ProductCategory.infra.entity.ProductCategoryEntity;
 import com.api.apibackend.ProductCategory.infra.repository.ProductCategoryRepository;
 import com.api.apibackend.Supplier.Infra.entity.SupplierEntity;
 import com.api.apibackend.Supplier.Infra.repository.SupplierRepository;
+import com.api.apibackend.SupplierAddress.infra.entity.SupplierAddressEntity;
+import com.api.apibackend.SupplierAddress.infra.repository.SupplierAddressRepository;
 
 @Service
 public class ProductAddService {
@@ -30,6 +30,7 @@ public class ProductAddService {
 	private final MidiaRepository midiaRepository;
 	private final PriceRepository priceRepository;
 	private final SupplierRepository supplierRepository;
+	private final SupplierAddressRepository supplierAddressRepository;
 
 	@Autowired
 	public ProductAddService(
@@ -37,36 +38,49 @@ public class ProductAddService {
 			ProductCategoryRepository productCategoryRepository,
 			MidiaRepository midiaRepository,
 			PriceRepository priceRepository,
-			SupplierRepository supplierRepository) {
+			SupplierRepository supplierRepository,
+			SupplierAddressRepository supplierAddressRepository) {
 		this.productRepository = productRepository;
 		this.productCategoryRepository = productCategoryRepository;
 		this.midiaRepository = midiaRepository;
 		this.priceRepository = priceRepository;
 		this.supplierRepository = supplierRepository;
+		this.supplierAddressRepository = supplierAddressRepository;
 	}
 
 	public ResponseEntity<List<Product>> addProducts(@RequestBody List<Product> productDTOList) {
 		List<Product> addedProducts = new ArrayList<>();
-		List<Supplier> addedSupplierProducts = new ArrayList<>();
-		List<Price> addedPriceProducts = new ArrayList<>();
 		List<String> errorMessages = new ArrayList<>();
 
 		productDTOList.forEach(productDTO -> {
 			try {
 				MidiaEntity midia = new MidiaEntity();
-				midia.setUrl(productDTO.getUrl());
-				midia.setCategory(productDTO.getCategory());
-				midia.setDate_create(productDTO.getDate_create());
-				midiaRepository.save(midia);
+                midia.setUrl(productDTO.getUrl());
+                midia.setCategory(productDTO.getCategory());
+                midia.setDate_create(productDTO.getDate_create());
+                midia = midiaRepository.save(midia);
 
-				ProductCategoryEntity category = new ProductCategoryEntity();
-				category.setName(productDTO.getCategory());
-				productCategoryRepository.save(category);
+                ProductCategoryEntity category = new ProductCategoryEntity();
+                category.setName(productDTO.getCategory());
+                category = productCategoryRepository.save(category);
 
-				SupplierEntity supplier = new SupplierEntity();
-				supplier.setNameCompany(productDTO.getSupplier().getNameCompany());
-				supplierRepository.save(supplier);
+                SupplierAddressEntity supplierAddress = new SupplierAddressEntity();
+                supplierAddress.setCep(productDTO.getSupplier().getSupplierAddress().getCep());
+                supplierAddress.setRoad(productDTO.getSupplier().getSupplierAddress().getRoad());
+                supplierAddress.setNeighborhood(productDTO.getSupplier().getSupplierAddress().getNeighborhood());
+                supplierAddress.setNumberHouseOrCompany(productDTO.getSupplier().getSupplierAddress().getNumberHouseOrCompany());
+				supplierAddressRepository.save(supplierAddress);
 
+                SupplierEntity supplier = new SupplierEntity();
+                supplier.setNameCompany(productDTO.getSupplier().getNameCompany());
+                supplier.setCnpj(productDTO.getSupplier().getCnpj());
+                supplier.setRegion(productDTO.getSupplier().getRegion());
+                supplier.setOfficeSupplier(productDTO.getSupplier().getOfficeSupplier());
+                supplier.setDate_created(productDTO.getSupplier().getDate_created());
+                supplier.setContact(productDTO.getSupplier().getContact());
+                supplier.setSupplierAddressEntity(supplierAddress);
+                supplier = supplierRepository.save(supplier);
+				
 				PriceEntity price = new PriceEntity();
 				price.setPrice(productDTO.getPrice().getPrice());
 				price.setDiscountPrice(productDTO.getPrice().getDiscountPrice());
@@ -100,35 +114,8 @@ public class ProductAddService {
 						newProduct.getQuantityInStock(),
 						newProduct.getStatus()
 						);
-
-				Supplier supplierProdutoDTO =  new Supplier(
-								supplier.getIdSupplier(),
-								supplier.getNameCompany(),
-								supplier.getRegion(),
-								supplier.getOfficeSupplier(),
-								supplier.getDate_creaated(),
-								supplier.getContact(),
-								supplier.getCnpj(),
-								supplier.getSupplierAddressEntity());
-
-				Price priceProductDTO = new Price(
-						price.getIdPrice(),
-						price.getProductEntity(),
-						price.getPrice(),
-						price.getDiscountPrice(),
-						price.getStartDate(),
-						price.getEndDate(),
-						price.getCurrency(),
-						price.getUnitOfMeasure(),
-						price.getStatus(),
-						price.getDiscountType(),
-						price.getPriceOrigin(),
-						price.getNotes(),
-						price.getUpdatedBy());
 						
 				addedProducts.add(addedProductDTO);
-				addedPriceProducts.add(priceProductDTO);
-				addedSupplierProducts.add(supplierProdutoDTO);
 			} catch (RuntimeException e) {
 				errorMessages.add("Erro ao tentar adicionar o produto " + productDTO.getName() + ": " + e.getMessage());
 			}
