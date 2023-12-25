@@ -10,8 +10,7 @@ import com.api.apibackend.Auth.Infra.repository.UserRepository;
 
 @Service
 public class MyUserDetails implements UserDetailsService {
-
-  private final UserRepository userRepository;
+  private UserRepository userRepository;
 
   public MyUserDetails(UserRepository userRepository) {
     this.userRepository = userRepository;

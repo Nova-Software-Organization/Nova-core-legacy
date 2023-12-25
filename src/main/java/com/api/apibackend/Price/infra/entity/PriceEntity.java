@@ -1,12 +1,17 @@
 package com.api.apibackend.Price.infra.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
+
+import org.springframework.context.annotation.Lazy;
 
 import com.api.apibackend.Product.Infra.entity.ProductEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
@@ -14,27 +19,25 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+@Lazy
 @Data
 @Entity
 @Table(name = "preco_produto")
-@EqualsAndHashCode(of = "idPrice")
+@EqualsAndHashCode(of = "id")
 public class PriceEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idpreco")
-    private Long idPrice;
-
-    @OneToOne
-    @JoinColumn(name = "idproduto", referencedColumnName = "idproduto")
-    private ProductEntity productEntity;
+    private Long id;
     
     @Column(name = "preco")
-    private Double price;
+    private BigDecimal price;
 
     @Column(name = "preco_de")
-    private Double discountPrice;
+    private BigDecimal discountPrice;
 
     @Column(name = "data_inicio_vigencia")
     private Date startDate;
@@ -48,8 +51,8 @@ public class PriceEntity implements Serializable {
     @Column(name = "unidade_medida")
     private String unitOfMeasure;
 
-    @Column(name = "status")
-    private String status;
+    @Column(name = "Ativo")
+    private int status;
 
     @Column(name = "tipo_desconto")
     private String discountType;
@@ -62,4 +65,8 @@ public class PriceEntity implements Serializable {
 
     @Column(name = "usuario_atualizacao")
     private String updatedBy;
+
+    @OneToOne
+    @JoinColumn(name = "idproduto")
+    private ProductEntity productEntity;
 }

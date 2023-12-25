@@ -1,11 +1,13 @@
 package com.api.apibackend.Product.Domain.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 
 import lombok.Data;
+
 
 @Data
 public class Product implements Serializable {
@@ -19,7 +21,7 @@ public class Product implements Serializable {
     private String name;
     private String url;
     private String description;
-    private Date date_create;
+    private Date dateCreate;
     private String category;
     private int quantityInStock;
     private int status;
@@ -39,8 +41,8 @@ public class Product implements Serializable {
             String url2,
             String description2,
             String name3,
-            Double price,
-            Double dePrice,
+            BigDecimal price,
+            BigDecimal dePrice,
             int quantityInStock2) {
     }
 

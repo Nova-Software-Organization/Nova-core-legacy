@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -21,14 +19,7 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 @Service
 @Component
 public class GeneratedTokenAuthorizationService {
-    
-    @Value("${api.security.token.secret}")
-    private final String secret;
-
-    @Autowired
-    public GeneratedTokenAuthorizationService(@Value("${api.security.token.secret}") String secret) {
-        this.secret = secret;
-    }
+    private String secret = "12345678";
 
     public String generateToken(String username, Set<CustomGrantedAuthority> customGrantedAuthorities) throws GenerateTokenError {
         try {

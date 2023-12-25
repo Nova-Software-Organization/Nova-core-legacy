@@ -1,5 +1,6 @@
 package com.api.apibackend.Product.Domain.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import org.springframework.context.annotation.Lazy;
@@ -13,19 +14,19 @@ import lombok.Data;
 public class Price {
     private Long idPrice;
     private ProductEntity productEntity;
-    private Double price;
-    private Double discountPrice;
+    private BigDecimal price;
+    private BigDecimal discountPrice;
     private Date startDate;
     private Date endDate;
     private String currency;
     private String unitOfMeasure;
-    private String status;
+    private int status;
     private String discountType;
     private String priceOrigin;
     private String notes;
     private String updatedBy;
     
-    public Price(Long idPrice, ProductEntity productEntity, Double price, Double discountPrice, Date startDate, Date endDate, String currency, String unitOfMeasure, String status, String discountType, String priceOrigin, String notes, String updatedBy) {
+    public Price(Long idPrice, ProductEntity productEntity, BigDecimal price, BigDecimal discountPrice, Date startDate, Date endDate, String currency, String unitOfMeasure, int status, String discountType, String priceOrigin, String notes, String updatedBy) {
         this.idPrice = idPrice;
         this.productEntity = productEntity;
         this.price = price;
@@ -40,4 +41,6 @@ public class Price {
         this.notes = notes;
         this.updatedBy = updatedBy;
     }
+
+    public Price() {}
 }

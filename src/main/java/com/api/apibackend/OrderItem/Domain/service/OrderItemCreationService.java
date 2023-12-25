@@ -1,5 +1,6 @@
 package com.api.apibackend.OrderItem.Domain.service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -37,14 +38,15 @@ public class OrderItemCreationService {
 
                 if (optionalProduct.isPresent()) {
                     ProductEntity productEntity = optionalProduct.get();
-
+                    
                     OrderItemEntity orderItemEntity = new OrderItemEntity();
                     orderItemEntity.setProduct(productEntity);
                     orderItemEntity.setQuantity(item.getQuantity());
                     orderItemEntity.setUnitPrice(productEntity.getPriceEntity().getPrice());
                     orderItemEntity.setOrder(orderEntity);
-
-                    Double itemTotal = item.getQuantity() * productEntity.getPriceEntity().getPrice();
+                    
+                    BigDecimal valuePrice = productEntity.getPriceEntity().getPrice();
+                    Double itemTotal = item.getQuantity() * valuePrice.doubleValue();
                     total[0] += itemTotal;
 
                     orderItems.add(orderItemEntity);

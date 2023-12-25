@@ -4,7 +4,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -13,11 +12,23 @@ import org.springframework.web.client.RestTemplate;
 import com.api.apibackend.Core.config.environment.DevConfig;
 import com.api.apibackend.Core.config.environment.ProdConfig;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import jakarta.validation.Validation;
 
 @EnableCaching
 @SpringBootApplication
-@ComponentScan("com.api.apibackend")
+@OpenAPIDefinition(
+    info = @Info(
+        title = "Nova Core",
+        description = "API principal do Nova Core responsavel pela entrada de pedidos dentro aplicação chamada de serviços externos da propria Nova Software caso necessário",
+        version = "1.0.1"
+    )
+)
+@SecurityScheme(name = "jwt_auth", scheme = "bearer", bearerFormat = "JWT", type= SecuritySchemeType.HTTP, in = SecuritySchemeIn.HEADER)
 public class BackEndApplication {
 
 	public static void main(String[] args) {

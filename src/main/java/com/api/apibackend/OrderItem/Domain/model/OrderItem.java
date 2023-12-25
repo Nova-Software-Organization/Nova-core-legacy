@@ -1,5 +1,6 @@
 package com.api.apibackend.OrderItem.Domain.model;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class OrderItem {
   private Long productId;
     private String productName;
     private int quantity;
-    private double price;
+    private BigDecimal price;
     private List<OrderItem> items;
     private ProductEntity product;
 

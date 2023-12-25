@@ -1,6 +1,7 @@
 package com.api.apibackend.Auth.Infra.entity;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -31,6 +32,7 @@ public class UserEntity implements UserDetails {
     private static final long serialVersionUID = 1L;
     
     @Id
+    @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -40,8 +42,8 @@ public class UserEntity implements UserDetails {
     @Column(name = "senha")
     private String password;
 
-    @ElementCollection(fetch = FetchType.EAGER)
     @Column(name = "tipo_usuario")
+    @ElementCollection(fetch = FetchType.EAGER)
     private Set<CustomGrantedAuthority> roles;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
@@ -93,6 +95,6 @@ public class UserEntity implements UserDetails {
     }
 
     public void setRoles(Boolean isAdmin) {
-        this.setRoles(isAdmin);
+        this.roles = isAdmin ? Collections.singleton(CustomGrantedAuthority.ADMIN) : Collections.singleton(CustomGrantedAuthority.USER);
     }
 }

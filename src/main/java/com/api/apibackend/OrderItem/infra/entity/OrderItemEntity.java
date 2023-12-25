@@ -1,6 +1,7 @@
 package com.api.apibackend.OrderItem.infra.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import org.springframework.context.annotation.Lazy;
 
@@ -44,5 +45,5 @@ public class OrderItemEntity implements Serializable {
     private int quantity;
 
     @Column(name = "precoUni")
-    private Double unitPrice;
+    private BigDecimal unitPrice;
 }
