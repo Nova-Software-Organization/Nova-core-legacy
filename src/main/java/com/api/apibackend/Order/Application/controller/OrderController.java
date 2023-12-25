@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,11 +26,12 @@ import com.api.apibackend.Order.infra.entity.OrderEntity;
 import com.api.apibackend.Order.infra.service.OrderCircuitBreaker;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/v1/pedido")
 public class OrderController implements IOrderController {
-
     private OrderCreationService orderService;
     private OrderUseCase orderManageUseCase;
 	private UpdateOrderService updateOrderService;
@@ -52,6 +54,9 @@ public class OrderController implements IOrderController {
     }
 
     @GetMapping("/listar")
+    @PreAuthorize("hasRole('USER')")
+    @Tag(name = "Lista todos os pedidos", description = "Responsavel por listar todos os pedidos que estão dentro do banco de dados")
+    @Operation(summary = "Efetua um listagem de todos os pedidos que estão dentro do banco de dados!")
     public ResponseEntity<?> listOrders() {
         try {
             ResponseEntity<List<OrderEntity>> orders = orderCompletionReturnProcessor.getOrderList();
@@ -65,6 +70,9 @@ public class OrderController implements IOrderController {
 
 	@PostMapping("/criar/pedido")
 	@CircuitBreaker(name = "criarpedido", fallbackMethod = "fallbackCreateOrder")
+    @PreAuthorize("hasRole('USER')")
+    @Tag(name = "criar pedido", description = "Responsavel por criar um pedido feito pelo cliente")
+    @Operation(summary = "Rota tem como objetivo criar fazer o pedido do cliente e validar todas as situações possiveis antes de contabilizar no sistema a compra!")
 	public ResponseEntity<?> createOrder(@RequestBody CreateOrderRequest createOrderRequest) {
         return orderCircuitBreaker.executeCreateOrder(createOrderRequest, () -> {
             ResponseEntity<String> orderResponse = orderManageUseCase.executeRequestManage(createOrderRequest);
@@ -78,6 +86,9 @@ public class OrderController implements IOrderController {
 	}
 	
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('USER')")
+    @Tag(name = "Retorna o pedido", description = "Responsavel por retornar um pedido")
+    @Operation(summary = "Efetuar uma busca pelo pedido por id e retorna-lo quando possivel!")
     public ResponseEntity<?> getOrder(@PathVariable Long id) {
         try {
             ResponseEntity<Optional<OrderEntity>> order = orderCompletionReturnProcessor.getOrderId(id);
@@ -90,6 +101,9 @@ public class OrderController implements IOrderController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('USER')")
+    @Tag(name = "Atualiza o pedido", description = "Atualiza um pedido pelo id informado")
+    @Operation(summary = "Efetua a busca pelo pedido informado e atualiza o mesmo")
     public ResponseEntity<?> updateOrder(@PathVariable Long id, @RequestBody OrderRequest orderRequest) {
         try {
             ResponseEntity<OrderEntity> updatedOrder = updateOrderService.updateOrder(id, orderRequest);
@@ -102,6 +116,9 @@ public class OrderController implements IOrderController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    @Tag(name = "Deleta um pedido do banco de dados", description = "Responsavel por deletar um pedido do banco de dados")
+    @Operation(summary = "Efetua a busca pelo id informado e deleta o pedido")
     public ResponseEntity<?> deleteOrder(@PathVariable Long id) {
         try {
             updateOrderService.deleteOrder(id);
@@ -115,6 +132,9 @@ public class OrderController implements IOrderController {
 
 	@PostMapping("/cancelamento")
     @CircuitBreaker(name = "cancelamentopedido", fallbackMethod = "")
+    @PreAuthorize("hasRole('ADMIN')")
+    @Tag(name = "Cancelamento do pedido", description = "Efetua o cancelamento do pedido")
+    @Operation(summary = "Busca pelo id do pedido informado e efetua o cancelamento alterando o status a dando um break nos outros processos")
     public ResponseEntity<?> canceladOrder(@RequestBody OrderRequest orderRequest) {
         try {
             ResponseEntity<OrderEntity> canceledOrder = orderManageUseCase.executeCanceladOrder(orderRequest);
@@ -127,6 +147,9 @@ public class OrderController implements IOrderController {
     }
 
     @PostMapping("/atualizar/endereco")
+    @PreAuthorize("hasRole('USER')")
+    @Tag(name = "Atualiza o endereço do pedido", description = "Atualiza o endereço do pedido")
+    @Operation(summary = "efetua uma alteração no endereço do pedido informado")
     public ResponseEntity<?> updateOrderAddress(@RequestBody OrderRequest orderRequest) {
         try {
             ResponseEntity<OrderEntity> updatedOrder = orderManageUseCase.executeAddress(orderRequest);

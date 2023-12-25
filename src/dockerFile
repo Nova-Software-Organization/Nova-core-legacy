@@ -1,5 +1,10 @@
-# FROM ubuntu:latest
+FROM eclipse-temurin:17-jdk-alpine
+WORKDIR /app
+COPY target/apibackend-0.0.1-SNAPSHOT.jar apibackend-0.0.1-SNAPSHOT.jar
+EXPOSE 8080
+ENTRYPOINT [ "java", "-jar", "app.jar" ]
 
+# FROM ubuntu:latest
 
 # RUN apt-get update
 # RUN apt-get install openjdk-17-jdk -y
@@ -14,5 +19,3 @@
 # EXPOSE 8080
 
 # COPY --from=build / target/nome do arquivo app.jar
-
-# ENTRYPOINT [ "java", "-jar", "app.jar" ]

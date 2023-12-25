@@ -21,8 +21,9 @@ public class Order {
     public void calculateTotal() {
         float total = 0.0f;
         for (ProductEntity product : products) {
-            if (product.getPriceEntity().getPrice() != null && product.getPriceEntity().getPrice() != 0.0f) {
-                total += product.getPriceEntity().getPrice();
+            Float value = product.getPriceEntity().getPrice().floatValue();
+            if (product.getPriceEntity().getPrice() != null && value != 0.0f) {
+                total += value;
             }
         }
         orderEntity.setTotalValue(total);
