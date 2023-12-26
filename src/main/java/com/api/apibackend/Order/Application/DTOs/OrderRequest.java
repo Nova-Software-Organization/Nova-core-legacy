@@ -1,4 +1,4 @@
-package com.api.apibackend.Order.Application.controller;
+package com.api.apibackend.Order.Application.DTOs;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ public class OrderRequest {
 	private ClientRequest clientRequest;
 	private String customerEmail;
 	private String paymentMethod;
-	
+
 	public List<ProductEntity> getProducts() {
 		List<ProductEntity> products = new ArrayList<>();
 

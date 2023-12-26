@@ -5,14 +5,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.api.apibackend.Order.Application.DTOs.CreateOrderRequest;
-import com.api.apibackend.Order.Application.controller.OrderRequest;
+import com.api.apibackend.Order.Application.DTOs.OrderRequest;
 
 public interface IOrderController {
 	ResponseEntity<?> listOrders();
+
 	ResponseEntity<?> createOrder(@RequestBody CreateOrderRequest createOrderRequest);
+
 	ResponseEntity<?> getOrder(@PathVariable Long id);
+
 	ResponseEntity<?> updateOrder(@PathVariable Long id, @RequestBody OrderRequest orderRequest);
+
 	ResponseEntity<?> deleteOrder(@PathVariable Long id);
+
 	ResponseEntity<?> updateOrderAddress(@RequestBody OrderRequest orderRequest);
+
 	ResponseEntity<?> canceladOrder(@RequestBody OrderRequest orderRequest);
 }

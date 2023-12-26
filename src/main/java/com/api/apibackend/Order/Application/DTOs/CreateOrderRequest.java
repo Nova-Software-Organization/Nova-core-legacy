@@ -2,7 +2,6 @@ package com.api.apibackend.Order.Application.DTOs;
 
 import com.api.apibackend.Customer.Application.controller.ClientRequest;
 import com.api.apibackend.CustomerAddress.Domain.model.CustomerAddressRequest;
-import com.api.apibackend.Order.Application.controller.OrderRequest;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CreateOrderRequest {
@@ -12,11 +11,12 @@ public class CreateOrderRequest {
 
 	@JsonProperty("customerAddress")
 	private CustomerAddressRequest customerAddress;
-	
+
 	@JsonProperty("clientRequest")
 	private ClientRequest clientRequest;
 
-	public CreateOrderRequest() { }
+	public CreateOrderRequest() {
+	}
 
 	public OrderRequest getOrderRequest() {
 		return orderRequest;

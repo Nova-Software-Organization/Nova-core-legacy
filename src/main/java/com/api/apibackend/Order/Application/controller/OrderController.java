@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.apibackend.Order.Application.DTOs.CreateOrderRequest;
+import com.api.apibackend.Order.Application.DTOs.OrderRequest;
+import com.api.apibackend.Order.Application.DTOs.OrderUpdateAddressRequest;
 import com.api.apibackend.Order.Application.repository.IOrderController;
 import com.api.apibackend.Order.Application.useCase.OrderUseCase;
 import com.api.apibackend.Order.Domain.service.OrderCompletionReturnProcessor;
@@ -34,18 +36,17 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 public class OrderController implements IOrderController {
     private OrderCreationService orderService;
     private OrderUseCase orderManageUseCase;
-	private UpdateOrderService updateOrderService;
+    private UpdateOrderService updateOrderService;
     private OrderCompletionReturnProcessor orderCompletionReturnProcessor;
     private OrderCircuitBreaker orderCircuitBreaker;
 
     @Autowired
     public OrderController(
-        OrderCreationService orderService,
-        OrderUseCase orderManageUseCase,
-        UpdateOrderService updateOrderService,
-        OrderCompletionReturnProcessor orderCompletionReturnProcessor,
-        OrderCircuitBreaker orderCircuitBreaker
-    ) {
+            OrderCreationService orderService,
+            OrderUseCase orderManageUseCase,
+            UpdateOrderService updateOrderService,
+            OrderCompletionReturnProcessor orderCompletionReturnProcessor,
+            OrderCircuitBreaker orderCircuitBreaker) {
         this.orderService = orderService;
         this.orderManageUseCase = orderManageUseCase;
         this.updateOrderService = updateOrderService;
@@ -64,16 +65,17 @@ public class OrderController implements IOrderController {
         } catch (IllegalArgumentException ex) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro na solicitação: " + ex.getMessage());
         } catch (Exception ex) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno do servidor: " + ex.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Erro interno do servidor: " + ex.getMessage());
         }
     }
 
-	@PostMapping("/criar/pedido")
-	@CircuitBreaker(name = "criarpedido", fallbackMethod = "fallbackCreateOrder")
+    @PostMapping("/criar/pedido")
+    @CircuitBreaker(name = "criarpedido", fallbackMethod = "fallbackCreateOrder")
     @PreAuthorize("hasRole('USER')")
     @Tag(name = "criar pedido", description = "Responsavel por criar um pedido feito pelo cliente")
     @Operation(summary = "Rota tem como objetivo criar fazer o pedido do cliente e validar todas as situações possiveis antes de contabilizar no sistema a compra!")
-	public ResponseEntity<?> createOrder(@RequestBody CreateOrderRequest createOrderRequest) {
+    public ResponseEntity<?> createOrder(@RequestBody CreateOrderRequest createOrderRequest) {
         return orderCircuitBreaker.executeCreateOrder(createOrderRequest, () -> {
             ResponseEntity<String> orderResponse = orderManageUseCase.executeRequestManage(createOrderRequest);
 
@@ -83,8 +85,8 @@ public class OrderController implements IOrderController {
                 return new ResponseEntity<>(orderResponse.getBody(), orderResponse.getStatusCode());
             }
         });
-	}
-	
+    }
+
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('USER')")
     @Tag(name = "Retorna o pedido", description = "Responsavel por retornar um pedido")
@@ -96,7 +98,8 @@ public class OrderController implements IOrderController {
         } catch (IllegalArgumentException ex) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro na solicitação: " + ex.getMessage());
         } catch (Exception ex) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno do servidor: " + ex.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Erro interno do servidor: " + ex.getMessage());
         }
     }
 
@@ -111,7 +114,8 @@ public class OrderController implements IOrderController {
         } catch (IllegalArgumentException ex) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro na solicitação: " + ex.getMessage());
         } catch (Exception ex) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno do servidor: " + ex.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Erro interno do servidor: " + ex.getMessage());
         }
     }
 
@@ -126,11 +130,12 @@ public class OrderController implements IOrderController {
         } catch (IllegalArgumentException ex) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro na solicitação: " + ex.getMessage());
         } catch (Exception ex) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno do servidor: " + ex.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Erro interno do servidor: " + ex.getMessage());
         }
     }
 
-	@PostMapping("/cancelamento")
+    @PostMapping("/cancelamento")
     @CircuitBreaker(name = "cancelamentopedido", fallbackMethod = "")
     @PreAuthorize("hasRole('ADMIN')")
     @Tag(name = "Cancelamento do pedido", description = "Efetua o cancelamento do pedido")
@@ -142,7 +147,8 @@ public class OrderController implements IOrderController {
         } catch (IllegalArgumentException ex) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro na solicitação: " + ex.getMessage());
         } catch (Exception ex) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno do servidor: " + ex.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Erro interno do servidor: " + ex.getMessage());
         }
     }
 
@@ -150,16 +156,15 @@ public class OrderController implements IOrderController {
     @PreAuthorize("hasRole('USER')")
     @Tag(name = "Atualiza o endereço do pedido", description = "Atualiza o endereço do pedido")
     @Operation(summary = "efetua uma alteração no endereço do pedido informado")
-    public ResponseEntity<?> updateOrderAddress(@RequestBody OrderRequest orderRequest) {
+    public ResponseEntity<?> updateOrderAddress(@RequestBody OrderUpdateAddressRequest orderRequest) {
         try {
             ResponseEntity<OrderEntity> updatedOrder = orderManageUseCase.executeAddress(orderRequest);
             return new ResponseEntity<>(updatedOrder, HttpStatus.OK);
         } catch (IllegalArgumentException ex) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro na solicitação: " + ex.getMessage());
         } catch (Exception ex) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno do servidor: " + ex.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Erro interno do servidor: " + ex.getMessage());
         }
     }
 }
-
-

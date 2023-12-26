@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 
 import com.api.apibackend.Customer.Application.controller.ClientRequest;
 import com.api.apibackend.CustomerAddress.Domain.model.CustomerAddressRequest;
-import com.api.apibackend.Order.Application.controller.OrderRequest;
+import com.api.apibackend.Order.Application.DTOs.OrderRequest;
 import com.api.apibackend.Order.Domain.exception.InsufficientStockException;
 import com.api.apibackend.Order.Domain.exception.OrderCannotBeCreated;
 import com.api.apibackend.Order.Domain.service.OrderCreationService;
@@ -23,19 +23,22 @@ public class OrderRequestControllerHandler {
 
     private OrderCreationService orderService;
     private ProductRepository productRepository;
-    
+
     @Autowired
-    public OrderRequestControllerHandler(OrderCreationService orderCreationService, ProductRepository productRepository) {
+    public OrderRequestControllerHandler(
+            OrderCreationService orderCreationService,
+            ProductRepository productRepository) {
         this.productRepository = productRepository;
         this.orderService = orderService;
     }
 
     @Transactional
-    public ResponseEntity<String> checkout(OrderRequest orderRequest, CustomerAddressRequest customerAddress, ClientRequest clientRequest) throws InsufficientStockException, OrderCannotBeCreated {
+    public ResponseEntity<String> checkout(OrderRequest orderRequest, CustomerAddressRequest customerAddress,
+            ClientRequest clientRequest) throws InsufficientStockException, OrderCannotBeCreated {
         validateOrder(orderRequest);
         validateClient(clientRequest);
         validateCustomerAddress(customerAddress);
-        
+
         return orderService.createOrder(orderRequest, customerAddress, clientRequest);
     }
 
@@ -43,34 +46,34 @@ public class OrderRequestControllerHandler {
         if (orderRequest == null) {
             throw new IllegalArgumentException("Criação pedido não pode ser feita");
         }
-    
+
         if (orderRequest.getItems() == null || orderRequest.getItems().isEmpty()) {
             throw new IllegalArgumentException("O pedido não contém itens.");
         }
-    
+
         for (OrderItem item : orderRequest.getItems()) {
             if (item == null) {
                 throw new IllegalArgumentException("Um ou mais itens do pedido são inválidos.");
             }
-    
+
             Long productId = item.getProductId();
             if (productId == null) {
                 throw new IllegalArgumentException("O campo productId deve ser especificado para cada item do pedido.");
             }
-    
+
             Optional<ProductEntity> optionalProduct = productRepository.findById(productId);
             if (!optionalProduct.isPresent()) {
                 throw new IllegalArgumentException("Produto não encontrado para o ID: " + productId);
             }
-    
+
             ProductEntity productEntity = optionalProduct.get();
             int requestedQuantity = item.getQuantity();
             int availableQuantity = productEntity.getQuantityInStock();
-    
+
             if (requestedQuantity <= 0) {
                 throw new IllegalArgumentException("A quantidade do produto deve ser maior que zero.");
             }
-    
+
             if (requestedQuantity > availableQuantity) {
                 throw new IllegalArgumentException("Não há estoque suficiente para o produto com ID: " + productId);
             }
@@ -95,23 +98,23 @@ public class OrderRequestControllerHandler {
         if (customerAddress == null) {
             throw new IllegalArgumentException("O endereço do cliente não foi especificado.");
         }
-    
+
         if (customerAddress.getRoad() == null || customerAddress.getRoad().isEmpty()) {
             throw new IllegalArgumentException("O campo 'Rua' no endereço é obrigatório.");
         }
-    
+
         if (customerAddress.getNeighborhood() == null || customerAddress.getNeighborhood().isEmpty()) {
             throw new IllegalArgumentException("O campo 'Bairro' no endereço é obrigatório.");
         }
-    
+
         if (customerAddress.getCep() == null || !isValidCep(customerAddress.getCep())) {
             throw new IllegalArgumentException("O CEP fornecido é inválido.");
         }
     }
-    
+
     private boolean isValidCep(String cep) {
         String cepLimpo = cep.replaceAll("[^0-9]", "");
-    
+
         return cepLimpo.length() == 8;
     }
 }

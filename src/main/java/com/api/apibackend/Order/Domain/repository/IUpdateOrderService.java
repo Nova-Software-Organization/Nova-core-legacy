@@ -2,7 +2,7 @@ package com.api.apibackend.Order.Domain.repository;
 
 import org.springframework.http.ResponseEntity;
 
-import com.api.apibackend.Order.Application.controller.OrderRequest;
+import com.api.apibackend.Order.Application.DTOs.OrderRequest;
 import com.api.apibackend.Order.infra.entity.OrderEntity;
 
 public interface IUpdateOrderService {
