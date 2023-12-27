@@ -1,4 +1,4 @@
-package com.api.apibackend.SupplierAddress.infra.entity;
+package com.api.apibackend.SupplierAddress.infra.persistence.entity;
 
 
 

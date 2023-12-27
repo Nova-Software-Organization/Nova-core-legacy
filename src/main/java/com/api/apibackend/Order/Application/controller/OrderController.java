@@ -26,7 +26,7 @@ import com.api.apibackend.Order.Application.useCase.OrderRequestManagerUseCase;
 import com.api.apibackend.Order.Domain.service.OrderCompletionReturnProcessor;
 import com.api.apibackend.Order.Domain.service.OrderCreationService;
 import com.api.apibackend.Order.Domain.service.UpdateOrderService;
-import com.api.apibackend.Order.infra.entity.OrderEntity;
+import com.api.apibackend.Order.infra.persistence.entity.OrderEntity;
 import com.api.apibackend.Order.infra.service.OrderCircuitBreaker;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;

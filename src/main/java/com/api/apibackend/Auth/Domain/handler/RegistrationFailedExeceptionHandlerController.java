@@ -9,7 +9,6 @@ import com.api.apibackend.Auth.Domain.service.exception.RegistrationFailedExcept
 
 @ControllerAdvice
 public class RegistrationFailedExeceptionHandlerController {
-    
     @ExceptionHandler(RegistrationFailedException.class)
     public ResponseEntity<String> handleRegistrationFailedException(RegistrationFailedException ex) {
         String errorMessage = ex.getMessage();

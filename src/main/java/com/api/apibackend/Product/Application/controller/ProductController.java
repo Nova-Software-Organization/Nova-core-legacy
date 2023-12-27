@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.apibackend.Product.Application.repository.IProductController;
-import com.api.apibackend.Product.Application.service.GetAllProductService;
-import com.api.apibackend.Product.Application.service.GetFirstProductService;
-import com.api.apibackend.Product.Application.useCase.ProductUseCase;
+import com.api.apibackend.Product.Application.useCase.ProductAddUseCase;
 import com.api.apibackend.Product.Domain.model.Product;
+import com.api.apibackend.Product.Domain.service.GetAllProductService;
+import com.api.apibackend.Product.Domain.service.GetFirstProductService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -28,13 +28,13 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RestController
 @RequestMapping("v1/produto")
 public class ProductController implements IProductController {
-	private ProductUseCase productUseCase;
+	private ProductAddUseCase productUseCase;
 	private GetAllProductService getAllProductsService;
 	private GetFirstProductService getFirstProduct;
 		
 	@Autowired
 	public ProductController(
-		ProductUseCase productUseCase,
+		ProductAddUseCase productUseCase,
 		GetAllProductService getAllProductsService,
 		GetFirstProductService getFirstProduct
 	) {

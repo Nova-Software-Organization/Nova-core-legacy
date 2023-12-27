@@ -4,7 +4,7 @@ import org.springframework.http.ResponseEntity;
 
 import com.api.apibackend.Order.Application.DTOs.OrderRequest;
 import com.api.apibackend.Order.Application.DTOs.OrderUpdateAddressRequest;
-import com.api.apibackend.Order.infra.entity.OrderEntity;
+import com.api.apibackend.Order.infra.persistence.entity.OrderEntity;
 
 public interface IUpdateOrderService {
     public ResponseEntity<OrderEntity> updateAddressOrder(OrderUpdateAddressRequest numberOrder);

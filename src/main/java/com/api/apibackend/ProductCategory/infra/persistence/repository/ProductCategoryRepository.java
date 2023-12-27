@@ -1,4 +1,4 @@
-package com.api.apibackend.ProductCategory.infra.repository;
+package com.api.apibackend.ProductCategory.infra.persistence.repository;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.api.apibackend.Product.Infra.entity.ProductEntity;
-import com.api.apibackend.ProductCategory.infra.entity.ProductCategoryEntity;
+import com.api.apibackend.ProductCategory.infra.persistence.entity.ProductCategoryEntity;
 
 @Repository
 public interface ProductCategoryRepository extends JpaRepository<ProductCategoryEntity, Long> {

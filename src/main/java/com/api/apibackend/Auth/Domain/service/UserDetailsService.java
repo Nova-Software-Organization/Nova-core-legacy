@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 
 import com.api.apibackend.Auth.Domain.service.provider.JWTProvider;
 import com.api.apibackend.Auth.Domain.token.GeneratedTokenAuthorizationService;
-import com.api.apibackend.Auth.Infra.entity.UserEntity;
-import com.api.apibackend.Auth.Infra.repository.UserRepository;
+import com.api.apibackend.Auth.Infra.persistence.entity.UserEntity;
+import com.api.apibackend.Auth.Infra.persistence.repository.UserRepository;
 import com.api.apibackend.Customer.Infra.persistence.entity.CustomerEntity;
 
 import jakarta.servlet.http.HttpServletRequest;

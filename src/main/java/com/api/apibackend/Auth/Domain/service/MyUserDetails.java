@@ -5,8 +5,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.api.apibackend.Auth.Infra.entity.UserEntity;
-import com.api.apibackend.Auth.Infra.repository.UserRepository;
+import com.api.apibackend.Auth.Infra.persistence.entity.UserEntity;
+import com.api.apibackend.Auth.Infra.persistence.repository.UserRepository;
 
 @Service
 public class MyUserDetails implements UserDetailsService {

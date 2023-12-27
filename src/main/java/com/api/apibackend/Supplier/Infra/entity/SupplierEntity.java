@@ -7,7 +7,7 @@ import javax.validation.constraints.NotBlank;
 
 import org.springframework.context.annotation.Lazy;
 
-import com.api.apibackend.SupplierAddress.infra.entity.SupplierAddressEntity;
+import com.api.apibackend.SupplierAddress.infra.persistence.entity.SupplierAddressEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

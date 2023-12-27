@@ -23,10 +23,11 @@ import com.api.apibackend.CustomerAddress.infra.entity.AddressEntity;
 import com.api.apibackend.Order.Application.DTOs.OrderRequest;
 import com.api.apibackend.Order.Domain.event.OrderCreatedEvent;
 import com.api.apibackend.Order.Domain.exception.InsufficientStockException;
-import com.api.apibackend.Order.Domain.exception.OrderCannotBeCreated;
+import com.api.apibackend.Order.Domain.exception.OrderCannotBeCreatedException;
 import com.api.apibackend.Order.Domain.repository.IOrderCreationService;
-import com.api.apibackend.Order.infra.entity.OrderEntity;
-import com.api.apibackend.Order.infra.repository.OrderRepository;
+import com.api.apibackend.Order.infra.persistence.entity.OrderEntity;
+import com.api.apibackend.Order.infra.persistence.repository.OrderRepository;
+import com.api.apibackend.OrderItem.Domain.exception.NonExistentesItemsException;
 import com.api.apibackend.OrderItem.Domain.service.OrderItemCreationService;
 import com.api.apibackend.OrderItem.infra.entity.OrderItemEntity;
 import com.api.apibackend.OrderItem.infra.repository.OrderItemRepository;
@@ -73,7 +74,7 @@ public class OrderCreationService implements IOrderCreationService {
 
     @Transactional
     public ResponseEntity<String> createOrder(OrderRequest orderRequest, CustomerAddressRequest customerAddress,
-            ClientRequest clientRequest) throws InsufficientStockException, OrderCannotBeCreated {
+            ClientRequest clientRequest) throws InsufficientStockException, OrderCannotBeCreatedException, NonExistentesItemsException {
         validateOrderRequest(orderRequest);
 
         OrderEntity newOrder = createOrderEntity(orderRequest, customerAddress, clientRequest);
@@ -89,9 +90,9 @@ public class OrderCreationService implements IOrderCreationService {
         return ResponseEntity.status(HttpStatus.CREATED).body("Pedido Criado com sucesso");
     }
 
-    private void validateOrderRequest(OrderRequest orderRequest) throws OrderCannotBeCreated {
+    private void validateOrderRequest(OrderRequest orderRequest) throws OrderCannotBeCreatedException {
         if (orderRequest == null) {
-            throw new OrderCannotBeCreated("Pedido não pode ser criado, objeto inválido");
+            throw new OrderCannotBeCreatedException("Pedido não pode ser criado, objeto inválido");
         }
     }
 

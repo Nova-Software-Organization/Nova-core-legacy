@@ -11,14 +11,15 @@ import com.api.apibackend.CustomerAddress.Domain.model.CustomerAddressRequest;
 import com.api.apibackend.CustomerAddress.infra.entity.AddressEntity;
 import com.api.apibackend.Order.Application.DTOs.OrderRequest;
 import com.api.apibackend.Order.Domain.exception.InsufficientStockException;
-import com.api.apibackend.Order.Domain.exception.OrderCannotBeCreated;
-import com.api.apibackend.Order.infra.entity.OrderEntity;
+import com.api.apibackend.Order.Domain.exception.OrderCannotBeCreatedException;
+import com.api.apibackend.Order.infra.persistence.entity.OrderEntity;
+import com.api.apibackend.OrderItem.Domain.exception.NonExistentesItemsException;
 import com.api.apibackend.OrderItem.infra.entity.OrderItemEntity;
 import com.api.apibackend.Product.Infra.entity.ProductEntity;
 
 public interface IOrderCreationService {
     ResponseEntity<String> createOrder(OrderRequest orderRequest, CustomerAddressRequest customerAddress,
-            ClientRequest clientRequest) throws InsufficientStockException, OrderCannotBeCreated;
+            ClientRequest clientRequest) throws InsufficientStockException, OrderCannotBeCreatedException, NonExistentesItemsException;
     OrderEntity createOrderEntity(OrderRequest orderRequest, CustomerAddressRequest customerAddress, ClientRequest clientRequest);
     void updateClientAndAddress(OrderEntity orderEntity, ClientRequest clientRequest, CustomerAddressRequest customerAddress);
     void createAndSaveNewClient(OrderEntity orderEntity, ClientRequest clientRequest);

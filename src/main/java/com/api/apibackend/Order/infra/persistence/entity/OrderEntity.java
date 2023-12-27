@@ -1,4 +1,4 @@
-package com.api.apibackend.Order.infra.entity;
+package com.api.apibackend.Order.infra.persistence.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

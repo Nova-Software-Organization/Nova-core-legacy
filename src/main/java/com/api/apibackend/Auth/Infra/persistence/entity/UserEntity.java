@@ -1,4 +1,4 @@
-package com.api.apibackend.Auth.Infra.entity;
+package com.api.apibackend.Auth.Infra.persistence.entity;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -21,6 +21,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -36,13 +37,14 @@ public class UserEntity implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "O nome de usuário não pode estar em branco")
     @Column(name = "apelido", unique = true)
     private String username;
 
+    @NotBlank(message = "A senha não pode estar em branco")
     @Column(name = "senha")
     private String password;
 
-    @Column(name = "tipo_usuario")
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<CustomGrantedAuthority> roles;
 

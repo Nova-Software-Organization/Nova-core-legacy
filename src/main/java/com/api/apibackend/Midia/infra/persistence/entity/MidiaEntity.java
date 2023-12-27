@@ -1,6 +1,7 @@
-package com.api.apibackend.ProductCategory.infra.entity;
+package com.api.apibackend.Midia.infra.persistence.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import org.springframework.context.annotation.Lazy;
 
@@ -12,21 +13,26 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-
 @Lazy
 @Data
 @Entity
+@Table(name = "midia")
 @EqualsAndHashCode(of = "id")
-@Table(name = "produto_categoria")
-public class ProductCategoryEntity implements Serializable {
-
+public class MidiaEntity implements Serializable {
+    
     private static final long serialVersionUID = 1L;
     
     @Id
+    @Column(name = "idmid")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idcategoria")
-    private Long id;
+    private Long id_image;
 
-    @Column(name = "nome")
-    private String name;
+    @Column(name = "url", nullable = false)
+    private String url;
+
+    @Column(name = "data_criacao")
+    private Date dateCreate;
+
+    @Column(name = "categoria", nullable = false)
+    private String category;
 }

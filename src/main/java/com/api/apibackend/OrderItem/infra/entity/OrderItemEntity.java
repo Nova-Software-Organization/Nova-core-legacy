@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 
 import org.springframework.context.annotation.Lazy;
 
-import com.api.apibackend.Order.infra.entity.OrderEntity;
+import com.api.apibackend.Order.infra.persistence.entity.OrderEntity;
 import com.api.apibackend.Product.Infra.entity.ProductEntity;
 
 import jakarta.persistence.Column;
