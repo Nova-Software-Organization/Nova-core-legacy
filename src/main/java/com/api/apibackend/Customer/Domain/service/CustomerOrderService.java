@@ -5,7 +5,7 @@ import java.util.Objects;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
-import com.api.apibackend.Customer.Application.controller.ClientRequest;
+import com.api.apibackend.Customer.Application.DTOs.ClientRequest;
 import com.api.apibackend.Customer.Infra.persistence.entity.CustomerEntity;
 
 @Service

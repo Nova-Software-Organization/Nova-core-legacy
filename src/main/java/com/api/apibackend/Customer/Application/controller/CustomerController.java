@@ -15,8 +15,9 @@ import com.api.apibackend.Auth.Domain.model.LoginRequest;
 import com.api.apibackend.Auth.Domain.service.exception.RegistrationFailedException;
 import com.api.apibackend.Customer.Application.DTOs.registration.RegistrationRequest;
 import com.api.apibackend.Customer.Application.repository.ICustomerController;
-import com.api.apibackend.Customer.Application.useCase.CustomerUseCase;
-import com.api.apibackend.Customer.Domain.handler.ClientNotFoundException;
+import com.api.apibackend.Customer.Application.useCase.CustomerAuthLoginUseCase;
+import com.api.apibackend.Customer.Application.useCase.CustomerAuthRegisterUseCase;
+import com.api.apibackend.Customer.Domain.exception.ClientNotFoundException;
 import com.api.apibackend.Customer.Infra.util.JwtUtills;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -27,8 +28,16 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RequestMapping("v1/auth")
 public class CustomerController implements ICustomerController {
     @Autowired
-    private CustomerUseCase customerUseCase;
+    private CustomerAuthLoginUseCase customerLoginUseCase;
+    private CustomerAuthRegisterUseCase customerAuthRegisterUseCase;
     private JwtUtills jwtUtills;
+
+    @Autowired
+    public CustomerController(CustomerAuthLoginUseCase customerLoginUseCase, CustomerAuthRegisterUseCase customerAuthRegisterUseCase, JwtUtills jwtUtills) {
+        this.customerLoginUseCase = customerLoginUseCase;
+        this.customerAuthRegisterUseCase = customerAuthRegisterUseCase;
+        this.jwtUtills = jwtUtills;
+    }
     
     @PostMapping(path = "/entrar")
     @PreAuthorize("hasRole('USER')")
@@ -36,7 +45,7 @@ public class CustomerController implements ICustomerController {
     @Operation(summary = "Rota responsavel por efetuar o login de um usuario dentro da aplicação, desta forma disponibilazando que ele tenha acesso as outras paginas!")
     public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) throws Exception {
         try {
-             return customerUseCase.executeLogin(loginRequest);
+             return customerLoginUseCase.execute(loginRequest);
         } catch (ClientNotFoundException ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario não encontrado.");
         }
@@ -60,7 +69,7 @@ public class CustomerController implements ICustomerController {
     @Operation(summary = "Rota responsavel por registrar o usuario e gerar um token de autenticação para o mesmo!")
     public ResponseEntity<String> registerClientV2(@RequestBody RegistrationRequest registrationRequest) {
         try {
-            ResponseEntity<String> response = customerUseCase.executeRegister(registrationRequest.getCustomerDTO(), registrationRequest.getCustomerAddressDTO());
+            ResponseEntity<String> response = customerAuthRegisterUseCase.execute(registrationRequest.getCustomerDTO(), registrationRequest.getCustomerAddressDTO());
             return response;
         } catch (RegistrationFailedException ex) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());

@@ -3,7 +3,7 @@ package com.api.apibackend.Order.Domain.helper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.api.apibackend.Order.Application.controller.OrderRequest;
+import com.api.apibackend.Order.Application.DTOs.OrderRequest;
 import com.api.apibackend.Order.infra.entity.OrderEntity;
 
 public class OrderModelMapper {

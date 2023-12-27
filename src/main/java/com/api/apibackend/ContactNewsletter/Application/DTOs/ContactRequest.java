@@ -1,4 +1,4 @@
-package com.api.apibackend.ContactNewsletter.Application.controller;
+package com.api.apibackend.ContactNewsletter.Application.DTOs;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

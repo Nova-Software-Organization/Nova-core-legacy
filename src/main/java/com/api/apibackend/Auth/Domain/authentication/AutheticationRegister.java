@@ -76,6 +76,7 @@ public class AutheticationRegister {
 
             String emailValidation = autheticationValidationServiceHandler.isValidEmail(customerDTO.getEmail());
             String passwordValidation = autheticationValidationServiceHandler.isValidPassword(customerDTO.getPassword());
+            
             if (emailValidation != null || passwordValidation != null) {
                 return ResponseEntity.badRequest()
                         .body("Erro de validação: " + emailValidation + ", " + passwordValidation + " inválidos");

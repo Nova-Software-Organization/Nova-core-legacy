@@ -1,4 +1,4 @@
-package com.api.apibackend.Product.Application.service;
+package com.api.apibackend.Product.Domain.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,11 +10,12 @@ import org.springframework.stereotype.Service;
 import com.api.apibackend.Midia.infra.entity.MidiaEntity;
 import com.api.apibackend.Price.infra.entity.PriceEntity;
 import com.api.apibackend.Product.Domain.model.Product;
+import com.api.apibackend.Product.Domain.repository.IGetAllProductService;
 import com.api.apibackend.Product.Infra.entity.ProductEntity;
 import com.api.apibackend.Product.Infra.repository.ProductRepository;
 
 @Service
-public class GetAllProductService {
+public class GetAllProductService implements IGetAllProductService {
     private ProductRepository productRepository;
     
     @Autowired
@@ -30,7 +31,8 @@ public class GetAllProductService {
             .collect(Collectors.toList());
     }
 
-    private Product mapToProduct(ProductEntity product) {
+    @Override
+    public Product mapToProduct(ProductEntity product) {
         MidiaEntity midia = product.getMidia();
         PriceEntity price = product.getPriceEntity();
         return new Product(

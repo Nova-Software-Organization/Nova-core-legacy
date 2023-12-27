@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.api.apibackend.Customer.Application.controller.ClientRequest;
+import com.api.apibackend.Customer.Application.DTOs.ClientRequest;
 import com.api.apibackend.Customer.Infra.persistence.entity.CustomerEntity;
 import com.api.apibackend.Customer.Infra.persistence.repository.CustomerRepository;
 import com.api.apibackend.CustomerAddress.infra.entity.AddressEntity;

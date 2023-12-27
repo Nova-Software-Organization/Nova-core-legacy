@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.apibackend.Customer.Domain.handler.ClientNotFoundException;
+import com.api.apibackend.Customer.Domain.exception.ClientNotFoundException;
 import com.api.apibackend.Customer.Domain.service.CustomerSearchService;
 import com.api.apibackend.Customer.Domain.service.MyRequestCustomerService;
 import com.api.apibackend.Customer.Infra.persistence.entity.CustomerEntity;
@@ -39,7 +39,6 @@ public class MyOrdersAccountController {
     public ResponseEntity<?> getUserByEmail(@RequestParam String email) {
         try {
             CustomerEntity client = clientSearchService.searchClientByEmail(email);
-
             if (client != null) {
                 return responseBuilderService.buildUserResponse(client);
             }

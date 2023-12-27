@@ -1,4 +1,4 @@
-package com.api.apibackend.Product.Application.service;
+package com.api.apibackend.Product.Domain.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,14 +10,18 @@ import org.springframework.stereotype.Service;
 import com.api.apibackend.Midia.infra.entity.MidiaEntity;
 import com.api.apibackend.Price.infra.entity.PriceEntity;
 import com.api.apibackend.Product.Domain.model.Product;
+import com.api.apibackend.Product.Domain.repository.IGetFirstService;
 import com.api.apibackend.Product.Infra.entity.ProductEntity;
 import com.api.apibackend.Product.Infra.repository.ProductRepository;
 
 @Service
-public class GetFirstProductService {
-
-	@Autowired
+public class GetFirstProductService implements IGetFirstService {
 	private ProductRepository productRepository;
+	
+	@Autowired
+	public GetFirstProductService(ProductRepository productRepository) {
+		this.productRepository = productRepository;
+	}
 
 	@Cacheable(value = "produtos", key = "'getFirst12Products'")
 	public List<Product> execute() {

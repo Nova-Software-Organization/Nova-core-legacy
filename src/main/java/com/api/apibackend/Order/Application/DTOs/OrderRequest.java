@@ -1,9 +1,9 @@
-package com.api.apibackend.Order.Application.controller;
+package com.api.apibackend.Order.Application.DTOs;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.api.apibackend.Customer.Application.controller.ClientRequest;
+import com.api.apibackend.Customer.Application.DTOs.ClientRequest;
 import com.api.apibackend.CustomerAddress.Domain.model.CustomerAddressRequest;
 import com.api.apibackend.OrderItem.Domain.model.OrderItem;
 import com.api.apibackend.Product.Infra.entity.ProductEntity;
@@ -21,7 +21,7 @@ public class OrderRequest {
 	private ClientRequest clientRequest;
 	private String customerEmail;
 	private String paymentMethod;
-	
+
 	public List<ProductEntity> getProducts() {
 		List<ProductEntity> products = new ArrayList<>();
 

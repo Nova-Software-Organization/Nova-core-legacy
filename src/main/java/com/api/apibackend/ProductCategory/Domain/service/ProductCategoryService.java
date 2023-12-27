@@ -8,14 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.api.apibackend.Product.Domain.model.Product;
-import com.api.apibackend.Product.Domain.repository.IProductService;
 import com.api.apibackend.Product.Infra.entity.ProductEntity;
 import com.api.apibackend.Product.Infra.repository.ProductRepository;
 import com.api.apibackend.ProductCategory.infra.entity.ProductCategoryEntity;
 import com.api.apibackend.ProductCategory.infra.repository.ProductCategoryRepository;
 
 @Service
-public class ProductCategoryService implements IProductService {
+public class ProductCategoryService {
 	private ProductCategoryRepository productCategoryRepository;
 	private ProductRepository productRepository;
 	
