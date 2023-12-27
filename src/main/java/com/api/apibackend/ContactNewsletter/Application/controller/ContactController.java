@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.api.apibackend.ContactNewsletter.Application.DTOs.ContactRequest;
 import com.api.apibackend.ContactNewsletter.Application.repository.IContact;
 import com.api.apibackend.ContactNewsletter.Application.useCase.ContactUseCase;
 

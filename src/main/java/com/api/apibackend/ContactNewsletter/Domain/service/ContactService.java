@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.api.apibackend.ContactNewsletter.Application.controller.ContactRequest;
+import com.api.apibackend.ContactNewsletter.Application.DTOs.ContactRequest;
 import com.api.apibackend.ContactNewsletter.Domain.model.ContactModelMapper;
 import com.api.apibackend.ContactNewsletter.Domain.validation.ValidateContactClient;
 import com.api.apibackend.ContactNewsletter.infra.Persistence.entity.ContactEntity;

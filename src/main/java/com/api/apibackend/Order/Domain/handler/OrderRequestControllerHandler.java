@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 
-import com.api.apibackend.Customer.Application.controller.ClientRequest;
+import com.api.apibackend.Customer.Application.DTOs.ClientRequest;
 import com.api.apibackend.CustomerAddress.Domain.model.CustomerAddressRequest;
 import com.api.apibackend.Order.Application.DTOs.OrderRequest;
 import com.api.apibackend.Order.Domain.exception.InsufficientStockException;
@@ -20,14 +20,14 @@ import jakarta.transaction.Transactional;
 
 @ControllerAdvice
 public class OrderRequestControllerHandler {
-
     private OrderCreationService orderService;
     private ProductRepository productRepository;
 
     @Autowired
     public OrderRequestControllerHandler(
             OrderCreationService orderCreationService,
-            ProductRepository productRepository) {
+            ProductRepository productRepository
+    ) {
         this.productRepository = productRepository;
         this.orderService = orderService;
     }

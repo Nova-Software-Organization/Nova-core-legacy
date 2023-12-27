@@ -20,7 +20,9 @@ import com.api.apibackend.Order.Application.DTOs.CreateOrderRequest;
 import com.api.apibackend.Order.Application.DTOs.OrderRequest;
 import com.api.apibackend.Order.Application.DTOs.OrderUpdateAddressRequest;
 import com.api.apibackend.Order.Application.repository.IOrderController;
-import com.api.apibackend.Order.Application.useCase.OrderUseCase;
+import com.api.apibackend.Order.Application.useCase.OrderAddressUpdate;
+import com.api.apibackend.Order.Application.useCase.OrderCancelOrder;
+import com.api.apibackend.Order.Application.useCase.OrderRequestManagerUseCase;
 import com.api.apibackend.Order.Domain.service.OrderCompletionReturnProcessor;
 import com.api.apibackend.Order.Domain.service.OrderCreationService;
 import com.api.apibackend.Order.Domain.service.UpdateOrderService;
@@ -35,23 +37,30 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RequestMapping("/v1/pedido")
 public class OrderController implements IOrderController {
     private OrderCreationService orderService;
-    private OrderUseCase orderManageUseCase;
+    private OrderRequestManagerUseCase orderManageUseCase;
     private UpdateOrderService updateOrderService;
     private OrderCompletionReturnProcessor orderCompletionReturnProcessor;
     private OrderCircuitBreaker orderCircuitBreaker;
+    private OrderAddressUpdate orderAddressUpdate;
+    private OrderCancelOrder orderCancelOrder;
 
     @Autowired
     public OrderController(
             OrderCreationService orderService,
-            OrderUseCase orderManageUseCase,
+            OrderRequestManagerUseCase orderManageUseCase,
             UpdateOrderService updateOrderService,
             OrderCompletionReturnProcessor orderCompletionReturnProcessor,
-            OrderCircuitBreaker orderCircuitBreaker) {
+            OrderCircuitBreaker orderCircuitBreaker,
+            OrderAddressUpdate orderAddressUpdate,
+            OrderCancelOrder orderCancelOrder
+    ) {
         this.orderService = orderService;
         this.orderManageUseCase = orderManageUseCase;
         this.updateOrderService = updateOrderService;
         this.orderCompletionReturnProcessor = orderCompletionReturnProcessor;
         this.orderCircuitBreaker = orderCircuitBreaker;
+        this.orderAddressUpdate = orderAddressUpdate;
+        this.orderCancelOrder = orderCancelOrder;
     }
 
     @GetMapping("/listar")
@@ -142,7 +151,7 @@ public class OrderController implements IOrderController {
     @Operation(summary = "Busca pelo id do pedido informado e efetua o cancelamento alterando o status a dando um break nos outros processos")
     public ResponseEntity<?> canceladOrder(@RequestBody OrderRequest orderRequest) {
         try {
-            ResponseEntity<OrderEntity> canceledOrder = orderManageUseCase.executeCanceladOrder(orderRequest);
+            ResponseEntity<OrderEntity> canceledOrder = orderCancelOrder.execute(orderRequest);
             return new ResponseEntity<>(canceledOrder, HttpStatus.OK);
         } catch (IllegalArgumentException ex) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro na solicitação: " + ex.getMessage());
@@ -158,7 +167,7 @@ public class OrderController implements IOrderController {
     @Operation(summary = "efetua uma alteração no endereço do pedido informado")
     public ResponseEntity<?> updateOrderAddress(@RequestBody OrderUpdateAddressRequest orderRequest) {
         try {
-            ResponseEntity<OrderEntity> updatedOrder = orderManageUseCase.executeAddress(orderRequest);
+            ResponseEntity<OrderEntity> updatedOrder = orderAddressUpdate.execute(orderRequest);
             return new ResponseEntity<>(updatedOrder, HttpStatus.OK);
         } catch (IllegalArgumentException ex) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro na solicitação: " + ex.getMessage());

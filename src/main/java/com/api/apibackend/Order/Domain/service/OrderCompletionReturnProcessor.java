@@ -7,11 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.api.apibackend.Order.Domain.repository.IOrderCompletationReturnProcessorService;
 import com.api.apibackend.Order.infra.entity.OrderEntity;
 import com.api.apibackend.Order.infra.repository.OrderRepository;
 
 @Service
-public class OrderCompletionReturnProcessor {
+public class OrderCompletionReturnProcessor implements IOrderCompletationReturnProcessorService {
     private OrderRepository orderRepository;
 
     @Autowired

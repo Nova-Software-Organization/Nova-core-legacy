@@ -10,16 +10,10 @@ import com.api.apibackend.Order.Application.DTOs.OrderUpdateAddressRequest;
 
 public interface IOrderController {
 	ResponseEntity<?> listOrders();
-
 	ResponseEntity<?> createOrder(@RequestBody CreateOrderRequest createOrderRequest);
-
 	ResponseEntity<?> getOrder(@PathVariable Long id);
-
 	ResponseEntity<?> updateOrder(@PathVariable Long id, @RequestBody OrderRequest orderRequest);
-
 	ResponseEntity<?> deleteOrder(@PathVariable Long id);
-
 	ResponseEntity<?> updateOrderAddress(@RequestBody OrderUpdateAddressRequest orderRequest);
-
 	ResponseEntity<?> canceladOrder(@RequestBody OrderRequest orderRequest);
 }

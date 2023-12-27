@@ -74,7 +74,7 @@ public class UpdateOrderService implements IUpdateOrderService {
         return ResponseEntity.notFound().build();
     }
 
-    public ResponseEntity<OrderEntity> canceladOrder(OrderRequest numberOrder) {
+    public ResponseEntity<OrderEntity> cancelOrder(OrderRequest numberOrder) {
         Optional<OrderEntity> order = orderRepository.findById(numberOrder.getNumberOrder());
 
         if (order.isPresent()) {

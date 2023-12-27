@@ -12,23 +12,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.apibackend.Supplier.Application.DTOs.SupplierRequest;
-import com.api.apibackend.Supplier.Application.useCases.SupplierUseCase;
+import com.api.apibackend.Supplier.Application.useCases.SupplierCreateUseCase;
+import com.api.apibackend.Supplier.Application.useCases.SupplierListUseCase;
 import com.api.apibackend.Supplier.Domain.exception.ErrorEmptySupplier;
 import com.api.apibackend.Supplier.Infra.entity.SupplierEntity;
 
 @RestController
 @RequestMapping("/v1/fornecedor")
 public class SupplierController {
-    private SupplierUseCase supplierUseCase;
+    private SupplierListUseCase supplierUseListCase;
+    private SupplierCreateUseCase supplierCreateUseCase;
 
     @Autowired
-    public SupplierController(SupplierUseCase supplierUseCase) {
-        this.supplierUseCase = supplierUseCase;
+    public SupplierController(SupplierListUseCase supplierListUseCase, SupplierCreateUseCase supplierCreateUseCase) {
+        this.supplierUseListCase = supplierListUseCase;
+        this.supplierCreateUseCase = supplierCreateUseCase;
     }
 
     public ResponseEntity<List<SupplierEntity>> listSupplier() {
         try {
-            List<SupplierEntity> suppliers = supplierUseCase.executeList();
+            List<SupplierEntity> suppliers = supplierUseListCase.execute();
             if (suppliers.isEmpty()) {
                 throw new ErrorEmptySupplier("Lista de fornecedor está vazia");
             }
@@ -42,7 +45,7 @@ public class SupplierController {
     @PostMapping(path = "/criar")
     public ResponseEntity<String> createSupplier(@RequestBody SupplierRequest supplierRequest) {
         try {
-            return supplierUseCase.executeCreate(supplierRequest);
+            return supplierCreateUseCase.execute(supplierRequest);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }

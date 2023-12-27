@@ -1,4 +1,4 @@
-package com.api.apibackend.Product.Application.service;
+package com.api.apibackend.Product.Domain.service;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,6 +14,7 @@ import com.api.apibackend.Midia.infra.repository.MidiaRepository;
 import com.api.apibackend.Price.infra.entity.PriceEntity;
 import com.api.apibackend.Price.infra.repository.PriceRepository;
 import com.api.apibackend.Product.Domain.model.Product;
+import com.api.apibackend.Product.Domain.repository.IProductAddService;
 import com.api.apibackend.Product.Infra.entity.ProductEntity;
 import com.api.apibackend.Product.Infra.repository.ProductRepository;
 import com.api.apibackend.ProductCategory.infra.entity.ProductCategoryEntity;
@@ -24,7 +25,7 @@ import com.api.apibackend.SupplierAddress.infra.entity.SupplierAddressEntity;
 import com.api.apibackend.SupplierAddress.infra.repository.SupplierAddressRepository;
 
 @Service
-public class ProductAddService {
+public class ProductAddService implements IProductAddService {
     private final ProductRepository productRepository;
     private final ProductCategoryRepository productCategoryRepository;
     private final MidiaRepository midiaRepository;

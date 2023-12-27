@@ -1,4 +1,4 @@
-package com.api.apibackend.Customer.Application.controller;
+package com.api.apibackend.Customer.Application.DTOs;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
