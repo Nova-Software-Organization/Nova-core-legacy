@@ -62,4 +62,7 @@ public class ProductEntity implements Serializable {
 
     @Column(name = "ativo")
     private int status;
+
+    @Column(name = "sku")
+    private String sku;
 }

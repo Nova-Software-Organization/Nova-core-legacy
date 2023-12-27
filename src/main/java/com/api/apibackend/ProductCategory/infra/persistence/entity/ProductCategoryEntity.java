@@ -19,7 +19,6 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(of = "id")
 @Table(name = "produto_categoria")
 public class ProductCategoryEntity implements Serializable {
-
     private static final long serialVersionUID = 1L;
     
     @Id
@@ -29,4 +28,10 @@ public class ProductCategoryEntity implements Serializable {
 
     @Column(name = "nome")
     private String name;
+
+    @Column(name = "status")
+    private int status;
+
+    @Column(name = "tipo_categoria")
+    private String typeCategory;
 }

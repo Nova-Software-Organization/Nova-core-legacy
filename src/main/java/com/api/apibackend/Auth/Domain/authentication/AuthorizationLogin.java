@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.api.apibackend.Auth.Domain.Enum.CustomGrantedAuthority;
 import com.api.apibackend.Auth.Domain.model.LoginRequest;
+import com.api.apibackend.Auth.Domain.repository.IAutheticationLogin;
 import com.api.apibackend.Auth.Domain.token.GeneratedTokenAuthorizationService;
 import com.api.apibackend.Auth.Infra.persistence.repository.UserRepository;
 
@@ -23,7 +24,7 @@ import jakarta.validation.Valid;
 
 @Lazy
 @Service
-public class AuthorizationLogin {
+public class AuthorizationLogin implements IAutheticationLogin {
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
     private AuthenticationManager authenticationManager;
@@ -61,13 +62,13 @@ public class AuthorizationLogin {
         }
     }
 
-    private void validateLoginRequest(LoginRequest loginRequest) {
+    public void validateLoginRequest(LoginRequest loginRequest) {
         if (loginRequest == null || loginRequest.getUsername().isEmpty() || loginRequest.getPassword().isEmpty()) {
             throw new IllegalArgumentException("Erro: dados de login não fornecidos corretamente");
         }
     }
 
-    private Set<CustomGrantedAuthority> convertRolesToCustomAuthorities(Set<CustomGrantedAuthority> roles) {
+    public Set<CustomGrantedAuthority> convertRolesToCustomAuthorities(Set<CustomGrantedAuthority> roles) {
         Set<CustomGrantedAuthority> authorities = new HashSet<>();
         if (roles != null) {
             for (CustomGrantedAuthority role : roles) {

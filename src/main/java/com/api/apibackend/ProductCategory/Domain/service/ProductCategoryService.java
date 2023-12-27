@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.api.apibackend.Product.Domain.model.Product;
 import com.api.apibackend.Product.Infra.entity.ProductEntity;
 import com.api.apibackend.Product.Infra.repository.ProductRepository;
+import com.api.apibackend.ProductCategory.Application.component.ProductComponentConvert;
 import com.api.apibackend.ProductCategory.infra.persistence.entity.ProductCategoryEntity;
 import com.api.apibackend.ProductCategory.infra.persistence.repository.ProductCategoryRepository;
 
@@ -17,11 +18,13 @@ import com.api.apibackend.ProductCategory.infra.persistence.repository.ProductCa
 public class ProductCategoryService {
 	private ProductCategoryRepository productCategoryRepository;
 	private ProductRepository productRepository;
+	private ProductComponentConvert productComponentConvert;
 	
 	@Autowired
-	public ProductCategoryService(ProductCategoryRepository productCategoryRepository, ProductRepository productRepository) {
+	public ProductCategoryService(ProductCategoryRepository productCategoryRepository, ProductRepository productRepository, ProductComponentConvert productComponentConvert) {
 		this.productCategoryRepository = productCategoryRepository;
 		this.productRepository = productRepository;
+		this.productComponentConvert = productComponentConvert;
 	}
 
 	public List<Product> getProductsByCategoryName(String categoryName) {
@@ -29,31 +32,15 @@ public class ProductCategoryService {
 
 		if (category != null) {
 			List<ProductEntity> products = productRepository.findByCategory(category);
-
 			List<Product> productDTOs = new ArrayList<>();
+
 			for (ProductEntity product : products) {
-				productDTOs.add(convertToProductDTO(product, category));
+				productDTOs.add(productComponentConvert.convertToProductDTO(product, category));
 			}
+			
 			return productDTOs;
 		}
 
 		return Collections.emptyList();
-	}
-
-	public Product convertToProductDTO(ProductEntity productEntity, ProductCategoryEntity category) {
-		if (productEntity == null) {
-			return null;
-		}
-
-		Product product = new Product();
-		product.setId(product.getId());
-		product.setName(product.getName());
-		product.setUrl(productEntity.getMidia().getUrl());
-		product.setDescription(product.getDescription());
-		product.setCategory(category != null ? category.getName() : null);
-		product.setPrice(product.getPrice());
-		product.setQuantityInStock(product.getQuantityInStock());
-
-		return product;
 	}
 }

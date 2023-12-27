@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.api.apibackend.Auth.Domain.service.exception.AuthorizationException;
-import com.api.apibackend.Auth.Domain.service.exception.DataBindingViolationException;
+import com.api.apibackend.Auth.Domain.exception.AuthorizationException;
+import com.api.apibackend.Auth.Domain.exception.DataBindingViolationException;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

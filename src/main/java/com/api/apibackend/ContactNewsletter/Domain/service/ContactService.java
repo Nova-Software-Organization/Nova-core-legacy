@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import com.api.apibackend.ContactNewsletter.Application.DTOs.ContactRequest;
 import com.api.apibackend.ContactNewsletter.Domain.model.ContactModelMapper;
 import com.api.apibackend.ContactNewsletter.Domain.validation.ValidateContactClient;
-import com.api.apibackend.ContactNewsletter.infra.Persistence.entity.ContactEntity;
-import com.api.apibackend.ContactNewsletter.infra.Persistence.repository.ContactRepository;
+import com.api.apibackend.ContactNewsletter.infra.persistence.entity.ContactEntity;
+import com.api.apibackend.ContactNewsletter.infra.persistence.repository.ContactRepository;
 
 @Service
 public class ContactService {

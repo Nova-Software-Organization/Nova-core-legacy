@@ -11,10 +11,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.api.apibackend.Auth.Domain.Enum.CustomGrantedAuthority;
-import com.api.apibackend.Auth.Domain.service.UserDetailsService;
+import com.api.apibackend.Auth.Domain.repository.IAutheticationRegister;
+import com.api.apibackend.Auth.Domain.service.UserService;
 import com.api.apibackend.Auth.Domain.token.GeneratedTokenAuthorizationService;
 import com.api.apibackend.Auth.Infra.persistence.entity.UserEntity;
-import com.api.apibackend.Auth.Validation.AutheticationValidationServiceHandler;
+import com.api.apibackend.Auth.validation.AutheticationValidationServiceHandler;
 import com.api.apibackend.Customer.Application.DTOs.registration.CustomerAddressDTO;
 import com.api.apibackend.Customer.Application.DTOs.registration.CustomerDTO;
 import com.api.apibackend.Customer.Domain.event.CustomerCreated;
@@ -28,10 +29,10 @@ import com.api.apibackend.CustomerAddress.infra.entity.AddressEntity;
 import jakarta.transaction.Transactional;
 
 @Service
-public class AutheticationRegister {
+public class AutheticationRegister implements IAutheticationRegister {
     private PasswordEncoder passwordEncoder;
     private CustomerServiceImp clientServiceImp;
-    private UserDetailsService userService;
+    private UserService userService;
     private CustomerModelMapper customerModelMapper;
     private ApplicationEventPublisher eventPublisher;
     private CustomerSearchService clientSearchService;
@@ -48,7 +49,7 @@ public class AutheticationRegister {
         CustomerAddressModelMapper customerAddressModelMapper,
         CustomerModelMapper customerModelMapper,
         ApplicationEventPublisher eventPublisher,
-        UserDetailsService userService,
+        UserService userService,
         PasswordEncoder passwordEncoder
     ) {
         this.autheticationValidationServiceHandler = autheticationValidationServiceHandler;
@@ -117,7 +118,7 @@ public class AutheticationRegister {
         }
     }
 
-    private Set<CustomGrantedAuthority> convertRolesToCustomAuthorities(Set<CustomGrantedAuthority> roles) {
+    public Set<CustomGrantedAuthority> convertRolesToCustomAuthorities(Set<CustomGrantedAuthority> roles) {
         Set<CustomGrantedAuthority> authorities = new HashSet<>();
         if (roles != null) {
             for (CustomGrantedAuthority role : roles) {

@@ -8,13 +8,14 @@ import org.springframework.stereotype.Service;
 import com.api.apibackend.Customer.Application.DTOs.ClientRequest;
 import com.api.apibackend.Customer.Infra.persistence.entity.CustomerEntity;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class CustomerOrderService {
 
+    @Transactional
     public CustomerEntity createNewCustomerOrder(ClientRequest clientRequest) {
-
         Objects.requireNonNull(clientRequest, "Objeto de cliente não pode ser iniciado com null");
-
         CustomerEntity customerEntity = new CustomerEntity();
         customerEntity.setName(clientRequest.getName());
         customerEntity.setEmail(clientRequest.getEmail());

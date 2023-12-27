@@ -11,21 +11,27 @@ import com.api.apibackend.Customer.Infra.persistence.repository.CustomerReposito
 import com.api.apibackend.CustomerAddress.infra.entity.AddressEntity;
 import com.api.apibackend.CustomerAddress.infra.repository.AddressRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class CustomerServiceImp implements IClientService {
-	
-	@Autowired
 	private CustomerRepository clientRepository;
-
-	@Autowired
 	private AddressRepository addressRepository;
 	
+	@Autowired
+	public CustomerServiceImp(CustomerRepository clientRepository, AddressRepository addressRepository) {
+		this.clientRepository = clientRepository;
+		this.addressRepository = addressRepository;
+	}
+	
+	@Transactional
 	public CustomerEntity createClient(CustomerEntity customerEntity, AddressEntity addressEntity) {
 		customerEntity.setAddress(addressEntity);
 		CustomerEntity savedClient = clientRepository.save(customerEntity);
 		return savedClient;
 	}
 
+	@Transactional
 	public void updateClient(Long clientId, CustomerEntity updatedClient, AddressEntity updatedAddress) {
 		Optional<CustomerEntity> existingClient = clientRepository.findById(clientId);
 		Optional<AddressEntity> existingAddress = addressRepository.findById(clientId);
@@ -45,6 +51,7 @@ public class CustomerServiceImp implements IClientService {
 		}
 	}
 
+	@Transactional
 	public void deleteClient(Long clientId) {
 		Optional<CustomerEntity> existingClient = clientRepository.findById(clientId);
 

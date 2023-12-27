@@ -1,14 +1,12 @@
 package com.api.apibackend.Product.Application.controller;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,8 +46,8 @@ public class ProductController implements IProductController {
 	@Tag(name = "Adiciona produtos", description = "Adiciona produtos dentro banco de dados")
 	@Operation(summary = "Rota responsavel por adicionar produtos no banco dados caso aja necessidade de adicionar pela própria aplicação central, Nova-core")
 	@SecurityRequirement(name = "jwt_auth")
-	public ResponseEntity<String> addProducts(@RequestBody List<Product> productDTOList) {
-		return productUseCase.productAdd(productDTOList);
+	public ResponseEntity<String> populationCreationProduct(@RequestBody List<Product> productDTOList) {
+		return productUseCase.execute(productDTOList);
 	}
 
 	@GetMapping("/todos")
@@ -70,19 +68,5 @@ public class ProductController implements IProductController {
 	public ResponseEntity<List<Product>> getFirstProducts() {
 		List<Product> products = getFirstProduct.execute();
 		return ResponseEntity.ok(products);
-	}
-
-	@GetMapping("/pesquisar/{id}")
-	@PreAuthorize("hasRole('ADMIN')")
-	@Tag(name = "Busca por um produto pelo ID", description = "Busca pelo produto pelo ID passado na requisição")
-	@Operation(summary = "Rota responsável por buscar produtos no banco de dados pelo ID")
-	@SecurityRequirement(name = "jwt_auth")
-	public ResponseEntity<List<Product>> searchProduct(@PathVariable Long id) {
-		List<Product> products = getAllProductsService.execute();
-		List<Product> filteredProducts = products.stream()
-                .filter(product -> product.getId().equals(id))
-                .collect(Collectors.toList());
-
-		return ResponseEntity.ok(filteredProducts);
 	}
 }
