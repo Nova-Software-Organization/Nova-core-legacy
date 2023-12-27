@@ -14,7 +14,7 @@ public class StockProduct {
         this.stockQuantity = stockQuantity;
     }
 
-    public boolean hasEnoughStock(int quantityToCheck) {
-        return stockQuantity >= quantityToCheck;
+    public boolean hasEnoughStock(int quantityStockProduct, int quantityToCheck) {
+        return quantityStockProduct >= quantityToCheck;
     }
 }
