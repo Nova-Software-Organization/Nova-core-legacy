@@ -3,6 +3,6 @@ package com.api.apibackend.Product.Application.useCase;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SearchProductName {
+public class SearchProductNameUseCase {
 
 }

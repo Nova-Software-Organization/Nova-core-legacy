@@ -20,8 +20,8 @@ import com.api.apibackend.Order.Application.DTOs.CreateOrderRequest;
 import com.api.apibackend.Order.Application.DTOs.OrderRequest;
 import com.api.apibackend.Order.Application.DTOs.OrderUpdateAddressRequest;
 import com.api.apibackend.Order.Application.repository.IOrderController;
-import com.api.apibackend.Order.Application.useCase.OrderAddressUpdate;
-import com.api.apibackend.Order.Application.useCase.OrderCancelOrder;
+import com.api.apibackend.Order.Application.useCase.OrderAddressUpdateUseCase;
+import com.api.apibackend.Order.Application.useCase.OrderCancelOrderUseCase;
 import com.api.apibackend.Order.Application.useCase.OrderRequestManagerUseCase;
 import com.api.apibackend.Order.Domain.service.OrderCompletionReturnProcessor;
 import com.api.apibackend.Order.Domain.service.OrderCreationService;
@@ -41,8 +41,8 @@ public class OrderController implements IOrderController {
     private UpdateOrderService updateOrderService;
     private OrderCompletionReturnProcessor orderCompletionReturnProcessor;
     private OrderCircuitBreaker orderCircuitBreaker;
-    private OrderAddressUpdate orderAddressUpdate;
-    private OrderCancelOrder orderCancelOrder;
+    private OrderAddressUpdateUseCase orderAddressUpdate;
+    private OrderCancelOrderUseCase orderCancelOrder;
 
     @Autowired
     public OrderController(
@@ -51,9 +51,8 @@ public class OrderController implements IOrderController {
             UpdateOrderService updateOrderService,
             OrderCompletionReturnProcessor orderCompletionReturnProcessor,
             OrderCircuitBreaker orderCircuitBreaker,
-            OrderAddressUpdate orderAddressUpdate,
-            OrderCancelOrder orderCancelOrder
-    ) {
+            OrderAddressUpdateUseCase orderAddressUpdate,
+            OrderCancelOrderUseCase orderCancelOrder) {
         this.orderService = orderService;
         this.orderManageUseCase = orderManageUseCase;
         this.updateOrderService = updateOrderService;
