@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 import com.api.apibackend.Product.Domain.model.Product;
 import com.api.apibackend.Product.Infra.entity.ProductEntity;
 import com.api.apibackend.Product.Infra.repository.ProductRepository;
-import com.api.apibackend.ProductCategory.infra.entity.ProductCategoryEntity;
-import com.api.apibackend.ProductCategory.infra.repository.ProductCategoryRepository;
+import com.api.apibackend.ProductCategory.infra.persistence.entity.ProductCategoryEntity;
+import com.api.apibackend.ProductCategory.infra.persistence.repository.ProductCategoryRepository;
 
 @Service
 public class ProductCategoryService {

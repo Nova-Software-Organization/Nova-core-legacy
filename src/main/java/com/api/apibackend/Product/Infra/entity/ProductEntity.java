@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 import org.springframework.context.annotation.Lazy;
 
-import com.api.apibackend.Midia.infra.entity.MidiaEntity;
+import com.api.apibackend.Midia.infra.persistence.entity.MidiaEntity;
 import com.api.apibackend.Price.infra.entity.PriceEntity;
-import com.api.apibackend.ProductCategory.infra.entity.ProductCategoryEntity;
+import com.api.apibackend.ProductCategory.infra.persistence.entity.ProductCategoryEntity;
 import com.api.apibackend.Supplier.Infra.entity.SupplierEntity;
 
 import jakarta.persistence.CascadeType;

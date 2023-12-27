@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import com.api.apibackend.Midia.infra.entity.MidiaEntity;
+import com.api.apibackend.Midia.infra.persistence.entity.MidiaEntity;
 import com.api.apibackend.Price.infra.entity.PriceEntity;
 import com.api.apibackend.Product.Domain.model.Product;
 import com.api.apibackend.Product.Domain.repository.IGetAllProductService;

@@ -14,7 +14,7 @@ import com.api.apibackend.Supplier.Domain.exception.ErrorValidationSupplier;
 import com.api.apibackend.Supplier.Infra.entity.SupplierEntity;
 import com.api.apibackend.Supplier.Infra.repository.SupplierRepository;
 import com.api.apibackend.Supplier.Infra.validation.SupplierValidation;
-import com.api.apibackend.SupplierAddress.infra.entity.SupplierAddressEntity;
+import com.api.apibackend.SupplierAddress.infra.persistence.entity.SupplierAddressEntity;
 
 @Service
 public class SupplierService {

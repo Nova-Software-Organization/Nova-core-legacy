@@ -2,7 +2,7 @@ package com.api.apibackend.Auth.Domain.model;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.api.apibackend.Auth.Infra.entity.UserEntity;
+import com.api.apibackend.Auth.Infra.persistence.entity.UserEntity;
 
 public class User {
     private UserEntity user;

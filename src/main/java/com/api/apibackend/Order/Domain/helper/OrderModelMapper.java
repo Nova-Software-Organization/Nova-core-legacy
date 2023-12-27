@@ -4,7 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.api.apibackend.Order.Application.DTOs.OrderRequest;
-import com.api.apibackend.Order.infra.entity.OrderEntity;
+import com.api.apibackend.Order.infra.persistence.entity.OrderEntity;
 
 public class OrderModelMapper {
     private ModelMapper modelMapper;

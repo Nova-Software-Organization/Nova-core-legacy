@@ -8,7 +8,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.api.apibackend.Order.Application.DTOs.OrderUpdateAddressRequest;
 import com.api.apibackend.Order.Domain.service.UpdateOrderService;
-import com.api.apibackend.Order.infra.entity.OrderEntity;
+import com.api.apibackend.Order.infra.persistence.entity.OrderEntity;
 
 @Service
 public class OrderAddressUpdate {

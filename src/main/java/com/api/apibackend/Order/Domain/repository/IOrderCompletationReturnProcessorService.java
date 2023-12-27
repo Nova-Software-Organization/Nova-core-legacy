@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
 
-import com.api.apibackend.Order.infra.entity.OrderEntity;
+import com.api.apibackend.Order.infra.persistence.entity.OrderEntity;
 
 public interface IOrderCompletationReturnProcessorService {
     public ResponseEntity<List<OrderEntity>> getOrderList();

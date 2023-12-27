@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.api.apibackend.Midia.infra.entity.MidiaEntity;
+import com.api.apibackend.Midia.infra.persistence.entity.MidiaEntity;
 
 @Repository
 public interface MidiaRepository extends JpaRepository<MidiaEntity, Long> {

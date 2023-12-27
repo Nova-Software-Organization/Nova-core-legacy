@@ -72,4 +72,7 @@ public class CouponEntity implements Serializable {
 
     @Column(name = "codigo_barras_qr", length = 100)
     private String barcodeOrQRCode;
+
+    @Column(name = "ativo")
+    private int status;
 }

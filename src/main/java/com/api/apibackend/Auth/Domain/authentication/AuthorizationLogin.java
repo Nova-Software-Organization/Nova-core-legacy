@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.api.apibackend.Auth.Domain.Enum.CustomGrantedAuthority;
 import com.api.apibackend.Auth.Domain.model.LoginRequest;
 import com.api.apibackend.Auth.Domain.token.GeneratedTokenAuthorizationService;
-import com.api.apibackend.Auth.Infra.repository.UserRepository;
+import com.api.apibackend.Auth.Infra.persistence.repository.UserRepository;
 
 import jakarta.validation.Valid;
 

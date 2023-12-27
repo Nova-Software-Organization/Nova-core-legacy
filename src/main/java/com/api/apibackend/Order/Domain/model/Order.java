@@ -3,7 +3,7 @@ package com.api.apibackend.Order.Domain.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.api.apibackend.Order.infra.entity.OrderEntity;
+import com.api.apibackend.Order.infra.persistence.entity.OrderEntity;
 import com.api.apibackend.OrderItem.infra.entity.OrderItemEntity;
 import com.api.apibackend.Product.Infra.entity.ProductEntity;
 

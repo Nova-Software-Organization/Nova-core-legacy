@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.api.apibackend.Product.Domain.model.Product;
 import com.api.apibackend.Product.Infra.entity.ProductEntity;
-import com.api.apibackend.ProductCategory.infra.entity.ProductCategoryEntity;
+import com.api.apibackend.ProductCategory.infra.persistence.entity.ProductCategoryEntity;
 
 public interface IProductCategoryService {
     public List<Product> getProductsByCategoryName(String categoryName);
