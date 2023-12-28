@@ -24,7 +24,7 @@ public class GetFirstProductService implements IGetFirstService {
 	}
 
 	@Cacheable(value = "produtos", key = "'getFirst12Products'")
-	public List<Product> execute() {
+	public List<Product> listProducts() {
 		List<ProductEntity> products = productRepository.findAll();
 
 		List<Product> productDTOs = new ArrayList<>();

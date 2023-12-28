@@ -1,4 +1,4 @@
-package com.api.apibackend.Supplier.Application.controller;
+package com.api.apibackend.Supplier.Application.controller.filter;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

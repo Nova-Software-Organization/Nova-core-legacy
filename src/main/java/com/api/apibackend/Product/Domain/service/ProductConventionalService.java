@@ -135,14 +135,12 @@ public class ProductConventionalService implements IProductConventionalService {
     public ResponseEntity<String> deactivate(Long productId) {
         Optional<ProductEntity> product = productRepository.findById(productId);
         if (!product.isPresent()) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Produto não encontrado!");
         }
 
         ProductEntity productStatus = product.get();
         productStatus.setStatus(0);
-
         productRepository.save(productStatus);
-
         return ResponseEntity.ok("Produto desativado com sucesso!");
     }
 }

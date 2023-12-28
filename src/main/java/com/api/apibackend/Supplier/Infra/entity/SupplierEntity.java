@@ -53,6 +53,9 @@ public class SupplierEntity implements Serializable {
     @Column(name = "cnpj")
     private String cnpj;
 
+    @Column(name = "status")
+    private int status;
+
     @ManyToOne
     @JoinColumn(name = "id_ed_fornecedor", referencedColumnName = "id_ed_fornecedor")
     private SupplierAddressEntity supplierAddressEntity;

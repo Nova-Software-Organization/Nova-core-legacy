@@ -30,7 +30,7 @@ public class ProductFilterController {
 	@Operation(summary = "Rota responsável por buscar produtos no banco de dados pelo ID")
 	@SecurityRequirement(name = "jwt_auth")
 	public ResponseEntity<List<Product>> searchProduct(@PathVariable Long id) {
-		List<Product> products = getAllProductsService.execute();
+		List<Product> products = getAllProductsService.listProducts();
 		List<Product> filteredProducts = products.stream()
                 .filter(product -> product.getId().equals(id))
                 .collect(Collectors.toList());

@@ -8,5 +8,5 @@ import com.api.apibackend.Product.Infra.entity.ProductEntity;
 public interface IGetAllProductService {
     List<Product> getAllProductsFromCache();
     Product mapToProduct(ProductEntity product);
-    List<Product> execute();
+    List<Product> listProducts();
 }

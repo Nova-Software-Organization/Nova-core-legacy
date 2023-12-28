@@ -47,7 +47,7 @@ public class GetAllProductService implements IGetAllProductService {
             );
         }
 
-    public List<Product> execute() {
+    public List<Product> listProducts() {
         return getAllProductsFromCache();
     }
 }
