@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.apibackend.Auth.Application.DTOs.ValidateTokenRequest;
+import com.api.apibackend.Auth.Application.DTOs.AuthAccessToken;
+import com.api.apibackend.Auth.Domain.exception.RegistrationFailedException;
 import com.api.apibackend.Auth.Domain.model.LoginRequest;
-import com.api.apibackend.Auth.Domain.service.exception.RegistrationFailedException;
 import com.api.apibackend.Customer.Application.DTOs.registration.RegistrationRequest;
 import com.api.apibackend.Customer.Application.repository.ICustomerController;
 import com.api.apibackend.Customer.Application.useCase.CustomerAuthLoginUseCase;
@@ -54,7 +54,7 @@ public class CustomerController implements ICustomerController {
     @PostMapping(path = "/valida/token")
     @Tag(name = "Valida token", description = "Verifica se o token do usuário está expirado")
     @Operation(summary = "Rota responsavel por validar o token do usuário para ver se já está expirado ou não")
-    public ResponseEntity<String> validateToken(@RequestBody ValidateTokenRequest token) {
+    public ResponseEntity<String> validateToken(@RequestBody AuthAccessToken token) {
         if(token.getAccess_token().isEmpty()) {
             String valueToken = token.getAccess_token();
             jwtUtills.validateToken(valueToken);

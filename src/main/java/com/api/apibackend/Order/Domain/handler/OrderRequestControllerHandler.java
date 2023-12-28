@@ -10,8 +10,9 @@ import com.api.apibackend.Customer.Application.DTOs.ClientRequest;
 import com.api.apibackend.CustomerAddress.Domain.model.CustomerAddressRequest;
 import com.api.apibackend.Order.Application.DTOs.OrderRequest;
 import com.api.apibackend.Order.Domain.exception.InsufficientStockException;
-import com.api.apibackend.Order.Domain.exception.OrderCannotBeCreated;
+import com.api.apibackend.Order.Domain.exception.OrderCannotBeCreatedException;
 import com.api.apibackend.Order.Domain.service.OrderCreationService;
+import com.api.apibackend.OrderItem.Domain.exception.NonExistentesItemsException;
 import com.api.apibackend.OrderItem.Domain.model.OrderItem;
 import com.api.apibackend.Product.Infra.entity.ProductEntity;
 import com.api.apibackend.Product.Infra.repository.ProductRepository;
@@ -34,7 +35,7 @@ public class OrderRequestControllerHandler {
 
     @Transactional
     public ResponseEntity<String> checkout(OrderRequest orderRequest, CustomerAddressRequest customerAddress,
-            ClientRequest clientRequest) throws InsufficientStockException, OrderCannotBeCreated {
+            ClientRequest clientRequest) throws InsufficientStockException, OrderCannotBeCreatedException, NonExistentesItemsException {
         validateOrder(orderRequest);
         validateClient(clientRequest);
         validateCustomerAddress(customerAddress);

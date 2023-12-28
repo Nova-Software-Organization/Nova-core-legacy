@@ -29,6 +29,15 @@ public class SupplierController {
         this.supplierCreateUseCase = supplierCreateUseCase;
     }
 
+    @PostMapping(path = "/criar")
+    public ResponseEntity<String> createSupplier(@RequestBody SupplierRequest supplierRequest) {
+        try {
+            return supplierCreateUseCase.execute(supplierRequest);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
+    
     public ResponseEntity<List<SupplierEntity>> listSupplier() {
         try {
             List<SupplierEntity> suppliers = supplierUseListCase.execute();
@@ -42,12 +51,4 @@ public class SupplierController {
         }
     }
 
-    @PostMapping(path = "/criar")
-    public ResponseEntity<String> createSupplier(@RequestBody SupplierRequest supplierRequest) {
-        try {
-            return supplierCreateUseCase.execute(supplierRequest);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-        }
-    }
 }

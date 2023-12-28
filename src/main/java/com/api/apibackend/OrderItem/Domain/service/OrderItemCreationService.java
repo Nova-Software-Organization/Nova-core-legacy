@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.api.apibackend.Order.infra.entity.OrderEntity;
+import com.api.apibackend.Order.infra.persistence.entity.OrderEntity;
+import com.api.apibackend.OrderItem.Domain.exception.NonExistentesItemsException;
 import com.api.apibackend.OrderItem.Domain.model.OrderItem;
 import com.api.apibackend.OrderItem.infra.entity.OrderItemEntity;
 import com.api.apibackend.Product.Infra.entity.ProductEntity;
@@ -15,16 +17,16 @@ import com.api.apibackend.Product.Infra.repository.ProductRepository;
 
 @Service
 public class OrderItemCreationService {
-
     private ProductRepository productRepository;
 
+    @Autowired
     public OrderItemCreationService(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
     
-    public List<OrderItemEntity> createOrderItems(List<OrderItem> items, OrderEntity orderEntity) {
+    public List<OrderItemEntity> createOrderItems(List<OrderItem> items, OrderEntity orderEntity) throws NonExistentesItemsException {
         if (items == null) {
-            throw new IllegalArgumentException("items inexistente!");
+            throw new NonExistentesItemsException("items inexistente!");
         }
 
         List<OrderItemEntity> orderItems = new ArrayList<>();

@@ -3,7 +3,7 @@ package com.api.apibackend.ContactNewsletter.Domain.validation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.api.apibackend.Auth.Validation.AutheticationValidationServiceHandler;
+import com.api.apibackend.Auth.validation.AutheticationValidationServiceHandler;
 import com.api.apibackend.ContactNewsletter.Application.DTOs.ContactRequest;
 
 @Service

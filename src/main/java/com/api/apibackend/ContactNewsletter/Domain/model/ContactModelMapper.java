@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.api.apibackend.ContactNewsletter.Application.DTOs.ContactRequest;
-import com.api.apibackend.ContactNewsletter.infra.Persistence.entity.ContactEntity;
+import com.api.apibackend.ContactNewsletter.infra.persistence.entity.ContactEntity;
 
 @Service
 public class ContactModelMapper {

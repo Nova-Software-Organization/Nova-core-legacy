@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import com.api.apibackend.Midia.infra.entity.MidiaEntity;
+import com.api.apibackend.Midia.infra.persistence.entity.MidiaEntity;
 import com.api.apibackend.Price.infra.entity.PriceEntity;
 import com.api.apibackend.Product.Domain.model.Product;
 import com.api.apibackend.Product.Domain.repository.IGetFirstService;
@@ -24,7 +24,7 @@ public class GetFirstProductService implements IGetFirstService {
 	}
 
 	@Cacheable(value = "produtos", key = "'getFirst12Products'")
-	public List<Product> execute() {
+	public List<Product> listProducts() {
 		List<ProductEntity> products = productRepository.findAll();
 
 		List<Product> productDTOs = new ArrayList<>();

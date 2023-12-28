@@ -7,7 +7,7 @@ import javax.validation.constraints.NotBlank;
 
 import org.springframework.context.annotation.Lazy;
 
-import com.api.apibackend.SupplierAddress.infra.entity.SupplierAddressEntity;
+import com.api.apibackend.SupplierAddress.infra.persistence.entity.SupplierAddressEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -52,6 +52,9 @@ public class SupplierEntity implements Serializable {
     
     @Column(name = "cnpj")
     private String cnpj;
+
+    @Column(name = "status")
+    private int status;
 
     @ManyToOne
     @JoinColumn(name = "id_ed_fornecedor", referencedColumnName = "id_ed_fornecedor")

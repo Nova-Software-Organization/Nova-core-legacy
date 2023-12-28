@@ -5,8 +5,8 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 import com.api.apibackend.Event.Domain.IDomainEventListener;
-import com.api.apibackend.Order.infra.entity.OrderEntity;
-import com.api.apibackend.Order.infra.repository.OrderRepository;
+import com.api.apibackend.Order.infra.persistence.entity.OrderEntity;
+import com.api.apibackend.Order.infra.persistence.repository.OrderRepository;
 
 @Component
 public class OrderCreatedEventListener implements IDomainEventListener<OrderCreatedEvent> {

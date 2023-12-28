@@ -7,18 +7,32 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.api.apibackend.Product.Domain.model.Product;
-import com.api.apibackend.Product.Domain.service.ProductAddService;
+import com.api.apibackend.Product.Domain.service.ProductConventionalService;
 
 @Service
 public class ProductAddUseCase {
-    private ProductAddService productAddService;
+    private ProductConventionalService productConventionalService;
     
     @Autowired
-    public ProductAddUseCase(ProductAddService productAddService) {
-        this.productAddService = productAddService;
+    public ProductAddUseCase(ProductConventionalService productConventionalService) {
+        this.productConventionalService = productConventionalService;
     }
 
-    public ResponseEntity<String> productAdd(List<Product> productDTOList) {
-        return productAddService.addProducts(productDTOList);
+    public ResponseEntity<String> execute(List<Product> productDTOList) {
+        if (productDTOList == null || productDTOList.isEmpty()) {
+            return ResponseEntity.badRequest().body("A lista de produtos está vazia ou nula.");
+        }
+
+        for (Product product : productDTOList) {
+            if (product.getName() == null || product.getName().isEmpty()) {
+                return ResponseEntity.badRequest().body("O nome do produto é obrigatório.");
+            }
+
+            if (product.getPrice().getPrice().intValue() <= 0) {
+                return ResponseEntity.badRequest().body("O preço do produto deve ser um número positivo.");
+            }
+        }
+
+        return productConventionalService.populationProduct(productDTOList);
     }
 }

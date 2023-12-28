@@ -1,7 +1,6 @@
 package com.api.apibackend.Product.Application.controller;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,10 +13,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.api.apibackend.Product.Application.DTOs.ProductDTO;
 import com.api.apibackend.Product.Application.repository.IProductController;
-import com.api.apibackend.Product.Application.service.GetAllProductService;
-import com.api.apibackend.Product.Application.service.GetFirstProductService;
-import com.api.apibackend.Product.Application.useCase.ProductUseCase;
+import com.api.apibackend.Product.Application.useCase.GetAllProductUseCase;
+import com.api.apibackend.Product.Application.useCase.GetFirstProductUseCase;
+import com.api.apibackend.Product.Application.useCase.ProductAddUseCase;
+import com.api.apibackend.Product.Application.useCase.ProductDeactivateUseCase;
+import com.api.apibackend.Product.Application.useCase.ProductDeleteUseCase;
+import com.api.apibackend.Product.Application.useCase.ProductUpdateUseCase;
+import com.api.apibackend.Product.Application.useCase.ProductUseCaseCreated;
 import com.api.apibackend.Product.Domain.model.Product;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -28,19 +32,31 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RestController
 @RequestMapping("v1/produto")
 public class ProductController implements IProductController {
-	private ProductUseCase productUseCase;
-	private GetAllProductService getAllProductsService;
-	private GetFirstProductService getFirstProduct;
+	private ProductAddUseCase productUseCase;
+	private GetAllProductUseCase getAllProductUseCase;
+	private GetFirstProductUseCase getFirstProductUseCase;
+	private ProductUseCaseCreated productUseCaseCreated;
+	private ProductDeactivateUseCase productDeactivateUseCase;
+	private ProductDeleteUseCase productDeleteUseCase;
+	private ProductUpdateUseCase productUpdateUseCase;
 		
 	@Autowired
 	public ProductController(
-		ProductUseCase productUseCase,
-		GetAllProductService getAllProductsService,
-		GetFirstProductService getFirstProduct
+		ProductAddUseCase productUseCase,
+		GetAllProductUseCase getAllProductUseCase,
+		GetFirstProductUseCase getFirstProductUseCase,
+		ProductUseCaseCreated productUseCaseCreated,
+		ProductDeactivateUseCase productDeactivateUseCase,
+		ProductDeleteUseCase productDeleteUseCase,
+		ProductUpdateUseCase productUpdateUseCase
 	) {
 		this.productUseCase = productUseCase;
-		this.getAllProductsService = getAllProductsService;
-		this.getFirstProduct = getFirstProduct;
+		this.getAllProductUseCase = getAllProductUseCase;
+		this.getFirstProductUseCase = getFirstProductUseCase;
+		this.productUseCaseCreated = productUseCaseCreated;
+		this.productDeactivateUseCase = productDeactivateUseCase;
+		this.productDeleteUseCase = productDeleteUseCase;
+		this.productUpdateUseCase = productUpdateUseCase;
 	}
 	
 	@PostMapping("/adicionar")
@@ -48,8 +64,77 @@ public class ProductController implements IProductController {
 	@Tag(name = "Adiciona produtos", description = "Adiciona produtos dentro banco de dados")
 	@Operation(summary = "Rota responsavel por adicionar produtos no banco dados caso aja necessidade de adicionar pela própria aplicação central, Nova-core")
 	@SecurityRequirement(name = "jwt_auth")
-	public ResponseEntity<String> addProducts(@RequestBody List<Product> productDTOList) {
-		return productUseCase.productAdd(productDTOList);
+	public ResponseEntity<String> populationCreationProduct(@RequestBody List<Product> productDTOList) {
+		try {
+            if (productDTOList == null || productDTOList.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Lista de produtos vazia ou nula");
+            }
+
+            return productUseCase.execute(productDTOList);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Ocorreu um erro ao processar a requisição");
+        }
+	}
+
+	@PostMapping("/unico/produto")
+	@PreAuthorize("hasRole('ADMIN')")
+	@Tag(name = "Adiciona um unico produto", description = "Adiciona produtos dentro banco de dados")
+	@Operation(summary = "Rota responsavel por adicionar produtos no banco dados caso aja necessidade de adicionar pela própria aplicação central, Nova-core")
+	@SecurityRequirement(name = "jwt_auth")
+	public ResponseEntity<String> create(@RequestBody ProductDTO productDTO) {
+		return productUseCaseCreated.execute(productDTO);
+	}
+
+	@PostMapping("/unico/produto")
+	@PreAuthorize("hasRole('ADMIN')")
+	@Tag(name = "Adiciona um unico produto", description = "Adiciona produtos dentro banco de dados")
+	@Operation(summary = "Rota responsavel por atualizar os produtos no banco dados!")
+	@SecurityRequirement(name = "jwt_auth")
+	public ResponseEntity<String> update(@PathVariable Long id, @RequestBody ProductDTO productDTO) {
+		try {
+            if (productDTO == null) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Produto inválido");
+            }
+
+            return productUseCaseCreated.execute(productDTO);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Ocorreu um erro ao processar a requisição");
+        }
+	}
+	
+
+	@PostMapping("/unico/produto")
+	@PreAuthorize("hasRole('ADMIN')")
+	@Tag(name = "Adiciona um unico produto", description = "Adiciona produtos dentro banco de dados")
+	@Operation(summary = "Rota responsavel por deletar os produtos do banco dados caso aja necessidade!")
+	@SecurityRequirement(name = "jwt_auth")
+	public ResponseEntity<String> delete(@PathVariable Long id) {
+		try {
+            if (id == null || id <= 0) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("ID de produto inválido");
+            }
+
+            return productDeleteUseCase.execute(id);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Ocorreu um erro ao processar a requisição");
+        }
+	}
+
+	@PostMapping("/produto/desativar/{id}")
+	@PreAuthorize("hasRole('ADMIN')")
+	@Tag(name = "Desativa um produto", description = "Desativa o produto")
+	@Operation(summary = "Rota responsavel por desativar um produto e não trazer o produto na consulta")
+	@SecurityRequirement(name = "jwt_auth")
+	public ResponseEntity<String> deactivate(@PathVariable Long id) {
+		try {
+            if (id == null || id <= 0) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("ID de produto inválido");
+            }
+
+            return productDeactivateUseCase.execute(id);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Ocorreu um erro ao processar a requisição");
+        }
 	}
 
 	@GetMapping("/todos")
@@ -58,7 +143,7 @@ public class ProductController implements IProductController {
 	@Operation(summary = "Rota responsável por listar todos os produtos do banco dados caso aja necessidade")
 	@SecurityRequirement(name = "jwt_auth")
 	public ResponseEntity<List<Product>> getAllProductsEndpoint() {
-		List<Product> products = getAllProductsService.execute();
+		List<Product> products = getAllProductUseCase.execute();
 		return new ResponseEntity<>(products, HttpStatus.OK);
 	}
 
@@ -68,21 +153,7 @@ public class ProductController implements IProductController {
 	@Operation(summary = "Rota responsável por listar os 12 primeiros produtos do banco de dados")
 	@SecurityRequirement(name = "jwt_auth")
 	public ResponseEntity<List<Product>> getFirstProducts() {
-		List<Product> products = getFirstProduct.execute();
+		List<Product> products = getFirstProductUseCase.execute();
 		return ResponseEntity.ok(products);
-	}
-
-	@GetMapping("/pesquisar/{id}")
-	@PreAuthorize("hasRole('ADMIN')")
-	@Tag(name = "Busca por um produto pelo ID", description = "Busca pelo produto pelo ID passado na requisição")
-	@Operation(summary = "Rota responsável por buscar produtos no banco de dados pelo ID")
-	@SecurityRequirement(name = "jwt_auth")
-	public ResponseEntity<List<Product>> searchProduct(@PathVariable Long id) {
-		List<Product> products = getAllProductsService.execute();
-		List<Product> filteredProducts = products.stream()
-                .filter(product -> product.getId().equals(id))
-                .collect(Collectors.toList());
-
-		return ResponseEntity.ok(filteredProducts);
 	}
 }

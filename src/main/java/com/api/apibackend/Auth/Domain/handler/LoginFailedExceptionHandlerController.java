@@ -5,11 +5,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.api.apibackend.Auth.Domain.service.exception.LoginFailedException;
+import com.api.apibackend.Auth.Domain.exception.LoginFailedException;
 
 @ControllerAdvice
 public class LoginFailedExceptionHandlerController {
-       @ExceptionHandler(LoginFailedException.class)
+    @ExceptionHandler(LoginFailedException.class)
     public ResponseEntity<String> handleRegistrationFailedException(LoginFailedException ex) {
         String errorMessage = ex.getMessage();
         return new ResponseEntity<>(errorMessage, HttpStatus.FORBIDDEN);
