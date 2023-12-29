@@ -27,12 +27,12 @@ import lombok.EqualsAndHashCode;
 public class PriceEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idpreco")
     private Long id;
-    
+
     @Column(name = "preco")
     private BigDecimal price;
 
@@ -51,7 +51,7 @@ public class PriceEntity implements Serializable {
     @Column(name = "unidade_medida")
     private String unitOfMeasure;
 
-    @Column(name = "Ativo")
+    @Column(name = "ativo")
     private int status;
 
     @Column(name = "tipo_desconto")

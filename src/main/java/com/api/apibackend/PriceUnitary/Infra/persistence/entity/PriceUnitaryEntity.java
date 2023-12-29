@@ -3,6 +3,7 @@ package com.api.apibackend.PriceUnitary.Infra.persistence.entity;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Date;
 
 import com.api.apibackend.Product.Infra.entity.ProductEntity;
 import com.api.apibackend.Unity.infra.persistence.entity.UnityEntity;
@@ -23,7 +24,7 @@ import lombok.EqualsAndHashCode;
 @Table(name = "preco_unitario")
 @EqualsAndHashCode(of = "id")
 public class PriceUnitaryEntity implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -42,8 +43,8 @@ public class PriceUnitaryEntity implements Serializable {
     private BigDecimal price;
 
     @Column(name = "data_inicial", nullable = false)
-    private LocalDate startDate;
+    private Date startDate;
 
     @Column(name = "data_final")
-    private LocalDate endDate;
+    private Date endDate;
 }

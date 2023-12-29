@@ -13,6 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.api.apibackend.Midia.infra.persistence.entity.MidiaEntity;
 import com.api.apibackend.Midia.infra.repository.MidiaRepository;
+import com.api.apibackend.Price.infra.entity.PriceEntity;
+import com.api.apibackend.PriceUnitary.Infra.persistence.entity.PriceUnitaryEntity;
 import com.api.apibackend.Product.Application.DTOs.ProductDTO;
 import com.api.apibackend.Product.Application.component.ProductComponentAdd;
 import com.api.apibackend.Product.Domain.repository.IProductConventionalService;
@@ -35,8 +37,7 @@ public class ProductConventionalService implements IProductConventionalService {
     public ProductConventionalService(
             ProductCategoryRepository productCategoryRepository,
             MidiaRepository midiaRepository, ProductRepository productRepository,
-            ProductComponentAdd productComponentAdd
-    ) {
+            ProductComponentAdd productComponentAdd) {
         this.productCategoryRepository = productCategoryRepository;
         this.midiaRepository = midiaRepository;
         this.productRepository = productRepository;
@@ -64,6 +65,12 @@ public class ProductConventionalService implements IProductConventionalService {
                 stock.setDateMoviment(new Date());
                 stock.setTypeMoviment("ENTRADA");
 
+                PriceUnitaryEntity priceUnitary = new PriceUnitaryEntity();
+                priceUnitary.setPrice(productDTO.getPriceEntity().getPrice());
+                priceUnitary.setStartDate(new Date());
+
+                PriceEntity price = new PriceEntity();
+
                 UnityEntity unity = new UnityEntity();
                 unity.setName(productDTO.getUnityEntity().getName());
                 unity.setAbbreviation(productDTO.getUnityEntity().getAbbreviation());
@@ -78,6 +85,7 @@ public class ProductConventionalService implements IProductConventionalService {
                 newProduct.setMidia(midia);
                 newProduct.setStockEntity(stock);
                 newProduct.setSupplierEntity(supplier);
+                newProduct.setUnityEntity(unity);
                 newProduct = productRepository.save(newProduct);
 
                 productComponentAdd.priceSaveProduct(productDTO, newProduct);
