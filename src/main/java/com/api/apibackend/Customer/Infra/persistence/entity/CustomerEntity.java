@@ -77,11 +77,6 @@ public class CustomerEntity implements Serializable {
     @Column(name = "email", unique = true)
     private String email;
     
-    @NotBlank(message = "A senha não pode estar em branco")
-    @Size(max = 8, message = "A senha deve ter no máximo 8 caracteres")
-    @Column(name = "senha")
-    private String password;
-
     @OneToOne
     @JoinColumn(name = "user_id")
     private UserEntity user;

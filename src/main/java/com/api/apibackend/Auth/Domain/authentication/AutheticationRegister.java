@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.api.apibackend.Auth.Domain.Enum.CustomGrantedAuthority;
 import com.api.apibackend.Auth.Domain.repository.IAutheticationRegister;
+import com.api.apibackend.Auth.Domain.service.AnonymizationService;
 import com.api.apibackend.Auth.Domain.service.UserService;
 import com.api.apibackend.Auth.Domain.token.GeneratedTokenAuthorizationService;
 import com.api.apibackend.Auth.Infra.persistence.entity.UserEntity;
@@ -39,6 +40,7 @@ public class AutheticationRegister implements IAutheticationRegister {
     private CustomerAddressModelMapper customerAddressModelMapper;
     private GeneratedTokenAuthorizationService generatedTokenAuthorizationService;
     private AutheticationValidationServiceHandler autheticationValidationServiceHandler;
+    private AnonymizationService anonymizationService;
     
     @Autowired
     public AutheticationRegister(
@@ -50,7 +52,8 @@ public class AutheticationRegister implements IAutheticationRegister {
         CustomerModelMapper customerModelMapper,
         ApplicationEventPublisher eventPublisher,
         UserService userService,
-        PasswordEncoder passwordEncoder
+        PasswordEncoder passwordEncoder,
+        AnonymizationService anonymizationService
     ) {
         this.autheticationValidationServiceHandler = autheticationValidationServiceHandler;
         this.clientSearchService = clientSearchService;
@@ -61,10 +64,11 @@ public class AutheticationRegister implements IAutheticationRegister {
         this.eventPublisher = eventPublisher;
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;
+        this.anonymizationService = anonymizationService;
     }
 
     @Transactional
-    public ResponseEntity<String> registerUserWithSeparateData(CustomerDTO customerDTO, CustomerAddressDTO CustomerAddressDTO) {
+    public ResponseEntity<String> registerUserWithSeparateData(CustomerDTO customerDTO, CustomerAddressDTO customerAddressDTO) {
         try {
             CustomerEntity existingClient = clientSearchService.searchClientByEmail(customerDTO.getEmail());
             if (existingClient != null) {
@@ -87,8 +91,10 @@ public class AutheticationRegister implements IAutheticationRegister {
             String hashedPassword = passwordEncoder.encode(plainPassword);
 
             CustomerEntity newCustomerModelMapperEntity = customerModelMapper.toCustomerDTOFromCustomerEntity(customerDTO);
-            newCustomerModelMapperEntity.setPassword(hashedPassword);
-            AddressEntity newAddressEntityCustomer = customerAddressModelMapper.toCustomerDTOFromAddressEntity(CustomerAddressDTO);
+            newCustomerModelMapperEntity.setEmail(anonymizationService.anonymizeEmail(emailValidation));
+            newCustomerModelMapperEntity.setCpf(anonymizationService.anonymizeCpf(customerDTO.getCpf()));
+            AddressEntity newAddressEntityCustomer = customerAddressModelMapper.toCustomerDTOFromAddressEntity(customerAddressDTO);
+            newAddressEntityCustomer.setCep(anonymizationService.anonymizeCep(customerAddressDTO.getCep()));
             
             UserEntity newUserEntity = new UserEntity();
             newUserEntity.setId(newCustomerModelMapperEntity.getId());
