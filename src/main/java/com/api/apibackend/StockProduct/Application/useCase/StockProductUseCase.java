@@ -26,7 +26,7 @@ public class StockProductUseCase {
 
             if (productOptional.isPresent()) {
                 ProductEntity product = productOptional.get();
-                if (stockProduct.hasEnoughStock(product.getQuantityInStock(), quantityToCheck)) {
+                if (stockProduct.hasEnoughStock(product.getStockEntity().getInput_quantity(), quantityToCheck)) {
                     return true;
                 }
             }

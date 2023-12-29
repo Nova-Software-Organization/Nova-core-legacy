@@ -3,7 +3,7 @@ package com.api.apibackend.Supplier.Application.DTOs;
 import lombok.Data;
 
 @Data
-public class SupplierAddressRequest {
+public class SupplierAddressDTO {
     private Long idSupplierAddress;
     private String road;
     private String neighborhood;

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import com.api.apibackend.Stock.infra.persistence.entity.StockEntity;
 import com.fasterxml.jackson.annotation.JsonAlias;
 
 import lombok.Data;
@@ -17,13 +18,14 @@ public class Product implements Serializable {
     @JsonAlias("price")
     private Price price;
 
+    @JsonAlias("price")
+    private StockEntity stockEntity;
     private Long id;
     private String name;
     private String url;
     private String description;
     private Date dateCreate;
     private String category;
-    private int quantityInStock;
     private int status;
 
     public Product(
@@ -32,7 +34,7 @@ public class Product implements Serializable {
             String url,
             String description,
             String nameCompany,
-            int quantityInStock,
+            int quantity,
             int status) {
     }
 
@@ -43,7 +45,7 @@ public class Product implements Serializable {
             String name3,
             BigDecimal price,
             BigDecimal dePrice,
-            int quantityInStock2) {
+            int quantity) {
     }
 
     public Product() {

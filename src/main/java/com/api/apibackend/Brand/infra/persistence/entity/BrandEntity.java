@@ -1,4 +1,6 @@
-package com.api.apibackend.Unity.infra.entity;
+package com.api.apibackend.Brand.infra.persistence.entity;
+
+import java.io.Serializable;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,15 +12,17 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "unidade")
-public class UnityEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@Table(name = "marca")
+public class BrandEntity implements Serializable {
 
-    @Column(name = "nome", nullable = false)
+    @Id
+    @Column(name = "idmarca")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idBrand;
+
+    @Column(name = "nome")
     private String name;
 
-    @Column(name = "abreviacao", nullable = false)
-    private String abbreviation;
+    @Column(name = "url")
+    private String url;
 }

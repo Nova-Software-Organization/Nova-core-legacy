@@ -1,10 +1,11 @@
 package com.api.apibackend.PriceUnitary.Infra.persistence.entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import com.api.apibackend.Product.Infra.entity.ProductEntity;
-import com.api.apibackend.Unity.infra.entity.UnityEntity;
+import com.api.apibackend.Unity.infra.persistence.entity.UnityEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,7 +22,9 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Table(name = "preco_unitario")
 @EqualsAndHashCode(of = "id")
-public class PriceUnitaryEntity {
+public class PriceUnitaryEntity implements Serializable {
+    
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

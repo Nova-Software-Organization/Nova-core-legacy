@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.api.apibackend.Product.Domain.model.Product;
+import com.api.apibackend.Product.Application.DTOs.ProductDTO;
 import com.api.apibackend.Product.Domain.service.ProductConventionalService;
 
 @Service
@@ -18,17 +18,17 @@ public class ProductAddUseCase {
         this.productConventionalService = productConventionalService;
     }
 
-    public ResponseEntity<String> execute(List<Product> productDTOList) {
+    public ResponseEntity<String> execute(List<ProductDTO> productDTOList) {
         if (productDTOList == null || productDTOList.isEmpty()) {
             return ResponseEntity.badRequest().body("A lista de produtos está vazia ou nula.");
         }
 
-        for (Product product : productDTOList) {
+        for (ProductDTO product : productDTOList) {
             if (product.getName() == null || product.getName().isEmpty()) {
                 return ResponseEntity.badRequest().body("O nome do produto é obrigatório.");
             }
 
-            if (product.getPrice().getPrice().intValue() <= 0) {
+            if (product.getPriceEntity().getPrice().intValue() <= 0) {
                 return ResponseEntity.badRequest().body("O preço do produto deve ser um número positivo.");
             }
         }
