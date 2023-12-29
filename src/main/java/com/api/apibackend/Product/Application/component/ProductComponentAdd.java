@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.api.apibackend.Price.infra.entity.PriceEntity;
 import com.api.apibackend.Price.infra.repository.PriceRepository;
-import com.api.apibackend.Product.Domain.model.Product;
+import com.api.apibackend.Product.Application.DTOs.ProductDTO;
 import com.api.apibackend.Product.Infra.entity.ProductEntity;
 import com.api.apibackend.Supplier.Infra.entity.SupplierEntity;
 import com.api.apibackend.Supplier.Infra.repository.SupplierRepository;
@@ -27,38 +27,38 @@ public class ProductComponentAdd {
         this.supplierRepository = supplierRepository;
     }
 
-    public void priceSaveProduct(Product productDTO, ProductEntity newProduct) {
+    public void priceSaveProduct(ProductDTO productDTO, ProductEntity newProduct) {
         PriceEntity price = new PriceEntity();
-        price.setPrice(productDTO.getPrice().getPrice());
-        price.setDiscountPrice(productDTO.getPrice().getDiscountPrice());
-        price.setStartDate(productDTO.getPrice().getStartDate());
-        price.setEndDate(productDTO.getPrice().getEndDate());
-        price.setCurrency(productDTO.getPrice().getCurrency());
-        price.setUnitOfMeasure(productDTO.getPrice().getUnitOfMeasure());
-        price.setStatus(productDTO.getPrice().getStatus());
-        price.setDiscountType(productDTO.getPrice().getDiscountType());
-        price.setPriceOrigin(productDTO.getPrice().getPriceOrigin());
-        price.setNotes(productDTO.getPrice().getNotes());
-        price.setUpdatedBy(productDTO.getPrice().getUpdatedBy());
+        price.setPrice(productDTO.getPriceEntity().getPrice());
+        price.setDiscountPrice(productDTO.getPriceEntity().getDiscountPrice());
+        price.setStartDate(productDTO.getPriceEntity().getStartDate());
+        price.setEndDate(productDTO.getPriceEntity().getEndDate());
+        price.setCurrency(productDTO.getPriceEntity().getCurrency());
+        price.setUnitOfMeasure(productDTO.getPriceEntity().getUnitOfMeasure());
+        price.setStatus(productDTO.getPriceEntity().getStatus());
+        price.setDiscountType(productDTO.getPriceEntity().getDiscountType());
+        price.setPriceOrigin(productDTO.getPriceEntity().getPriceOrigin());
+        price.setNotes(productDTO.getPriceEntity().getNotes());
+        price.setUpdatedBy(productDTO.getPriceEntity().getUpdatedBy());
         price.setProductEntity(newProduct);
         priceRepository.save(price);
     }
 
-    public SupplierEntity supplierSave(Product productDTO) {
+    public SupplierEntity supplierSave(ProductDTO productDTO) {
         SupplierAddressEntity supplierAddress = new SupplierAddressEntity();
-        supplierAddress.setCep(productDTO.getSupplier().getSupplierAddress().getCep());
-        supplierAddress.setRoad(productDTO.getSupplier().getSupplierAddress().getRoad());
-        supplierAddress.setNeighborhood(productDTO.getSupplier().getSupplierAddress().getNeighborhood());
-        supplierAddress.setNumberHouseOrCompany(productDTO.getSupplier().getSupplierAddress().getNumberHouseOrCompany());
+        supplierAddress.setCep(productDTO.getSupplierEntity().getSupplierAddress().getCep());
+        supplierAddress.setRoad(productDTO.getSupplierEntity().getSupplierAddress().getRoad());
+        supplierAddress.setNeighborhood(productDTO.getSupplierEntity().getSupplierAddress().getNeighborhood());
+        supplierAddress.setNumberHouseOrCompany(productDTO.getSupplierEntity().getSupplierAddress().getNumberHouseOrCompany());
         supplierAddressRepository.save(supplierAddress);
 
         SupplierEntity supplier = new SupplierEntity();
-        supplier.setNameCompany(productDTO.getSupplier().getNameCompany());
-        supplier.setCnpj(productDTO.getSupplier().getCnpj());
-        supplier.setRegion(productDTO.getSupplier().getRegion());
-        supplier.setOfficeSupplier(productDTO.getSupplier().getOfficeSupplier());
+        supplier.setNameCompany(productDTO.getSupplierEntity().getNameCompany());
+        supplier.setCnpj(productDTO.getSupplierEntity().getCnpj());
+        supplier.setRegion(productDTO.getSupplierEntity().getRegion());
+        supplier.setOfficeSupplier(productDTO.getSupplierEntity().getOfficeSupplier());
         supplier.setDateCreated(new Date());
-        supplier.setContact(productDTO.getSupplier().getContact());
+        supplier.setContact(productDTO.getSupplierEntity().getContact());
         supplier.setSupplierAddressEntity(supplierAddress);
         supplier = supplierRepository.save(supplier);
 

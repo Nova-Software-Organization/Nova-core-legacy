@@ -1,4 +1,4 @@
-package com.api.apibackend.Coupon.infra.entity;
+package com.api.apibackend.Coupon.Infra.entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;

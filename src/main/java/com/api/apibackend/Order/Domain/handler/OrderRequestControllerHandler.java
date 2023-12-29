@@ -69,7 +69,7 @@ public class OrderRequestControllerHandler {
 
             ProductEntity productEntity = optionalProduct.get();
             int requestedQuantity = item.getQuantity();
-            int availableQuantity = productEntity.getQuantityInStock();
+            int availableQuantity = productEntity.getStockEntity().getInput_quantity();
 
             if (requestedQuantity <= 0) {
                 throw new IllegalArgumentException("A quantidade do produto deve ser maior que zero.");

@@ -2,11 +2,13 @@ package com.api.apibackend.Supplier.Infra.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.constraints.NotBlank;
 
 import org.springframework.context.annotation.Lazy;
 
+import com.api.apibackend.Brand.infra.persistence.entity.BrandEntity;
 import com.api.apibackend.SupplierAddress.infra.persistence.entity.SupplierAddressEntity;
 
 import jakarta.persistence.Column;
@@ -15,6 +17,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -59,4 +62,7 @@ public class SupplierEntity implements Serializable {
     @ManyToOne
     @JoinColumn(name = "id_ed_fornecedor", referencedColumnName = "id_ed_fornecedor")
     private SupplierAddressEntity supplierAddressEntity;
+
+    @ManyToMany
+    private List<BrandEntity> brandsProvided;
 }

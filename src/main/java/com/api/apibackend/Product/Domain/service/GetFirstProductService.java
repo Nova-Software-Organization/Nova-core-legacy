@@ -13,6 +13,7 @@ import com.api.apibackend.Product.Domain.model.Product;
 import com.api.apibackend.Product.Domain.repository.IGetFirstService;
 import com.api.apibackend.Product.Infra.entity.ProductEntity;
 import com.api.apibackend.Product.Infra.repository.ProductRepository;
+import com.api.apibackend.Stock.infra.persistence.entity.StockEntity;
 
 @Service
 public class GetFirstProductService implements IGetFirstService {
@@ -35,6 +36,7 @@ public class GetFirstProductService implements IGetFirstService {
 			ProductEntity product = products.get(i);
 			MidiaEntity midia = product.getMidia();
 			PriceEntity price = product.getPriceEntity();
+			StockEntity stock = product.getStockEntity();
 
 			Product productDTO = new Product(
 					product.getIdProduct(),
@@ -44,7 +46,8 @@ public class GetFirstProductService implements IGetFirstService {
 					product.getCategory().getName(),
 					price.getPrice(),
 					price.getDiscountPrice(),
-					product.getQuantityInStock());
+					stock.getInput_quantity()
+			);
 
 			productDTOs.add(productDTO);
 		}

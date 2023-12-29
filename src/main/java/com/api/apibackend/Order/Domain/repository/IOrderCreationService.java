@@ -15,7 +15,7 @@ import com.api.apibackend.Order.Domain.exception.OrderCannotBeCreatedException;
 import com.api.apibackend.Order.infra.persistence.entity.OrderEntity;
 import com.api.apibackend.OrderItem.Domain.exception.NonExistentesItemsException;
 import com.api.apibackend.OrderItem.infra.entity.OrderItemEntity;
-import com.api.apibackend.Product.Infra.entity.ProductEntity;
+import com.api.apibackend.Stock.infra.persistence.entity.StockEntity;
 
 public interface IOrderCreationService {
     ResponseEntity<String> createOrder(OrderRequest orderRequest, CustomerAddressRequest customerAddress,
@@ -27,6 +27,6 @@ public interface IOrderCreationService {
     void updateOrderEntityWithNewAddress(OrderEntity orderEntity, AddressEntity newAddress);
     void saveOrderAndItems(OrderEntity orderEntity, List<OrderItemEntity> orderItems);
     void finalizeOrder(List<OrderItemEntity> orderItems) throws InsufficientStockException;
-    void updateProductStock(OrderItemEntity orderItem, Map<ProductEntity, Integer> stockUpdates) throws InsufficientStockException;
-    void applyStockUpdates(Map<ProductEntity, Integer> stockUpdates);
+    public void updateProductStock(OrderItemEntity orderItem, Map<StockEntity, Integer> stockUpdates) throws InsufficientStockException;
+    void applyStockUpdates(Map<StockEntity, Integer> stockUpdates);
 }

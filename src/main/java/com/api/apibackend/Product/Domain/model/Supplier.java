@@ -15,7 +15,16 @@ public class Supplier {
     private LocalDateTime dateCreated;
     private SupplierAddress supplierAddress;
 
-    public Supplier(Long idSupplier, String nameCompany, String region, String officeSupplier, LocalDateTime dateCreated, String contact, String cnpj, SupplierAddress supplierAddress) {
+    public Supplier(
+        Long idSupplier,
+        String nameCompany,
+        String region,
+        String officeSupplier,
+        LocalDateTime dateCreated,
+        String contact,
+        String cnpj,
+        SupplierAddress supplierAddress
+    ) {
         this.idSupplier = idSupplier;
         this.nameCompany = nameCompany;
         this.region = region;

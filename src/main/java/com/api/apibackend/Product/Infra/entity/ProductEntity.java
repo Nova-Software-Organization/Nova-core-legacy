@@ -7,7 +7,9 @@ import org.springframework.context.annotation.Lazy;
 import com.api.apibackend.Midia.infra.persistence.entity.MidiaEntity;
 import com.api.apibackend.Price.infra.entity.PriceEntity;
 import com.api.apibackend.ProductCategory.infra.persistence.entity.ProductCategoryEntity;
+import com.api.apibackend.Stock.infra.persistence.entity.StockEntity;
 import com.api.apibackend.Supplier.Infra.entity.SupplierEntity;
+import com.api.apibackend.Unity.infra.persistence.entity.UnityEntity;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -54,8 +56,12 @@ public class ProductEntity implements Serializable {
     @OneToOne(mappedBy = "productEntity", cascade = CascadeType.ALL)
     private PriceEntity priceEntity;
 
-    @Column(name = "estoque")
-    private int quantityInStock;
+    @OneToOne(mappedBy = "productEntity", cascade = CascadeType.ALL)
+    private StockEntity stockEntity;
+
+    @ManyToOne
+    @JoinColumn(name = "idunidade", referencedColumnName = "idunidade")
+    private UnityEntity unityEntity;
 
     @Column(name = "descricao")
     private String description;

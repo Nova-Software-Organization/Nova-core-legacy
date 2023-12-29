@@ -9,7 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.api.apibackend.Supplier.Application.DTOs.SupplierRequest;
+import com.api.apibackend.Supplier.Application.DTOs.SupplierDTO;
+import com.api.apibackend.Supplier.Application.repository.ISupplierService;
 import com.api.apibackend.Supplier.Domain.exception.ErrorValidationSupplier;
 import com.api.apibackend.Supplier.Infra.entity.SupplierEntity;
 import com.api.apibackend.Supplier.Infra.repository.SupplierRepository;
@@ -17,7 +18,7 @@ import com.api.apibackend.Supplier.Infra.validation.SupplierValidation;
 import com.api.apibackend.SupplierAddress.infra.persistence.entity.SupplierAddressEntity;
 
 @Service
-public class SupplierService {
+public class SupplierService implements ISupplierService {
     private final SupplierRepository supplierRepository;
     private final SupplierValidation supplierValidation;
 
@@ -31,7 +32,7 @@ public class SupplierService {
         return supplierRepository.findAll();
     }
 
-    public ResponseEntity<String> create(@RequestBody SupplierRequest supplierRequest) {
+    public ResponseEntity<String> create(@RequestBody SupplierDTO supplierRequest) {
         SupplierEntity supplierEntity = null;
 
         try {
@@ -93,43 +94,54 @@ public class SupplierService {
         }
     }
 
-    public ResponseEntity<String> updateSupplier(Long supplierId, @RequestBody SupplierRequest updatedSupplier) {
+    public ResponseEntity<String> updateSupplier(Long supplierId, @RequestBody SupplierDTO updatedSupplier) {
         try {
             if (supplierId == null || supplierId <= 0) {
                 throw new IllegalArgumentException("ID de fornecedor inválido");
             }
-
-            SupplierEntity existingSupplier = supplierRepository.findById(supplierId)
-                    .orElse(null);
-
+    
+            SupplierEntity existingSupplier = supplierRepository.findById(supplierId).orElse(null);
+    
             if (existingSupplier == null) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Fornecedor não encontrado");
             }
-
-            SupplierAddressEntity supplierAddressEntity = new SupplierAddressEntity();
-            supplierAddressEntity.setCep(updatedSupplier.getSupplierAddress().getCep());
-            supplierAddressEntity.setNeighborhood(updatedSupplier.getSupplierAddress().getNeighborhood());
-            supplierAddressEntity
-                    .setNumberHouseOrCompany(updatedSupplier.getSupplierAddress().getNumberHouseOrCompany());
-            supplierAddressEntity.setRoad(updatedSupplier.getSupplierAddress().getRoad());
-
-            existingSupplier.setCnpj(updatedSupplier.getCnpj());
-            existingSupplier.setContact(updatedSupplier.getContact());
-            existingSupplier.setDateCreated(new Date());
-            existingSupplier.setNameCompany(updatedSupplier.getNameCompany());
-            existingSupplier.setOfficeSupplier(updatedSupplier.getOfficeSupplier());
-            existingSupplier.setRegion(updatedSupplier.getRegion());
-            existingSupplier.setStatus(1);
-            existingSupplier.setSupplierAddressEntity(supplierAddressEntity);
-
-            supplierRepository.save(existingSupplier);
-            return ResponseEntity.status(HttpStatus.OK).body("Fornecedor atualizado com sucesso");
+    
+            if (hasDataToUpdate(updatedSupplier)) {
+                SupplierAddressEntity supplierAddressEntity = new SupplierAddressEntity();
+                supplierAddressEntity.setCep(updatedSupplier.getSupplierAddress().getCep());
+                supplierAddressEntity.setNeighborhood(updatedSupplier.getSupplierAddress().getNeighborhood());
+                supplierAddressEntity.setNumberHouseOrCompany(updatedSupplier.getSupplierAddress().getNumberHouseOrCompany());
+                supplierAddressEntity.setRoad(updatedSupplier.getSupplierAddress().getRoad());
+    
+                existingSupplier.setCnpj(updatedSupplier.getCnpj());
+                existingSupplier.setContact(updatedSupplier.getContact());
+                existingSupplier.setDateCreated(new Date());
+                existingSupplier.setNameCompany(updatedSupplier.getNameCompany());
+                existingSupplier.setOfficeSupplier(updatedSupplier.getOfficeSupplier());
+                existingSupplier.setRegion(updatedSupplier.getRegion());
+                existingSupplier.setStatus(1);
+                existingSupplier.setSupplierAddressEntity(supplierAddressEntity);
+    
+                supplierRepository.save(existingSupplier);
+                return ResponseEntity.status(HttpStatus.OK).body("Fornecedor atualizado com sucesso");
+            } else {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Nenhum dado para atualizar o fornecedor");
+            }
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body("Erro ao atualizar fornecedor: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro ao atualizar fornecedor: " + e.getMessage());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao atualizar fornecedor");
         }
+    }
+    
+    private boolean hasDataToUpdate(SupplierDTO supplierDTO) {
+        return supplierDTO != null &&
+               (supplierDTO.getCnpj() != null ||
+                supplierDTO.getContact() != null ||
+                supplierDTO.getNameCompany() != null ||
+                supplierDTO.getOfficeSupplier() != null ||
+                supplierDTO.getRegion() != null ||
+                supplierDTO.getSupplierAddress() != null);
     }
 
     public ResponseEntity<String> deactivateSupplier(Long supplierId) {

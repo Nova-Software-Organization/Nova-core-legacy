@@ -64,7 +64,7 @@ public class ProductController implements IProductController {
 	@Tag(name = "Adiciona produtos", description = "Adiciona produtos dentro banco de dados")
 	@Operation(summary = "Rota responsavel por adicionar produtos no banco dados caso aja necessidade de adicionar pela própria aplicação central, Nova-core")
 	@SecurityRequirement(name = "jwt_auth")
-	public ResponseEntity<String> populationCreationProduct(@RequestBody List<Product> productDTOList) {
+	public ResponseEntity<String> populationCreationProduct(@RequestBody List<ProductDTO> productDTOList) {
 		try {
             if (productDTOList == null || productDTOList.isEmpty()) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Lista de produtos vazia ou nula");
@@ -85,7 +85,7 @@ public class ProductController implements IProductController {
 		return productUseCaseCreated.execute(productDTO);
 	}
 
-	@PostMapping("/unico/produto")
+	@PostMapping("/atualizar/{id}")
 	@PreAuthorize("hasRole('ADMIN')")
 	@Tag(name = "Adiciona um unico produto", description = "Adiciona produtos dentro banco de dados")
 	@Operation(summary = "Rota responsavel por atualizar os produtos no banco dados!")
@@ -103,7 +103,7 @@ public class ProductController implements IProductController {
 	}
 	
 
-	@PostMapping("/unico/produto")
+	@PostMapping("/deletar/{id}")
 	@PreAuthorize("hasRole('ADMIN')")
 	@Tag(name = "Adiciona um unico produto", description = "Adiciona produtos dentro banco de dados")
 	@Operation(summary = "Rota responsavel por deletar os produtos do banco dados caso aja necessidade!")

@@ -1,21 +1,24 @@
 package com.api.apibackend.Product.Application.DTOs;
 
-import com.api.apibackend.Midia.infra.persistence.entity.MidiaEntity;
-import com.api.apibackend.Price.infra.entity.PriceEntity;
-import com.api.apibackend.ProductCategory.infra.persistence.entity.ProductCategoryEntity;
-import com.api.apibackend.Supplier.Infra.entity.SupplierEntity;
+import com.api.apibackend.Midia.Application.DTOs.MidiaDTO;
+import com.api.apibackend.Price.Application.DTOs.PriceDTO;
+import com.api.apibackend.ProductCategory.Application.DTOs.ProductCategoryDTO;
+import com.api.apibackend.Stock.Application.DTOs.StockDTO;
+import com.api.apibackend.Supplier.Application.DTOs.SupplierDTO;
+import com.api.apibackend.Unity.Application.DTOs.UnityDTO;
 
 import lombok.Data;
 
 @Data
 public class ProductDTO {
     private Long idProduct;
-    private MidiaEntity midia;
-    private ProductCategoryEntity category;
+    private MidiaDTO midia;
+    private ProductCategoryDTO category;
     private String name;
-    private SupplierEntity supplierEntity;
-    private PriceEntity priceEntity;
-    private int quantityInStock;
+    private SupplierDTO supplierEntity;
+    private PriceDTO priceEntity;
+    private StockDTO stockEntity;
+    private UnityDTO unityEntity;
     private String description;
     private int status;
     private String sku;

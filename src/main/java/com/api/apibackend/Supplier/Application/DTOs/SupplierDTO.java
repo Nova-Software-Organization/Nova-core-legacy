@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class SupplierRequest {
+public class SupplierDTO {
     private Long idSupplier;
     private String nameCompany;
     private String region;
@@ -13,5 +13,5 @@ public class SupplierRequest {
     private Date dateCreated;
     private String contact;
     private String cnpj;
-    private SupplierAddressRequest supplierAddress;
+    private SupplierAddressDTO supplierAddress;
 }

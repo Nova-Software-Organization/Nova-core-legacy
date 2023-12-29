@@ -1,16 +1,14 @@
 package com.api.apibackend.ProductCategory.Domain.service;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.api.apibackend.Product.Domain.model.Product;
-import com.api.apibackend.Product.Infra.entity.ProductEntity;
 import com.api.apibackend.Product.Infra.repository.ProductRepository;
-import com.api.apibackend.ProductCategory.Application.component.ProductComponentConvert;
 import com.api.apibackend.ProductCategory.infra.persistence.entity.ProductCategoryEntity;
 import com.api.apibackend.ProductCategory.infra.persistence.repository.ProductCategoryRepository;
 
@@ -18,29 +16,29 @@ import com.api.apibackend.ProductCategory.infra.persistence.repository.ProductCa
 public class ProductCategoryService {
 	private ProductCategoryRepository productCategoryRepository;
 	private ProductRepository productRepository;
-	private ProductComponentConvert productComponentConvert;
 	
 	@Autowired
-	public ProductCategoryService(ProductCategoryRepository productCategoryRepository, ProductRepository productRepository, ProductComponentConvert productComponentConvert) {
+	public ProductCategoryService(ProductCategoryRepository productCategoryRepository, ProductRepository productRepository) {
 		this.productCategoryRepository = productCategoryRepository;
 		this.productRepository = productRepository;
-		this.productComponentConvert = productComponentConvert;
 	}
 
 	public List<Product> getProductsByCategoryName(String categoryName) {
-		ProductCategoryEntity category = productCategoryRepository.findCategoryByName(categoryName);
+        ProductCategoryEntity category = productCategoryRepository.findCategoryByName(categoryName);
 
-		if (category != null) {
-			List<ProductEntity> products = productRepository.findByCategory(category);
-			List<Product> productDTOs = new ArrayList<>();
-
-			for (ProductEntity product : products) {
-				productDTOs.add(productComponentConvert.convertToProductDTO(product, category));
-			}
-			
-			return productDTOs;
-		}
-
-		return Collections.emptyList();
-	}
+        return category != null ?
+                productRepository.findByCategory(category)
+                        .stream()
+                        .map(productEntity -> {
+                            Product product = new Product();
+                            product.setId(productEntity.getIdProduct());
+                            product.setName(productEntity.getName());
+                            product.setUrl(productEntity.getMidia().getUrl());
+                            product.setDescription(productEntity.getDescription());
+                            product.setCategory(category.getName());
+                            return product;
+                        })
+                        .collect(Collectors.toList()) :
+                Collections.emptyList();
+    }
 }

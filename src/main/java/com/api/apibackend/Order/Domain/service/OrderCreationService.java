@@ -20,6 +20,7 @@ import com.api.apibackend.Customer.Infra.persistence.repository.CustomerReposito
 import com.api.apibackend.CustomerAddress.Domain.model.CustomerAddressRequest;
 import com.api.apibackend.CustomerAddress.Domain.service.CustomerAddressOrderService;
 import com.api.apibackend.CustomerAddress.infra.entity.AddressEntity;
+import com.api.apibackend.MovementStock.Infra.persistence.entity.StockMovementEntity;
 import com.api.apibackend.Order.Application.DTOs.OrderRequest;
 import com.api.apibackend.Order.Domain.event.OrderCreatedEvent;
 import com.api.apibackend.Order.Domain.exception.InsufficientStockException;
@@ -33,6 +34,8 @@ import com.api.apibackend.OrderItem.infra.entity.OrderItemEntity;
 import com.api.apibackend.OrderItem.infra.repository.OrderItemRepository;
 import com.api.apibackend.Product.Infra.entity.ProductEntity;
 import com.api.apibackend.Product.Infra.repository.ProductRepository;
+import com.api.apibackend.Stock.infra.persistence.entity.StockEntity;
+import com.api.apibackend.Stock.infra.persistence.repository.StockRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -48,6 +51,7 @@ public class OrderCreationService implements IOrderCreationService {
     private CustomerOrderService customerOrderService;
     private CustomerAddressOrderService customerAddressOrderService;
     private ApplicationEventPublisher eventPublisher;
+    private StockRepository stockRepository;
 
     @Autowired
     public OrderCreationService(
@@ -59,8 +63,8 @@ public class OrderCreationService implements IOrderCreationService {
             CustomerSearchService customerSearchService,
             CustomerOrderService customerOrderService,
             CustomerAddressOrderService customerAddressOrderService,
-            ApplicationEventPublisher eventPublisher
-    ) {
+            ApplicationEventPublisher eventPublisher,
+            StockRepository stockRepository) {
         this.orderRepository = orderRepository;
         this.productRepository = productRepository;
         this.clientRepository = clientRepository;
@@ -70,11 +74,13 @@ public class OrderCreationService implements IOrderCreationService {
         this.customerOrderService = customerOrderService;
         this.customerAddressOrderService = customerAddressOrderService;
         this.eventPublisher = eventPublisher;
+        this.stockRepository = stockRepository;
     }
 
     @Transactional
     public ResponseEntity<String> createOrder(OrderRequest orderRequest, CustomerAddressRequest customerAddress,
-            ClientRequest clientRequest) throws InsufficientStockException, OrderCannotBeCreatedException, NonExistentesItemsException {
+            ClientRequest clientRequest)
+            throws InsufficientStockException, OrderCannotBeCreatedException, NonExistentesItemsException {
         validateOrderRequest(orderRequest);
 
         OrderEntity newOrder = createOrderEntity(orderRequest, customerAddress, clientRequest);
@@ -165,7 +171,7 @@ public class OrderCreationService implements IOrderCreationService {
 
     @Override
     public void finalizeOrder(List<OrderItemEntity> orderItems) throws InsufficientStockException {
-        Map<ProductEntity, Integer> stockUpdates = new HashMap<>();
+        Map<StockEntity, Integer> stockUpdates = new HashMap<>();
 
         for (OrderItemEntity orderItem : orderItems) {
             updateProductStock(orderItem, stockUpdates);
@@ -175,24 +181,31 @@ public class OrderCreationService implements IOrderCreationService {
         applyStockUpdates(stockUpdates);
     }
 
-    public void updateProductStock(OrderItemEntity orderItem, Map<ProductEntity, Integer> stockUpdates)
+    public void updateProductStock(OrderItemEntity orderItem, Map<StockEntity, Integer> stockUpdates)
             throws InsufficientStockException {
         ProductEntity productEntity = orderItem.getProduct();
-        int currentStock = productEntity.getQuantityInStock();
+        StockEntity stockEntity = productEntity.getStockEntity();
+
+        int currentStock = stockEntity.getInput_quantity() - stockEntity.getOutput_quantity();
         int requestedQuantity = orderItem.getQuantity();
 
         if (currentStock < requestedQuantity) {
             throw new InsufficientStockException("Estoque insuficiente para o produto " + productEntity.getIdProduct());
         }
 
-        int newStock = currentStock - requestedQuantity;
-        stockUpdates.put(productEntity, newStock);
+        stockEntity.setOutput_quantity(stockEntity.getOutput_quantity() + requestedQuantity);
+
+        // Capture stock movement details
+        StockMovementEntity movement = new StockMovementEntity(requestedQuantity, new Date());
+        stockEntity.getMovements().add(movement);
+
+        stockUpdates.put(stockEntity, currentStock - requestedQuantity);
     }
 
-    public void applyStockUpdates(Map<ProductEntity, Integer> stockUpdates) {
-        stockUpdates.forEach((productEntity, newStock) -> {
-            productEntity.setQuantityInStock(newStock);
-            productRepository.save(productEntity);
+    public void applyStockUpdates(Map<StockEntity, Integer> stockUpdates) {
+        stockUpdates.forEach((stockEntity, newStock) -> {
+            stockEntity.setInput_quantity(newStock);
+            stockRepository.save(stockEntity);
         });
     }
 }
