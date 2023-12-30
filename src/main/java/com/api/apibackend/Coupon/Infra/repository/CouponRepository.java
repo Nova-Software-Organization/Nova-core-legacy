@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.api.apibackend.Coupon.Infra.entity.CouponEntity;
 
 @Repository
-public interface CouponRepository extends JpaRepository<Long, CouponEntity> {
+public interface CouponRepository extends JpaRepository<CouponEntity, Long> {
 
 }

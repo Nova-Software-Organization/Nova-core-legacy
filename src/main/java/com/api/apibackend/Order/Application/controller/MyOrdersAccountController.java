@@ -1,5 +1,7 @@
 package com.api.apibackend.Order.Application.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +40,7 @@ public class MyOrdersAccountController {
     @Operation(summary = "Rota responsavel por busca os pedidos de um cliente pelo email informado!")
     public ResponseEntity<?> getUserByEmail(@RequestParam String email) {
         try {
-            CustomerEntity client = clientSearchService.searchClientByEmail(email);
+            Optional<CustomerEntity> client = clientSearchService.searchClientByEmail(email);
             if (client != null) {
                 return responseBuilderService.buildUserResponse(client);
             }

@@ -8,7 +8,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.api.apibackend.Order.Application.DTOs.OrderUpdateAddressRequest;
 import com.api.apibackend.Order.Domain.service.UpdateOrderService;
-import com.api.apibackend.Order.infra.persistence.entity.OrderEntity;
+import com.api.apibackend.OrderAddress.Infra.persistence.entity.OrderAddressEntity;
 
 @Service
 public class OrderAddressUpdateUseCase {
@@ -19,7 +19,7 @@ public class OrderAddressUpdateUseCase {
         this.updateOrderService = updateOrderService;
     }
 
-    public ResponseEntity<OrderEntity> execute(OrderUpdateAddressRequest updateAddressRequest) {
+    public ResponseEntity<OrderAddressEntity> execute(OrderUpdateAddressRequest updateAddressRequest) {
         if (updateAddressRequest != null) {
             return updateOrderService.updateAddressOrder(updateAddressRequest);
         }

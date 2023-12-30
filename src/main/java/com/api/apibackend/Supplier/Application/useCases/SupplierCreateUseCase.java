@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.api.apibackend.Supplier.Application.DTOs.ResponseMessageDTO;
 import com.api.apibackend.Supplier.Application.DTOs.SupplierDTO;
 import com.api.apibackend.Supplier.Domain.exception.ErrorEmptySupplier;
 import com.api.apibackend.Supplier.Domain.service.SupplierService;
@@ -18,7 +19,7 @@ public class SupplierCreateUseCase {
         this.supplierService = supplierService;
     }
 
-    public ResponseEntity<String> execute(SupplierDTO supplierRequest) {
+    public ResponseEntity<ResponseMessageDTO> execute(SupplierDTO supplierRequest) {
         try {
             if (supplierRequest == null) {
                 throw new ErrorEmptySupplier("Erro: dados de fornecedor não fornecidos!");
@@ -26,7 +27,7 @@ public class SupplierCreateUseCase {
 
             return supplierService.create(supplierRequest);
         } catch (ErrorEmptySupplier e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessageDTO("ocorreu um erro ao processar a requisição", this.getClass().getName(), e.getMessage()));
         }
     }
 }

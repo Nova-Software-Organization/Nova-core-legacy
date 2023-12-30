@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.apibackend.Product.Application.DTOs.ProductDTO;
+import com.api.apibackend.Product.Application.DTOs.ResponseMessageDTO;
 import com.api.apibackend.Product.Application.repository.IProductController;
 import com.api.apibackend.Product.Application.useCase.GetAllProductUseCase;
 import com.api.apibackend.Product.Application.useCase.GetFirstProductUseCase;
@@ -64,15 +65,15 @@ public class ProductController implements IProductController {
 	@Tag(name = "Adiciona produtos", description = "Adiciona produtos dentro banco de dados")
 	@Operation(summary = "Rota responsavel por adicionar produtos no banco dados caso aja necessidade de adicionar pela própria aplicação central, Nova-core")
 	@SecurityRequirement(name = "jwt_auth")
-	public ResponseEntity<String> populationCreationProduct(@RequestBody List<ProductDTO> productDTOList) {
+	public ResponseEntity<ResponseMessageDTO> populationCreationProduct(@RequestBody List<ProductDTO> productDTOList) {
 		try {
             if (productDTOList == null || productDTOList.isEmpty()) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Lista de produtos vazia ou nula");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessageDTO("Lista de produtos vazia ou nula", this.getClass().getName(), null));
             }
 
             return productUseCase.execute(productDTOList);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Ocorreu um erro ao processar a requisição");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ResponseMessageDTO("Ocorreu um erro ao processar a requisição", this.getClass().getName(), null));
         }
 	}
 
@@ -81,7 +82,7 @@ public class ProductController implements IProductController {
 	@Tag(name = "Adiciona um unico produto", description = "Adiciona produtos dentro banco de dados")
 	@Operation(summary = "Rota responsavel por adicionar produtos no banco dados caso aja necessidade de adicionar pela própria aplicação central, Nova-core")
 	@SecurityRequirement(name = "jwt_auth")
-	public ResponseEntity<String> create(@RequestBody ProductDTO productDTO) {
+	public ResponseEntity<ResponseMessageDTO> create(@RequestBody ProductDTO productDTO) {
 		return productUseCaseCreated.execute(productDTO);
 	}
 
@@ -90,15 +91,15 @@ public class ProductController implements IProductController {
 	@Tag(name = "Adiciona um unico produto", description = "Adiciona produtos dentro banco de dados")
 	@Operation(summary = "Rota responsavel por atualizar os produtos no banco dados!")
 	@SecurityRequirement(name = "jwt_auth")
-	public ResponseEntity<String> update(@PathVariable Long id, @RequestBody ProductDTO productDTO) {
+	public ResponseEntity<ResponseMessageDTO> update(@PathVariable Long id, @RequestBody ProductDTO productDTO) {
 		try {
             if (productDTO == null) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Produto inválido");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessageDTO("Produto inválido", this.getClass().getName(), null));
             }
 
             return productUseCaseCreated.execute(productDTO);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Ocorreu um erro ao processar a requisição");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ResponseMessageDTO("Ocorreu um erro ao processar a requisição", this.getClass().getName(), e.getMessage()));
         }
 	}
 	
@@ -108,15 +109,15 @@ public class ProductController implements IProductController {
 	@Tag(name = "Adiciona um unico produto", description = "Adiciona produtos dentro banco de dados")
 	@Operation(summary = "Rota responsavel por deletar os produtos do banco dados caso aja necessidade!")
 	@SecurityRequirement(name = "jwt_auth")
-	public ResponseEntity<String> delete(@PathVariable Long id) {
+	public ResponseEntity<ResponseMessageDTO> delete(@PathVariable Long id) {
 		try {
             if (id == null || id <= 0) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("ID de produto inválido");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessageDTO("ID do produto inválido", this.getClass().getName(), null));
             }
 
             return productDeleteUseCase.execute(id);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Ocorreu um erro ao processar a requisição");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ResponseMessageDTO("ocorreu um erro ao processar a requisição", this.getClass().getName(), e.getMessage()));
         }
 	}
 
@@ -125,15 +126,15 @@ public class ProductController implements IProductController {
 	@Tag(name = "Desativa um produto", description = "Desativa o produto")
 	@Operation(summary = "Rota responsavel por desativar um produto e não trazer o produto na consulta")
 	@SecurityRequirement(name = "jwt_auth")
-	public ResponseEntity<String> deactivate(@PathVariable Long id) {
+	public ResponseEntity<ResponseMessageDTO> deactivate(@PathVariable Long id) {
 		try {
             if (id == null || id <= 0) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("ID de produto inválido");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessageDTO("ID do produto inválido", this.getClass().getName(), null));
             }
 
             return productDeactivateUseCase.execute(id);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Ocorreu um erro ao processar a requisição");
+             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ResponseMessageDTO("ocorreu um erro ao processar a requisição", this.getClass().getName(), e.getMessage()));
         }
 	}
 

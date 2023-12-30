@@ -14,6 +14,8 @@ import com.api.apibackend.Order.Application.DTOs.OrderUpdateAddressRequest;
 import com.api.apibackend.Order.Domain.repository.IUpdateOrderService;
 import com.api.apibackend.Order.infra.persistence.entity.OrderEntity;
 import com.api.apibackend.Order.infra.persistence.repository.OrderRepository;
+import com.api.apibackend.OrderAddress.Infra.persistence.entity.OrderAddressEntity;
+import com.api.apibackend.OrderAddress.Infra.persistence.repository.OrderAddressRepository;
 import com.api.apibackend.OrderItem.Domain.model.OrderItem;
 import com.api.apibackend.Product.Infra.entity.ProductEntity;
 import com.api.apibackend.Product.Infra.repository.ProductRepository;
@@ -23,19 +25,20 @@ public class UpdateOrderService implements IUpdateOrderService {
     private static final Logger logger = LogManager.getLogger(UpdateOrderService.class);
     private OrderRepository orderRepository;
     private ProductRepository productRepository;
+    private OrderAddressRepository orderAddressRepository;
 
     @Autowired
-    public UpdateOrderService(OrderRepository orderRepository, ProductRepository productRepository) {
+    public UpdateOrderService(OrderRepository orderRepository, ProductRepository productRepository, OrderAddressRepository orderAddressRepository) {
         this.orderRepository = orderRepository;
         this.productRepository = productRepository;
+        this.orderAddressRepository = orderAddressRepository;
     }
 
-    public ResponseEntity<OrderEntity> updateAddressOrder(OrderUpdateAddressRequest numberOrder) {
+    public ResponseEntity<OrderAddressEntity> updateAddressOrder(OrderUpdateAddressRequest numberOrder) {
         Optional<OrderEntity> order = orderRepository.findById(numberOrder.getNumberOrder());
 
         if (order.isPresent()) {
-            OrderEntity updateOrder = order.get();
-            updateOrder.getClient().getAddress();
+            OrderAddressEntity updateOrder = order.get().getOrderAddressEntity();
 
             updateOrder.setHousenumber(numberOrder.getCustomerAddressRequest().getNeighborhood());
             updateOrder.setHousenumber(numberOrder.getCustomerAddressRequest().getHousenumber());
@@ -43,7 +46,7 @@ public class UpdateOrderService implements IUpdateOrderService {
             updateOrder.setRoad(numberOrder.getCustomerAddressRequest().getRoad());
 
             logger.error("Atualização do endereço feita com sucesso!");
-            return ResponseEntity.ok(orderRepository.save(updateOrder));
+            return ResponseEntity.ok(orderAddressRepository.save(updateOrder));
         }
 
         logger.error("Atualização do endereço não pode ser feita!, endereço não encontrado");

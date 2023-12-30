@@ -19,7 +19,6 @@ import com.api.apibackend.Customer.Infra.persistence.entity.CustomerEntity;
 import com.api.apibackend.Customer.Infra.persistence.repository.CustomerRepository;
 import com.api.apibackend.CustomerAddress.Domain.model.CustomerAddressRequest;
 import com.api.apibackend.CustomerAddress.Domain.service.CustomerAddressOrderService;
-import com.api.apibackend.CustomerAddress.infra.entity.AddressEntity;
 import com.api.apibackend.MovementStock.Infra.persistence.entity.StockMovementEntity;
 import com.api.apibackend.Order.Application.DTOs.OrderRequest;
 import com.api.apibackend.Order.Domain.event.OrderCreatedEvent;
@@ -28,6 +27,7 @@ import com.api.apibackend.Order.Domain.exception.OrderCannotBeCreatedException;
 import com.api.apibackend.Order.Domain.repository.IOrderCreationService;
 import com.api.apibackend.Order.infra.persistence.entity.OrderEntity;
 import com.api.apibackend.Order.infra.persistence.repository.OrderRepository;
+import com.api.apibackend.OrderAddress.Infra.persistence.entity.OrderAddressEntity;
 import com.api.apibackend.OrderItem.Domain.exception.NonExistentesItemsException;
 import com.api.apibackend.OrderItem.Domain.service.OrderItemCreationService;
 import com.api.apibackend.OrderItem.infra.entity.OrderItemEntity;
@@ -142,21 +142,20 @@ public class OrderCreationService implements IOrderCreationService {
     public void updateExistingClient(OrderEntity orderEntity, CustomerEntity existingClient,
             CustomerAddressRequest customerAddress) {
         orderEntity.setClient(existingClient);
-        AddressEntity existingAddress = existingClient.getAddress();
-        AddressEntity newAddress = customerAddressOrderService.createAddressOrder(customerAddress);
-
-        if (!existingAddress.isSameAddress(newAddress)) {
-            existingClient.setAddress(newAddress);
-            updateOrderEntityWithNewAddress(orderEntity, newAddress);
-        }
+        
+        OrderAddressEntity newAddress = createOrderAddressEntity(customerAddress);
+        orderEntity.setOrderAddressEntity(newAddress);
     }
 
-    @Override
-    public void updateOrderEntityWithNewAddress(OrderEntity orderEntity, AddressEntity newAddress) {
-        orderEntity.setRoad(newAddress.getRoad());
-        orderEntity.setNeighborhood(newAddress.getNeighborhood());
-        orderEntity.setHousenumber(newAddress.getHousenumber());
-        orderEntity.setCep(newAddress.getCep());
+    public OrderAddressEntity createOrderAddressEntity(CustomerAddressRequest customerAddress) {
+        OrderAddressEntity orderAddressEntity = new OrderAddressEntity();
+    
+        orderAddressEntity.setRoad(customerAddress.getRoad());
+        orderAddressEntity.setNeighborhood(customerAddress.getNeighborhood());
+        orderAddressEntity.setHousenumber(customerAddress.getHousenumber());
+        orderAddressEntity.setCep(customerAddress.getCep());
+    
+        return orderAddressEntity;
     }
 
     @Override

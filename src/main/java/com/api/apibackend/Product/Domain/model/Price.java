@@ -9,7 +9,6 @@ import com.api.apibackend.Product.Infra.entity.ProductEntity;
 
 import lombok.Data;
 
-@Lazy
 @Data
 public class Price {
     private Long idPrice;
@@ -25,8 +24,10 @@ public class Price {
     private String priceOrigin;
     private String notes;
     private String updatedBy;
-    
-    public Price(Long idPrice, ProductEntity productEntity, BigDecimal price, BigDecimal discountPrice, Date startDate, Date endDate, String currency, String unitOfMeasure, int status, String discountType, String priceOrigin, String notes, String updatedBy) {
+
+    public Price(Long idPrice, ProductEntity productEntity, BigDecimal price, BigDecimal discountPrice, Date startDate,
+            Date endDate, String currency, String unitOfMeasure, int status, String discountType, String priceOrigin,
+            String notes, String updatedBy) {
         this.idPrice = idPrice;
         this.productEntity = productEntity;
         this.price = price;
@@ -42,5 +43,6 @@ public class Price {
         this.updatedBy = updatedBy;
     }
 
-    public Price() {}
+    public Price() {
+    }
 }

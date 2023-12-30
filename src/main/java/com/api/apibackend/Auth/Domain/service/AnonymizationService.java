@@ -1,37 +1,45 @@
 package com.api.apibackend.Auth.Domain.service;
 
 import org.jasypt.encryption.StringEncryptor;
+import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
-public class AnonymizationService {
-    private StringEncryptor encryptor;
+@Component
+public class AnonymizationService implements StringEncryptor {
+
+    private StandardPBEStringEncryptor stringEncryptor;
     
     @Autowired
-    public AnonymizationService(StringEncryptor encryptor) {
-        this.encryptor = encryptor;
+    public AnonymizationService(StandardPBEStringEncryptor stringEncryptor) {
+        this.stringEncryptor = stringEncryptor;
     }
 
     public String anonymizeCpf(String cpf) {
         int digitsToKeep = 4;
-        return encryptor.encrypt(cpf.replaceAll("\\d(?=\\d{" + digitsToKeep + "})", "*"));
+        return stringEncryptor.encrypt(cpf.replaceAll("\\d(?=\\d{" + digitsToKeep + "})", "*"));
     }
 
     public String anonymizeNome(String nome) {
-        return encryptor.encrypt("NomeAnonimo");
+        return stringEncryptor.encrypt("NomeAnonimo");
     }
 
     public String anonymizeEmail(String email) {
-        return encryptor.encrypt("EmailAnonimo");
+        return stringEncryptor.encrypt("EmailAnonimo");
     }
 
     public String anonymizeCep(String cep) {
         int digitsToKeep = 2;
-        return encryptor.encrypt(cep.substring(0, digitsToKeep) + cep.substring(digitsToKeep).replaceAll("\\d", "*"));
+        return stringEncryptor.encrypt(cep.substring(0, digitsToKeep) + cep.substring(digitsToKeep).replaceAll("\\d", "*"));
     }
 
+    @Override
+    public String encrypt(String data) {
+        return stringEncryptor.encrypt(data);
+    }
+
+    @Override
     public String decrypt(String encryptedData) {
-        return encryptor.decrypt(encryptedData);
+        return stringEncryptor.decrypt(encryptedData);
     }
 }

@@ -20,20 +20,20 @@ public class CustomerSearchService {
         this.customerRepository = customerRepository;
     }
 
-    public CustomerEntity searchClientByEmail(String email) {
+    public Optional<CustomerEntity> searchClientByEmail(String email) {
         Optional<CustomerEntity> clientByEmail = customerRepository.findByEmail(email);
-
+    
         if (clientByEmail.isPresent()) {
             CustomerEntity customerEntity = clientByEmail.get();
             AddressEntity address = customerEntity.getAddress();
-
+    
             if (address != null) {
                 customerEntity.setAddress(address);
             }
-            return customerEntity;
+            return Optional.of(customerEntity);
         }
-
-        return null;
+    
+        return Optional.empty();
     }
 
     public CustomerEntity findExistingClient(ClientRequest clientRequest) {

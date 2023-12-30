@@ -1,7 +1,11 @@
 package com.api.apibackend.Customer.Domain.repository;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
+import com.api.apibackend.Customer.Application.DTOs.ResponseMessageDTO;
+import com.api.apibackend.Customer.Application.DTOs.registration.CustomerAddressDTO;
+import com.api.apibackend.Customer.Application.DTOs.registration.CustomerDTO;
 import com.api.apibackend.Customer.Infra.persistence.entity.CustomerEntity;
 import com.api.apibackend.CustomerAddress.infra.entity.AddressEntity;
 
@@ -10,7 +14,7 @@ public interface IClientService {
     
     CustomerEntity createClient(CustomerEntity customerEntity, AddressEntity addressEntity);
 
-    void updateClient(Long clientId, CustomerEntity updatedClient, AddressEntity updatedAddress);
+    ResponseEntity<ResponseMessageDTO> update(Long clientId, CustomerDTO updatedClient, CustomerAddressDTO updatedAddress);
 
-    void deleteClient(Long clientId);
+    ResponseEntity<ResponseMessageDTO> delete(Long clientId);
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.api.apibackend.Supplier.Application.DTOs.ResponseMessageDTO;
 import com.api.apibackend.Supplier.Application.DTOs.SupplierDTO;
 import com.api.apibackend.Supplier.Application.useCases.SupplierCreateUseCase;
 import com.api.apibackend.Supplier.Application.useCases.SupplierDeactivateUseCase;
@@ -47,7 +48,7 @@ public class SupplierController {
 
 
     @PostMapping(path = "/criar")
-    public ResponseEntity<String> create(@RequestBody SupplierDTO supplierRequest) {
+    public ResponseEntity<ResponseMessageDTO> create(@RequestBody SupplierDTO supplierRequest) {
         try {
             if (supplierRequest == null) {
                 throw new ErrorEmptySupplier("Erro: dados de fornecedor não fornecidos!");
@@ -55,28 +56,29 @@ public class SupplierController {
 
             return supplierCreateUseCase.execute(supplierRequest);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessageDTO("ocorreu um erro ao processar a requisição", this.getClass().getName(), e.getMessage()));
         }
     }
 
     @PostMapping(path = "/deletar/{id}")
-    public ResponseEntity<String> delete(@PathVariable Long id) {
+    public ResponseEntity<ResponseMessageDTO> delete(@PathVariable Long id) {
         try {
             if (id == null || id <= 0) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("ID de produto inválido");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessageDTO("ID do fornecedor invalido", this.getClass().getName(), null));
+
             }
 
             return supplierDeleteUseCase.execute(id);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessageDTO("ocorreu um erro ao processar a requisição", this.getClass().getName(), e.getMessage()));
         }
     }
 
     @PostMapping(path = "/atualizar/{id}")
-    public ResponseEntity<String> update(@PathVariable Long id, @RequestBody SupplierDTO supplierRequest) {
+    public ResponseEntity<ResponseMessageDTO> update(@PathVariable Long id, @RequestBody SupplierDTO supplierRequest) {
         try {
             if (id == null || id <= 0) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("ID de produto inválido");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessageDTO("ID do cliente invalido", this.getClass().getName(), null));
             }
 
             if (supplierRequest == null) {
@@ -85,20 +87,20 @@ public class SupplierController {
 
             return supplierUpdateUseCase.execute(id, supplierRequest);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessageDTO("ocorreu um erro ao processar a requisição", this.getClass().getName(), e.getMessage()));
         }
     }
 
     @PostMapping(path = "/desativar/{id}")
-    public ResponseEntity<String> deactivate(@PathVariable Long id) {
+    public ResponseEntity<ResponseMessageDTO> deactivate(@PathVariable Long id) {
         try {
             if (id == null || id <= 0) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("ID do fornecedor inválido");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessageDTO("ID do cliente invalido", this.getClass().getName(), null));
             }
 
             return supplierDeactivateUseCase.execute(id);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessageDTO("ocorreu um erro ao processar a requisição", this.getClass().getName(), e.getMessage()));
         }
     }
     
@@ -115,5 +117,4 @@ public class SupplierController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Collections.emptyList());
         }
     }
-
 }

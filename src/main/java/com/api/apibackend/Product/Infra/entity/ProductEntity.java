@@ -1,5 +1,14 @@
 package com.api.apibackend.Product.Infra.entity;
 
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ * Representa uma entidade de Produto dentro da empresa.
+ */
+
 import java.io.Serializable;
 
 import org.springframework.context.annotation.Lazy;
@@ -33,42 +42,75 @@ public class ProductEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
+    /**
+     * Identificador único do produto.
+     */
     @Id
     @Column(name = "idproduto")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idProduct;
 
+    /**
+     * Entidade de mídia associada ao produto.
+     */
     @OneToOne
     @JoinColumn(name = "idmid")
     private MidiaEntity midia;
 
+    /**
+     * Categoria à qual o produto pertence.
+     */
     @ManyToOne
     @JoinColumn(name = "idcategoria", referencedColumnName = "idcategoria", nullable = false)
     private ProductCategoryEntity category;
 
+    /**
+     * Nome do produto.
+     */
     @Column(name = "nome")
     private String name;
 
+    /**
+     * Entidade do fornecedor associada ao produto.
+     */
     @ManyToOne
     @JoinColumn(name = "idfornecedor", referencedColumnName = "idfornecedor")
     private SupplierEntity supplierEntity;
 
+    /**
+     * Entidade de preço associada ao produto.
+     */
     @OneToOne(mappedBy = "productEntity", cascade = CascadeType.ALL)
     private PriceEntity priceEntity;
 
+    /**
+     * Entidade de estoque associada ao produto.
+     */
     @OneToOne(mappedBy = "productEntity", cascade = CascadeType.ALL)
     private StockEntity stockEntity;
 
+    /**
+     * Unidade de medida associada ao produto.
+     */
     @ManyToOne
     @JoinColumn(name = "idunidade", referencedColumnName = "idunidade")
     private UnityEntity unityEntity;
 
+    /**
+     * Descrição do produto.
+     */
     @Column(name = "descricao")
     private String description;
 
+    /**
+     * Status de ativação do produto.
+     */
     @Column(name = "ativo")
     private int status;
 
+    /**
+     * Código SKU (Stock Keeping Unit) do produto.
+     */
     @Column(name = "sku")
     private String sku;
 }

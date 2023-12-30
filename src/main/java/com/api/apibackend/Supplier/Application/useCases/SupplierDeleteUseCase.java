@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.api.apibackend.Supplier.Application.DTOs.ResponseMessageDTO;
 import com.api.apibackend.Supplier.Domain.service.SupplierService;
 
 @Service
@@ -15,7 +16,7 @@ public class SupplierDeleteUseCase {
         this.supplierService = supplierService;
     }
 
-    public ResponseEntity<String> execute(Long id) {
+    public ResponseEntity<ResponseMessageDTO> execute(Long id) {
         return supplierService.deleteSupplier(id);
     }
 }
