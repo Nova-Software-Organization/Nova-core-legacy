@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.api.apibackend.Supplier.Application.DTOs.ResponseMessageDTO;
 import com.api.apibackend.Supplier.Application.DTOs.SupplierDTO;
 import com.api.apibackend.Supplier.Application.repository.ISupplierService;
 import com.api.apibackend.Supplier.Domain.exception.ErrorValidationSupplier;
@@ -32,7 +33,7 @@ public class SupplierService implements ISupplierService {
         return supplierRepository.findAll();
     }
 
-    public ResponseEntity<String> create(@RequestBody SupplierDTO supplierRequest) {
+    public ResponseEntity<ResponseMessageDTO> create(@RequestBody SupplierDTO supplierRequest) {
         SupplierEntity supplierEntity = null;
 
         try {
@@ -64,37 +65,37 @@ public class SupplierService implements ISupplierService {
             supplierRepository.save(supplierEntity);
         } catch (ErrorValidationSupplier e) {
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED)
-                    .body("Erro de validações no fornecedor: " + e.getMessage());
+                    .body(new ResponseMessageDTO("Erro de validações no fornecedor", this.getClass().getName(), e.getMessage()));
         }
 
         if (supplierEntity != null) {
             return ResponseEntity.status(HttpStatus.CREATED)
-                    .body("Fornecedor adicionado com sucesso: " + supplierEntity);
+                    .body(new ResponseMessageDTO("Fornecedor adicionado com sucesso", this.getClass().getName(), null));
         }
 
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao adicionar fornecedor");
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ResponseMessageDTO("ocorreu um erro ao processar a requisição", this.getClass().getName(), null));
     }
 
-    public ResponseEntity<String> deleteSupplier(Long supplierId) {
+    public ResponseEntity<ResponseMessageDTO> deleteSupplier(Long supplierId) {
         try {
             if (supplierId == null || supplierId <= 0) {
                 throw new IllegalArgumentException("ID de fornecedor inválido");
             }
 
             if (!supplierRepository.existsById(supplierId)) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Fornecedor não encontrado");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResponseMessageDTO("fornecedor não encontrado", this.getClass().getName(), null));
             }
 
             supplierRepository.deleteById(supplierId);
-            return ResponseEntity.status(HttpStatus.OK).body("Fornecedor deletado com sucesso");
+            return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessageDTO("fornecedor deletado com sucesso", this.getClass().getName(), null));
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro ao deletar fornecedor: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessageDTO("erro ao deletar o fornecedor", this.getClass().getName(), e.getMessage()));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao deletar fornecedor");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ResponseMessageDTO("ocorreu um erro ao processar a requisição", this.getClass().getName(), e.getMessage()));
         }
     }
 
-    public ResponseEntity<String> updateSupplier(Long supplierId, @RequestBody SupplierDTO updatedSupplier) {
+    public ResponseEntity<ResponseMessageDTO> updateSupplier(Long supplierId, @RequestBody SupplierDTO updatedSupplier) {
         try {
             if (supplierId == null || supplierId <= 0) {
                 throw new IllegalArgumentException("ID de fornecedor inválido");
@@ -103,7 +104,7 @@ public class SupplierService implements ISupplierService {
             SupplierEntity existingSupplier = supplierRepository.findById(supplierId).orElse(null);
     
             if (existingSupplier == null) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Fornecedor não encontrado");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResponseMessageDTO("fornecedor não encontrado", this.getClass().getName(), null));
             }
     
             if (hasDataToUpdate(updatedSupplier)) {
@@ -123,14 +124,14 @@ public class SupplierService implements ISupplierService {
                 existingSupplier.setSupplierAddressEntity(supplierAddressEntity);
     
                 supplierRepository.save(existingSupplier);
-                return ResponseEntity.status(HttpStatus.OK).body("Fornecedor atualizado com sucesso");
+                return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessageDTO("fornecedor deletado com sucesso", this.getClass().getName(), null));
             } else {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Nenhum dado para atualizar o fornecedor");
+                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessageDTO("nenhum dado do fornecedor atualizado", this.getClass().getName(), null));
             }
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro ao atualizar fornecedor: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessageDTO("erro ao deletar o fornecedor", this.getClass().getName(), e.getMessage()));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao atualizar fornecedor");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ResponseMessageDTO("ocorreu um erro ao processar a requisição", this.getClass().getName(), e.getMessage()));
         }
     }
     
@@ -144,7 +145,7 @@ public class SupplierService implements ISupplierService {
                 supplierDTO.getSupplierAddress() != null);
     }
 
-    public ResponseEntity<String> deactivateSupplier(Long supplierId) {
+    public ResponseEntity<ResponseMessageDTO> deactivateSupplier(Long supplierId) {
         try {
             if (supplierId == null || supplierId <= 0) {
                 throw new IllegalArgumentException("ID de fornecedor inválido");
@@ -154,18 +155,17 @@ public class SupplierService implements ISupplierService {
                     .orElse(null);
 
             if (existingSupplier == null) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Fornecedor não encontrado");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResponseMessageDTO("fornecedor não encontrado", this.getClass().getName(), null));
             }
 
             existingSupplier.setStatus(0);
 
             supplierRepository.save(existingSupplier);
-            return ResponseEntity.status(HttpStatus.OK).body("Fornecedor desativado com sucesso");
+            return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessageDTO("fornecedor desativado com sucesso!", this.getClass().getName(), null));
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body("Erro ao desativar fornecedor: " + e.getMessage());
+             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessageDTO("ocorreu um erro ao desativar o fornecedor!", this.getClass().getName(), e.getMessage()));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao desativar fornecedor");
+             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ResponseMessageDTO("ocorreu um erro ao processar a requisição", this.getClass().getName(), e.getMessage()));
         }
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.apibackend.ProductCategory.Application.DTOs.ProductCategoryDTO;
+import com.api.apibackend.ProductCategory.Application.DTOs.ResponseMessageDTO;
 import com.api.apibackend.ProductCategory.Application.useCases.ProductCategoryCreatedUseCase;
 
 @RestController
@@ -20,7 +21,7 @@ public class ProductCategoryController {
     }
 
     @PostMapping("/criar")
-    public ResponseEntity<String> create(ProductCategoryDTO productCategoryDTO) {
+    public ResponseEntity<ResponseMessageDTO> create(ProductCategoryDTO productCategoryDTO) {
         return productCategoryCreatedUseCase.execute(productCategoryDTO);
     }
 }

@@ -1,6 +1,7 @@
 package com.api.apibackend.Auth.Domain.authentication;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +11,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.api.apibackend.Auth.Application.DTOs.ResponseMessageDTO;
 import com.api.apibackend.Auth.Domain.Enum.CustomGrantedAuthority;
 import com.api.apibackend.Auth.Domain.repository.IAutheticationRegister;
 import com.api.apibackend.Auth.Domain.service.AnonymizationService;
 import com.api.apibackend.Auth.Domain.service.UserService;
 import com.api.apibackend.Auth.Domain.token.GeneratedTokenAuthorizationService;
 import com.api.apibackend.Auth.Infra.persistence.entity.UserEntity;
+import com.api.apibackend.Auth.Infra.persistence.repository.UserRepository;
 import com.api.apibackend.Auth.validation.AutheticationValidationServiceHandler;
 import com.api.apibackend.Customer.Application.DTOs.registration.CustomerAddressDTO;
 import com.api.apibackend.Customer.Application.DTOs.registration.CustomerDTO;
@@ -24,6 +27,7 @@ import com.api.apibackend.Customer.Domain.helpers.CustomerModelMapper;
 import com.api.apibackend.Customer.Domain.service.CustomerSearchService;
 import com.api.apibackend.Customer.Domain.service.CustomerServiceImp;
 import com.api.apibackend.Customer.Infra.persistence.entity.CustomerEntity;
+import com.api.apibackend.Customer.Infra.persistence.repository.CustomerRepository;
 import com.api.apibackend.CustomerAddress.Domain.helpers.CustomerAddressModelMapper;
 import com.api.apibackend.CustomerAddress.infra.entity.AddressEntity;
 
@@ -41,20 +45,23 @@ public class AutheticationRegister implements IAutheticationRegister {
     private GeneratedTokenAuthorizationService generatedTokenAuthorizationService;
     private AutheticationValidationServiceHandler autheticationValidationServiceHandler;
     private AnonymizationService anonymizationService;
-    
+    private CustomerRepository customerRepository;
+    private UserRepository userRepository;
+
     @Autowired
     public AutheticationRegister(
-        AutheticationValidationServiceHandler autheticationValidationServiceHandler,
-        CustomerSearchService clientSearchService,
-        CustomerServiceImp clientServiceImp,
-        GeneratedTokenAuthorizationService generatedTokenAuthorizationService,
-        CustomerAddressModelMapper customerAddressModelMapper,
-        CustomerModelMapper customerModelMapper,
-        ApplicationEventPublisher eventPublisher,
-        UserService userService,
-        PasswordEncoder passwordEncoder,
-        AnonymizationService anonymizationService
-    ) {
+            AutheticationValidationServiceHandler autheticationValidationServiceHandler,
+            CustomerSearchService clientSearchService,
+            CustomerServiceImp clientServiceImp,
+            GeneratedTokenAuthorizationService generatedTokenAuthorizationService,
+            CustomerAddressModelMapper customerAddressModelMapper,
+            CustomerModelMapper customerModelMapper,
+            ApplicationEventPublisher eventPublisher,
+            UserService userService,
+            PasswordEncoder passwordEncoder,
+            AnonymizationService anonymizationService,
+            CustomerRepository customerRepository,
+            UserRepository userRepository) {
         this.autheticationValidationServiceHandler = autheticationValidationServiceHandler;
         this.clientSearchService = clientSearchService;
         this.clientServiceImp = clientServiceImp;
@@ -65,63 +72,105 @@ public class AutheticationRegister implements IAutheticationRegister {
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;
         this.anonymizationService = anonymizationService;
+        this.customerRepository = customerRepository;
+        this.userRepository = userRepository;
     }
 
     @Transactional
-    public ResponseEntity<String> registerUserWithSeparateData(CustomerDTO customerDTO, CustomerAddressDTO customerAddressDTO) {
+    public ResponseEntity<ResponseMessageDTO> registerUserWithSeparateData(CustomerDTO customerDTO,
+            CustomerAddressDTO customerAddressDTO) {
         try {
-            CustomerEntity existingClient = clientSearchService.searchClientByEmail(customerDTO.getEmail());
-            if (existingClient != null) {
-                return ResponseEntity.badRequest().body("E-mail já está em uso.");
+            String emailValidation = autheticationValidationServiceHandler.isValidEmail(customerDTO.getEmail());
+            String passwordValidation = autheticationValidationServiceHandler
+                    .isValidPassword(customerDTO.getPassword());
+
+            if (emailValidation != null || passwordValidation != null) {
+                return ResponseEntity.badRequest().body(new ResponseMessageDTO(
+                        "Erro de validação: " + emailValidation + ", " + passwordValidation + " inválidos",
+                        this.getClass().getSimpleName(), null, null));
+            }
+
+            Optional<CustomerEntity> existingCustomer = clientSearchService.searchClientByEmail(customerDTO.getEmail());
+            if (existingCustomer.isPresent()) {
+                return ResponseEntity.badRequest()
+                        .body(new ResponseMessageDTO("E-mail já está em uso.", this.getClass().getSimpleName(), null,
+                                null));
             }
 
             if (!autheticationValidationServiceHandler.isValidCPF(customerDTO.getCpf())) {
-                return ResponseEntity.badRequest().body("CPF inválido.");
-            }
-
-            String emailValidation = autheticationValidationServiceHandler.isValidEmail(customerDTO.getEmail());
-            String passwordValidation = autheticationValidationServiceHandler.isValidPassword(customerDTO.getPassword());
-            
-            if (emailValidation != null || passwordValidation != null) {
                 return ResponseEntity.badRequest()
-                        .body("Erro de validação: " + emailValidation + ", " + passwordValidation + " inválidos");
+                        .body(new ResponseMessageDTO("CPF inválido.", this.getClass().getSimpleName(), null, null));
             }
-            
-            String plainPassword = customerDTO.getPassword();
-            String hashedPassword = passwordEncoder.encode(plainPassword);
 
-            CustomerEntity newCustomerModelMapperEntity = customerModelMapper.toCustomerDTOFromCustomerEntity(customerDTO);
-            newCustomerModelMapperEntity.setEmail(anonymizationService.anonymizeEmail(emailValidation));
-            newCustomerModelMapperEntity.setCpf(anonymizationService.anonymizeCpf(customerDTO.getCpf()));
-            AddressEntity newAddressEntityCustomer = customerAddressModelMapper.toCustomerDTOFromAddressEntity(customerAddressDTO);
-            newAddressEntityCustomer.setCep(anonymizationService.anonymizeCep(customerAddressDTO.getCep()));
-            
-            UserEntity newUserEntity = new UserEntity();
-            newUserEntity.setId(newCustomerModelMapperEntity.getId());
-            newUserEntity.setUsername(customerDTO.getName());
-            newUserEntity.setPassword(hashedPassword);
-            newUserEntity.setCustomer(newCustomerModelMapperEntity);
-            Set<CustomGrantedAuthority> userRoles = new HashSet<>();
-            
-            if (customerDTO.getIsAdmin()) {
-                userRoles.add(CustomGrantedAuthority.ADMIN);
-            } else {
-                userRoles.add(CustomGrantedAuthority.USER);
-            }
-            
-            newUserEntity.setRoles(customerDTO.getIsAdmin());
-            CustomerEntity savedCustomer = clientServiceImp.createClient(newCustomerModelMapperEntity, newAddressEntityCustomer);
+            String emailAnonymization = anonymizationService.encrypt(customerDTO.getEmail());
+            String cpfAnonymization = anonymizationService.encrypt(customerDTO.getCpf());
+
+            String hashedPassword = passwordEncoder.encode(customerDTO.getPassword());
+
+            CustomerEntity newCustomerEntity = createNewCustomerEntity(customerDTO, emailAnonymization,
+                    cpfAnonymization);
+            UserEntity newUserEntity = createUserEntity(customerDTO, hashedPassword, newCustomerEntity,
+                    emailAnonymization);
+            userRepository.save(newUserEntity);
+
+            AddressEntity newAddressEntityCustomer = createNewAddressEntityCustomer(customerAddressDTO);
+            newCustomerEntity.setAddress(newAddressEntityCustomer);
+            newCustomerEntity.setUser(newUserEntity);
+
+            CustomerEntity savedClient = customerRepository.save(newCustomerEntity);
+            Set<CustomGrantedAuthority> userRoles = determineUserRoles(customerDTO);
+
             String jwtToken = generatedTokenAuthorizationService.generateToken(newUserEntity.getUsername(), userRoles);
-            UserEntity savedUserEntity = userService.createUser(newUserEntity, savedCustomer);
-            
-            CustomerCreated newCustomerCreated = new CustomerCreated(this, savedUserEntity.getId());
-            eventPublisher.publishEvent(newCustomerCreated);
+            newCustomerEntity.setUser(newUserEntity);
 
-            return ResponseEntity.status(HttpStatus.CREATED).body("usuario registrado com sucesso! " + jwtToken);
+            publishCustomerCreatedEvent(savedClient.getId());
+
+            return ResponseEntity.status(HttpStatus.CREATED).body(
+                    new ResponseMessageDTO("Usuário registrado com sucesso!",
+                            this.getClass().getSimpleName(), null, jwtToken));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Erro ao registrar o cliente: " + e.getMessage());
+                    .body(new ResponseMessageDTO(null, this.getClass().getSimpleName(),
+                            "Erro ao registrar o cliente: " + e.getMessage(), null));
         }
+    }
+
+    private CustomerEntity createNewCustomerEntity(CustomerDTO customerDTO,
+            String emailAnonymization,
+            String cpfAnonymization) {
+        CustomerEntity newCustomerModelMapperEntity = customerModelMapper.toCustomerDTOFromCustomerEntity(customerDTO);
+        newCustomerModelMapperEntity.setCpf(cpfAnonymization);
+        newCustomerModelMapperEntity.setEmail(emailAnonymization);
+        return newCustomerModelMapperEntity;
+    }
+
+    private AddressEntity createNewAddressEntityCustomer(CustomerAddressDTO customerAddressDTO) {
+        AddressEntity newAddressEntityCustomer = customerAddressModelMapper
+                .toCustomerDTOFromAddressEntity(customerAddressDTO);
+        newAddressEntityCustomer.setCep(anonymizationService.anonymizeCep(customerAddressDTO.getCep()));
+        return newAddressEntityCustomer;
+    }
+
+    private UserEntity createUserEntity(CustomerDTO customerDTO, String hashedPassword,
+            CustomerEntity newCustomerEntity, String emailAnonymization) {
+        UserEntity newUserEntity = new UserEntity();
+        newUserEntity.setUsername(customerDTO.getName());
+        newUserEntity.setPassword(hashedPassword);
+        newUserEntity.setEmail(emailAnonymization);
+        newUserEntity.setCustomer(newCustomerEntity);
+        newUserEntity.setRoles(determineUserRoles(customerDTO));
+        return newUserEntity;
+    }
+
+    private Set<CustomGrantedAuthority> determineUserRoles(CustomerDTO customerDTO) {
+        Set<CustomGrantedAuthority> userRoles = new HashSet<>();
+        userRoles.add(customerDTO.getIsAdmin() ? CustomGrantedAuthority.ADMIN : CustomGrantedAuthority.USER);
+        return userRoles;
+    }
+
+    private void publishCustomerCreatedEvent(Long userId) {
+        CustomerCreated newCustomerCreated = new CustomerCreated(this, userId);
+        eventPublisher.publishEvent(newCustomerCreated);
     }
 
     public Set<CustomGrantedAuthority> convertRolesToCustomAuthorities(Set<CustomGrantedAuthority> roles) {

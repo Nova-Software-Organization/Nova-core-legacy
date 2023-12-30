@@ -14,9 +14,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.api.apibackend.Auth.Application.DTOs.LoginResponseDTO;
 import com.api.apibackend.Auth.Domain.Enum.CustomGrantedAuthority;
 import com.api.apibackend.Auth.Domain.model.LoginRequest;
 import com.api.apibackend.Auth.Domain.repository.IAutheticationLogin;
+import com.api.apibackend.Auth.Domain.service.AnonymizationService;
 import com.api.apibackend.Auth.Domain.token.GeneratedTokenAuthorizationService;
 import com.api.apibackend.Auth.Infra.persistence.repository.UserRepository;
 
@@ -29,36 +31,43 @@ public class AuthorizationLogin implements IAutheticationLogin {
     private PasswordEncoder passwordEncoder;
     private AuthenticationManager authenticationManager;
     private GeneratedTokenAuthorizationService generatedTokenAuthorizationService;
+    private AnonymizationService anonymizationService;
 
     @Autowired
     public AuthorizationLogin(
-        UserRepository userRepository,
-        PasswordEncoder passwordEncoder,
-        AuthenticationManager authenticationManager,
-        GeneratedTokenAuthorizationService generatedTokenAuthorizationService
-    ) {
+            UserRepository userRepository,
+            PasswordEncoder passwordEncoder,
+            AuthenticationManager authenticationManager,
+            GeneratedTokenAuthorizationService generatedTokenAuthorizationService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
         this.generatedTokenAuthorizationService = generatedTokenAuthorizationService;
     }
 
-    public ResponseEntity<String> login(@Valid @RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<LoginResponseDTO> login(@Valid @RequestBody LoginRequest loginRequest) {
         try {
             validateLoginRequest(loginRequest);
 
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
-            Set<CustomGrantedAuthority> userRoles = userRepository.findByUsername(loginRequest.getUsername()).getRoles();
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+            Set<CustomGrantedAuthority> userRoles = userRepository.findByUsername(loginRequest.getUsername())
+                    .getRoles();
             Set<CustomGrantedAuthority> customAuthorities = convertRolesToCustomAuthorities(userRoles);
-            String tokenGeneration = generatedTokenAuthorizationService.generateToken(loginRequest.getUsername(), customAuthorities);
+            String tokenGeneration = generatedTokenAuthorizationService.generateToken(loginRequest.getUsername(),
+                    customAuthorities);
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(tokenGeneration);
+            LoginResponseDTO loginResponseDTO = new LoginResponseDTO(tokenGeneration);
+            return ResponseEntity.status(HttpStatus.CREATED).body(loginResponseDTO);
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuário não autorizado! Os campos de usuário e senha são obrigatórios.");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(
+                    new LoginResponseDTO("Usuário não autorizado! Os campos de usuário e senha são obrigatórios."));
         } catch (AuthenticationException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuário ou senha incorretos!");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(new LoginResponseDTO("Usuário ou senha incorretos!"));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao processar a solicitação de login");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new LoginResponseDTO("Erro ao processar a solicitação de login"));
         }
     }
 

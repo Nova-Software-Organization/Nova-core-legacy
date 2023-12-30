@@ -5,10 +5,11 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 
 import com.api.apibackend.Product.Application.DTOs.ProductDTO;
+import com.api.apibackend.Product.Application.DTOs.ResponseMessageDTO;
 
 public interface IProductConventionalService {
-     ResponseEntity<String> populationProduct(List<ProductDTO> productDTOList);
-     ResponseEntity<String> create(ProductDTO productDTO);
-     ResponseEntity<String> delete(Long productId);
-     ResponseEntity<String> deactivate(Long productId);
+     ResponseEntity<ResponseMessageDTO> populationProduct(List<ProductDTO> productDTOList);
+     ResponseEntity<ResponseMessageDTO> create(ProductDTO productDTO);
+     ResponseEntity<ResponseMessageDTO> delete(Long productId);
+     ResponseEntity<ResponseMessageDTO> deactivate(Long productId);
 }

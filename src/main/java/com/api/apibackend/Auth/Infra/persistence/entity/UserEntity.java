@@ -1,5 +1,14 @@
 package com.api.apibackend.Auth.Infra.persistence.entity;
 
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ * Representa uma entidade de usuario dentro da empresa.
+ */
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
@@ -22,32 +31,59 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/**
+ * Representa uma entidade de usuário no sistema.
+ */
 @Data
 @Entity(name = "usuario")
 @EqualsAndHashCode(of = "id")
 public class UserEntity implements UserDetails {
-    
+
     private static final long serialVersionUID = 1L;
-    
+
+    /**
+     * Identificador único do usuário.
+     */
     @Id
     @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     * Nome de usuário.
+     */
     @NotBlank(message = "O nome de usuário não pode estar em branco")
     @Column(name = "apelido", unique = true)
     private String username;
 
+    /**
+     * Senha do usuário.
+     */
     @NotBlank(message = "A senha não pode estar em branco")
     @Column(name = "senha")
     private String password;
 
+    /**
+     * Email do usuário.
+     */
+    @NotBlank(message = "O email não pode estar em branco")
+    @Size(max = 100, message = "O email deve ter no máximo 100 caracteres")
+    @Column(name = "email", unique = true)
+    private String email;
+
+    /**
+     * Conjunto de papéis (roles) do usuário.
+     */
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<CustomGrantedAuthority> roles;
 
+    /**
+     * Cliente associado ao usuário.
+     */
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private CustomerEntity customer;
 
@@ -76,10 +112,20 @@ public class UserEntity implements UserDetails {
         return true;
     }
 
+    /**
+     * Obtém os papéis (roles) do usuário.
+     *
+     * @return Conjunto de papéis (roles).
+     */
     public Set<CustomGrantedAuthority> getRoles() {
         return this.roles;
     }
 
+    /**
+     * Define os papéis (roles) do usuário.
+     *
+     * @param customGrantedAuthorities Conjunto de papéis (roles).
+     */
     public void setRoles(Set<CustomGrantedAuthority> customGrantedAuthorities) {
         this.roles = customGrantedAuthorities;
     }
@@ -96,6 +142,11 @@ public class UserEntity implements UserDetails {
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * Define os papéis (roles) do usuário com base na condição de administrador.
+     *
+     * @param isAdmin True se o usuário for um administrador, False caso contrário.
+     */
     public void setRoles(Boolean isAdmin) {
         this.roles = isAdmin ? Collections.singleton(CustomGrantedAuthority.ADMIN) : Collections.singleton(CustomGrantedAuthority.USER);
     }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.api.apibackend.ProductCategory.Application.DTOs.ProductCategoryDTO;
+import com.api.apibackend.ProductCategory.Application.DTOs.ResponseMessageDTO;
 import com.api.apibackend.ProductCategory.infra.persistence.entity.ProductCategoryEntity;
 import com.api.apibackend.ProductCategory.infra.persistence.repository.ProductCategoryRepository;
 
@@ -20,9 +21,9 @@ public class ProductCategoryConventionalService {
     }
 
     @Transactional
-    public ResponseEntity<String> create(ProductCategoryDTO productCategoryDTO) {
+    public ResponseEntity<ResponseMessageDTO> create(ProductCategoryDTO productCategoryDTO) {
         if (productCategoryDTO.getName() == null || productCategoryDTO.getName().isEmpty()) {
-            return ResponseEntity.badRequest().body("O nome da categoria é obrigatório.");
+            return ResponseEntity.badRequest().body(new ResponseMessageDTO("O nome da categoria é obrigatório.", this.getClass().getName(), null));
         }
 
         ProductCategoryEntity category = new ProductCategoryEntity();
@@ -32,7 +33,7 @@ public class ProductCategoryConventionalService {
 
         productCategoryRepository.save(category);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body("Categoria criada com sucesso!");
+        return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseMessageDTO("Categoria criada com sucesso!", this.getClass().getName(), null));
     }
 
     @Transactional
@@ -49,7 +50,7 @@ public class ProductCategoryConventionalService {
     }
 
     @Transactional
-    public ResponseEntity<String> update(Long categoryId, ProductCategoryDTO productCategoryDTO) {
+    public ResponseEntity<ResponseMessageDTO> update(Long categoryId, ProductCategoryDTO productCategoryDTO) {
         Optional<ProductCategoryEntity> categoryOptional = productCategoryRepository.findById(categoryId);
         if (categoryOptional.isEmpty()) {
             return ResponseEntity.notFound().build();
@@ -62,11 +63,11 @@ public class ProductCategoryConventionalService {
 
         productCategoryRepository.save(category);
 
-        return ResponseEntity.ok("Categoria atualizada com sucesso!");
+        return ResponseEntity.ok(new ResponseMessageDTO("Categoria atualizada com sucesso", this.getClass().getName(), null));
     }
 
     @Transactional
-    public ResponseEntity<String> deactivate(Long categoryId) {
+    public ResponseEntity<ResponseMessageDTO> deactivate(Long categoryId) {
         Optional<ProductCategoryEntity> categoryOptional = productCategoryRepository.findById(categoryId);
         if (categoryOptional.isEmpty()) {
             return ResponseEntity.notFound().build();
@@ -77,6 +78,6 @@ public class ProductCategoryConventionalService {
 
         productCategoryRepository.save(category);
 
-        return ResponseEntity.ok("Categoria desativada com sucesso!");
+        return ResponseEntity.ok(new ResponseMessageDTO("Categoria desativada com sucesso", this.getClass().getName(), null));
     }
 }

@@ -1,10 +1,11 @@
-package com.api.apibackend.Customer.Application.useCase;
+package com.api.apibackend.Customer.Application.useCase.auth;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.api.apibackend.Auth.Application.DTOs.LoginResponseDTO;
 import com.api.apibackend.Auth.Domain.authentication.AuthorizationLogin;
 import com.api.apibackend.Auth.Domain.model.LoginRequest;
 
@@ -17,14 +18,14 @@ public class CustomerAuthLoginUseCase {
         this.authenticationLogin = authenticationLogin;
     }
 
-    public ResponseEntity<String> execute(LoginRequest loginRequest) {
+    public ResponseEntity<LoginResponseDTO> execute(LoginRequest loginRequest) {
         try {
             if (loginRequest == null) {
                 throw new IllegalArgumentException("Erro: dados de login não fornecidos");
             }
             return authenticationLogin.login(loginRequest);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao processar a solicitação de login");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new LoginResponseDTO("Erro ao processar a solicitação de login"));
         }
     }
 }
