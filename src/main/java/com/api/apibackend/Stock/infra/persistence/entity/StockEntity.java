@@ -1,5 +1,14 @@
 package com.api.apibackend.Stock.infra.persistence.entity;
 
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ * Representa uma entidade de Estoque no sistema.
+ */
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,31 +40,55 @@ public class StockEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
+      /**
+     * Identificador único do estoque.
+     */
     @Id
     @Column(name = "idestoque")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idStock;
 
+    /**
+     * Entidade do produto associado ao estoque.
+     */
     @OneToOne
     @JoinColumn(name = "idproduto")
     private ProductEntity productEntity;
 
+    /**
+     * Entidade da unidade associada ao estoque.
+     */
     @ManyToOne
     @JoinColumn(name = "idunidade", nullable = false)
     private UnityEntity unityEntity;
 
+    /**
+     * Quantidade de itens adicionados ao estoque.
+     */
     @Column(name = "quantidade_entrada")
     private int input_quantity;
 
+    /**
+     * Quantidade de itens retirados do estoque.
+     */
     @Column(name = "quantidade_saida")
     private int output_quantity;
 
+    /**
+     * Tipo de movimentação no estoque (entrada/saída).
+     */
     @Column(name = "tipo_movimentacao", nullable = false)
     private String typeMoviment;
 
+    /**
+     * Data da movimentação no estoque.
+     */
     @Column(name = "data_movimentacao", nullable = false)
     private Date dateMoviment;
 
+    /**
+     * Lista de movimentações associadas a este estoque.
+     */
     @OneToMany(mappedBy = "stock", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<StockMovementEntity> movements = new ArrayList<>();
 }

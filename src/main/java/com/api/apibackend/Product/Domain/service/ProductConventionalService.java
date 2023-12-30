@@ -13,8 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.api.apibackend.Midia.infra.persistence.entity.MidiaEntity;
 import com.api.apibackend.Midia.infra.repository.MidiaRepository;
-import com.api.apibackend.Price.infra.entity.PriceEntity;
-import com.api.apibackend.PriceUnitary.Infra.persistence.entity.PriceUnitaryEntity;
 import com.api.apibackend.Product.Application.DTOs.ProductDTO;
 import com.api.apibackend.Product.Application.component.ProductComponentAdd;
 import com.api.apibackend.Product.Domain.repository.IProductConventionalService;
@@ -64,12 +62,6 @@ public class ProductConventionalService implements IProductConventionalService {
                 stock.setInput_quantity(productDTO.getStockEntity().getQuantity());
                 stock.setDateMoviment(new Date());
                 stock.setTypeMoviment("ENTRADA");
-
-                PriceUnitaryEntity priceUnitary = new PriceUnitaryEntity();
-                priceUnitary.setPrice(productDTO.getPriceEntity().getPrice());
-                priceUnitary.setStartDate(new Date());
-
-                PriceEntity price = new PriceEntity();
 
                 UnityEntity unity = new UnityEntity();
                 unity.setName(productDTO.getUnityEntity().getName());

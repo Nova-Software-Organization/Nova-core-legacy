@@ -1,5 +1,14 @@
 package com.api.apibackend.ProductCategory.infra.persistence.entity;
 
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ * Representa uma entidade de Produto dentro da categoria.
+ */
+
 import java.io.Serializable;
 
 import org.springframework.context.annotation.Lazy;
@@ -21,17 +30,29 @@ import lombok.EqualsAndHashCode;
 public class ProductCategoryEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     
+    /**
+     * Identificador único da categoria de produto.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idcategoria")
     private Long id;
 
+    /**
+     * Nome da categoria de produto.
+     */
     @Column(name = "nome")
     private String name;
 
+    /**
+     * Status de ativação da categoria de produto.
+     */
     @Column(name = "status")
     private int status;
 
+    /**
+     * Tipo da categoria de produto.
+     */
     @Column(name = "tipo_categoria")
     private String typeCategory;
 }

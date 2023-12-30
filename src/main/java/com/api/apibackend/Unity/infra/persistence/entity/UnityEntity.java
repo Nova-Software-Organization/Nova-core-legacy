@@ -1,5 +1,14 @@
 package com.api.apibackend.Unity.infra.persistence.entity;
 
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ * Representa uma entidade de Unidade no sistema.
+ */
+
 import java.io.Serializable;
 
 import jakarta.persistence.Column;
@@ -11,22 +20,34 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/**
+ * Representa uma entidade de Unidade no sistema.
+ */
 @Data
 @Entity
 @Table(name = "unidade")
-@EqualsAndHashCode(of = "idunity")
+@EqualsAndHashCode(of = "idUnity")
 public class UnityEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Identificador único da unidade.
+     */
     @Id
     @Column(name = "idunidade")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUnity;
 
+    /**
+     * Nome da unidade.
+     */
     @Column(name = "nome", nullable = false)
     private String name;
 
+    /**
+     * Abreviação da unidade.
+     */
     @Column(name = "abreviacao", nullable = false)
     private String abbreviation;
 }

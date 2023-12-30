@@ -22,6 +22,7 @@ import com.api.apibackend.Order.Application.useCase.OrderRequestManagerUseCase;
 import com.api.apibackend.Order.Domain.service.OrderCompletionReturnProcessor;
 import com.api.apibackend.Order.infra.persistence.entity.OrderEntity;
 import com.api.apibackend.Order.infra.service.OrderCircuitBreaker;
+import com.api.apibackend.OrderAddress.Infra.persistence.entity.OrderAddressEntity;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.swagger.v3.oas.annotations.Operation;
@@ -107,7 +108,7 @@ public class OrderController implements IOrderController {
     @Operation(summary = "efetua uma alteração no endereço do pedido informado")
     public ResponseEntity<?> updateOrderAddress(@RequestBody OrderUpdateAddressRequest orderRequest) {
         try {
-            ResponseEntity<OrderEntity> updatedOrder = orderAddressUpdate.execute(orderRequest);
+            ResponseEntity<OrderAddressEntity> updatedOrder = orderAddressUpdate.execute(orderRequest);
             return new ResponseEntity<>(updatedOrder, HttpStatus.OK);
         } catch (IllegalArgumentException ex) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro na solicitação: " + ex.getMessage());
