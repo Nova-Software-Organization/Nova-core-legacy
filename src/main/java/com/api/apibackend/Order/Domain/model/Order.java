@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.api.apibackend.Order.infra.persistence.entity.OrderEntity;
-import com.api.apibackend.OrderItem.infra.entity.OrderItemEntity;
+import com.api.apibackend.OrderItem.infra.persistence.entity.OrderItemEntity;
 import com.api.apibackend.Product.Infra.entity.ProductEntity;
 
 import lombok.Data;

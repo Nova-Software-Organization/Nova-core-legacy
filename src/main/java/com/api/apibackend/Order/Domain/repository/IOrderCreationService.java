@@ -13,7 +13,7 @@ import com.api.apibackend.Order.Domain.exception.InsufficientStockException;
 import com.api.apibackend.Order.Domain.exception.OrderCannotBeCreatedException;
 import com.api.apibackend.Order.infra.persistence.entity.OrderEntity;
 import com.api.apibackend.OrderItem.Domain.exception.NonExistentesItemsException;
-import com.api.apibackend.OrderItem.infra.entity.OrderItemEntity;
+import com.api.apibackend.OrderItem.infra.persistence.entity.OrderItemEntity;
 import com.api.apibackend.Stock.infra.persistence.entity.StockEntity;
 
 public interface IOrderCreationService {
