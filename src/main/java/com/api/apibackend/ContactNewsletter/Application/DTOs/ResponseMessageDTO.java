@@ -1,6 +1,4 @@
-package com.api.apibackend.Stock.Application.DTOs;
-
-import lombok.Data;
+package com.api.apibackend.ContactNewsletter.Application.DTOs;
 
 /**
  * ----------------------------------------------------------------------------
@@ -9,6 +7,8 @@ import lombok.Data;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+
+import lombok.Data;
 
 @Data
 public class ResponseMessageDTO {

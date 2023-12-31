@@ -1,5 +1,7 @@
 package com.api.apibackend.Customer.Application.DTOs;
 
+import lombok.Data;
+
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -8,6 +10,7 @@ package com.api.apibackend.Customer.Application.DTOs;
  * ----------------------------------------------------------------------------
  */
 
+@Data
 public class ResponseMessageDTO {
     private String message;
     private String className;
