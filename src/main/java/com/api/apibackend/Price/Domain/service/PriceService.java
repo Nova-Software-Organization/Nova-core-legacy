@@ -13,6 +13,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import com.api.apibackend.Price.Application.DTOs.PriceDTO;
 import com.api.apibackend.Price.Application.DTOs.ResponseMessageDTO;
@@ -21,6 +22,7 @@ import com.api.apibackend.Price.infra.repository.PriceRepository;
 import com.api.apibackend.Product.Infra.entity.ProductEntity;
 import com.api.apibackend.Product.Infra.repository.ProductRepository;
 
+@Service
 public class PriceService {
     private PriceRepository priceRepository;
     private ProductRepository productRepository;

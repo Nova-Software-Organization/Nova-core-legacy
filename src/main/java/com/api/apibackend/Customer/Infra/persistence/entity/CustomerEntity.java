@@ -10,9 +10,11 @@ package com.api.apibackend.Customer.Infra.persistence.entity;
  */
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import com.api.apibackend.Auth.Infra.persistence.entity.UserEntity;
+import com.api.apibackend.Cart.Infra.persistence.entity.CartEntity;
 import com.api.apibackend.CustomerAddress.infra.entity.AddressEntity;
 import com.api.apibackend.Order.infra.persistence.entity.OrderEntity;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -126,4 +128,22 @@ public class CustomerEntity implements Serializable {
      */
     @OneToMany(mappedBy = "client")
     private List<OrderEntity> orders;
+
+    /**
+     * Data de criação da conta do cliente
+     */
+    @Column(name = "date_criacao")
+    private Date dateCreate;
+    
+    /**
+     * Data de nascimento do cliente
+     */
+    @Column(name = "data_nascimento")
+    private Date birthDate;
+
+    /**
+     * Lista de carrinhos associados ao cliente.
+     */
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private List<CartEntity> cartEntity;
 }

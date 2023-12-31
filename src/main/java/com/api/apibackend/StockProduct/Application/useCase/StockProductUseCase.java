@@ -10,14 +10,13 @@ package com.api.apibackend.StockProduct.Application.useCase;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.api.apibackend.Cart.Application.DTOs.ProductCheckQuantity;
 import com.api.apibackend.Cart.Domain.exception.CartNotFoundException;
-import com.api.apibackend.Product.Domain.exception.ProductNotFoundException;
 import com.api.apibackend.Product.Infra.entity.ProductEntity;
 import com.api.apibackend.Product.Infra.repository.ProductRepository;
 import com.api.apibackend.StockProduct.Domain.model.StockProduct;
@@ -32,31 +31,32 @@ public class StockProductUseCase {
         this.productRepository = productRepository;
     }
 
-    public List<Long> checkProductStock(List<ProductCheckQuantity> productCheckQuantities)
-            throws CartNotFoundException {
+    public List<Long> checkProductStock(List<ProductCheckQuantity> productCheckQuantities) throws CartNotFoundException {
         List<Long> unavailableProducts = new ArrayList<>();
-
         try {
+            List<Long> allProductIds = productCheckQuantities.stream()
+                    .flatMap(productQuantity -> productQuantity.getIdProduct().stream())
+                    .collect(Collectors.toList());
+
+            List<ProductEntity> products = productRepository.findByIds(allProductIds);
             for (ProductCheckQuantity productCheckQuantity : productCheckQuantities) {
-                List<Long> idProduct = productCheckQuantity.getIdProduct();
+                List<Long> idProducts = productCheckQuantity.getIdProduct();
                 int quantityToCheck = productCheckQuantity.getQuantityToCheck();
 
-                Optional<ProductEntity> productOptional = productRepository.findById(idProduct);
+                // Filtra a lista de produtos para o ID atual
+                List<ProductEntity> currentProducts = products.stream()
+                        .filter(p -> idProducts.contains(p.getIdProduct()))
+                        .collect(Collectors.toList());
 
-                if (productOptional.isPresent()) {
-                    ProductEntity product = productOptional.get();
+                // Verifica o estoque para cada produto
+                for (ProductEntity product : currentProducts) {
                     if (!stockProduct.hasEnoughStock(product.getStockEntity().getInput_quantity(), quantityToCheck)) {
-                        unavailableProducts.addAll(idProduct);
+                        unavailableProducts.add(product.getIdProduct());
                     }
-                } else {
-                    // Product not found in the repository
-                    throw new ProductNotFoundException("Produto não encontrado para o ID: " + idProduct);
                 }
             }
 
             return unavailableProducts;
-        } catch (ProductNotFoundException e) {
-            throw new CartNotFoundException("Erro ao verificar o estoque do produto: " + e.getMessage());
         } catch (Exception e) {
             throw new CartNotFoundException("Erro ao verificar o estoque do produto");
         }
