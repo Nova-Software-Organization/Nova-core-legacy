@@ -28,24 +28,25 @@ import jakarta.transaction.Transactional;
 
 @Service
 public class CustomerService implements IClientService {
-	private CustomerRepository clientRepository;
+	private CustomerRepository customerRepository;
 	private AddressRepository addressRepository;
-	
+
 	@Autowired
-	public CustomerService(CustomerRepository clientRepository, AddressRepository addressRepository) {
-		this.clientRepository = clientRepository;
+	public CustomerService(CustomerRepository customerRepository, AddressRepository addressRepository) {
+		this.customerRepository = customerRepository;
 		this.addressRepository = addressRepository;
 	}
-	
+
 	public CustomerEntity createClient(CustomerEntity customerEntity, AddressEntity addressEntity) {
 		customerEntity.setAddress(addressEntity);
-		CustomerEntity savedClient = clientRepository.save(customerEntity);
+		CustomerEntity savedClient = customerRepository.save(customerEntity);
 		return savedClient;
 	}
 
 	@Transactional
-	public ResponseEntity<ResponseMessageDTO> update(Long clientId, CustomerDTO updatedClient, CustomerAddressDTO updatedAddress) {
-		Optional<CustomerEntity> existingClient = clientRepository.findById(clientId);
+	public ResponseEntity<ResponseMessageDTO> update(Long clientId, CustomerDTO updatedClient,
+			CustomerAddressDTO updatedAddress) {
+		Optional<CustomerEntity> existingClient = customerRepository.findById(clientId);
 		Optional<AddressEntity> existingAddress = addressRepository.findById(clientId);
 
 		if (existingClient.isPresent()) {
@@ -55,23 +56,31 @@ public class CustomerService implements IClientService {
 
 		if (existingAddress.isPresent()) {
 			AddressEntity addressToUpdate = existingAddress.get();
-			addressToUpdate.setCep(updatedAddress.getCep());
-			addressToUpdate.setRoad(updatedAddress.getRoad());
-			addressToUpdate.setNeighborhood(updatedAddress.getNeighborhood());
-			addressToUpdate.setHousenumber(updatedAddress.getHousenumber());
+			addressToUpdate.setCep(updatedAddress.getCep() != addressToUpdate.getCep() ? updatedAddress.getCep()
+					: addressToUpdate.getCep());
+			addressToUpdate.setRoad(updatedAddress.getRoad() != addressToUpdate.getRoad() ? updatedAddress.getRoad()
+					: addressToUpdate.getRoad());
+			addressToUpdate.setNeighborhood(updatedAddress.getNeighborhood() != addressToUpdate.getNeighborhood()
+					? updatedAddress.getNeighborhood()
+					: addressToUpdate.getNeighborhood());
+			addressToUpdate.setHousenumber(updatedAddress.getHousenumber() != addressToUpdate.getHousenumber()
+					? updatedAddress.getHousenumber()
+					: addressToUpdate.getHousenumber());
 		}
 
-		return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessageDTO("Dados atualizados com sucesso", this.getClass().getName(), null));
+		return ResponseEntity.status(HttpStatus.OK)
+				.body(new ResponseMessageDTO("Dados atualizados com sucesso", this.getClass().getName(), null));
 	}
 
 	@Transactional
 	public ResponseEntity<ResponseMessageDTO> delete(Long clientId) {
-		Optional<CustomerEntity> existingClient = clientRepository.findById(clientId);
+		Optional<CustomerEntity> existingClient = customerRepository.findById(clientId);
 
 		if (existingClient.isPresent()) {
-			clientRepository.delete(existingClient.get());
+			customerRepository.delete(existingClient.get());
 		}
 
-		return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessageDTO("Deletado com sucesso", this.getClass().getName(), null));
+		return ResponseEntity.status(HttpStatus.OK)
+				.body(new ResponseMessageDTO("Deletado com sucesso", this.getClass().getName(), null));
 	}
 }

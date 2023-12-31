@@ -32,7 +32,7 @@ import com.api.apibackend.Customer.Application.DTOs.registration.CustomerAddress
 import com.api.apibackend.Customer.Application.DTOs.registration.CustomerDTO;
 import com.api.apibackend.Customer.Domain.event.CustomerCreated;
 import com.api.apibackend.Customer.Domain.helpers.CustomerModelMapper;
-import com.api.apibackend.Customer.Domain.service.CustomerSearchService;
+import com.api.apibackend.Customer.Domain.service.CustomerFilterService;
 import com.api.apibackend.Customer.Domain.service.CustomerService;
 import com.api.apibackend.Customer.Infra.persistence.entity.CustomerEntity;
 import com.api.apibackend.Customer.Infra.persistence.repository.CustomerRepository;
@@ -48,7 +48,7 @@ public class AutheticationRegister implements IAutheticationRegister {
     private UserService userService;
     private CustomerModelMapper customerModelMapper;
     private ApplicationEventPublisher eventPublisher;
-    private CustomerSearchService clientSearchService;
+    private CustomerFilterService clientSearchService;
     private CustomerAddressModelMapper customerAddressModelMapper;
     private GeneratedTokenAuthorizationService generatedTokenAuthorizationService;
     private AutheticationValidationServiceHandler autheticationValidationServiceHandler;
@@ -59,7 +59,7 @@ public class AutheticationRegister implements IAutheticationRegister {
     @Autowired
     public AutheticationRegister(
             AutheticationValidationServiceHandler autheticationValidationServiceHandler,
-            CustomerSearchService clientSearchService,
+            CustomerFilterService clientSearchService,
             CustomerService clientServiceImp,
             GeneratedTokenAuthorizationService generatedTokenAuthorizationService,
             CustomerAddressModelMapper customerAddressModelMapper,

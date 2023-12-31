@@ -48,10 +48,10 @@ public class UpdateOrderService implements IUpdateOrderService {
         if (order.isPresent()) {
             OrderAddressEntity updateOrder = order.get().getOrderAddressEntity();
 
-            updateOrder.setHousenumber(numberOrder.getCustomerAddressRequest().getNeighborhood());
-            updateOrder.setHousenumber(numberOrder.getCustomerAddressRequest().getHousenumber());
-            updateOrder.setCep(numberOrder.getCustomerAddressRequest().getCep());
-            updateOrder.setRoad(numberOrder.getCustomerAddressRequest().getRoad());
+            updateOrder.setNeighborhood(numberOrder.getCustomerAddressRequest().getNeighborhood() != updateOrder.getNeighborhood() ? numberOrder.getCustomerAddressRequest().getNeighborhood() : updateOrder.getNeighborhood());
+            updateOrder.setHousenumber(numberOrder.getCustomerAddressRequest().getHousenumber() != updateOrder.getHousenumber() ? numberOrder.getCustomerAddressRequest().getHousenumber() : updateOrder.getNeighborhood());
+            updateOrder.setCep(numberOrder.getCustomerAddressRequest().getCep() != updateOrder.getNeighborhood() ? numberOrder.getCustomerAddressRequest().getNeighborhood() : updateOrder.getNeighborhood());
+            updateOrder.setRoad(numberOrder.getCustomerAddressRequest().getRoad() != updateOrder.getNeighborhood() ? numberOrder.getCustomerAddressRequest().getRoad() : updateOrder.getRoad());
 
             logger.error("Atualização do endereço feita com sucesso!");
             return ResponseEntity.ok(orderAddressRepository.save(updateOrder));

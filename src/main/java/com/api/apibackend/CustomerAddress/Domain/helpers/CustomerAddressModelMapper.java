@@ -18,7 +18,6 @@ import com.api.apibackend.CustomerAddress.infra.entity.AddressEntity;
 
 @Service
 public class CustomerAddressModelMapper {
-    
     @Autowired
     private ModelMapper modelMapper;
 

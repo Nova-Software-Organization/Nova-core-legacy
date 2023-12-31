@@ -21,8 +21,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.api.apibackend.Customer.Application.DTOs.ClientRequest;
+import com.api.apibackend.Customer.Domain.service.CustomerFilterService;
 import com.api.apibackend.Customer.Domain.service.CustomerOrderService;
-import com.api.apibackend.Customer.Domain.service.CustomerSearchService;
 import com.api.apibackend.Customer.Infra.persistence.entity.CustomerEntity;
 import com.api.apibackend.Customer.Infra.persistence.repository.CustomerRepository;
 import com.api.apibackend.CustomerAddress.Domain.model.CustomerAddressRequest;
@@ -55,7 +55,7 @@ public class OrderCreationService implements IOrderCreationService {
     private CustomerRepository clientRepository;
     private OrderItemRepository orderItemRepository;
     private OrderItemCreationService orderItemCreationService;
-    private CustomerSearchService customerSearchService;
+    private CustomerFilterService customerSearchService;
     private CustomerOrderService customerOrderService;
     private CustomerAddressOrderService customerAddressOrderService;
     private ApplicationEventPublisher eventPublisher;
@@ -68,7 +68,7 @@ public class OrderCreationService implements IOrderCreationService {
             CustomerRepository clientRepository,
             OrderItemRepository orderItemRepository,
             OrderItemCreationService orderItemCreationService,
-            CustomerSearchService customerSearchService,
+            CustomerFilterService customerSearchService,
             CustomerOrderService customerOrderService,
             CustomerAddressOrderService customerAddressOrderService,
             ApplicationEventPublisher eventPublisher,
