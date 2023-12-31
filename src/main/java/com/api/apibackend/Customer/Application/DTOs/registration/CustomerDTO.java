@@ -1,5 +1,7 @@
 package com.api.apibackend.Customer.Application.DTOs.registration;
 
+import java.util.Date;
+
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -21,4 +23,6 @@ public class CustomerDTO {
     private String gender;
     private String email;
     private String password;
+    private Date birthDate;
+    private Date dateCreate;
 }

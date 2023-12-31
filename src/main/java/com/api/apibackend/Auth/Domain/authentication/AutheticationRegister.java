@@ -1,5 +1,7 @@
 package com.api.apibackend.Auth.Domain.authentication;
 
+import java.util.Date;
+
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -147,6 +149,7 @@ public class AutheticationRegister implements IAutheticationRegister {
             String emailAnonymization,
             String cpfAnonymization) {
         CustomerEntity newCustomerModelMapperEntity = customerModelMapper.toCustomerDTOFromCustomerEntity(customerDTO);
+        newCustomerModelMapperEntity.setDateCreate(new Date());
         newCustomerModelMapperEntity.setCpf(cpfAnonymization);
         newCustomerModelMapperEntity.setEmail(emailAnonymization);
         return newCustomerModelMapperEntity;

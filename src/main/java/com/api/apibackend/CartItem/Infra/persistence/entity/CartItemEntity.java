@@ -31,7 +31,7 @@ public class CartItemEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idcart_item")
+    @Column(name = "idcarrinhoItem")
     private Long id;
 
     @ManyToOne
