@@ -1,14 +1,6 @@
-package com.api.apibackend.Stock.Application.DTOs;
+package com.api.apibackend.ContactNewsletter.Application.DTOs;
 
 import lombok.Data;
-
-/**
- * ----------------------------------------------------------------------------
- * Autor: Kaue de Matos
- * Empresa: Nova Software
- * Propriedade da Empresa: Todos os direitos reservados
- * ----------------------------------------------------------------------------
- */
 
 @Data
 public class ResponseMessageDTO {

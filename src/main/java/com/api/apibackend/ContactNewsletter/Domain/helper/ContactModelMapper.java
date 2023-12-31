@@ -1,4 +1,4 @@
-package com.api.apibackend.ContactNewsletter.Domain.model;
+package com.api.apibackend.ContactNewsletter.Domain.helper;
 
 /**
  * ----------------------------------------------------------------------------

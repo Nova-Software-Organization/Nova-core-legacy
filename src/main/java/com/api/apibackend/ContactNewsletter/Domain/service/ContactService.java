@@ -14,33 +14,44 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.api.apibackend.ContactNewsletter.Application.DTOs.ContactRequest;
-import com.api.apibackend.ContactNewsletter.Domain.model.ContactModelMapper;
+import com.api.apibackend.ContactNewsletter.Application.DTOs.ResponseMessageDTO;
+import com.api.apibackend.ContactNewsletter.Domain.helper.ContactModelMapper;
 import com.api.apibackend.ContactNewsletter.Domain.validation.ValidateContactClient;
 import com.api.apibackend.ContactNewsletter.infra.persistence.entity.ContactEntity;
 import com.api.apibackend.ContactNewsletter.infra.persistence.repository.ContactRepository;
 
 @Service
 public class ContactService {
-
-	@Autowired
 	public ContactRepository contactRepository;
-
 	private ValidateContactClient validateContactClientHandler;
 
-	public ResponseEntity<?> createContact(ContactRequest contactRequest) {
-		if (contactRequest != null && validateContactClientHandler.validateContactHandler(contactRequest)) {
-			ContactModelMapper emailModelMapper = new ContactModelMapper();
-			boolean validatedContact = validateContactClientHandler.validateContactHandler(contactRequest);
-			
-			if (validatedContact) {
-				ContactEntity savedContact = emailModelMapper.toContactDTOAsContactEntity(contactRequest);
-				contactRepository.save(savedContact);
-			}
-			
-			return ResponseEntity.status(HttpStatus.CREATED).body("Dados salvos com sucesso");
-		}
-
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro: dados não existem");
+	@Autowired
+	public ContactService(ContactRepository contactRepository, ValidateContactClient validateContactClientHandler) {
+		this.contactRepository = contactRepository;
+		this.validateContactClientHandler = validateContactClientHandler;
 	}
+
+    public ResponseEntity<ResponseMessageDTO> createContact(ContactRequest contactRequest) {
+        try {
+            if (!validateContactClientHandler.validateContactHandler(contactRequest)) {
+                return ResponseEntity.badRequest().body(new ResponseMessageDTO("Dados de contato inválidos", this.getClass().getName(), null));
+            }
+
+            ContactModelMapper contactModelMapper = new ContactModelMapper();
+            ContactEntity contactEntity = contactModelMapper.toContactDTOAsContactEntity(contactRequest);
+            ContactEntity savedContact = contactRepository.save(contactEntity);
+
+            if (savedContact != null) {
+                return ResponseEntity.status(HttpStatus.CREATED)
+                        .body(new ResponseMessageDTO("Dados salvos com sucesso", this.getClass().getName(), null));
+            } else {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                        .body(new ResponseMessageDTO("Erro ao salvar dados de contato", this.getClass().getName(), null));
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ResponseMessageDTO("Ocorreu um erro ao processar a requisição", this.getClass().getName(), e.getMessage()));
+        }
+    }
 }
 	
