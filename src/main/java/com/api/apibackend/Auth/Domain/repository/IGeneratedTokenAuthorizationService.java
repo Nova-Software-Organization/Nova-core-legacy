@@ -1,5 +1,13 @@
 package com.api.apibackend.Auth.Domain.repository;
 
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
+
 import java.util.Date;
 import java.util.Set;
 

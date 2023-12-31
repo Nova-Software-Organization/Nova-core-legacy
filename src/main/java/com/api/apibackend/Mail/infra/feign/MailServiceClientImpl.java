@@ -1,5 +1,13 @@
 package com.api.apibackend.Mail.infra.feign;
 
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
+
 // @Service
 // public class MailServiceClientImpl implements MailServiceClient {
 

@@ -1,5 +1,13 @@
 package com.api.apibackend.Customer.Application.DTOs.registration;
 
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
+
 public class RegistrationRequest {
 	private CustomerDTO customerDTO;
 	private CustomerAddressDTO customerAddressDTO;

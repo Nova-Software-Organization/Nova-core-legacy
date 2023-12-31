@@ -1,5 +1,13 @@
 package com.api.apibackend.Auth.Infra.security;
 
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
+
 import java.io.IOException;
 import java.util.ArrayList;
 

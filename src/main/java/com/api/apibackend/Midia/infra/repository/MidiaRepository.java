@@ -1,5 +1,13 @@
 package com.api.apibackend.Midia.infra.repository;
 
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
+
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;

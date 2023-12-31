@@ -1,5 +1,13 @@
 package com.api.apibackend.OrderItem.Domain.model;
 
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;

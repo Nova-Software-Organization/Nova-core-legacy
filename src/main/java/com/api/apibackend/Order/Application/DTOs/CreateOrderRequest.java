@@ -1,5 +1,13 @@
 package com.api.apibackend.Order.Application.DTOs;
 
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
+
 import com.api.apibackend.Customer.Application.DTOs.ClientRequest;
 import com.api.apibackend.CustomerAddress.Domain.model.CustomerAddressRequest;
 import com.fasterxml.jackson.annotation.JsonProperty;

@@ -1,5 +1,13 @@
 package com.api.apibackend.Auth.Domain.authentication;
 
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
+
 import java.util.HashSet;
 import java.util.Set;
 

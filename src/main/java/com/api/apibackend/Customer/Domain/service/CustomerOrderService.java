@@ -1,5 +1,13 @@
 package com.api.apibackend.Customer.Domain.service;
 
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
+
 import java.util.Objects;
 
 import org.mindrot.jbcrypt.BCrypt;

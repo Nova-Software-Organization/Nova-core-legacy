@@ -1,5 +1,13 @@
 package com.api.apibackend.Customer.Application.DTOs;
 
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
+
 import com.api.apibackend.Customer.Infra.persistence.entity.CustomerEntity;
 import com.api.apibackend.CustomerAddress.infra.entity.AddressEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;

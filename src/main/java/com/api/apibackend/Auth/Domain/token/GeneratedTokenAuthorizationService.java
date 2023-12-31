@@ -1,5 +1,13 @@
 package com.api.apibackend.Auth.Domain.token;
 
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
+
 import java.util.Date;
 import java.util.List;
 import java.util.Set;

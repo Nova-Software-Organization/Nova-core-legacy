@@ -1,5 +1,13 @@
 package com.api.apibackend.Auth.Domain.authentication;
 
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
+
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -25,7 +33,7 @@ import com.api.apibackend.Customer.Application.DTOs.registration.CustomerDTO;
 import com.api.apibackend.Customer.Domain.event.CustomerCreated;
 import com.api.apibackend.Customer.Domain.helpers.CustomerModelMapper;
 import com.api.apibackend.Customer.Domain.service.CustomerSearchService;
-import com.api.apibackend.Customer.Domain.service.CustomerServiceImp;
+import com.api.apibackend.Customer.Domain.service.CustomerService;
 import com.api.apibackend.Customer.Infra.persistence.entity.CustomerEntity;
 import com.api.apibackend.Customer.Infra.persistence.repository.CustomerRepository;
 import com.api.apibackend.CustomerAddress.Domain.helpers.CustomerAddressModelMapper;
@@ -36,7 +44,7 @@ import jakarta.transaction.Transactional;
 @Service
 public class AutheticationRegister implements IAutheticationRegister {
     private PasswordEncoder passwordEncoder;
-    private CustomerServiceImp clientServiceImp;
+    private CustomerService clientServiceImp;
     private UserService userService;
     private CustomerModelMapper customerModelMapper;
     private ApplicationEventPublisher eventPublisher;
@@ -52,7 +60,7 @@ public class AutheticationRegister implements IAutheticationRegister {
     public AutheticationRegister(
             AutheticationValidationServiceHandler autheticationValidationServiceHandler,
             CustomerSearchService clientSearchService,
-            CustomerServiceImp clientServiceImp,
+            CustomerService clientServiceImp,
             GeneratedTokenAuthorizationService generatedTokenAuthorizationService,
             CustomerAddressModelMapper customerAddressModelMapper,
             CustomerModelMapper customerModelMapper,

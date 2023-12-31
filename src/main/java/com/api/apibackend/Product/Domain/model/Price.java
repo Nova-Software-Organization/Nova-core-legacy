@@ -1,9 +1,15 @@
 package com.api.apibackend.Product.Domain.model;
 
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
+
 import java.math.BigDecimal;
 import java.util.Date;
-
-import org.springframework.context.annotation.Lazy;
 
 import com.api.apibackend.Product.Infra.entity.ProductEntity;
 

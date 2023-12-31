@@ -1,5 +1,13 @@
 package com.api.apibackend.util;
 
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

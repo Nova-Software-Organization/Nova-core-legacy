@@ -1,5 +1,13 @@
 package com.api.apibackend.Auth.Domain.provider;
 
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
+
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -31,7 +39,6 @@ public class JWTProvider {
     
             return subject;
         } catch (JWTVerificationException exception) {
-
             System.out.println("Erro ao validar o token: " + exception.getMessage());
             exception.printStackTrace();
             return "";
