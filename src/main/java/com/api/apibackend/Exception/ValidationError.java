@@ -1,5 +1,13 @@
 package com.api.apibackend.Exception;
 
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
+
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 

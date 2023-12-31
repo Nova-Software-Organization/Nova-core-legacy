@@ -1,5 +1,13 @@
 package com.api.apibackend.Customer.Domain.service;
 
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +27,12 @@ import com.api.apibackend.CustomerAddress.infra.repository.AddressRepository;
 import jakarta.transaction.Transactional;
 
 @Service
-public class CustomerServiceImp implements IClientService {
+public class CustomerService implements IClientService {
 	private CustomerRepository clientRepository;
 	private AddressRepository addressRepository;
 	
 	@Autowired
-	public CustomerServiceImp(CustomerRepository clientRepository, AddressRepository addressRepository) {
+	public CustomerService(CustomerRepository clientRepository, AddressRepository addressRepository) {
 		this.clientRepository = clientRepository;
 		this.addressRepository = addressRepository;
 	}

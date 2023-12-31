@@ -1,5 +1,13 @@
 package com.api.apibackend.Order.Domain.repository;
 
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
+
 import java.util.List;
 import java.util.Map;
 
@@ -13,12 +21,12 @@ import com.api.apibackend.Order.Domain.exception.InsufficientStockException;
 import com.api.apibackend.Order.Domain.exception.OrderCannotBeCreatedException;
 import com.api.apibackend.Order.infra.persistence.entity.OrderEntity;
 import com.api.apibackend.OrderItem.Domain.exception.NonExistentesItemsException;
-import com.api.apibackend.OrderItem.infra.entity.OrderItemEntity;
+import com.api.apibackend.OrderItem.infra.persistence.entity.OrderItemEntity;
 import com.api.apibackend.Stock.infra.persistence.entity.StockEntity;
 
 public interface IOrderCreationService {
     ResponseEntity<String> createOrder(OrderRequest orderRequest, CustomerAddressRequest customerAddress,
-            ClientRequest clientRequest) throws InsufficientStockException, OrderCannotBeCreatedException, NonExistentesItemsException;
+    ClientRequest clientRequest) throws InsufficientStockException, OrderCannotBeCreatedException, NonExistentesItemsException;
     OrderEntity createOrderEntity(OrderRequest orderRequest, CustomerAddressRequest customerAddress, ClientRequest clientRequest);
     void updateClientAndAddress(OrderEntity orderEntity, ClientRequest clientRequest, CustomerAddressRequest customerAddress);
     void createAndSaveNewClient(OrderEntity orderEntity, ClientRequest clientRequest);

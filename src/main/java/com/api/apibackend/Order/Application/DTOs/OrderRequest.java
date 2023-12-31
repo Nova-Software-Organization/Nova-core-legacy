@@ -1,5 +1,13 @@
 package com.api.apibackend.Order.Application.DTOs;
 
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
+
 import java.util.ArrayList;
 import java.util.List;
 

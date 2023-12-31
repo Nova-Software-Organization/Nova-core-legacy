@@ -1,5 +1,13 @@
 package com.api.apibackend.Product.Infra.repository;
 
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
+
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +25,6 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
     @Query("SELECT p FROM ProductEntity p JOIN p.category c WHERE c.name = :categoryName")
     List<ProductEntity> findByCategoryName(@Param("categoryName") String categoryName);
     List<ProductEntity> findByCategory(ProductCategoryEntity category);
-    Optional<ProductEntity> findById(Long productId);
+    Optional<ProductEntity> findById(List<Long> idProduct);
     Optional<ProductEntity> findByName(String name);
 }

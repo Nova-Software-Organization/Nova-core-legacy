@@ -1,5 +1,13 @@
 package com.api.apibackend.Product.Application.DTOs;
 
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
+
 import com.api.apibackend.Midia.Application.DTOs.MidiaDTO;
 import com.api.apibackend.Price.Application.DTOs.PriceDTO;
 import com.api.apibackend.ProductCategory.Application.DTOs.ProductCategoryDTO;

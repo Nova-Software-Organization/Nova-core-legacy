@@ -1,5 +1,13 @@
 package com.api.apibackend.Order.Application.controller.filter;
 
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
+
 import java.util.Optional;
 
 import org.springframework.http.HttpStatus;

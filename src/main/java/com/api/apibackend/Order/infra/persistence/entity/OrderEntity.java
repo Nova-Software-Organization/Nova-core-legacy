@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Lazy;
 
 import com.api.apibackend.Customer.Infra.persistence.entity.CustomerEntity;
 import com.api.apibackend.OrderAddress.Infra.persistence.entity.OrderAddressEntity;
-import com.api.apibackend.OrderItem.infra.entity.OrderItemEntity;
+import com.api.apibackend.OrderItem.infra.persistence.entity.OrderItemEntity;
 import com.api.apibackend.Product.Infra.entity.ProductEntity;
 import com.api.apibackend.Transaction.infra.entity.TransactionEntity;
 import com.fasterxml.jackson.annotation.JsonBackReference;

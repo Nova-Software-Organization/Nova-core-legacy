@@ -1,5 +1,13 @@
 package com.api.apibackend.Log.infra.persistence.entity;
 
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
+
 import java.io.Serializable;
 import java.util.Date;
 

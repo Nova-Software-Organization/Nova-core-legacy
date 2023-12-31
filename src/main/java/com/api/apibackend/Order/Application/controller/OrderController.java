@@ -1,5 +1,13 @@
 package com.api.apibackend.Order.Application.controller;
 
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.api.apibackend.Order.Application.DTOs.CreateOrderRequest;
 import com.api.apibackend.Order.Application.DTOs.OrderRequest;
 import com.api.apibackend.Order.Application.DTOs.OrderUpdateAddressRequest;
+import com.api.apibackend.Order.Application.DTOs.ResponseMessageDTO;
 import com.api.apibackend.Order.Application.repository.IOrderController;
 import com.api.apibackend.Order.Application.useCase.OrderAddressUpdateUseCase;
 import com.api.apibackend.Order.Application.useCase.OrderCancelOrderUseCase;
@@ -56,15 +65,15 @@ public class OrderController implements IOrderController {
     @PreAuthorize("hasRole('USER')")
     @Tag(name = "Lista todos os pedidos", description = "Responsavel por listar todos os pedidos que estão dentro do banco de dados")
     @Operation(summary = "Efetua um listagem de todos os pedidos que estão dentro do banco de dados!")
-    public ResponseEntity<?> listOrders() {
+    public ResponseEntity<ResponseMessageDTO> listOrders() {
         try {
             ResponseEntity<List<OrderEntity>> orders = orderCompletionReturnProcessor.getOrderList();
-            return new ResponseEntity<>(orders, HttpStatus.OK);
+            return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessageDTO(orders, "lista retornada com sucesso!", this.getClass().getName(), null));
         } catch (IllegalArgumentException ex) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro na solicitação: " + ex.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessageDTO("Erro ao processar a requisição!", this.getClass().getName(), ex.getMessage()));
         } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Erro interno do servidor: " + ex.getMessage());
+                    .body(new ResponseMessageDTO("ocorreu um erro ao processar a requisição!", this.getClass().getName(),ex.getMessage()));
         }
     }
 
@@ -73,7 +82,7 @@ public class OrderController implements IOrderController {
     @PreAuthorize("hasRole('USER')")
     @Tag(name = "criar pedido", description = "Responsavel por criar um pedido feito pelo cliente")
     @Operation(summary = "Rota tem como objetivo criar fazer o pedido do cliente e validar todas as situações possiveis antes de contabilizar no sistema a compra!")
-    public ResponseEntity<?> createOrder(@RequestBody CreateOrderRequest createOrderRequest) {
+    public ResponseEntity<String> createOrder(@RequestBody CreateOrderRequest createOrderRequest) {
         return orderCircuitBreaker.executeCreateOrder(createOrderRequest, () -> {
             ResponseEntity<String> orderResponse = orderManageUseCase.executeRequestManage(createOrderRequest);
 
@@ -90,15 +99,17 @@ public class OrderController implements IOrderController {
     @PreAuthorize("hasRole('ADMIN')")
     @Tag(name = "Cancelamento do pedido", description = "Efetua o cancelamento do pedido")
     @Operation(summary = "Busca pelo id do pedido informado e efetua o cancelamento alterando o status a dando um break nos outros processos")
-    public ResponseEntity<?> canceladOrder(@RequestBody OrderRequest orderRequest) {
+    public ResponseEntity<ResponseMessageDTO> canceladOrder(@RequestBody OrderRequest orderRequest) {
         try {
             ResponseEntity<OrderEntity> canceledOrder = orderCancelOrder.execute(orderRequest);
-            return new ResponseEntity<>(canceledOrder, HttpStatus.OK);
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(new ResponseMessageDTO("pedido cancelado com sucesso!", canceledOrder, this.getClass().getName(), null));
         } catch (IllegalArgumentException ex) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro na solicitação: " + ex.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ResponseMessageDTO("erro na solicitação: ", this.getClass().getName(),ex.getMessage()));
         } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Erro interno do servidor: " + ex.getMessage());
+                    .body(new ResponseMessageDTO("ocorreu um erro ao processar a requisição!", this.getClass().getName(),ex.getMessage()));
         }
     }
 
@@ -106,15 +117,17 @@ public class OrderController implements IOrderController {
     @PreAuthorize("hasRole('USER')")
     @Tag(name = "Atualiza o endereço do pedido", description = "Atualiza o endereço do pedido")
     @Operation(summary = "efetua uma alteração no endereço do pedido informado")
-    public ResponseEntity<?> updateOrderAddress(@RequestBody OrderUpdateAddressRequest orderRequest) {
+    public ResponseEntity<ResponseMessageDTO> updateOrderAddress(@RequestBody OrderUpdateAddressRequest orderRequest) {
         try {
             ResponseEntity<OrderAddressEntity> updatedOrder = orderAddressUpdate.execute(orderRequest);
-            return new ResponseEntity<>(updatedOrder, HttpStatus.OK);
+             return ResponseEntity.status(HttpStatus.OK)
+                    .body(new ResponseMessageDTO("pedido atualizado com sucesso!", null, null, updatedOrder, this.getClass().getName(), null));
         } catch (IllegalArgumentException ex) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro na solicitação: " + ex.getMessage());
+             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ResponseMessageDTO("erro na solicitação: ", this.getClass().getName(),ex.getMessage()));
         } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Erro interno do servidor: " + ex.getMessage());
+                    .body(new ResponseMessageDTO("ocorreu um erro ao processar a requisição!", this.getClass().getName(),ex.getMessage()));
         }
     }
 }

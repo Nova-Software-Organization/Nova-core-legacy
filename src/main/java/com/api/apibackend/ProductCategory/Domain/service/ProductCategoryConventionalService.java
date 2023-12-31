@@ -1,5 +1,13 @@
 package com.api.apibackend.ProductCategory.Domain.service;
 
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
+
 import java.util.Optional;
 
 import org.springframework.http.HttpStatus;

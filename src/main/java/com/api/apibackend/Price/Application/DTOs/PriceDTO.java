@@ -1,5 +1,13 @@
 package com.api.apibackend.Price.Application.DTOs;
 
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
+
 import java.math.BigDecimal;
 import java.util.Date;
 

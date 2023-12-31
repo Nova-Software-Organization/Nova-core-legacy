@@ -1,5 +1,13 @@
 package com.api.apibackend.Product.Application.controller.filter;
 
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
+
 import java.util.List;
 import java.util.stream.Collectors;
 

@@ -1,5 +1,13 @@
 package com.api.apibackend.Customer.Infra.util;
 
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
+
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;

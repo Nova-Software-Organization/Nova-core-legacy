@@ -1,5 +1,13 @@
 package com.api.apibackend.OrderItem.Domain.service;
 
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +19,7 @@ import org.springframework.stereotype.Service;
 import com.api.apibackend.Order.infra.persistence.entity.OrderEntity;
 import com.api.apibackend.OrderItem.Domain.exception.NonExistentesItemsException;
 import com.api.apibackend.OrderItem.Domain.model.OrderItem;
-import com.api.apibackend.OrderItem.infra.entity.OrderItemEntity;
+import com.api.apibackend.OrderItem.infra.persistence.entity.OrderItemEntity;
 import com.api.apibackend.Product.Infra.entity.ProductEntity;
 import com.api.apibackend.Product.Infra.repository.ProductRepository;
 

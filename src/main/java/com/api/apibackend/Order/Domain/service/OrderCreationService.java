@@ -1,5 +1,13 @@
 package com.api.apibackend.Order.Domain.service;
 
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -30,8 +38,8 @@ import com.api.apibackend.Order.infra.persistence.repository.OrderRepository;
 import com.api.apibackend.OrderAddress.Infra.persistence.entity.OrderAddressEntity;
 import com.api.apibackend.OrderItem.Domain.exception.NonExistentesItemsException;
 import com.api.apibackend.OrderItem.Domain.service.OrderItemCreationService;
-import com.api.apibackend.OrderItem.infra.entity.OrderItemEntity;
-import com.api.apibackend.OrderItem.infra.repository.OrderItemRepository;
+import com.api.apibackend.OrderItem.infra.persistence.entity.OrderItemEntity;
+import com.api.apibackend.OrderItem.infra.persistence.repository.OrderItemRepository;
 import com.api.apibackend.Product.Infra.entity.ProductEntity;
 import com.api.apibackend.Product.Infra.repository.ProductRepository;
 import com.api.apibackend.Stock.infra.persistence.entity.StockEntity;
