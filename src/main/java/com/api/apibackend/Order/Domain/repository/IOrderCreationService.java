@@ -18,7 +18,7 @@ import com.api.apibackend.Stock.infra.persistence.entity.StockEntity;
 
 public interface IOrderCreationService {
     ResponseEntity<String> createOrder(OrderRequest orderRequest, CustomerAddressRequest customerAddress,
-            ClientRequest clientRequest) throws InsufficientStockException, OrderCannotBeCreatedException, NonExistentesItemsException;
+    ClientRequest clientRequest) throws InsufficientStockException, OrderCannotBeCreatedException, NonExistentesItemsException;
     OrderEntity createOrderEntity(OrderRequest orderRequest, CustomerAddressRequest customerAddress, ClientRequest clientRequest);
     void updateClientAndAddress(OrderEntity orderEntity, ClientRequest clientRequest, CustomerAddressRequest customerAddress);
     void createAndSaveNewClient(OrderEntity orderEntity, ClientRequest clientRequest);

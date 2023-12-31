@@ -22,6 +22,10 @@ import com.api.apibackend.Supplier.Application.useCases.SupplierUpdateUseCase;
 import com.api.apibackend.Supplier.Domain.exception.ErrorEmptySupplier;
 import com.api.apibackend.Supplier.Infra.entity.SupplierEntity;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping("/v1/fornecedor")
 public class SupplierController {
@@ -46,9 +50,11 @@ public class SupplierController {
         this.supplierUpdateUseCase = supplierUpdateUseCase;
     }
 
-
     @PostMapping(path = "/criar")
-    public ResponseEntity<ResponseMessageDTO> create(@RequestBody SupplierDTO supplierRequest) {
+    @Tag(name = "Fornecedor", description = "Operações relacionadas a fornecedores")
+    @Operation(summary = "Cria um novo fornecedor")
+    public ResponseEntity<ResponseMessageDTO> create(
+            @RequestBody SupplierDTO supplierRequest) {
         try {
             if (supplierRequest == null) {
                 throw new ErrorEmptySupplier("Erro: dados de fornecedor não fornecidos!");
@@ -56,29 +62,39 @@ public class SupplierController {
 
             return supplierCreateUseCase.execute(supplierRequest);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessageDTO("ocorreu um erro ao processar a requisição", this.getClass().getName(), e.getMessage()));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessageDTO(
+                    "ocorreu um erro ao processar a requisição", this.getClass().getName(), e.getMessage()));
         }
     }
 
     @PostMapping(path = "/deletar/{id}")
-    public ResponseEntity<ResponseMessageDTO> delete(@PathVariable Long id) {
+    @Tag(name = "Fornecedor")
+    @Operation(summary = "Deleta um fornecedor por ID")
+    public ResponseEntity<ResponseMessageDTO> delete(
+            @Parameter(description = "ID do fornecedor a ser deletado", required = true) @PathVariable Long id) {
         try {
             if (id == null || id <= 0) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessageDTO("ID do fornecedor invalido", this.getClass().getName(), null));
-
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                        .body(new ResponseMessageDTO("ID do fornecedor inválido", this.getClass().getName(), null));
             }
 
             return supplierDeleteUseCase.execute(id);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessageDTO("ocorreu um erro ao processar a requisição", this.getClass().getName(), e.getMessage()));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessageDTO(
+                    "ocorreu um erro ao processar a requisição", this.getClass().getName(), e.getMessage()));
         }
     }
 
     @PostMapping(path = "/atualizar/{id}")
-    public ResponseEntity<ResponseMessageDTO> update(@PathVariable Long id, @RequestBody SupplierDTO supplierRequest) {
+    @Tag(name = "Fornecedor")
+    @Operation(summary = "Atualiza um fornecedor por ID")
+    public ResponseEntity<ResponseMessageDTO> update(
+            @Parameter(description = "ID do fornecedor a ser atualizado", required = true) @PathVariable Long id,
+            @RequestBody SupplierDTO supplierRequest) {
         try {
             if (id == null || id <= 0) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessageDTO("ID do cliente invalido", this.getClass().getName(), null));
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                        .body(new ResponseMessageDTO("ID do cliente inválido", this.getClass().getName(), null));
             }
 
             if (supplierRequest == null) {
@@ -87,24 +103,32 @@ public class SupplierController {
 
             return supplierUpdateUseCase.execute(id, supplierRequest);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessageDTO("ocorreu um erro ao processar a requisição", this.getClass().getName(), e.getMessage()));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessageDTO(
+                    "ocorreu um erro ao processar a requisição", this.getClass().getName(), e.getMessage()));
         }
     }
 
     @PostMapping(path = "/desativar/{id}")
-    public ResponseEntity<ResponseMessageDTO> deactivate(@PathVariable Long id) {
+    @Tag(name = "Fornecedor")
+    @Operation(summary = "Desativa um fornecedor por ID")
+    public ResponseEntity<ResponseMessageDTO> deactivate(
+            @Parameter(description = "ID do fornecedor a ser desativado", required = true) @PathVariable Long id) {
         try {
             if (id == null || id <= 0) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessageDTO("ID do cliente invalido", this.getClass().getName(), null));
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                        .body(new ResponseMessageDTO("ID do cliente inválido", this.getClass().getName(), null));
             }
 
             return supplierDeactivateUseCase.execute(id);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessageDTO("ocorreu um erro ao processar a requisição", this.getClass().getName(), e.getMessage()));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessageDTO(
+                    "ocorreu um erro ao processar a requisição", this.getClass().getName(), e.getMessage()));
         }
     }
-    
+
     @PostMapping(path = "/listar")
+    @Tag(name = "Fornecedor")
+    @Operation(summary = "Lista todos os fornecedores")
     public ResponseEntity<List<SupplierEntity>> listSupplier() {
         try {
             List<SupplierEntity> suppliers = supplierUseListCase.execute();
