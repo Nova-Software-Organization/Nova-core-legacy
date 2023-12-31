@@ -17,7 +17,6 @@ import com.api.apibackend.Customer.Infra.persistence.entity.CustomerEntity;
 
 @Service
 public class CustomerModelMapper {
-    
     @Autowired
     private ModelMapper modelMapper;
 

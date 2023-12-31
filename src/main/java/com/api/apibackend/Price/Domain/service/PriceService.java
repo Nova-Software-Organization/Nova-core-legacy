@@ -81,15 +81,15 @@ public class PriceService {
             Optional<PriceEntity> existingPrice = priceRepository.findByProductEntityAndStatus(product, priceDTO.getStatus());
             if (existingPrice.isPresent()) {
                 PriceEntity price = existingPrice.get();
-                price.setCurrency(priceDTO.getCurrency());
-                price.setDiscountPrice(priceDTO.getDiscountPrice());
-                price.setEndDate(priceDTO.getEndDate());
-                price.setPriceOrigin(priceDTO.getPriceOrigin());
-                price.setNotes(priceDTO.getNotes());
+                price.setCurrency(priceDTO.getCurrency() != price.getCurrency() ? priceDTO.getCurrency() : price.getCurrency());
+                price.setDiscountPrice(priceDTO.getDiscountPrice() != price.getDiscountPrice() ? priceDTO.getDiscountPrice() : price.getDiscountPrice());
+                price.setEndDate(priceDTO.getEndDate() != price.getEndDate() ? priceDTO.getEndDate() : price.getEndDate());
+                price.setPriceOrigin(priceDTO.getPriceOrigin() != price.getPriceOrigin() ? priceDTO.getPriceOrigin() : price.getPriceOrigin());
+                price.setNotes(priceDTO.getNotes() != price.getNotes() ? priceDTO.getNotes() : price.getNotes());
                 price.setStartDate(null);
                 price.setProductEntity(product);
-                price.setStatus(priceDTO.getStatus());
-                price.setUnitOfMeasure(priceDTO.getUnitOfMeasure());
+                price.setStatus(priceDTO.getStatus() != price.getStatus() ? priceDTO.getStatus() : price.getStatus());
+                price.setUnitOfMeasure(priceDTO.getUnitOfMeasure() != price.getUnitOfMeasure() ? priceDTO.getUnitOfMeasure() : price.getUnitOfMeasure());
                 price.setUpdatedBy(null);
     
                 priceRepository.save(price);

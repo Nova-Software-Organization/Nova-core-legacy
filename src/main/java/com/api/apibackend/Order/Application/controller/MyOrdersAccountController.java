@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.apibackend.Customer.Domain.exception.ClientNotFoundException;
-import com.api.apibackend.Customer.Domain.service.CustomerSearchService;
+import com.api.apibackend.Customer.Domain.service.CustomerFilterService;
 import com.api.apibackend.Customer.Domain.service.MyRequestCustomerService;
 import com.api.apibackend.Customer.Infra.persistence.entity.CustomerEntity;
 
@@ -30,12 +30,12 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RestController
 @RequestMapping("/v1/conta")
 public class MyOrdersAccountController {
-    private CustomerSearchService clientSearchService;
+    private CustomerFilterService clientSearchService;
     private MyRequestCustomerService responseBuilderService;
     
     @Autowired
     public MyOrdersAccountController (
-        CustomerSearchService customerSearchService,
+        CustomerFilterService customerSearchService,
         MyRequestCustomerService myRequestCustomerService
     ) {
         this.clientSearchService = clientSearchService;
