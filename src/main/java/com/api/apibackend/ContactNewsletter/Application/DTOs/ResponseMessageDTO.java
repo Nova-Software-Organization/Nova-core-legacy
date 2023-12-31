@@ -1,5 +1,13 @@
 package com.api.apibackend.ContactNewsletter.Application.DTOs;
 
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
+
 import lombok.Data;
 
 @Data
