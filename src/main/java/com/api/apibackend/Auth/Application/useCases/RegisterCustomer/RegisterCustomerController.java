@@ -26,11 +26,11 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RestController
 @RequestMapping("v1/auth")
 public class RegisterCustomerController {
-    private RegisterCustomerUseCase customerAuthRegisterUseCase;
+    private RegisterCustomerUseCase registerCustomerUseCase;
 
     @Autowired
-    public RegisterCustomerController(RegisterCustomerUseCase customerAuthRegisterUseCase) {
-        this.customerAuthRegisterUseCase = customerAuthRegisterUseCase;
+    public RegisterCustomerController(RegisterCustomerUseCase registerCustomerUseCase) {
+        this.registerCustomerUseCase = registerCustomerUseCase;
     }
 
     @PostMapping(path = "/registrar")
@@ -38,7 +38,7 @@ public class RegisterCustomerController {
     @Operation(summary = "Rota responsável por registrar o usuário e gerar um token de autenticação para o mesmo!")
     public ResponseEntity<ResponseMessageDTO> handle(@RequestBody RegistrationRequest registrationRequest) {
         try {
-            return customerAuthRegisterUseCase.execute(registrationRequest.getCustomerDTO(),
+            return registerCustomerUseCase.execute(registrationRequest.getCustomerDTO(),
                     registrationRequest.getCustomerAddressDTO());
         } catch (IllegalArgumentException ex) {
             return ResponseEntity.badRequest().body(

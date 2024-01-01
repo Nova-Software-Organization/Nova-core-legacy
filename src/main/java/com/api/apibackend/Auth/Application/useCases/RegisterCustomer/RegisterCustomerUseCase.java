@@ -20,11 +20,11 @@ import com.api.apibackend.Customer.Application.DTOs.registration.CustomerDTO;
 
 @Service
 public class RegisterCustomerUseCase {
-    private AutheticationRegister authorizationRegister;
+    private AutheticationRegister autheticationRegister;
 
     @Autowired
-    public RegisterCustomerUseCase(AutheticationRegister authorizationRegister) {
-        this.authorizationRegister = authorizationRegister;
+    public RegisterCustomerUseCase(AutheticationRegister autheticationRegister) {
+        this.autheticationRegister = autheticationRegister;
     }
 
     public ResponseEntity<ResponseMessageDTO> execute(CustomerDTO customerDTO, CustomerAddressDTO customerAddressDTO) {
@@ -33,7 +33,7 @@ public class RegisterCustomerUseCase {
                 throw new IllegalArgumentException("Erro: dados de cliente ou endereço não fornecidos");
             }
 
-            ResponseEntity<ResponseMessageDTO> registrationResponse = authorizationRegister
+            ResponseEntity<ResponseMessageDTO> registrationResponse = autheticationRegister
                     .registerUserWithSeparateData(customerDTO, customerAddressDTO);
             if (registrationResponse.getStatusCode() == HttpStatus.CREATED) {
                 return registrationResponse;

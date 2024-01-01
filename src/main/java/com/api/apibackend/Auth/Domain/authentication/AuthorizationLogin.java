@@ -32,7 +32,6 @@ import com.api.apibackend.Auth.Infra.persistence.repository.UserRepository;
 
 import jakarta.validation.Valid;
 
-@Lazy
 @Service
 public class AuthorizationLogin implements IAutheticationLogin {
     private UserRepository userRepository;

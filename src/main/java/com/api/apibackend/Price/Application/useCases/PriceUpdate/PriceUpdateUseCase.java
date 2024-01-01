@@ -27,7 +27,6 @@ public class PriceUpdateUseCase {
 
     public ResponseEntity<ResponseMessageDTO> execute(Long id, PriceDTO priceDTO) {
         ResponseEntity<ResponseMessageDTO> validation = validationPrice(priceDTO);
-
         if (validation != null) {
             return validation;
         }

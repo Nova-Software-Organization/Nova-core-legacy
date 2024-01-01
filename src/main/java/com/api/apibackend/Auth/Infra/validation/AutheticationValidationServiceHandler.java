@@ -1,5 +1,3 @@
-package com.api.apibackend.Auth.Infra.validation;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,6 +5,8 @@ package com.api.apibackend.Auth.Infra.validation;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+
+package com.api.apibackend.Auth.Infra.validation;
 
 import java.util.Hashtable;
 import java.util.Set;
