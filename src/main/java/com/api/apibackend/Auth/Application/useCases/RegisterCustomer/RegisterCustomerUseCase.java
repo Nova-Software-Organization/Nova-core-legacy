@@ -1,4 +1,4 @@
-package com.api.apibackend.Auth.Application.useCases.registerCustomer;
+package com.api.apibackend.Auth.Application.useCases.RegisterCustomer;
 
 /**
  * ----------------------------------------------------------------------------
