@@ -34,7 +34,6 @@ public class CustomerAuthRegisterUseCase {
             }
     
             ResponseEntity<ResponseMessageDTO> registrationResponse = authorizationRegister.registerUserWithSeparateData(customerDTO, customerAddressDTO);
-    
             if (registrationResponse.getStatusCode() == HttpStatus.CREATED) {
                 return registrationResponse;
             } else {
