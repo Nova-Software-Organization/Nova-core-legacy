@@ -1,5 +1,3 @@
-package com.api.apibackend.SupplierAddress.infra.repository;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -8,10 +6,18 @@ package com.api.apibackend.SupplierAddress.infra.repository;
  * ----------------------------------------------------------------------------
  */
 
+package com.api.apibackend.SupplierAddress.infra.repository;
+
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.api.apibackend.SupplierAddress.infra.persistence.entity.SupplierAddressEntity;
+import java.util.List;
 
 @Repository
-public interface SupplierAddressRepository extends JpaRepository<SupplierAddressEntity, Long> { }
+public interface SupplierAddressRepository extends JpaRepository<SupplierAddressEntity, Long> {
+    Optional<SupplierAddressEntity> findByRoadAndNeighborhoodAndNumberHouseOrCompanyAndCep(
+            String road, String neighborhood, String numberHouseOrCompany, String cep);
+}

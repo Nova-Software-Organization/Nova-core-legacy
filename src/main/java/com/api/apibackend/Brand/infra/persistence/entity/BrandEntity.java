@@ -1,4 +1,3 @@
-package com.api.apibackend.Brand.infra.persistence.entity;
 
 /**
  * ----------------------------------------------------------------------------
@@ -7,6 +6,8 @@ package com.api.apibackend.Brand.infra.persistence.entity;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+
+package com.api.apibackend.Brand.infra.persistence.entity;
 
 import java.io.Serializable;
 

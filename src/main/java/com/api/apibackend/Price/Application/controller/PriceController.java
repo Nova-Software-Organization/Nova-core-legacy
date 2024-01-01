@@ -19,10 +19,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.apibackend.Price.Application.DTOs.PriceDTO;
-import com.api.apibackend.Price.Application.DTOs.ResponseMessageDTO;
-import com.api.apibackend.Price.Application.useCases.PriceAddUseCase;
-import com.api.apibackend.Price.Application.useCases.PriceDeleteUseCase;
-import com.api.apibackend.Price.Application.useCases.PriceUpdateUseCase;
+import com.api.apibackend.Price.Application.DTOs.response.ResponseMessageDTO;
+import com.api.apibackend.Price.Application.useCases.PriceCreated.PriceAddUseCase;
+import com.api.apibackend.Price.Application.useCases.PriceDelete.PriceDeleteUseCase;
+import com.api.apibackend.Price.Application.useCases.PriceUpdate.PriceUpdateUseCase;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

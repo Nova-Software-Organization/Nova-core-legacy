@@ -15,9 +15,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class AnonymizationService implements StringEncryptor {
-
     private StandardPBEStringEncryptor stringEncryptor;
-    
+
     @Autowired
     public AnonymizationService(StandardPBEStringEncryptor stringEncryptor) {
         this.stringEncryptor = stringEncryptor;
@@ -38,7 +37,8 @@ public class AnonymizationService implements StringEncryptor {
 
     public String anonymizeCep(String cep) {
         int digitsToKeep = 2;
-        return stringEncryptor.encrypt(cep.substring(0, digitsToKeep) + cep.substring(digitsToKeep).replaceAll("\\d", "*"));
+        return stringEncryptor
+                .encrypt(cep.substring(0, digitsToKeep) + cep.substring(digitsToKeep).replaceAll("\\d", "*"));
     }
 
     @Override

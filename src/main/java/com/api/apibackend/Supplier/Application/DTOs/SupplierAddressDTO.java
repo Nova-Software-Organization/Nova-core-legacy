@@ -1,5 +1,3 @@
-package com.api.apibackend.Supplier.Application.DTOs;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,6 +5,8 @@ package com.api.apibackend.Supplier.Application.DTOs;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+
+package com.api.apibackend.Supplier.Application.DTOs;
 
 import lombok.Data;
 
