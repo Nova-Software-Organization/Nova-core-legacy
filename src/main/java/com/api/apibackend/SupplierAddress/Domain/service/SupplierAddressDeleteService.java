@@ -33,25 +33,13 @@ public class SupplierAddressDeleteService {
     }
 
     public ResponseEntity<ResponseMessageDTO> delete(Long supplierId) {
-        try {
-            Optional<SupplierEntity> existingSupplier = supplierRepository.findById(supplierId);
-
-            if (existingSupplier.isEmpty()) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResponseMessageDTO(
-                        "Fornecedor não encontrado com o ID fornecido.", this.getClass().getName(), null));
-            }
-
-            SupplierEntity currentSupplier = existingSupplier.get();
-
-            // Excluir o fornecedor e seu endereço associado
-            supplierRepository.delete(currentSupplier);
-
-            return ResponseEntity.ok(new ResponseMessageDTO(
-                    "Fornecedor e endereço excluídos com sucesso! ", this.getClass().getName(), null));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ResponseMessageDTO("Ocorreu um erro ao processar a requisição", this.getClass().getName(),
-                            e.getMessage()));
-        }
+        return supplierRepository.findById(supplierId)
+                .map(existingSupplier -> {
+                    supplierRepository.delete(existingSupplier);
+                    return ResponseEntity.ok(new ResponseMessageDTO(
+                            "Fornecedor e endereço excluídos com sucesso! ", this.getClass().getName(), null));
+                })
+                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResponseMessageDTO(
+                        "Fornecedor não encontrado com o ID fornecido.", this.getClass().getName(), null)));
     }
 }
