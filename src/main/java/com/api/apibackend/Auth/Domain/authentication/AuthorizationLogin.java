@@ -1,5 +1,3 @@
-package com.api.apibackend.Auth.Domain.authentication;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,6 +5,8 @@ package com.api.apibackend.Auth.Domain.authentication;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+
+package com.api.apibackend.Auth.Domain.authentication;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -22,7 +22,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.api.apibackend.Auth.Application.DTOs.LoginResponseDTO;
+import com.api.apibackend.Auth.Application.DTOs.response.LoginResponseDTO;
 import com.api.apibackend.Auth.Domain.Enum.CustomGrantedAuthority;
 import com.api.apibackend.Auth.Domain.model.LoginRequest;
 import com.api.apibackend.Auth.Domain.repository.IAutheticationLogin;

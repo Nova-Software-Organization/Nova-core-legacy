@@ -1,5 +1,3 @@
-package com.api.apibackend.ContactNewsletter.Application.useCase.ContactCreate;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -8,13 +6,15 @@ package com.api.apibackend.ContactNewsletter.Application.useCase.ContactCreate;
  * ----------------------------------------------------------------------------
  */
 
+package com.api.apibackend.ContactNewsletter.Application.useCase.ContactCreate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.apibackend.ContactNewsletter.Application.DTOs.ContactRequest;
+import com.api.apibackend.ContactNewsletter.Application.DTOs.ContactDTO;
 import com.api.apibackend.ContactNewsletter.Application.repository.IContact;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -28,7 +28,7 @@ public class ContactCreatedController implements IContact {
 
     @PostMapping("/criar")
     @Tag(name = "newsletter", description = "salva o contato do cliente, para envios de emails newsletter futuros!")
-    public ResponseEntity<?> toReceiveContact(@RequestBody ContactRequest contactRequest) {
+    public ResponseEntity<?> toReceiveContact(@RequestBody ContactDTO contactRequest) {
         return contactUseCase.executeContact(contactRequest);
     }
 }

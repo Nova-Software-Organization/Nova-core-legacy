@@ -1,5 +1,3 @@
-package com.api.apibackend.Product.Application.useCase.Filter;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,6 +5,8 @@ package com.api.apibackend.Product.Application.useCase.Filter;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+
+package com.api.apibackend.Product.Application.useCase.Filter;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,14 +29,14 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RestController
 @RequestMapping("v1/produto")
 public class ProductFilterByIdController {
-    private GetAllProductService getAllProductsService;
+	private GetAllProductService getAllProductsService;
 
-    @Autowired
-    public ProductFilterByIdController(GetAllProductService getAllProductsService) {
-        this.getAllProductsService = getAllProductsService;
-    }
+	@Autowired
+	public ProductFilterByIdController(GetAllProductService getAllProductsService) {
+		this.getAllProductsService = getAllProductsService;
+	}
 
-    @GetMapping("/pesquisar/{id}")
+	@GetMapping("/pesquisar/{id}")
 	@PreAuthorize("hasRole('ADMIN')")
 	@Tag(name = "Busca por um produto pelo ID", description = "Busca pelo produto pelo ID passado na requisição")
 	@Operation(summary = "Rota responsável por buscar produtos no banco de dados pelo ID")
@@ -44,8 +44,8 @@ public class ProductFilterByIdController {
 	public ResponseEntity<List<Product>> handle(@PathVariable Long id) {
 		List<Product> products = getAllProductsService.listProducts();
 		List<Product> filteredProducts = products.stream()
-                .filter(product -> product.getId().equals(id))
-                .collect(Collectors.toList());
+				.filter(product -> product.getId().equals(id))
+				.collect(Collectors.toList());
 
 		return ResponseEntity.ok(filteredProducts);
 	}

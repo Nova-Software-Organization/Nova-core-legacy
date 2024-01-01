@@ -1,5 +1,3 @@
-package com.api.apibackend.ProductCategory.Application.useCases.CategoryCreated;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,6 +5,8 @@ package com.api.apibackend.ProductCategory.Application.useCases.CategoryCreated;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+
+package com.api.apibackend.ProductCategory.Application.useCases.CategoryCreated;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

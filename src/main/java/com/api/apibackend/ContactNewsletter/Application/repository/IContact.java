@@ -1,5 +1,3 @@
-package com.api.apibackend.ContactNewsletter.Application.repository;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -8,12 +6,14 @@ package com.api.apibackend.ContactNewsletter.Application.repository;
  * ----------------------------------------------------------------------------
  */
 
+package com.api.apibackend.ContactNewsletter.Application.repository;
+
 import org.springframework.http.ResponseEntity;
 
-import com.api.apibackend.ContactNewsletter.Application.DTOs.ContactRequest;
+import com.api.apibackend.ContactNewsletter.Application.DTOs.ContactDTO;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 public interface IContact {
-    ResponseEntity<?> toReceiveContact(@RequestBody ContactRequest contactRequest);
+    ResponseEntity<?> toReceiveContact(@RequestBody ContactDTO contactRequest);
 }

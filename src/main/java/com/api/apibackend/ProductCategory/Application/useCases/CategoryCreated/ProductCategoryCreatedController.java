@@ -1,3 +1,11 @@
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
+
 package com.api.apibackend.ProductCategory.Application.useCases.CategoryCreated;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,14 +35,11 @@ public class ProductCategoryCreatedController {
     }
 
     @PostMapping("/criar")
-    @Operation(
-        summary = "Criar Categoria de Produto",
-        description = "Cria uma nova categoria de produto."
-    )
+    @Operation(summary = "Criar Categoria de Produto", description = "Cria uma nova categoria de produto.")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "201", description = "Categoria de produto criada com sucesso"),
-        @ApiResponse(responseCode = "400", description = "Requisição inválida"),
-        @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
+            @ApiResponse(responseCode = "201", description = "Categoria de produto criada com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Requisição inválida"),
+            @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @SecurityRequirement(name = "jwt_auth")
     public ResponseEntity<ResponseMessageDTO> handle(ProductCategoryDTO productCategoryDTO) {

@@ -1,5 +1,3 @@
-package com.api.apibackend.SupplierAddress.Application.DTOs;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,6 +5,10 @@ package com.api.apibackend.SupplierAddress.Application.DTOs;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+
+package com.api.apibackend.SupplierAddress.Application.DTOs;
+
+import com.api.apibackend.Supplier.Application.DTOs.SupplierDTO;
 
 import lombok.Data;
 
@@ -17,4 +19,5 @@ public class SupplierAddressDTO {
     private String neighborhood;
     private String numberHouseOrCompany;
     private String cep;
+    private SupplierDTO supplierDTO;
 }

@@ -1,5 +1,3 @@
-package com.api.apibackend.Cart.Application.useCases;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,6 +5,8 @@ package com.api.apibackend.Cart.Application.useCases;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+
+package com.api.apibackend.Cart.Application.useCases;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ import com.api.apibackend.Cart.Application.DTOs.ProductCheckQuantity;
 import com.api.apibackend.Cart.Application.DTOs.ResponseMessageDTO;
 import com.api.apibackend.Cart.Application.DTOs.UnavailableProductsResponseDTO;
 import com.api.apibackend.Cart.Domain.exception.CartNotFoundException;
-import com.api.apibackend.StockProduct.Application.useCase.StockProductUseCase;
+import com.api.apibackend.Stock.Application.useCases.StockProduct.StockProductUseCase;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 

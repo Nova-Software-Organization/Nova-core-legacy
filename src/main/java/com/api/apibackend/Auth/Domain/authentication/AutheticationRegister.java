@@ -1,7 +1,3 @@
-package com.api.apibackend.Auth.Domain.authentication;
-
-import java.util.Date;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -9,6 +5,10 @@ import java.util.Date;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+
+package com.api.apibackend.Auth.Domain.authentication;
+
+import java.util.Date;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -21,7 +21,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.api.apibackend.Auth.Application.DTOs.ResponseMessageDTO;
+import com.api.apibackend.Auth.Application.DTOs.response.ResponseMessageDTO;
 import com.api.apibackend.Auth.Domain.Enum.CustomGrantedAuthority;
 import com.api.apibackend.Auth.Domain.repository.IAutheticationRegister;
 import com.api.apibackend.Auth.Domain.service.AnonymizationService;
@@ -29,7 +29,7 @@ import com.api.apibackend.Auth.Domain.service.UserService;
 import com.api.apibackend.Auth.Domain.token.GeneratedTokenAuthorizationService;
 import com.api.apibackend.Auth.Infra.persistence.entity.UserEntity;
 import com.api.apibackend.Auth.Infra.persistence.repository.UserRepository;
-import com.api.apibackend.Auth.validation.AutheticationValidationServiceHandler;
+import com.api.apibackend.Auth.Infra.validation.AutheticationValidationServiceHandler;
 import com.api.apibackend.Customer.Application.DTOs.registration.CustomerAddressDTO;
 import com.api.apibackend.Customer.Application.DTOs.registration.CustomerDTO;
 import com.api.apibackend.Customer.Domain.event.CustomerCreated;
