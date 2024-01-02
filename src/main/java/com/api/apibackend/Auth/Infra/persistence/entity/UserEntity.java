@@ -1,5 +1,7 @@
 package com.api.apibackend.Auth.Infra.persistence.entity;
 
+import java.time.LocalDateTime;
+
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -74,6 +76,18 @@ public class UserEntity implements UserDetails {
     @Size(max = 100, message = "O email deve ter no máximo 100 caracteres")
     @Column(name = "email", unique = true)
     private String email;
+
+    /**
+     * Token de redefinição de senha do usuário.
+     */
+    @Column(name = "token_redefinicao_senha")
+    private String resetPasswordToken;
+
+    /**
+     * Expiração do token de renovação de senha do usuário.
+     */
+    @Column(name = "expiracao_token_redefinicao_senha")
+    private LocalDateTime resetPasswordTokenExpiration;
 
     /**
      * Conjunto de papéis (roles) do usuário.

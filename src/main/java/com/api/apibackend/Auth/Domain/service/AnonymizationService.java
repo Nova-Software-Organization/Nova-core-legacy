@@ -1,5 +1,3 @@
-package com.api.apibackend.Auth.Domain.service;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,6 +5,8 @@ package com.api.apibackend.Auth.Domain.service;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+
+package com.api.apibackend.Auth.Domain.service;
 
 import org.jasypt.encryption.StringEncryptor;
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;

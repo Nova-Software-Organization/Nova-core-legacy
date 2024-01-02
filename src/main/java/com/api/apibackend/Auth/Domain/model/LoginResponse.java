@@ -1,5 +1,3 @@
-package com.api.apibackend.Auth.Domain.model;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,6 +5,9 @@ package com.api.apibackend.Auth.Domain.model;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+
+package com.api.apibackend.Auth.Domain.model;
+
 
 import com.api.apibackend.Customer.Infra.persistence.entity.CustomerEntity;
 import com.api.apibackend.CustomerAddress.infra.entity.AddressEntity;

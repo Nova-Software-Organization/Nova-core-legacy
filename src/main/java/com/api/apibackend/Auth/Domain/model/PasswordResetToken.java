@@ -8,15 +8,17 @@
 
 package com.api.apibackend.Auth.Domain.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.LocalDateTime;
 
 import lombok.Data;
 
 @Data
-public class LoginRequest {
-	@JsonProperty("password")
-	private String password;
+public class PasswordResetToken {
+    private String token;
+    private LocalDateTime expirationDateTime;
 
-	@JsonProperty("username")
-	private String username;
+    public PasswordResetToken(String token, LocalDateTime expirationDateTime) {
+        this.token = token;
+        this.expirationDateTime = expirationDateTime;
+    }
 }

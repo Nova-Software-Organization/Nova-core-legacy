@@ -1,5 +1,3 @@
-package com.api.apibackend.Auth.Domain.provider;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,6 +5,9 @@ package com.api.apibackend.Auth.Domain.provider;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+
+package com.api.apibackend.Auth.Domain.provider;
+
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;

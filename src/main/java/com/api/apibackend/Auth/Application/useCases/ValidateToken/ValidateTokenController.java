@@ -1,5 +1,3 @@
-package com.api.apibackend.Auth.Application.useCases.ValidateToken;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,6 +5,8 @@ package com.api.apibackend.Auth.Application.useCases.ValidateToken;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+
+package com.api.apibackend.Auth.Application.useCases.ValidateToken;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

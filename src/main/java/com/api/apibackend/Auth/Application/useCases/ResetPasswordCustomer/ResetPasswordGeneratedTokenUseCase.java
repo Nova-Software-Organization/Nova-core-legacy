@@ -6,17 +6,11 @@
  * ----------------------------------------------------------------------------
  */
 
-package com.api.apibackend.Auth.Domain.model;
+package com.api.apibackend.Auth.Application.useCases.ResetPasswordCustomer;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.stereotype.Service;
 
-import lombok.Data;
-
-@Data
-public class LoginRequest {
-	@JsonProperty("password")
-	private String password;
-
-	@JsonProperty("username")
-	private String username;
+@Service
+public class ResetPasswordGeneratedTokenUseCase {
+    
 }

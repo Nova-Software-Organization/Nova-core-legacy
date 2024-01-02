@@ -1,5 +1,3 @@
-package com.api.apibackend.Auth.Domain.token;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,6 +5,8 @@ package com.api.apibackend.Auth.Domain.token;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+
+package com.api.apibackend.Auth.Domain.token;
 
 import java.util.Date;
 import java.util.List;
