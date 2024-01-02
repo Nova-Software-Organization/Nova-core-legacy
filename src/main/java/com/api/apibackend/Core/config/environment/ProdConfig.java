@@ -1,5 +1,3 @@
-package com.api.apibackend.Core.config.environment;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,6 +5,8 @@ package com.api.apibackend.Core.config.environment;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+
+package com.api.apibackend.Core.config.environment;
 
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;

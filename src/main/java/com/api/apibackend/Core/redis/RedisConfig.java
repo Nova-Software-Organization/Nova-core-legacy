@@ -1,5 +1,3 @@
-package com.api.apibackend.Core.redis;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,6 +5,8 @@ package com.api.apibackend.Core.redis;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+
+package com.api.apibackend.Core.redis;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
