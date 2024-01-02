@@ -8,6 +8,7 @@
 
 package com.api.apibackend.ContactNewsletter.Domain.service;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ import com.api.apibackend.ContactNewsletter.Domain.helper.ContactModelMapper;
 import com.api.apibackend.ContactNewsletter.Domain.validation.ValidateContactClient;
 import com.api.apibackend.ContactNewsletter.infra.persistence.entity.ContactEntity;
 import com.api.apibackend.ContactNewsletter.infra.persistence.repository.ContactRepository;
+import com.api.apibackend.helpers.ModelMappersConvertion;
 
 @Service
 public class ContactService {
@@ -31,15 +33,17 @@ public class ContactService {
         this.validateContactClientHandler = validateContactClientHandler;
     }
 
-    public ResponseEntity<ResponseMessageDTO> createContact(ContactDTO contactRequest) {
+    public ResponseEntity<ResponseMessageDTO> createContact(ContactDTO contactDTO) {
         try {
-            if (!validateContactClientHandler.validateContactHandler(contactRequest)) {
+            if (!validateContactClientHandler.validateContactHandler(contactDTO)) {
                 return ResponseEntity.badRequest()
                         .body(new ResponseMessageDTO("Dados de contato inválidos", this.getClass().getName(), null));
             }
 
-            ContactModelMapper contactModelMapper = new ContactModelMapper();
-            ContactEntity contactEntity = contactModelMapper.toContactDTOAsContactEntity(contactRequest);
+            ModelMappersConvertion<ContactDTO, ContactEntity> contactModelMapper = new ModelMappersConvertion<>(
+                    new ModelMapper());
+            ContactEntity contactEntity = contactModelMapper.toDTOFromEntity(contactDTO, ContactEntity.class);
+
             ContactEntity savedContact = contactRepository.save(contactEntity);
 
             if (savedContact != null) {
