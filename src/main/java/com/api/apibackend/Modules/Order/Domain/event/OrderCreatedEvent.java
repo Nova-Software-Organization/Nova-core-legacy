@@ -6,7 +6,7 @@
  * ----------------------------------------------------------------------------
  */
 
-package com.api.apibackend.modules.Order.Domain.event;
+package com.api.apibackend.Modules.Order.Domain.event;
 
 import java.time.LocalDate;
 

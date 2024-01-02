@@ -6,7 +6,7 @@
  * ----------------------------------------------------------------------------
  */
 
-package com.api.apibackend.modules.ProductCategory.Application.useCases.CategoryCreated;
+package com.api.apibackend.Modules.ProductCategory.Application.useCases.CategoryCreated;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.apibackend.modules.ProductCategory.Application.DTOs.ProductCategoryDTO;
-import com.api.apibackend.modules.ProductCategory.Application.DTOs.ResponseMessageDTO;
+import com.api.apibackend.Modules.ProductCategory.Application.DTOs.ProductCategoryDTO;
+import com.api.apibackend.Modules.ProductCategory.Application.DTOs.ResponseMessageDTO;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

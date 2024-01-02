@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Supplier.Application.useCases.Filter.SupplierList;
+package com.api.apibackend.Modules.Supplier.Application.useCases.Filter.SupplierList;
 
 import java.util.Collections;
 import java.util.List;
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.apibackend.modules.Supplier.Domain.exception.ErrorEmptySupplier;
-import com.api.apibackend.modules.Supplier.Infra.entity.SupplierEntity;
+import com.api.apibackend.Modules.Supplier.Domain.exception.ErrorEmptySupplier;
+import com.api.apibackend.Modules.Supplier.Infra.entity.SupplierEntity;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

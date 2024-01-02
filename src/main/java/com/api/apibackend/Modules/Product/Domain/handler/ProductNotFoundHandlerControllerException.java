@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Product.Domain.handler;
+package com.api.apibackend.Modules.Product.Domain.handler;
 
 /**
  * ----------------------------------------------------------------------------
@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.api.apibackend.modules.Product.Domain.exception.ProductNotFoundException;
+import com.api.apibackend.Modules.Product.Domain.exception.ProductNotFoundException;
 
 @ControllerAdvice
 public class ProductNotFoundHandlerControllerException {

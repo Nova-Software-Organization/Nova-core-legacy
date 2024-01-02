@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Product.Application.DTOs;
+package com.api.apibackend.Modules.Product.Application.DTOs;
 
 /**
  * ----------------------------------------------------------------------------

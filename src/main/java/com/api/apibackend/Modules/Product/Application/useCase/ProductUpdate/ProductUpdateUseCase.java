@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Product.Application.useCase.ProductUpdate;
+package com.api.apibackend.Modules.Product.Application.useCase.ProductUpdate;
 
 /**
  * ----------------------------------------------------------------------------
@@ -13,9 +13,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.api.apibackend.modules.Product.Application.DTOs.ProductDTO;
-import com.api.apibackend.modules.Product.Application.DTOs.ResponseMessageDTO;
-import com.api.apibackend.modules.Product.Domain.service.ProductConventionalService;
+import com.api.apibackend.Modules.Product.Application.DTOs.ProductDTO;
+import com.api.apibackend.Modules.Product.Application.DTOs.ResponseMessageDTO;
+import com.api.apibackend.Modules.Product.Domain.service.ProductConventionalService;
 
 @Service
 public class ProductUpdateUseCase {

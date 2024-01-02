@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Product.Domain.service;
+package com.api.apibackend.Modules.Product.Domain.service;
 
 /**
  * ----------------------------------------------------------------------------
@@ -10,7 +10,7 @@ package com.api.apibackend.modules.Product.Domain.service;
 
 import org.springframework.stereotype.Service;
 
-import com.api.apibackend.modules.Product.Domain.repository.ISearchProductService;
+import com.api.apibackend.Modules.Product.Domain.repository.ISearchProductService;
 
 @Service
 public class SearchProductService implements ISearchProductService { }

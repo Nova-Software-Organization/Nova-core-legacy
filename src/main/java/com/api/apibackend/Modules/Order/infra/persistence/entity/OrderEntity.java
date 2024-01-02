@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Order.infra.persistence.entity;
+package com.api.apibackend.Modules.Order.infra.persistence.entity;
 
 /**
  * ----------------------------------------------------------------------------
@@ -16,11 +16,11 @@ import java.util.List;
 
 import org.springframework.context.annotation.Lazy;
 
-import com.api.apibackend.modules.Customer.Infra.persistence.entity.CustomerEntity;
-import com.api.apibackend.modules.OrderAddress.Infra.persistence.entity.OrderAddressEntity;
-import com.api.apibackend.modules.OrderItem.infra.persistence.entity.OrderItemEntity;
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
-import com.api.apibackend.modules.Transaction.infra.entity.TransactionEntity;
+import com.api.apibackend.Modules.Customer.Infra.persistence.entity.CustomerEntity;
+import com.api.apibackend.Modules.OrderAddress.Infra.persistence.entity.OrderAddressEntity;
+import com.api.apibackend.Modules.OrderItem.infra.persistence.entity.OrderItemEntity;
+import com.api.apibackend.Modules.Product.Infra.entity.ProductEntity;
+import com.api.apibackend.Modules.Transaction.infra.entity.TransactionEntity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Column;

@@ -7,7 +7,7 @@
  * ----------------------------------------------------------------------------
  */
 
-package com.api.apibackend.modules.Order.Application.useCase.OrderCancel;
+package com.api.apibackend.Modules.Order.Application.useCase.OrderCancel;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,9 +15,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.api.apibackend.modules.Order.Application.DTOs.OrderRequest;
-import com.api.apibackend.modules.Order.Domain.service.UpdateOrderService;
-import com.api.apibackend.modules.Order.infra.persistence.entity.OrderEntity;
+import com.api.apibackend.Modules.Order.Application.DTOs.OrderRequest;
+import com.api.apibackend.Modules.Order.Domain.service.UpdateOrderService;
+import com.api.apibackend.Modules.Order.infra.persistence.entity.OrderEntity;
 
 @Service
 public class OrderCancelOrderUseCase {

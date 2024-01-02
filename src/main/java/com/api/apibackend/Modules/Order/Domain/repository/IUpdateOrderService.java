@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Order.Domain.repository;
+package com.api.apibackend.Modules.Order.Domain.repository;
 
 /**
  * ----------------------------------------------------------------------------
@@ -10,10 +10,10 @@ package com.api.apibackend.modules.Order.Domain.repository;
 
 import org.springframework.http.ResponseEntity;
 
-import com.api.apibackend.modules.Order.Application.DTOs.OrderRequest;
-import com.api.apibackend.modules.Order.Application.DTOs.OrderUpdateAddressRequest;
-import com.api.apibackend.modules.Order.infra.persistence.entity.OrderEntity;
-import com.api.apibackend.modules.OrderAddress.Infra.persistence.entity.OrderAddressEntity;
+import com.api.apibackend.Modules.Order.Application.DTOs.OrderRequest;
+import com.api.apibackend.Modules.Order.Application.DTOs.OrderUpdateAddressRequest;
+import com.api.apibackend.Modules.Order.infra.persistence.entity.OrderEntity;
+import com.api.apibackend.Modules.OrderAddress.Infra.persistence.entity.OrderAddressEntity;
 
 public interface IUpdateOrderService {
     public ResponseEntity<OrderAddressEntity> updateAddressOrder(OrderUpdateAddressRequest numberOrder);

@@ -6,7 +6,7 @@
  * ----------------------------------------------------------------------------
  */
 
-package com.api.apibackend.modules.Order.Application.useCase.OrderCancel;
+package com.api.apibackend.Modules.Order.Application.useCase.OrderCancel;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.apibackend.modules.Order.Application.DTOs.OrderRequest;
-import com.api.apibackend.modules.Order.Application.DTOs.ResponseMessageDTO;
-import com.api.apibackend.modules.Order.infra.persistence.entity.OrderEntity;
+import com.api.apibackend.Modules.Order.Application.DTOs.OrderRequest;
+import com.api.apibackend.Modules.Order.Application.DTOs.ResponseMessageDTO;
+import com.api.apibackend.Modules.Order.infra.persistence.entity.OrderEntity;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.swagger.v3.oas.annotations.Operation;

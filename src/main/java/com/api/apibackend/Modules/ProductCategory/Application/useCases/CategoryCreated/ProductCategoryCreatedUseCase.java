@@ -6,14 +6,14 @@
  * ----------------------------------------------------------------------------
  */
 
-package com.api.apibackend.modules.ProductCategory.Application.useCases.CategoryCreated;
+package com.api.apibackend.Modules.ProductCategory.Application.useCases.CategoryCreated;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.api.apibackend.modules.ProductCategory.Application.DTOs.ProductCategoryDTO;
-import com.api.apibackend.modules.ProductCategory.Application.DTOs.ResponseMessageDTO;
-import com.api.apibackend.modules.ProductCategory.Domain.service.ProductCategoryConventionalService;
+import com.api.apibackend.Modules.ProductCategory.Application.DTOs.ProductCategoryDTO;
+import com.api.apibackend.Modules.ProductCategory.Application.DTOs.ResponseMessageDTO;
+import com.api.apibackend.Modules.ProductCategory.Domain.service.ProductCategoryConventionalService;
 
 @Service
 public class ProductCategoryCreatedUseCase {

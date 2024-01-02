@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Stock.Application.DTOs;
+package com.api.apibackend.Modules.Stock.Application.DTOs;
 
 import lombok.Data;
 

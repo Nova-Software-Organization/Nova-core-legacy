@@ -6,7 +6,7 @@
  * ----------------------------------------------------------------------------
  */
 
-package com.api.apibackend.modules.Order.Application.useCase.OrderCreated;
+package com.api.apibackend.Modules.Order.Application.useCase.OrderCreated;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.apibackend.modules.Order.Application.DTOs.CreateOrderRequest;
-import com.api.apibackend.modules.Order.infra.service.OrderCircuitBreaker;
+import com.api.apibackend.Modules.Order.Application.DTOs.CreateOrderRequest;
+import com.api.apibackend.Modules.Order.infra.service.OrderCircuitBreaker;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.swagger.v3.oas.annotations.Operation;

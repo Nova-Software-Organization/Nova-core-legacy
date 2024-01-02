@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.States.Application.controller;
+package com.api.apibackend.Modules.States.Application.controller;
 
 /**
  * ----------------------------------------------------------------------------
@@ -10,7 +10,7 @@ package com.api.apibackend.modules.States.Application.controller;
 
 import java.util.List;
 
-import com.api.apibackend.modules.States.Domain.model.State;
+import com.api.apibackend.Modules.States.Domain.model.State;
 
 public class StateResponse {
 

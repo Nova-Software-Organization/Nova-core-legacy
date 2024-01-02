@@ -6,17 +6,17 @@
  * ----------------------------------------------------------------------------
  */
 
-package com.api.apibackend.modules.SupplierAddress.Domain.service;
+package com.api.apibackend.Modules.SupplierAddress.Domain.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.api.apibackend.modules.Supplier.Infra.repository.SupplierRepository;
-import com.api.apibackend.modules.SupplierAddress.Application.DTOs.SupplierAddressDTO;
-import com.api.apibackend.modules.SupplierAddress.Application.DTOs.response.ResponseMessageDTO;
-import com.api.apibackend.modules.SupplierAddress.infra.persistence.entity.SupplierAddressEntity;
+import com.api.apibackend.Modules.Supplier.Infra.repository.SupplierRepository;
+import com.api.apibackend.Modules.SupplierAddress.Application.DTOs.SupplierAddressDTO;
+import com.api.apibackend.Modules.SupplierAddress.Application.DTOs.response.ResponseMessageDTO;
+import com.api.apibackend.Modules.SupplierAddress.infra.persistence.entity.SupplierAddressEntity;
 
 import java.util.Optional;
 

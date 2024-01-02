@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Cart.Domain.exception;
+package com.api.apibackend.Modules.Cart.Domain.exception;
 
 /**
  * ----------------------------------------------------------------------------

@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Product.Application.DTOs;
+package com.api.apibackend.Modules.Product.Application.DTOs;
 
 /**
  * ----------------------------------------------------------------------------
@@ -8,12 +8,12 @@ package com.api.apibackend.modules.Product.Application.DTOs;
  * ----------------------------------------------------------------------------
  */
 
-import com.api.apibackend.modules.Midia.Application.DTOs.MidiaDTO;
-import com.api.apibackend.modules.Price.Application.DTOs.PriceDTO;
-import com.api.apibackend.modules.ProductCategory.Application.DTOs.ProductCategoryDTO;
-import com.api.apibackend.modules.Stock.Application.DTOs.StockDTO;
-import com.api.apibackend.modules.Supplier.Application.DTOs.SupplierDTO;
-import com.api.apibackend.modules.Unity.Application.DTOs.UnityDTO;
+import com.api.apibackend.Modules.Midia.Application.DTOs.MidiaDTO;
+import com.api.apibackend.Modules.Price.Application.DTOs.PriceDTO;
+import com.api.apibackend.Modules.ProductCategory.Application.DTOs.ProductCategoryDTO;
+import com.api.apibackend.Modules.Stock.Application.DTOs.StockDTO;
+import com.api.apibackend.Modules.Supplier.Application.DTOs.SupplierDTO;
+import com.api.apibackend.Modules.Unity.Application.DTOs.UnityDTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;

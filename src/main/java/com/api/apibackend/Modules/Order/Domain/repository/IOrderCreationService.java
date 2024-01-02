@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Order.Domain.repository;
+package com.api.apibackend.Modules.Order.Domain.repository;
 
 /**
  * ----------------------------------------------------------------------------
@@ -13,16 +13,16 @@ import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
 
-import com.api.apibackend.modules.Customer.Application.DTOs.ClientRequest;
-import com.api.apibackend.modules.Customer.Infra.persistence.entity.CustomerEntity;
-import com.api.apibackend.modules.CustomerAddress.Domain.model.CustomerAddressRequest;
-import com.api.apibackend.modules.Order.Application.DTOs.OrderRequest;
-import com.api.apibackend.modules.Order.Domain.exception.InsufficientStockException;
-import com.api.apibackend.modules.Order.Domain.exception.OrderCannotBeCreatedException;
-import com.api.apibackend.modules.Order.infra.persistence.entity.OrderEntity;
-import com.api.apibackend.modules.OrderItem.Domain.exception.NonExistentesItemsException;
-import com.api.apibackend.modules.OrderItem.infra.persistence.entity.OrderItemEntity;
-import com.api.apibackend.modules.Stock.infra.persistence.entity.StockEntity;
+import com.api.apibackend.Modules.Customer.Application.DTOs.ClientRequest;
+import com.api.apibackend.Modules.Customer.Infra.persistence.entity.CustomerEntity;
+import com.api.apibackend.Modules.CustomerAddress.Domain.model.CustomerAddressRequest;
+import com.api.apibackend.Modules.Order.Application.DTOs.OrderRequest;
+import com.api.apibackend.Modules.Order.Domain.exception.InsufficientStockException;
+import com.api.apibackend.Modules.Order.Domain.exception.OrderCannotBeCreatedException;
+import com.api.apibackend.Modules.Order.infra.persistence.entity.OrderEntity;
+import com.api.apibackend.Modules.OrderItem.Domain.exception.NonExistentesItemsException;
+import com.api.apibackend.Modules.OrderItem.infra.persistence.entity.OrderItemEntity;
+import com.api.apibackend.Modules.Stock.infra.persistence.entity.StockEntity;
 
 public interface IOrderCreationService {
     ResponseEntity<String> createOrder(OrderRequest orderRequest, CustomerAddressRequest customerAddress,

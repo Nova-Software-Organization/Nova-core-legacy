@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Product.Domain.repository;
+package com.api.apibackend.Modules.Product.Domain.repository;
 
 /**
  * ----------------------------------------------------------------------------
@@ -10,8 +10,8 @@ package com.api.apibackend.modules.Product.Domain.repository;
 
 import java.util.List;
 
-import com.api.apibackend.modules.Product.Domain.model.Product;
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
+import com.api.apibackend.Modules.Product.Domain.model.Product;
+import com.api.apibackend.Modules.Product.Infra.entity.ProductEntity;
 
 public interface IGetAllProductService {
     List<Product> getAllProductsFromCache();

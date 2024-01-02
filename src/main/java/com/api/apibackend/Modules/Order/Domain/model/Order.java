@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Order.Domain.model;
+package com.api.apibackend.Modules.Order.Domain.model;
 
 /**
  * ----------------------------------------------------------------------------
@@ -11,9 +11,9 @@ package com.api.apibackend.modules.Order.Domain.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.api.apibackend.modules.Order.infra.persistence.entity.OrderEntity;
-import com.api.apibackend.modules.OrderItem.infra.persistence.entity.OrderItemEntity;
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
+import com.api.apibackend.Modules.Order.infra.persistence.entity.OrderEntity;
+import com.api.apibackend.Modules.OrderItem.infra.persistence.entity.OrderItemEntity;
+import com.api.apibackend.Modules.Product.Infra.entity.ProductEntity;
 
 import lombok.Data;
 

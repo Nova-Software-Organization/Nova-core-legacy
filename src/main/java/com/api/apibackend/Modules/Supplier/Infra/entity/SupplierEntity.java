@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Supplier.Infra.entity;
+package com.api.apibackend.Modules.Supplier.Infra.entity;
 
 /**
  * ----------------------------------------------------------------------------
@@ -17,8 +17,8 @@ import javax.validation.constraints.NotBlank;
 
 import org.springframework.context.annotation.Lazy;
 
-import com.api.apibackend.modules.Brand.infra.persistence.entity.BrandEntity;
-import com.api.apibackend.modules.SupplierAddress.infra.persistence.entity.SupplierAddressEntity;
+import com.api.apibackend.Modules.Brand.infra.persistence.entity.BrandEntity;
+import com.api.apibackend.Modules.SupplierAddress.infra.persistence.entity.SupplierAddressEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

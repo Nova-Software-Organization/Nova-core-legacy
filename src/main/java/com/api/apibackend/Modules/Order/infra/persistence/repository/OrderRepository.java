@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Order.infra.persistence.repository;
+package com.api.apibackend.Modules.Order.infra.persistence.repository;
 
 /**
  * ----------------------------------------------------------------------------
@@ -11,7 +11,7 @@ package com.api.apibackend.modules.Order.infra.persistence.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.api.apibackend.modules.Order.infra.persistence.entity.OrderEntity;
+import com.api.apibackend.Modules.Order.infra.persistence.entity.OrderEntity;
 
 @Repository
 public interface OrderRepository extends JpaRepository<OrderEntity, Long> { }

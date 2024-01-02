@@ -6,7 +6,7 @@
  * ----------------------------------------------------------------------------
  */
 
-package com.api.apibackend.modules.Product.Application.useCase.Filter;
+package com.api.apibackend.Modules.Product.Application.useCase.Filter;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.apibackend.modules.Product.Domain.model.Product;
-import com.api.apibackend.modules.Product.Domain.service.GetAllProductService;
+import com.api.apibackend.Modules.Product.Domain.model.Product;
+import com.api.apibackend.Modules.Product.Domain.service.GetAllProductService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;

@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.ProductCategory.Domain.service;
+package com.api.apibackend.Modules.ProductCategory.Domain.service;
 
 /**
  * ----------------------------------------------------------------------------
@@ -15,10 +15,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.api.apibackend.modules.ProductCategory.Application.DTOs.ProductCategoryDTO;
-import com.api.apibackend.modules.ProductCategory.Application.DTOs.ResponseMessageDTO;
-import com.api.apibackend.modules.ProductCategory.infra.persistence.entity.ProductCategoryEntity;
-import com.api.apibackend.modules.ProductCategory.infra.persistence.repository.ProductCategoryRepository;
+import com.api.apibackend.Modules.ProductCategory.Application.DTOs.ProductCategoryDTO;
+import com.api.apibackend.Modules.ProductCategory.Application.DTOs.ResponseMessageDTO;
+import com.api.apibackend.Modules.ProductCategory.infra.persistence.entity.ProductCategoryEntity;
+import com.api.apibackend.Modules.ProductCategory.infra.persistence.repository.ProductCategoryRepository;
 
 @Service
 public class ProductCategoryConventionalService {

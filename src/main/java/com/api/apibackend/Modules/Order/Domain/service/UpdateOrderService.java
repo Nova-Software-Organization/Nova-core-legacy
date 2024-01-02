@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Order.Domain.service;
+package com.api.apibackend.Modules.Order.Domain.service;
 
 /**
  * ----------------------------------------------------------------------------
@@ -17,16 +17,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.api.apibackend.modules.Order.Application.DTOs.OrderRequest;
-import com.api.apibackend.modules.Order.Application.DTOs.OrderUpdateAddressRequest;
-import com.api.apibackend.modules.Order.Domain.repository.IUpdateOrderService;
-import com.api.apibackend.modules.Order.infra.persistence.entity.OrderEntity;
-import com.api.apibackend.modules.Order.infra.persistence.repository.OrderRepository;
-import com.api.apibackend.modules.OrderAddress.Infra.persistence.entity.OrderAddressEntity;
-import com.api.apibackend.modules.OrderAddress.Infra.persistence.repository.OrderAddressRepository;
-import com.api.apibackend.modules.OrderItem.Domain.model.OrderItem;
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
-import com.api.apibackend.modules.Product.Infra.repository.ProductRepository;
+import com.api.apibackend.Modules.Order.Application.DTOs.OrderRequest;
+import com.api.apibackend.Modules.Order.Application.DTOs.OrderUpdateAddressRequest;
+import com.api.apibackend.Modules.Order.Domain.repository.IUpdateOrderService;
+import com.api.apibackend.Modules.Order.infra.persistence.entity.OrderEntity;
+import com.api.apibackend.Modules.Order.infra.persistence.repository.OrderRepository;
+import com.api.apibackend.Modules.OrderAddress.Infra.persistence.entity.OrderAddressEntity;
+import com.api.apibackend.Modules.OrderAddress.Infra.persistence.repository.OrderAddressRepository;
+import com.api.apibackend.Modules.OrderItem.Domain.model.OrderItem;
+import com.api.apibackend.Modules.Product.Infra.entity.ProductEntity;
+import com.api.apibackend.Modules.Product.Infra.repository.ProductRepository;
 
 @Service
 public class UpdateOrderService implements IUpdateOrderService {

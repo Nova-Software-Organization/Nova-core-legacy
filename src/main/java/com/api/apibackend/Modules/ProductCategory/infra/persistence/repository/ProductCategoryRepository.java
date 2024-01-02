@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.ProductCategory.infra.persistence.repository;
+package com.api.apibackend.Modules.ProductCategory.infra.persistence.repository;
 
 /**
  * ----------------------------------------------------------------------------
@@ -15,8 +15,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
-import com.api.apibackend.modules.ProductCategory.infra.persistence.entity.ProductCategoryEntity;
+import com.api.apibackend.Modules.Product.Infra.entity.ProductEntity;
+import com.api.apibackend.Modules.ProductCategory.infra.persistence.entity.ProductCategoryEntity;
 
 @Repository
 public interface ProductCategoryRepository extends JpaRepository<ProductCategoryEntity, Long> {

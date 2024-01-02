@@ -6,14 +6,14 @@
  * ----------------------------------------------------------------------------
  */
 
-package com.api.apibackend.modules.Price.Application.useCases.PriceDelete;
+package com.api.apibackend.Modules.Price.Application.useCases.PriceDelete;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.api.apibackend.modules.Price.Application.DTOs.response.ResponseMessageDTO;
-import com.api.apibackend.modules.Price.Domain.service.PriceService;
+import com.api.apibackend.Modules.Price.Application.DTOs.response.ResponseMessageDTO;
+import com.api.apibackend.Modules.Price.Domain.service.PriceService;
 
 @Service
 public class PriceDeleteUseCase {

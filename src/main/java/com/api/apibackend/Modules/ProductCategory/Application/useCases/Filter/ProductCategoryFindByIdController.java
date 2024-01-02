@@ -6,7 +6,7 @@
  * ----------------------------------------------------------------------------
  */
 
-package com.api.apibackend.modules.ProductCategory.Application.useCases.Filter;
+package com.api.apibackend.Modules.ProductCategory.Application.useCases.Filter;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

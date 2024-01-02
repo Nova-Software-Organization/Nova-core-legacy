@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Order.Application.DTOs;
+package com.api.apibackend.Modules.Order.Application.DTOs;
 
 /**
  * ----------------------------------------------------------------------------
@@ -12,8 +12,8 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
-import com.api.apibackend.modules.Order.infra.persistence.entity.OrderEntity;
-import com.api.apibackend.modules.OrderAddress.Infra.persistence.entity.OrderAddressEntity;
+import com.api.apibackend.Modules.Order.infra.persistence.entity.OrderEntity;
+import com.api.apibackend.Modules.OrderAddress.Infra.persistence.entity.OrderAddressEntity;
 
 import lombok.Data;
 

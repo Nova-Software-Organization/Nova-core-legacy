@@ -6,7 +6,7 @@
  * ----------------------------------------------------------------------------
  */
 
-package com.api.apibackend.modules.Stock.Domain.exception;
+package com.api.apibackend.Modules.Stock.Domain.exception;
 
 public class HasEnoughStockProductException extends Exception {
     public HasEnoughStockProductException(String message) {

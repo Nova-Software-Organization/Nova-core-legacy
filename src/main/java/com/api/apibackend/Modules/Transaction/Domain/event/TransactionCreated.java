@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Transaction.Domain.event;
+package com.api.apibackend.Modules.Transaction.Domain.event;
 
 /**
  * ----------------------------------------------------------------------------

@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Product.Infra.entity;
+package com.api.apibackend.Modules.Product.Infra.entity;
 
 /**
  * ----------------------------------------------------------------------------
@@ -13,12 +13,12 @@ import java.io.Serializable;
 
 import org.springframework.context.annotation.Lazy;
 
-import com.api.apibackend.modules.Midia.infra.persistence.entity.MidiaEntity;
-import com.api.apibackend.modules.Price.infra.entity.PriceEntity;
-import com.api.apibackend.modules.ProductCategory.infra.persistence.entity.ProductCategoryEntity;
-import com.api.apibackend.modules.Stock.infra.persistence.entity.StockEntity;
-import com.api.apibackend.modules.Supplier.Infra.entity.SupplierEntity;
-import com.api.apibackend.modules.Unity.infra.persistence.entity.UnityEntity;
+import com.api.apibackend.Modules.Midia.infra.persistence.entity.MidiaEntity;
+import com.api.apibackend.Modules.Price.infra.entity.PriceEntity;
+import com.api.apibackend.Modules.ProductCategory.infra.persistence.entity.ProductCategoryEntity;
+import com.api.apibackend.Modules.Stock.infra.persistence.entity.StockEntity;
+import com.api.apibackend.Modules.Supplier.Infra.entity.SupplierEntity;
+import com.api.apibackend.Modules.Unity.infra.persistence.entity.UnityEntity;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Product.Application.useCase.ProductUpdate;
+package com.api.apibackend.Modules.Product.Application.useCase.ProductUpdate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.apibackend.modules.Product.Application.DTOs.ProductDTO;
-import com.api.apibackend.modules.Product.Application.DTOs.ResponseMessageDTO;
+import com.api.apibackend.Modules.Product.Application.DTOs.ProductDTO;
+import com.api.apibackend.Modules.Product.Application.DTOs.ResponseMessageDTO;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

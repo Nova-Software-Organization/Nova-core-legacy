@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Product.Application.useCase.ProductDelete;
+package com.api.apibackend.Modules.Product.Application.useCase.ProductDelete;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -7,7 +7,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.api.apibackend.modules.Product.Application.DTOs.ResponseMessageDTO;
+import com.api.apibackend.Modules.Product.Application.DTOs.ResponseMessageDTO;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

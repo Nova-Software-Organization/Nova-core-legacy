@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Transaction.infra.entity;
+package com.api.apibackend.Modules.Transaction.infra.entity;
 
 /**
  * ----------------------------------------------------------------------------

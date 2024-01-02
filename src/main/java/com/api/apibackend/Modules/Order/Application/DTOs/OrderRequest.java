@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Order.Application.DTOs;
+package com.api.apibackend.Modules.Order.Application.DTOs;
 
 /**
  * ----------------------------------------------------------------------------
@@ -11,10 +11,10 @@ package com.api.apibackend.modules.Order.Application.DTOs;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.api.apibackend.modules.Customer.Application.DTOs.ClientRequest;
-import com.api.apibackend.modules.CustomerAddress.Domain.model.CustomerAddressRequest;
-import com.api.apibackend.modules.OrderItem.Domain.model.OrderItem;
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
+import com.api.apibackend.Modules.Customer.Application.DTOs.ClientRequest;
+import com.api.apibackend.Modules.CustomerAddress.Domain.model.CustomerAddressRequest;
+import com.api.apibackend.Modules.OrderItem.Domain.model.OrderItem;
+import com.api.apibackend.Modules.Product.Infra.entity.ProductEntity;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import lombok.Data;

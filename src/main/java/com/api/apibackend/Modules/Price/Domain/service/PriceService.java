@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Price.Domain.service;
+package com.api.apibackend.Modules.Price.Domain.service;
 
 /**
  * ----------------------------------------------------------------------------
@@ -15,12 +15,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.api.apibackend.modules.Price.Application.DTOs.PriceDTO;
-import com.api.apibackend.modules.Price.Application.DTOs.response.ResponseMessageDTO;
-import com.api.apibackend.modules.Price.infra.entity.PriceEntity;
-import com.api.apibackend.modules.Price.infra.repository.PriceRepository;
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
-import com.api.apibackend.modules.Product.Infra.repository.ProductRepository;
+import com.api.apibackend.Modules.Price.Application.DTOs.PriceDTO;
+import com.api.apibackend.Modules.Price.Application.DTOs.response.ResponseMessageDTO;
+import com.api.apibackend.Modules.Price.infra.entity.PriceEntity;
+import com.api.apibackend.Modules.Price.infra.repository.PriceRepository;
+import com.api.apibackend.Modules.Product.Infra.entity.ProductEntity;
+import com.api.apibackend.Modules.Product.Infra.repository.ProductRepository;
 
 @Service
 public class PriceService {

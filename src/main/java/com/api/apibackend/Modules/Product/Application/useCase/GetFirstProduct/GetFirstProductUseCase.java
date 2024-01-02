@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Product.Application.useCase.GetFirstProduct;
+package com.api.apibackend.Modules.Product.Application.useCase.GetFirstProduct;
 
 /**
  * ----------------------------------------------------------------------------
@@ -13,8 +13,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.api.apibackend.modules.Product.Domain.model.Product;
-import com.api.apibackend.modules.Product.Domain.service.GetFirstProductService;
+import com.api.apibackend.Modules.Product.Domain.model.Product;
+import com.api.apibackend.Modules.Product.Domain.service.GetFirstProductService;
 
 @Service
 public class GetFirstProductUseCase {

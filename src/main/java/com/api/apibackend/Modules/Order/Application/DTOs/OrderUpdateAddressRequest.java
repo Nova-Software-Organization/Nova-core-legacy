@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Order.Application.DTOs;
+package com.api.apibackend.Modules.Order.Application.DTOs;
 
 /**
  * ----------------------------------------------------------------------------
@@ -8,7 +8,7 @@ package com.api.apibackend.modules.Order.Application.DTOs;
  * ----------------------------------------------------------------------------
  */
 
-import com.api.apibackend.modules.CustomerAddress.Domain.model.CustomerAddressRequest;
+import com.api.apibackend.Modules.CustomerAddress.Domain.model.CustomerAddressRequest;
 
 import lombok.Data;
 

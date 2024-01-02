@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Product.Domain.model;
+package com.api.apibackend.Modules.Product.Domain.model;
 
 /**
  * ----------------------------------------------------------------------------
@@ -11,7 +11,7 @@ package com.api.apibackend.modules.Product.Domain.model;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
+import com.api.apibackend.Modules.Product.Infra.entity.ProductEntity;
 
 import lombok.Data;
 

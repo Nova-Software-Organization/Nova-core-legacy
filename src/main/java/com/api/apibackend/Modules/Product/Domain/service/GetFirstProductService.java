@@ -6,7 +6,7 @@
  * ----------------------------------------------------------------------------
  */
 
-package com.api.apibackend.modules.Product.Domain.service;
+package com.api.apibackend.Modules.Product.Domain.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,13 +15,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import com.api.apibackend.modules.Midia.infra.persistence.entity.MidiaEntity;
-import com.api.apibackend.modules.Price.infra.entity.PriceEntity;
-import com.api.apibackend.modules.Product.Domain.model.Product;
-import com.api.apibackend.modules.Product.Domain.repository.IGetFirstService;
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
-import com.api.apibackend.modules.Product.Infra.repository.ProductRepository;
-import com.api.apibackend.modules.Stock.infra.persistence.entity.StockEntity;
+import com.api.apibackend.Modules.Midia.infra.persistence.entity.MidiaEntity;
+import com.api.apibackend.Modules.Price.infra.entity.PriceEntity;
+import com.api.apibackend.Modules.Product.Domain.model.Product;
+import com.api.apibackend.Modules.Product.Domain.repository.IGetFirstService;
+import com.api.apibackend.Modules.Product.Infra.entity.ProductEntity;
+import com.api.apibackend.Modules.Product.Infra.repository.ProductRepository;
+import com.api.apibackend.Modules.Stock.infra.persistence.entity.StockEntity;
 
 @Service
 public class GetFirstProductService implements IGetFirstService {

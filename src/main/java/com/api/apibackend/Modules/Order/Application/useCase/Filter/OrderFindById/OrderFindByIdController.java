@@ -6,7 +6,7 @@
  * ----------------------------------------------------------------------------
  */
 
-package com.api.apibackend.modules.Order.Application.useCase.Filter.OrderFindById;
+package com.api.apibackend.Modules.Order.Application.useCase.Filter.OrderFindById;
 
 import java.util.Optional;
 
@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.apibackend.modules.Order.Domain.service.OrderFindById;
-import com.api.apibackend.modules.Order.infra.persistence.entity.OrderEntity;
+import com.api.apibackend.Modules.Order.Domain.service.OrderFindById;
+import com.api.apibackend.Modules.Order.infra.persistence.entity.OrderEntity;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

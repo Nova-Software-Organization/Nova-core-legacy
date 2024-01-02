@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.ProductCategory.Domain.service;
+package com.api.apibackend.Modules.ProductCategory.Domain.service;
 
 /**
  * ----------------------------------------------------------------------------
@@ -15,10 +15,10 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.api.apibackend.modules.Product.Domain.model.Product;
-import com.api.apibackend.modules.Product.Infra.repository.ProductRepository;
-import com.api.apibackend.modules.ProductCategory.infra.persistence.entity.ProductCategoryEntity;
-import com.api.apibackend.modules.ProductCategory.infra.persistence.repository.ProductCategoryRepository;
+import com.api.apibackend.Modules.Product.Domain.model.Product;
+import com.api.apibackend.Modules.Product.Infra.repository.ProductRepository;
+import com.api.apibackend.Modules.ProductCategory.infra.persistence.entity.ProductCategoryEntity;
+import com.api.apibackend.Modules.ProductCategory.infra.persistence.repository.ProductCategoryRepository;
 
 @Service
 public class ProductCategoryService {

@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Stock.Application.DTOs;
+package com.api.apibackend.Modules.Stock.Application.DTOs;
 
 /**
  * ----------------------------------------------------------------------------
@@ -8,8 +8,8 @@ package com.api.apibackend.modules.Stock.Application.DTOs;
  * ----------------------------------------------------------------------------
  */
 
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
-import com.api.apibackend.modules.Unity.infra.persistence.entity.UnityEntity;
+import com.api.apibackend.Modules.Product.Infra.entity.ProductEntity;
+import com.api.apibackend.Modules.Unity.infra.persistence.entity.UnityEntity;
 
 import lombok.Data;
 

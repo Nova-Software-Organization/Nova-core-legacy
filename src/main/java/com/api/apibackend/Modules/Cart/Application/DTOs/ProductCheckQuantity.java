@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Cart.Application.DTOs;
+package com.api.apibackend.Modules.Cart.Application.DTOs;
 
 /**
  * ----------------------------------------------------------------------------

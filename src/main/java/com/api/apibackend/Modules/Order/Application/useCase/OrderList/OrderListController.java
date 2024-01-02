@@ -6,7 +6,7 @@
  * ----------------------------------------------------------------------------
  */
 
-package com.api.apibackend.modules.Order.Application.useCase.OrderList;
+package com.api.apibackend.Modules.Order.Application.useCase.OrderList;
 
 import java.util.List;
 
@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.apibackend.modules.Order.Application.DTOs.ResponseMessageDTO;
-import com.api.apibackend.modules.Order.Domain.service.OrderListService;
-import com.api.apibackend.modules.Order.infra.persistence.entity.OrderEntity;
+import com.api.apibackend.Modules.Order.Application.DTOs.ResponseMessageDTO;
+import com.api.apibackend.Modules.Order.Domain.service.OrderListService;
+import com.api.apibackend.Modules.Order.infra.persistence.entity.OrderEntity;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

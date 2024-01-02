@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Price.Application.DTOs;
+package com.api.apibackend.Modules.Price.Application.DTOs;
 
 /**
  * ----------------------------------------------------------------------------
@@ -11,7 +11,7 @@ package com.api.apibackend.modules.Price.Application.DTOs;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
+import com.api.apibackend.Modules.Product.Infra.entity.ProductEntity;
 
 import lombok.Data;
 

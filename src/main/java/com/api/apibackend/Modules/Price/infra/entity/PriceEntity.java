@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Price.infra.entity;
+package com.api.apibackend.Modules.Price.infra.entity;
 
 /**
  * ----------------------------------------------------------------------------
@@ -15,7 +15,7 @@ import java.util.Date;
 
 import org.springframework.context.annotation.Lazy;
 
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
+import com.api.apibackend.Modules.Product.Infra.entity.ProductEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

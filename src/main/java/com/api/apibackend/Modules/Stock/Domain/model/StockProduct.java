@@ -6,7 +6,7 @@
  * ----------------------------------------------------------------------------
  */
 
-package com.api.apibackend.modules.Stock.Domain.model;
+package com.api.apibackend.Modules.Stock.Domain.model;
 
 import lombok.Data;
 

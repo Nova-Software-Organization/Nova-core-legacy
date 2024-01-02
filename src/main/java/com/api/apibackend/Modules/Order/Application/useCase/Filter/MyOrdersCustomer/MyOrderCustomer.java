@@ -6,7 +6,7 @@
  * ----------------------------------------------------------------------------
  */
 
-package com.api.apibackend.modules.Order.Application.useCase.Filter.MyOrdersCustomer;
+package com.api.apibackend.Modules.Order.Application.useCase.Filter.MyOrdersCustomer;
 
 import java.util.Optional;
 
@@ -19,10 +19,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.apibackend.modules.Customer.Domain.exception.ClientNotFoundException;
-import com.api.apibackend.modules.Customer.Domain.service.CustomerFilterService;
-import com.api.apibackend.modules.Customer.Domain.service.MyRequestCustomerService;
-import com.api.apibackend.modules.Customer.Infra.persistence.entity.CustomerEntity;
+import com.api.apibackend.Modules.Customer.Domain.exception.ClientNotFoundException;
+import com.api.apibackend.Modules.Customer.Domain.service.CustomerFilterService;
+import com.api.apibackend.Modules.Customer.Domain.service.MyRequestCustomerService;
+import com.api.apibackend.Modules.Customer.Infra.persistence.entity.CustomerEntity;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

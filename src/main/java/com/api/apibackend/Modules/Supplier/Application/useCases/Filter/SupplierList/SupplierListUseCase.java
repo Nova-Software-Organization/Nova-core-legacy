@@ -6,15 +6,15 @@
  * ----------------------------------------------------------------------------
  */
 
-package com.api.apibackend.modules.Supplier.Application.useCases.Filter.SupplierList;
+package com.api.apibackend.Modules.Supplier.Application.useCases.Filter.SupplierList;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.api.apibackend.modules.Supplier.Domain.service.SupplierService;
-import com.api.apibackend.modules.Supplier.Infra.entity.SupplierEntity;
+import com.api.apibackend.Modules.Supplier.Domain.service.SupplierService;
+import com.api.apibackend.Modules.Supplier.Infra.entity.SupplierEntity;
 
 @Service
 public class SupplierListUseCase {

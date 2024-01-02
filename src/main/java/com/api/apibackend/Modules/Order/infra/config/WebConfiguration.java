@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Order.infra.config;
+package com.api.apibackend.Modules.Order.infra.config;
 
 /**
  * ----------------------------------------------------------------------------
@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
-import com.api.apibackend.modules.Order.Domain.middleware.InteceptorOrder;
+import com.api.apibackend.Modules.Order.Domain.middleware.InteceptorOrder;
 
 @Configuration
 public class WebConfiguration extends WebMvcConfigurationSupport {

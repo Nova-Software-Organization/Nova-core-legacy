@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Supplier.Infra.validation;
+package com.api.apibackend.Modules.Supplier.Infra.validation;
 
 /**
  * ----------------------------------------------------------------------------

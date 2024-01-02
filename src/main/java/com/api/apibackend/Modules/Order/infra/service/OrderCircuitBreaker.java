@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Order.infra.service;
+package com.api.apibackend.Modules.Order.infra.service;
 
 /**
  * ----------------------------------------------------------------------------
@@ -14,7 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
-import com.api.apibackend.modules.Order.Application.DTOs.CreateOrderRequest;
+import com.api.apibackend.Modules.Order.Application.DTOs.CreateOrderRequest;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.extern.slf4j.Slf4j;

@@ -6,7 +6,7 @@
  * ----------------------------------------------------------------------------
  */
 
-package com.api.apibackend.modules.Price.Application.DTOs.response;
+package com.api.apibackend.Modules.Price.Application.DTOs.response;
 
 import lombok.Data;
 

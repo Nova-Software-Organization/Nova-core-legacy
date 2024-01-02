@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.States.Application.repository;
+package com.api.apibackend.Modules.States.Application.repository;
 
 /**
  * ----------------------------------------------------------------------------

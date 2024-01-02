@@ -6,13 +6,13 @@
  * ----------------------------------------------------------------------------
  */
 
-package com.api.apibackend.modules.Order.Domain.middleware;
+package com.api.apibackend.Modules.Order.Domain.middleware;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import com.api.apibackend.modules.Order.Domain.handler.OrderRequestControllerHandler;
+import com.api.apibackend.Modules.Order.Domain.handler.OrderRequestControllerHandler;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

@@ -6,7 +6,7 @@
  * ----------------------------------------------------------------------------
  */
 
-package com.api.apibackend.modules.Price.Application.controller;
+package com.api.apibackend.Modules.Price.Application.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,11 +18,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.apibackend.modules.Price.Application.DTOs.PriceDTO;
-import com.api.apibackend.modules.Price.Application.DTOs.response.ResponseMessageDTO;
-import com.api.apibackend.modules.Price.Application.useCases.PriceCreated.PriceAddUseCase;
-import com.api.apibackend.modules.Price.Application.useCases.PriceDelete.PriceDeleteUseCase;
-import com.api.apibackend.modules.Price.Application.useCases.PriceUpdate.PriceUpdateUseCase;
+import com.api.apibackend.Modules.Price.Application.DTOs.PriceDTO;
+import com.api.apibackend.Modules.Price.Application.DTOs.response.ResponseMessageDTO;
+import com.api.apibackend.Modules.Price.Application.useCases.PriceCreated.PriceAddUseCase;
+import com.api.apibackend.Modules.Price.Application.useCases.PriceDelete.PriceDeleteUseCase;
+import com.api.apibackend.Modules.Price.Application.useCases.PriceUpdate.PriceUpdateUseCase;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

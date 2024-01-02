@@ -6,7 +6,7 @@
  * ----------------------------------------------------------------------------
  */
 
-package com.api.apibackend.modules.Supplier.Application.DTOs;
+package com.api.apibackend.Modules.Supplier.Application.DTOs;
 
 import java.util.Date;
 

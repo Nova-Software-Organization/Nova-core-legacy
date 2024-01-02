@@ -6,14 +6,14 @@
  * ----------------------------------------------------------------------------
  */
 
-package com.api.apibackend.modules.Stock.Domain.handler;
+package com.api.apibackend.Modules.Stock.Domain.handler;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.api.apibackend.modules.Stock.Domain.exception.HasEnoughStockProductException;
+import com.api.apibackend.Modules.Stock.Domain.exception.HasEnoughStockProductException;
 
 @ControllerAdvice
 public class HasEnoughStockProductControllerException {

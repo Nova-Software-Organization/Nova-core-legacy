@@ -6,7 +6,7 @@
  * ----------------------------------------------------------------------------
  */
 
-package com.api.apibackend.modules.Stock.Application.useCases.StockProduct;
+package com.api.apibackend.Modules.Stock.Application.useCases.StockProduct;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +15,11 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.api.apibackend.modules.Cart.Application.DTOs.ProductCheckQuantity;
-import com.api.apibackend.modules.Cart.Domain.exception.CartNotFoundException;
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
-import com.api.apibackend.modules.Product.Infra.repository.ProductRepository;
-import com.api.apibackend.modules.Stock.Domain.model.StockProduct;
+import com.api.apibackend.Modules.Cart.Application.DTOs.ProductCheckQuantity;
+import com.api.apibackend.Modules.Cart.Domain.exception.CartNotFoundException;
+import com.api.apibackend.Modules.Product.Infra.entity.ProductEntity;
+import com.api.apibackend.Modules.Product.Infra.repository.ProductRepository;
+import com.api.apibackend.Modules.Stock.Domain.model.StockProduct;
 
 @Service
 public class StockProductUseCase {

@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Product.Application.useCase.ProductPopulation;
+package com.api.apibackend.Modules.Product.Application.useCase.ProductPopulation;
 
 /**
  * ----------------------------------------------------------------------------
@@ -15,9 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.api.apibackend.modules.Product.Application.DTOs.ProductDTO;
-import com.api.apibackend.modules.Product.Application.DTOs.ResponseMessageDTO;
-import com.api.apibackend.modules.Product.Domain.service.ProductConventionalService;
+import com.api.apibackend.Modules.Product.Application.DTOs.ProductDTO;
+import com.api.apibackend.Modules.Product.Application.DTOs.ResponseMessageDTO;
+import com.api.apibackend.Modules.Product.Domain.service.ProductConventionalService;
 
 @Service
 public class ProductPopulationUseCase {

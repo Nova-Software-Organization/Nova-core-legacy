@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Order.Domain.service;
+package com.api.apibackend.Modules.Order.Domain.service;
 
 /**
  * ----------------------------------------------------------------------------
@@ -20,30 +20,30 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.api.apibackend.modules.Customer.Application.DTOs.ClientRequest;
-import com.api.apibackend.modules.Customer.Domain.service.CustomerFilterService;
-import com.api.apibackend.modules.Customer.Domain.service.CustomerOrderService;
-import com.api.apibackend.modules.Customer.Infra.persistence.entity.CustomerEntity;
-import com.api.apibackend.modules.Customer.Infra.persistence.repository.CustomerRepository;
-import com.api.apibackend.modules.CustomerAddress.Domain.model.CustomerAddressRequest;
-import com.api.apibackend.modules.CustomerAddress.Domain.service.CustomerAddressOrderService;
-import com.api.apibackend.modules.MovementStock.Infra.persistence.entity.StockMovementEntity;
-import com.api.apibackend.modules.Order.Application.DTOs.OrderRequest;
-import com.api.apibackend.modules.Order.Domain.event.OrderCreatedEvent;
-import com.api.apibackend.modules.Order.Domain.exception.InsufficientStockException;
-import com.api.apibackend.modules.Order.Domain.exception.OrderCannotBeCreatedException;
-import com.api.apibackend.modules.Order.Domain.repository.IOrderCreationService;
-import com.api.apibackend.modules.Order.infra.persistence.entity.OrderEntity;
-import com.api.apibackend.modules.Order.infra.persistence.repository.OrderRepository;
-import com.api.apibackend.modules.OrderAddress.Infra.persistence.entity.OrderAddressEntity;
-import com.api.apibackend.modules.OrderItem.Domain.exception.NonExistentesItemsException;
-import com.api.apibackend.modules.OrderItem.Domain.service.OrderItemCreationService;
-import com.api.apibackend.modules.OrderItem.infra.persistence.entity.OrderItemEntity;
-import com.api.apibackend.modules.OrderItem.infra.persistence.repository.OrderItemRepository;
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
-import com.api.apibackend.modules.Product.Infra.repository.ProductRepository;
-import com.api.apibackend.modules.Stock.infra.persistence.entity.StockEntity;
-import com.api.apibackend.modules.Stock.infra.persistence.repository.StockRepository;
+import com.api.apibackend.Modules.Customer.Application.DTOs.ClientRequest;
+import com.api.apibackend.Modules.Customer.Domain.service.CustomerFilterService;
+import com.api.apibackend.Modules.Customer.Domain.service.CustomerOrderService;
+import com.api.apibackend.Modules.Customer.Infra.persistence.entity.CustomerEntity;
+import com.api.apibackend.Modules.Customer.Infra.persistence.repository.CustomerRepository;
+import com.api.apibackend.Modules.CustomerAddress.Domain.model.CustomerAddressRequest;
+import com.api.apibackend.Modules.CustomerAddress.Domain.service.CustomerAddressOrderService;
+import com.api.apibackend.Modules.MovementStock.Infra.persistence.entity.StockMovementEntity;
+import com.api.apibackend.Modules.Order.Application.DTOs.OrderRequest;
+import com.api.apibackend.Modules.Order.Domain.event.OrderCreatedEvent;
+import com.api.apibackend.Modules.Order.Domain.exception.InsufficientStockException;
+import com.api.apibackend.Modules.Order.Domain.exception.OrderCannotBeCreatedException;
+import com.api.apibackend.Modules.Order.Domain.repository.IOrderCreationService;
+import com.api.apibackend.Modules.Order.infra.persistence.entity.OrderEntity;
+import com.api.apibackend.Modules.Order.infra.persistence.repository.OrderRepository;
+import com.api.apibackend.Modules.OrderAddress.Infra.persistence.entity.OrderAddressEntity;
+import com.api.apibackend.Modules.OrderItem.Domain.exception.NonExistentesItemsException;
+import com.api.apibackend.Modules.OrderItem.Domain.service.OrderItemCreationService;
+import com.api.apibackend.Modules.OrderItem.infra.persistence.entity.OrderItemEntity;
+import com.api.apibackend.Modules.OrderItem.infra.persistence.repository.OrderItemRepository;
+import com.api.apibackend.Modules.Product.Infra.entity.ProductEntity;
+import com.api.apibackend.Modules.Product.Infra.repository.ProductRepository;
+import com.api.apibackend.Modules.Stock.infra.persistence.entity.StockEntity;
+import com.api.apibackend.Modules.Stock.infra.persistence.repository.StockRepository;
 
 import jakarta.transaction.Transactional;
 

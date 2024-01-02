@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Price.Application.useCases.PriceDelete;
+package com.api.apibackend.Modules.Price.Application.useCases.PriceDelete;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

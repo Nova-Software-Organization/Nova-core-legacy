@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Product.Domain.repository;
+package com.api.apibackend.Modules.Product.Domain.repository;
 
 /**
  * ----------------------------------------------------------------------------

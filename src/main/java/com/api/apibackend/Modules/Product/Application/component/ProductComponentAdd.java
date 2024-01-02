@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Product.Application.component;
+package com.api.apibackend.Modules.Product.Application.component;
 
 /**
  * ----------------------------------------------------------------------------
@@ -13,14 +13,14 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.api.apibackend.modules.Price.infra.entity.PriceEntity;
-import com.api.apibackend.modules.Price.infra.repository.PriceRepository;
-import com.api.apibackend.modules.Product.Application.DTOs.ProductDTO;
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
-import com.api.apibackend.modules.Supplier.Infra.entity.SupplierEntity;
-import com.api.apibackend.modules.Supplier.Infra.repository.SupplierRepository;
-import com.api.apibackend.modules.SupplierAddress.infra.persistence.entity.SupplierAddressEntity;
-import com.api.apibackend.modules.SupplierAddress.infra.repository.SupplierAddressRepository;
+import com.api.apibackend.Modules.Price.infra.entity.PriceEntity;
+import com.api.apibackend.Modules.Price.infra.repository.PriceRepository;
+import com.api.apibackend.Modules.Product.Application.DTOs.ProductDTO;
+import com.api.apibackend.Modules.Product.Infra.entity.ProductEntity;
+import com.api.apibackend.Modules.Supplier.Infra.entity.SupplierEntity;
+import com.api.apibackend.Modules.Supplier.Infra.repository.SupplierRepository;
+import com.api.apibackend.Modules.SupplierAddress.infra.persistence.entity.SupplierAddressEntity;
+import com.api.apibackend.Modules.SupplierAddress.infra.repository.SupplierAddressRepository;
 
 @Component
 public class ProductComponentAdd {

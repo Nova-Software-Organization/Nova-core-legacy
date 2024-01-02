@@ -6,7 +6,7 @@
  * ----------------------------------------------------------------------------
  */
 
-package com.api.apibackend.modules.SupplierAddress.Domain.service;
+package com.api.apibackend.Modules.SupplierAddress.Domain.service;
 
 import java.util.Optional;
 
@@ -15,10 +15,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.api.apibackend.modules.Supplier.Infra.entity.SupplierEntity;
-import com.api.apibackend.modules.Supplier.Infra.repository.SupplierRepository;
-import com.api.apibackend.modules.SupplierAddress.Application.DTOs.response.ResponseMessageDTO;
-import com.api.apibackend.modules.SupplierAddress.infra.repository.SupplierAddressRepository;
+import com.api.apibackend.Modules.Supplier.Infra.entity.SupplierEntity;
+import com.api.apibackend.Modules.Supplier.Infra.repository.SupplierRepository;
+import com.api.apibackend.Modules.SupplierAddress.Application.DTOs.response.ResponseMessageDTO;
+import com.api.apibackend.Modules.SupplierAddress.infra.repository.SupplierAddressRepository;
 
 @Service
 public class SupplierAddressDeleteService {

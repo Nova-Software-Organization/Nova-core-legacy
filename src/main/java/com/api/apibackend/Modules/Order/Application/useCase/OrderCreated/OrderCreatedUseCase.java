@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Order.Application.useCase.OrderCreated;
+package com.api.apibackend.Modules.Order.Application.useCase.OrderCreated;
 
 /**
  * ----------------------------------------------------------------------------
@@ -14,9 +14,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.api.apibackend.modules.Order.Application.DTOs.CreateOrderRequest;
-import com.api.apibackend.modules.Order.Domain.service.OrderCreationService;
-import com.api.apibackend.modules.Order.Domain.service.UpdateOrderService;
+import com.api.apibackend.Modules.Order.Application.DTOs.CreateOrderRequest;
+import com.api.apibackend.Modules.Order.Domain.service.OrderCreationService;
+import com.api.apibackend.Modules.Order.Domain.service.UpdateOrderService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

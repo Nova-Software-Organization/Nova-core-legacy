@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Auth.Domain.exception;
+package com.api.apibackend.Modules.Auth.Domain.exception;
 
 /**
  * ----------------------------------------------------------------------------

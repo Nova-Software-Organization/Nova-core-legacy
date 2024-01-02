@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Order.Domain.repository;
+package com.api.apibackend.Modules.Order.Domain.repository;
 
 /**
  * ----------------------------------------------------------------------------
@@ -13,7 +13,7 @@ import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
 
-import com.api.apibackend.modules.Order.infra.persistence.entity.OrderEntity;
+import com.api.apibackend.Modules.Order.infra.persistence.entity.OrderEntity;
 
 public interface IOrderCompletationReturnProcessorService {
     public ResponseEntity<List<OrderEntity>> getOrderList();

@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Coupon.Domain.exception;
+package com.api.apibackend.Modules.Coupon.Domain.exception;
 
 /**
  * ----------------------------------------------------------------------------

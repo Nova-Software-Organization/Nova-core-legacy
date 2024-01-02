@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Supplier.Domain.service;
+package com.api.apibackend.Modules.Supplier.Domain.service;
 
 /**
  * ----------------------------------------------------------------------------
@@ -17,14 +17,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.api.apibackend.modules.Supplier.Application.DTOs.ResponseMessageDTO;
-import com.api.apibackend.modules.Supplier.Application.DTOs.SupplierDTO;
-import com.api.apibackend.modules.Supplier.Application.repository.ISupplierService;
-import com.api.apibackend.modules.Supplier.Domain.exception.ErrorValidationSupplier;
-import com.api.apibackend.modules.Supplier.Infra.entity.SupplierEntity;
-import com.api.apibackend.modules.Supplier.Infra.repository.SupplierRepository;
-import com.api.apibackend.modules.Supplier.Infra.validation.SupplierValidation;
-import com.api.apibackend.modules.SupplierAddress.infra.persistence.entity.SupplierAddressEntity;
+import com.api.apibackend.Modules.Supplier.Application.DTOs.ResponseMessageDTO;
+import com.api.apibackend.Modules.Supplier.Application.DTOs.SupplierDTO;
+import com.api.apibackend.Modules.Supplier.Application.repository.ISupplierService;
+import com.api.apibackend.Modules.Supplier.Domain.exception.ErrorValidationSupplier;
+import com.api.apibackend.Modules.Supplier.Infra.entity.SupplierEntity;
+import com.api.apibackend.Modules.Supplier.Infra.repository.SupplierRepository;
+import com.api.apibackend.Modules.Supplier.Infra.validation.SupplierValidation;
+import com.api.apibackend.Modules.SupplierAddress.infra.persistence.entity.SupplierAddressEntity;
 
 @Service
 public class SupplierService implements ISupplierService {

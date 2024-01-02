@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.States.Domain.service;
+package com.api.apibackend.Modules.States.Domain.service;
 
 /**
  * ----------------------------------------------------------------------------
@@ -17,8 +17,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.api.apibackend.modules.States.Application.controller.StateResponse;
-import com.api.apibackend.modules.States.Domain.model.State;
+import com.api.apibackend.Modules.States.Application.controller.StateResponse;
+import com.api.apibackend.Modules.States.Domain.model.State;
 
 @Service
 public class StateService {

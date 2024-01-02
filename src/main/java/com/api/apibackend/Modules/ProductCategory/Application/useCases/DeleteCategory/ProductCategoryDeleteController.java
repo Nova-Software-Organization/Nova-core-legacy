@@ -6,7 +6,7 @@
  * ----------------------------------------------------------------------------
  */
 
-package com.api.apibackend.modules.ProductCategory.Application.useCases.DeleteCategory;
+package com.api.apibackend.Modules.ProductCategory.Application.useCases.DeleteCategory;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;

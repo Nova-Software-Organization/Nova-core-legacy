@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.States.Application.controller;
+package com.api.apibackend.Modules.States.Application.controller;
 
 /**
  * ----------------------------------------------------------------------------
@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.apibackend.modules.States.Application.repository.IStateController;
-import com.api.apibackend.modules.States.Domain.model.State;
-import com.api.apibackend.modules.States.Domain.service.StateService;
+import com.api.apibackend.Modules.States.Application.repository.IStateController;
+import com.api.apibackend.Modules.States.Domain.model.State;
+import com.api.apibackend.Modules.States.Domain.service.StateService;
 
 @RestController
 @RequestMapping("/v1")

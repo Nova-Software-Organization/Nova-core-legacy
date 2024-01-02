@@ -6,9 +6,9 @@
  * ----------------------------------------------------------------------------
  */
 
-package com.api.apibackend.modules.SupplierAddress.Application.DTOs;
+package com.api.apibackend.Modules.SupplierAddress.Application.DTOs;
 
-import com.api.apibackend.modules.Supplier.Application.DTOs.SupplierDTO;
+import com.api.apibackend.Modules.Supplier.Application.DTOs.SupplierDTO;
 
 import lombok.Data;
 
