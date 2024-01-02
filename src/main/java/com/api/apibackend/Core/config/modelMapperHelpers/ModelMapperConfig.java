@@ -1,5 +1,3 @@
-package com.api.apibackend.Core.config.modelMapperHelpers;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,6 +5,8 @@ package com.api.apibackend.Core.config.modelMapperHelpers;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+
+package com.api.apibackend.Core.config.modelMapperHelpers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

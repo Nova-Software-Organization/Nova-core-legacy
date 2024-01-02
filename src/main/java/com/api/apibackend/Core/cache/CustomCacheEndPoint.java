@@ -1,5 +1,3 @@
-package com.api.apibackend.Core.cache;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,6 +5,8 @@ package com.api.apibackend.Core.cache;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+
+package com.api.apibackend.Core.cache;
 
 import java.util.HashMap;
 import java.util.Map;
