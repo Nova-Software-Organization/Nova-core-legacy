@@ -20,7 +20,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "marca")
+@Table(name = "fornecedor_marca")
 public class BrandEntity implements Serializable {
 
     @Id
