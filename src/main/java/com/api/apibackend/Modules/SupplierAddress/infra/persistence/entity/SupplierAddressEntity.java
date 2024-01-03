@@ -55,7 +55,7 @@ public class SupplierAddressEntity implements Serializable {
      * Número da casa ou empresa no endereço do fornecedor.
      */
     @Column(name = "numero")
-    private String numberHouseOrCompany;
+    private String numberCompany;
 
     /**
      * CEP (Código de Endereçamento Postal) do endereço do fornecedor.

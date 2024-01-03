@@ -8,6 +8,8 @@
 
 package com.api.apibackend.Modules.SupplierAddress.Domain.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +20,6 @@ import com.api.apibackend.Modules.Supplier.Infra.repository.SupplierRepository;
 import com.api.apibackend.Modules.SupplierAddress.Application.DTOs.SupplierAddressDTO;
 import com.api.apibackend.Modules.SupplierAddress.Application.DTOs.response.ResponseMessageDTO;
 import com.api.apibackend.Modules.SupplierAddress.infra.persistence.entity.SupplierAddressEntity;
-
-import java.util.Optional;
 
 @Service
 public class SupplierAddressCreatedService {
@@ -55,12 +55,12 @@ public class SupplierAddressCreatedService {
 												? supplierAddressDTO.getNeighborhood()
 												: existingSupplier.get().getSupplierAddressEntity().getNeighborhood());
 
-						newSupplierAddress.setNumberHouseOrCompany(
+						newSupplierAddress.setNumberCompany(
 								supplierAddressDTO.getNumberHouseOrCompany() != existingSupplier
-										.get().getSupplierAddressEntity().getNumberHouseOrCompany()
+										.get().getSupplierAddressEntity().getNumberCompany()
 												? supplierAddressDTO.getNumberHouseOrCompany()
 												: existingSupplier.get().getSupplierAddressEntity()
-														.getNumberHouseOrCompany());
+														.getNumberCompany());
 
 						newSupplierAddress.setRoad(supplierAddressDTO.getRoad() != existingSupplier.get()
 								.getSupplierAddressEntity().getRoad() ? supplierAddressDTO.getRoad()

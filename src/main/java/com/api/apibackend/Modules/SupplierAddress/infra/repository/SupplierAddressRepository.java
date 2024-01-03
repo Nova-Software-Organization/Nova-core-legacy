@@ -17,6 +17,6 @@ import com.api.apibackend.Modules.SupplierAddress.infra.persistence.entity.Suppl
 
 @Repository
 public interface SupplierAddressRepository extends JpaRepository<SupplierAddressEntity, Long> {
-    Optional<SupplierAddressEntity> findByRoadAndNeighborhoodAndNumberHouseOrCompanyAndCep(
+    Optional<SupplierAddressEntity> findByRoadAndNeighborhoodAndNumberCompanyAndCep(
             String road, String neighborhood, String numberHouseOrCompany, String cep);
 }

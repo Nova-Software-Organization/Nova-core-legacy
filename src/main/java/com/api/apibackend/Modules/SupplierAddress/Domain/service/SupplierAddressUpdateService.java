@@ -18,8 +18,6 @@ import com.api.apibackend.Modules.SupplierAddress.Application.DTOs.SupplierAddre
 import com.api.apibackend.Modules.SupplierAddress.Application.DTOs.response.ResponseMessageDTO;
 import com.api.apibackend.Modules.SupplierAddress.infra.persistence.entity.SupplierAddressEntity;
 
-import java.util.Optional;
-
 @Service
 public class SupplierAddressUpdateService {
     private final SupplierRepository supplierRepository;
@@ -36,7 +34,7 @@ public class SupplierAddressUpdateService {
 
                     currentSupplierAddress.setCep(updatedSupplierAddressDTO.getCep());
                     currentSupplierAddress.setNeighborhood(updatedSupplierAddressDTO.getNeighborhood());
-                    currentSupplierAddress.setNumberHouseOrCompany(updatedSupplierAddressDTO.getNumberHouseOrCompany());
+                    currentSupplierAddress.setNumberCompany(updatedSupplierAddressDTO.getNumberHouseOrCompany());
                     currentSupplierAddress.setRoad(updatedSupplierAddressDTO.getRoad());
 
                     existingSupplier.setCnpj(updatedSupplierAddressDTO.getSupplierDTO().getCnpj());

@@ -57,7 +57,7 @@ public class ProductComponentAdd {
         supplierAddress.setCep(productDTO.getSupplierEntity().getSupplierAddress().getCep());
         supplierAddress.setRoad(productDTO.getSupplierEntity().getSupplierAddress().getRoad());
         supplierAddress.setNeighborhood(productDTO.getSupplierEntity().getSupplierAddress().getNeighborhood());
-        supplierAddress.setNumberHouseOrCompany(productDTO.getSupplierEntity().getSupplierAddress().getNumberHouseOrCompany());
+        supplierAddress.setNumberCompany(productDTO.getSupplierEntity().getSupplierAddress().getNumberHouseOrCompany());
         supplierAddressRepository.save(supplierAddress);
 
         SupplierEntity supplier = new SupplierEntity();
