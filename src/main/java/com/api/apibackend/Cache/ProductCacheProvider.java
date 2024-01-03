@@ -1,5 +1,3 @@
-package com.api.apibackend.Modules.Cache;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,6 +5,9 @@ package com.api.apibackend.Modules.Cache;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+
+package com.api.apibackend.Cache;
+
 public class ProductCacheProvider {
     
 }

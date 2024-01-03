@@ -1,5 +1,3 @@
-package com.api.apibackend.Modules.Stock.infra.persistence.entity;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -8,6 +6,8 @@ package com.api.apibackend.Modules.Stock.infra.persistence.entity;
  * ----------------------------------------------------------------------------
  * Representa uma entidade de Estoque no sistema.
  */
+
+package com.api.apibackend.Modules.Stock.Infra.persistence.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;

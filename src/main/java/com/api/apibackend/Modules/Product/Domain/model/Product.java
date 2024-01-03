@@ -1,5 +1,3 @@
-package com.api.apibackend.Modules.Product.Domain.model;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -8,11 +6,13 @@ package com.api.apibackend.Modules.Product.Domain.model;
  * ----------------------------------------------------------------------------
  */
 
+package com.api.apibackend.Modules.Product.Domain.model;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import com.api.apibackend.Modules.Stock.infra.persistence.entity.StockEntity;
+import com.api.apibackend.Modules.Stock.Infra.persistence.entity.StockEntity;
 import com.fasterxml.jackson.annotation.JsonAlias;
 
 import lombok.Data;
