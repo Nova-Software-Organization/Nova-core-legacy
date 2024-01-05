@@ -26,6 +26,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -39,7 +40,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @Entity
 @Table(name = "fornecedor")
-@EqualsAndHashCode(of = "idSupplier")
+@EqualsAndHashCode(of = "id")
 public class SupplierEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -106,5 +107,10 @@ public class SupplierEntity implements Serializable {
      * Lista de marcas fornecidas pelo fornecedor.
      */
     @ManyToMany
+    @JoinTable(
+        name = "fornecedor_marca",
+        joinColumns = @JoinColumn(name = "idfornecedor"),
+        inverseJoinColumns = @JoinColumn(name = "idmarca")
+    )
     private List<BrandEntity> brandsProvided;
 }

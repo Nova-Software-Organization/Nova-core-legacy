@@ -50,7 +50,7 @@ public class UserEntity implements UserDetails {
      * Identificador único do usuário.
      */
     @Id
-    @Column(name = "user_id")
+    @Column(name = "iduser")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -91,6 +91,7 @@ public class UserEntity implements UserDetails {
     /**
      * Conjunto de papéis (roles) do usuário.
      */
+    @Column(name = "permicao")
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<CustomGrantedAuthority> roles;
 

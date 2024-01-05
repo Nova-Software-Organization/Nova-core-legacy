@@ -11,7 +11,7 @@ package com.api.apibackend.Modules.MovementStock.Infra.persistence.entity;
 
 import java.util.Date;
 
-import com.api.apibackend.Modules.Stock.infra.persistence.entity.StockEntity;
+import com.api.apibackend.Modules.Stock.Infra.persistence.entity.StockEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

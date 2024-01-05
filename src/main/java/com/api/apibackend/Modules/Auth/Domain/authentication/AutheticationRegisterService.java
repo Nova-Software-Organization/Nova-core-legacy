@@ -43,7 +43,7 @@ import com.api.apibackend.Modules.CustomerAddress.infra.entity.AddressEntity;
 import jakarta.transaction.Transactional;
 
 @Service
-public class AutheticationRegister implements IAutheticationRegister {
+public class AutheticationRegisterService implements IAutheticationRegister {
     private PasswordEncoder passwordEncoder;
     private CustomerService clientServiceImp;
     private UserService userService;
@@ -58,7 +58,7 @@ public class AutheticationRegister implements IAutheticationRegister {
     private UserRepository userRepository;
 
     @Autowired
-    public AutheticationRegister(
+    public AutheticationRegisterService(
             AutheticationValidationServiceHandler autheticationValidationServiceHandler,
             CustomerFilterService clientSearchService,
             CustomerService clientServiceImp,
@@ -86,7 +86,7 @@ public class AutheticationRegister implements IAutheticationRegister {
     }
 
     @Transactional
-    public ResponseEntity<ResponseMessageDTO> registerUserWithSeparateData(CustomerDTO customerDTO,
+    public ResponseEntity<ResponseMessageDTO> register(CustomerDTO customerDTO,
             CustomerAddressDTO customerAddressDTO) {
         try {
             String emailValidation = autheticationValidationServiceHandler.isValidEmail(customerDTO.getEmail());

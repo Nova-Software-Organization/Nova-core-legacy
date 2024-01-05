@@ -120,7 +120,7 @@ public class CustomerEntity implements Serializable {
      * Usuário associado ao cliente.
      */
     @OneToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "iduser")
     private UserEntity user;
 
     /**

@@ -21,7 +21,7 @@ import com.api.apibackend.Modules.Product.Domain.model.Product;
 import com.api.apibackend.Modules.Product.Domain.repository.IGetFirstService;
 import com.api.apibackend.Modules.Product.Infra.entity.ProductEntity;
 import com.api.apibackend.Modules.Product.Infra.repository.ProductRepository;
-import com.api.apibackend.Modules.Stock.infra.persistence.entity.StockEntity;
+import com.api.apibackend.Modules.Stock.Infra.persistence.entity.StockEntity;
 
 @Service
 public class GetFirstProductService implements IGetFirstService {

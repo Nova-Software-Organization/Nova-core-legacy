@@ -1,5 +1,3 @@
-package com.api.apibackend.Modules.Product.Domain.service;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,6 +5,8 @@ package com.api.apibackend.Modules.Product.Domain.service;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+
+package com.api.apibackend.Modules.Product.Domain.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,7 +21,7 @@ import com.api.apibackend.Modules.Product.Domain.model.Product;
 import com.api.apibackend.Modules.Product.Domain.repository.IGetAllProductService;
 import com.api.apibackend.Modules.Product.Infra.entity.ProductEntity;
 import com.api.apibackend.Modules.Product.Infra.repository.ProductRepository;
-import com.api.apibackend.Modules.Stock.infra.persistence.entity.StockEntity;
+import com.api.apibackend.Modules.Stock.Infra.persistence.entity.StockEntity;
 
 @Service
 public class GetAllProductService implements IGetAllProductService {

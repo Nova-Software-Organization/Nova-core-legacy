@@ -24,7 +24,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "carrinho_item")
+@Table(name = "item_carrinho")
 public class CartItemEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;

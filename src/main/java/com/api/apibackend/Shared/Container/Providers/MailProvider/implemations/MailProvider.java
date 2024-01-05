@@ -1,12 +1,14 @@
-package com.api.apibackend.Modules.Cache;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
  * Empresa: Nova Software
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
+ * Aviso! O mail provider sera ativado quando se tratar do ambiente local de desenvolvimento da aplicação!
  */
-public class ProductCacheProvider {
+
+package com.api.apibackend.Shared.Container.Providers.MailProvider.implemations;
+
+public class MailProvider {
     
 }

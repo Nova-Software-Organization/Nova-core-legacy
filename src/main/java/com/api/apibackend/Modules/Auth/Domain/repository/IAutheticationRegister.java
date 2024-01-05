@@ -18,7 +18,7 @@ import com.api.apibackend.Modules.Customer.Application.DTOs.registration.Custome
 import com.api.apibackend.Modules.Customer.Application.DTOs.registration.CustomerDTO;
 
 public interface IAutheticationRegister {
-    ResponseEntity<ResponseMessageDTO> registerUserWithSeparateData(CustomerDTO customerDTO,
+    ResponseEntity<ResponseMessageDTO> register(CustomerDTO customerDTO,
             CustomerAddressDTO CustomerAddressDTO);
 
     Set<CustomGrantedAuthority> convertRolesToCustomAuthorities(Set<CustomGrantedAuthority> roles);

@@ -1,5 +1,3 @@
-package com.api.apibackend.Modules.Order.Domain.repository;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,6 +5,8 @@ package com.api.apibackend.Modules.Order.Domain.repository;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+
+package com.api.apibackend.Modules.Order.Domain.repository;
 
 import java.util.List;
 import java.util.Map;
@@ -22,7 +22,7 @@ import com.api.apibackend.Modules.Order.Domain.exception.OrderCannotBeCreatedExc
 import com.api.apibackend.Modules.Order.infra.persistence.entity.OrderEntity;
 import com.api.apibackend.Modules.OrderItem.Domain.exception.NonExistentesItemsException;
 import com.api.apibackend.Modules.OrderItem.infra.persistence.entity.OrderItemEntity;
-import com.api.apibackend.Modules.Stock.infra.persistence.entity.StockEntity;
+import com.api.apibackend.Modules.Stock.Infra.persistence.entity.StockEntity;
 
 public interface IOrderCreationService {
     ResponseEntity<String> createOrder(OrderRequest orderRequest, CustomerAddressRequest customerAddress,

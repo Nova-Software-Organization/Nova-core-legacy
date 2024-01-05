@@ -1,0 +1,20 @@
+CREATE TABLE cupom (
+    idcoupon SERIAL PRIMARY KEY,
+    codigo_cupom VARCHAR(50) UNIQUE,
+    tipo_desconto VARCHAR(20),
+    valor_desconto DOUBLE PRECISION,
+    data_expiracao DATE,
+    condicoes VARCHAR(255),
+    usos_restantes INTEGER,
+    status_cupom VARCHAR(20),
+    usos_maximos_cliente INTEGER,
+    codigo_campanha VARCHAR(50),
+    data_inicio DATE,
+    informacoes_uso VARCHAR(255),
+    tipo_cliente VARCHAR(50),
+    valor_minimo_pedido DOUBLE PRECISION,
+    notas VARCHAR(255),
+    data_criacao DATE,
+    codigo_barras_qr VARCHAR(100),
+    ativo INTEGER
+);

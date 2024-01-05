@@ -57,7 +57,7 @@ public class SupplierService implements ISupplierService {
             supplierAddressEntity.setCep(supplierRequest.getSupplierAddress().getCep());
             supplierAddressEntity.setNeighborhood(supplierRequest.getSupplierAddress().getNeighborhood());
             supplierAddressEntity
-                    .setNumberHouseOrCompany(supplierRequest.getSupplierAddress().getNumberHouseOrCompany());
+                    .setNumberCompany(supplierRequest.getSupplierAddress().getNumberHouseOrCompany());
             supplierAddressEntity.setRoad(supplierRequest.getSupplierAddress().getRoad());
 
             supplierEntity = new SupplierEntity();
@@ -119,7 +119,7 @@ public class SupplierService implements ISupplierService {
                 SupplierAddressEntity supplierAddressEntity = new SupplierAddressEntity();
                 supplierAddressEntity.setCep(updatedSupplier.getSupplierAddress().getCep());
                 supplierAddressEntity.setNeighborhood(updatedSupplier.getSupplierAddress().getNeighborhood());
-                supplierAddressEntity.setNumberHouseOrCompany(updatedSupplier.getSupplierAddress().getNumberHouseOrCompany());
+                supplierAddressEntity.setNumberCompany(updatedSupplier.getSupplierAddress().getNumberHouseOrCompany());
                 supplierAddressEntity.setRoad(updatedSupplier.getSupplierAddress().getRoad());
     
                 existingSupplier.setCnpj(updatedSupplier.getCnpj());

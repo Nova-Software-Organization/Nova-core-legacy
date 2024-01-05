@@ -32,7 +32,7 @@ import com.api.apibackend.Modules.Auth.Infra.persistence.repository.UserReposito
 import jakarta.validation.Valid;
 
 @Service
-public class AuthorizationLogin implements IAutheticationLogin {
+public class AuthorizationLoginService implements IAutheticationLogin {
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
     private AuthenticationManager authenticationManager;
@@ -40,7 +40,7 @@ public class AuthorizationLogin implements IAutheticationLogin {
     private AnonymizationService anonymizationService;
 
     @Autowired
-    public AuthorizationLogin(
+    public AuthorizationLoginService(
             UserRepository userRepository,
             PasswordEncoder passwordEncoder,
             AuthenticationManager authenticationManager,

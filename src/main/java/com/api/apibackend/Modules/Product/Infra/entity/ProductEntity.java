@@ -1,5 +1,3 @@
-package com.api.apibackend.Modules.Product.Infra.entity;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -9,6 +7,8 @@ package com.api.apibackend.Modules.Product.Infra.entity;
  * Representa uma entidade de Produto dentro da empresa.
  */
 
+package com.api.apibackend.Modules.Product.Infra.entity;
+
 import java.io.Serializable;
 
 import org.springframework.context.annotation.Lazy;
@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Lazy;
 import com.api.apibackend.Modules.Midia.infra.persistence.entity.MidiaEntity;
 import com.api.apibackend.Modules.Price.infra.entity.PriceEntity;
 import com.api.apibackend.Modules.ProductCategory.infra.persistence.entity.ProductCategoryEntity;
-import com.api.apibackend.Modules.Stock.infra.persistence.entity.StockEntity;
+import com.api.apibackend.Modules.Stock.Infra.persistence.entity.StockEntity;
 import com.api.apibackend.Modules.Supplier.Infra.entity.SupplierEntity;
 import com.api.apibackend.Modules.Unity.infra.persistence.entity.UnityEntity;
 

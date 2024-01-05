@@ -1,5 +1,3 @@
-package com.api.apibackend.Modules.Product.Domain.service;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,6 +5,8 @@ package com.api.apibackend.Modules.Product.Domain.service;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+
+package com.api.apibackend.Modules.Product.Domain.service;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -29,8 +29,8 @@ import com.api.apibackend.Modules.Product.Infra.entity.ProductEntity;
 import com.api.apibackend.Modules.Product.Infra.repository.ProductRepository;
 import com.api.apibackend.Modules.ProductCategory.infra.persistence.entity.ProductCategoryEntity;
 import com.api.apibackend.Modules.ProductCategory.infra.persistence.repository.ProductCategoryRepository;
-import com.api.apibackend.Modules.Stock.infra.persistence.entity.StockEntity;
-import com.api.apibackend.Modules.Stock.infra.persistence.repository.StockRepository;
+import com.api.apibackend.Modules.Stock.Infra.persistence.entity.StockEntity;
+import com.api.apibackend.Modules.Stock.Infra.persistence.repository.StockRepository;
 import com.api.apibackend.Modules.Supplier.Infra.entity.SupplierEntity;
 import com.api.apibackend.Modules.Unity.infra.persistence.entity.UnityEntity;
 import com.api.apibackend.Modules.Unity.infra.persistence.repository.UnityRepository;

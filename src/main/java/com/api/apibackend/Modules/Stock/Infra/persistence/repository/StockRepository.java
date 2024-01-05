@@ -1,5 +1,3 @@
-package com.api.apibackend.Modules.Stock.infra.persistence.repository;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -8,10 +6,12 @@ package com.api.apibackend.Modules.Stock.infra.persistence.repository;
  * ----------------------------------------------------------------------------
  */
 
+package com.api.apibackend.Modules.Stock.Infra.persistence.repository;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.api.apibackend.Modules.Stock.infra.persistence.entity.StockEntity;
+import com.api.apibackend.Modules.Stock.Infra.persistence.entity.StockEntity;
 
 @Repository
 public interface StockRepository extends JpaRepository<StockEntity, Long> { }

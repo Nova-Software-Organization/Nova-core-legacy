@@ -1,5 +1,3 @@
-package com.api.apibackend.Modules.Order.Domain.service;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,6 +5,8 @@ package com.api.apibackend.Modules.Order.Domain.service;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+
+package com.api.apibackend.Modules.Order.Domain.service;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -42,8 +42,8 @@ import com.api.apibackend.Modules.OrderItem.infra.persistence.entity.OrderItemEn
 import com.api.apibackend.Modules.OrderItem.infra.persistence.repository.OrderItemRepository;
 import com.api.apibackend.Modules.Product.Infra.entity.ProductEntity;
 import com.api.apibackend.Modules.Product.Infra.repository.ProductRepository;
-import com.api.apibackend.Modules.Stock.infra.persistence.entity.StockEntity;
-import com.api.apibackend.Modules.Stock.infra.persistence.repository.StockRepository;
+import com.api.apibackend.Modules.Stock.Infra.persistence.entity.StockEntity;
+import com.api.apibackend.Modules.Stock.Infra.persistence.repository.StockRepository;
 
 import jakarta.transaction.Transactional;
 
