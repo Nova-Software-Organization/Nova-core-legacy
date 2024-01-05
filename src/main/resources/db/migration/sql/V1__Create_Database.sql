@@ -1,10 +1,3 @@
-CREATE TABLE IF NOT EXISTS `carrinho` (
-  `idcarrinho` bigint(20) NOT NULL AUTO_INCREMENT,
-  `idcliente` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`idcarrinho`),
-  KEY `FKlda51s899dorea94ikuol8ni5` (`idcliente`),
-  CONSTRAINT `FKlda51s899dorea94ikuol8ni5` FOREIGN KEY (`idcliente`) REFERENCES `cliente` (`idcliente`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE IF NOT EXISTS `cliente` (
   `idcliente` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -25,6 +18,14 @@ CREATE TABLE IF NOT EXISTS `cliente` (
   UNIQUE KEY `UK_jct6ap90g91aekq11wsr5edvw` (`iduser`),
   CONSTRAINT `FKhlng7835yit2joydd1j9pdbrm` FOREIGN KEY (`iduser`) REFERENCES `usuario` (`iduser`),
   CONSTRAINT `FKm24mmv5tmaws77i4p3i9o0spg` FOREIGN KEY (`idendereco`) REFERENCES `endereco` (`idendereco`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE IF NOT EXISTS `carrinho` (
+  `idcarrinho` bigint(20) NOT NULL AUTO_INCREMENT,
+  `idcliente` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`idcarrinho`),
+  KEY `FKlda51s899dorea94ikuol8ni5` (`idcliente`),
+  CONSTRAINT `FKlda51s899dorea94ikuol8ni5` FOREIGN KEY (`idcliente`) REFERENCES `cliente` (`idcliente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE IF NOT EXISTS `contato` (

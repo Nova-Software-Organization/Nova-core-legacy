@@ -8,29 +8,30 @@
 
 package com.api.apibackend.Modules.Auth.Application.useCases.AuthenticateCustomer;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.api.apibackend.Modules.Auth.Application.DTOs.response.LoginResponseDTO;
-import com.api.apibackend.Modules.Auth.Domain.authentication.AuthorizationLogin;
+import com.api.apibackend.Modules.Auth.Domain.authentication.AuthorizationLoginService;
 import com.api.apibackend.Modules.Auth.Domain.model.LoginRequest;
 
 @Service
 public class AuthenticateCustomerUseCase {
-    private final AuthorizationLogin authenticationLogin;
+    private final AuthorizationLoginService authenticationLogin;
 
     @Autowired
-    public AuthenticateCustomerUseCase(AuthorizationLogin authenticationLogin) {
+    public AuthenticateCustomerUseCase(AuthorizationLoginService authenticationLogin) {
         this.authenticationLogin = authenticationLogin;
     }
 
     public ResponseEntity<LoginResponseDTO> execute(LoginRequest loginRequest) {
         try {
-            if (loginRequest == null) {
-                throw new IllegalArgumentException("Erro: dados de login não fornecidos");
-            }
+            Optional.ofNullable(loginRequest)
+                    .orElseThrow(() -> new IllegalArgumentException("Erro: dados de login não fornecidos"));
             return authenticationLogin.login(loginRequest);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)

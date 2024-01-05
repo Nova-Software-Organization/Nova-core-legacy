@@ -38,8 +38,9 @@ public class RegisterCustomerController {
     @Operation(summary = "Rota responsável por registrar o usuário e gerar um token de autenticação para o mesmo!")
     public ResponseEntity<ResponseMessageDTO> handle(@RequestBody RegistrationRequest registrationRequest) {
         try {
-            return registerCustomerUseCase.execute(registrationRequest.getCustomerDTO(),
-                    registrationRequest.getCustomerAddressDTO());
+            return registerCustomerUseCase.execute(
+                registrationRequest.getCustomerDTO(),
+                registrationRequest.getCustomerAddressDTO());
         } catch (IllegalArgumentException ex) {
             return ResponseEntity.badRequest().body(
                     new ResponseMessageDTO(null, this.getClass().getSimpleName(), ex.getMessage(), null));

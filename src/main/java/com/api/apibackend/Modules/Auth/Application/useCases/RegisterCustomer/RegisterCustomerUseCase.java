@@ -8,41 +8,38 @@
 
 package com.api.apibackend.Modules.Auth.Application.useCases.RegisterCustomer;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.api.apibackend.Modules.Auth.Application.DTOs.response.ResponseMessageDTO;
-import com.api.apibackend.Modules.Auth.Domain.authentication.AutheticationRegister;
+import com.api.apibackend.Modules.Auth.Domain.authentication.AutheticationRegisterService;
 import com.api.apibackend.Modules.Customer.Application.DTOs.registration.CustomerAddressDTO;
 import com.api.apibackend.Modules.Customer.Application.DTOs.registration.CustomerDTO;
 
 @Service
 public class RegisterCustomerUseCase {
-    private AutheticationRegister autheticationRegister;
+    private AutheticationRegisterService autheticationRegister;
 
     @Autowired
-    public RegisterCustomerUseCase(AutheticationRegister autheticationRegister) {
+    public RegisterCustomerUseCase(AutheticationRegisterService autheticationRegister) {
         this.autheticationRegister = autheticationRegister;
     }
 
     public ResponseEntity<ResponseMessageDTO> execute(CustomerDTO customerDTO, CustomerAddressDTO customerAddressDTO) {
         try {
-            if (customerDTO == null || customerAddressDTO == null) {
-                throw new IllegalArgumentException("Erro: dados de cliente ou endereço não fornecidos");
-            }
-
-            ResponseEntity<ResponseMessageDTO> registrationResponse = autheticationRegister
-                    .registerUserWithSeparateData(customerDTO, customerAddressDTO);
-            if (registrationResponse.getStatusCode() == HttpStatus.CREATED) {
-                return registrationResponse;
-            } else {
-                return ResponseEntity.badRequest().body(
-                        new ResponseMessageDTO(registrationResponse.getBody().getMessage(),
-                                this.getClass().getSimpleName(), registrationResponse.getBody().getErrorMessage(),
-                                null));
-            }
+            return Optional.ofNullable(customerDTO)
+                    .map(dto -> Optional.ofNullable(customerAddressDTO)
+                            .map(addressDTO -> autheticationRegister.register(dto, addressDTO))
+                            .filter(response -> response.getStatusCode() == HttpStatus.CREATED)
+                            .orElseGet(() -> ResponseEntity.badRequest().body(new ResponseMessageDTO(
+                                    "Erro: dados de cliente ou endereço não fornecidos",
+                                    this.getClass().getSimpleName(), null, null))))
+                    .orElseThrow(
+                            () -> new IllegalArgumentException("Erro: dados de cliente ou endereço não fornecidos"));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(new ResponseMessageDTO(null, this.getClass().getSimpleName(),
