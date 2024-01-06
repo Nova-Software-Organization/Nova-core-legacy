@@ -63,10 +63,6 @@ public class AutheticationValidationServiceHandler {
 			return "A senha deve conter pelo menos uma letra maiúscula.";
 		}
 
-		if (!password.matches(".*[a-z].*")) {
-			return "A senha deve conter pelo menos uma letra minúscula.";
-		}
-
 		if (!password.matches(".*\\d.*")) {
 			return "A senha deve conter pelo menos um número.";
 		}
@@ -86,8 +82,8 @@ public class AutheticationValidationServiceHandler {
 			int digit = Character.getNumericValue(cpf.charAt(i));
 			sum += digit * (10 - i);
 		}
-		int firstDigit = 11 - (sum % 11);
 
+		int firstDigit = 11 - (sum % 11);
 		if (firstDigit == 10 || firstDigit == 11) {
 			firstDigit = 0;
 		}
@@ -103,7 +99,6 @@ public class AutheticationValidationServiceHandler {
 		}
 
 		int secondDigit = 11 - (sum % 11);
-
 		if (secondDigit == 10 || secondDigit == 11) {
 			secondDigit = 0;
 		}
@@ -120,13 +115,18 @@ public class AutheticationValidationServiceHandler {
 			return "O email não pode estar em branco.";
 		}
 
-		String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
+		if (email.length() > 255) {
+			return "O email não pode ter mais de 255 caracteres.";
+		}
+
+		String regex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\\\.[A-Za-z]{2,6}$\";\n";
 		if (!email.matches(regex)) {
 			return "O email não é válido.";
 		}
 
 		return null;
 	}
+
 
 	public boolean isValidEmailBoolean(String email) {
 		return email != null && email.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}");

@@ -6,7 +6,7 @@
  * ----------------------------------------------------------------------------
  */
 
-package com.api.apibackend.Modules.Order.Domain.service;
+package com.api.apibackend.Modules.Order.Domain.service.filters;
 
 import java.util.List;
 

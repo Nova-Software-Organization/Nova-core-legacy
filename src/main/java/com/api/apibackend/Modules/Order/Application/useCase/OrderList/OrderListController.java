@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.apibackend.Modules.Order.Application.DTOs.ResponseMessageDTO;
-import com.api.apibackend.Modules.Order.Domain.service.OrderListService;
+import com.api.apibackend.Modules.Order.Domain.service.filters.OrderListService;
 import com.api.apibackend.Modules.Order.infra.persistence.entity.OrderEntity;
 
 import io.swagger.v3.oas.annotations.Operation;

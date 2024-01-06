@@ -44,7 +44,8 @@ public class AuthorizationLoginService implements IAutheticationLogin {
             UserRepository userRepository,
             PasswordEncoder passwordEncoder,
             AuthenticationManager authenticationManager,
-            GeneratedTokenAuthorizationService generatedTokenAuthorizationService) {
+            GeneratedTokenAuthorizationService generatedTokenAuthorizationService
+    ) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
