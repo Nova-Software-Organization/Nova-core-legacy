@@ -17,8 +17,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.client.RestTemplate;
 
-import com.api.apibackend.Core.config.environment.DevConfig;
-import com.api.apibackend.Core.config.environment.ProdConfig;
+import com.api.apibackend.core.config.environment.DevConfig;
+import com.api.apibackend.core.config.environment.ProdConfig;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
