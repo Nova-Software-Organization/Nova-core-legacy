@@ -17,12 +17,14 @@ import com.api.apibackend.Modules.Customer.Infra.persistence.entity.CustomerEnti
 import com.api.apibackend.Modules.Customer.Infra.persistence.repository.CustomerRepository;
 import com.api.apibackend.Modules.CustomerAddress.Domain.helpers.CustomerAddressModelMapper;
 import com.api.apibackend.Modules.CustomerAddress.infra.entity.AddressEntity;
+import jakarta.persistence.EntityManagerFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.logging.Logger;
 import org.junit.platform.commons.logging.LoggerFactory;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
@@ -80,6 +82,8 @@ class AutheticationRegisterServiceIntegrationTest {
     @InjectMocks
     private AutheticationRegisterService autheticationRegisterService;
 
+    @Autowired
+    private EntityManagerFactory entityManagerFactory;
     private static final Logger logger = LoggerFactory.getLogger(AutheticationRegisterServiceIntegrationTest.class);
 
     @Test
