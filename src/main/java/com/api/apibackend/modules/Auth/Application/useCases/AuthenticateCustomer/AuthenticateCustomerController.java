@@ -23,6 +23,8 @@ import com.api.apibackend.modules.Customer.Domain.exception.ClientNotFoundExcept
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("v1/auth")
 public class AuthenticateCustomerController {
@@ -39,6 +41,8 @@ public class AuthenticateCustomerController {
     @Operation(summary = "Rota responsavel por efetuar o login de um usuario dentro da aplicação, desta forma disponibilazando que ele tenha acesso as outras paginas!")
     public ResponseEntity<LoginResponseDTO> handle(@RequestBody LoginRequest loginRequest) throws Exception {
         try {
+            Optional.ofNullable(loginRequest)
+                  .orElseThrow(() -> new IllegalArgumentException("Erro: dados de login não fornecidos"));
             return customerLoginUseCase.execute(loginRequest);
         } catch (ClientNotFoundException ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new LoginResponseDTO("Usuario não encontrado"));

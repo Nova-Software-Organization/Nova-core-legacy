@@ -39,8 +39,8 @@ public class RegisterCustomerController {
     public ResponseEntity<ResponseMessageDTO> handle(@RequestBody RegistrationRequest registrationRequest) {
         try {
             return registerCustomerUseCase.execute(
-                registrationRequest.getCustomerDTO(),
-                registrationRequest.getCustomerAddressDTO());
+                    registrationRequest.getCustomerDTO(),
+                    registrationRequest.getCustomerAddressDTO());
         } catch (IllegalArgumentException ex) {
             return ResponseEntity.badRequest().body(
                     new ResponseMessageDTO(null, this.getClass().getSimpleName(), ex.getMessage(), null));

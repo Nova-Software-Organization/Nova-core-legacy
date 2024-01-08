@@ -30,8 +30,6 @@ public class AuthenticateCustomerUseCase {
 
     public ResponseEntity<LoginResponseDTO> execute(LoginRequest loginRequest) {
         try {
-            Optional.ofNullable(loginRequest)
-                    .orElseThrow(() -> new IllegalArgumentException("Erro: dados de login não fornecidos"));
             return authenticationLogin.login(loginRequest);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)

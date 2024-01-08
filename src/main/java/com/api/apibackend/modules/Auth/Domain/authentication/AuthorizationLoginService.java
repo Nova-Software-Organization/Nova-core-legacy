@@ -52,7 +52,7 @@ public class AuthorizationLoginService implements IAutheticationLogin {
         this.generatedTokenAuthorizationService = generatedTokenAuthorizationService;
     }
 
-    public ResponseEntity<LoginResponseDTO> login(@Valid @RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<LoginResponseDTO> login(@RequestBody @Valid LoginRequest loginRequest) {
         try {
             validateLoginRequest(loginRequest);
 

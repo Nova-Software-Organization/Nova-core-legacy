@@ -2,6 +2,7 @@ package com.api.apibackend.modules.Auth.Infra.validation;
 
 import com.api.apibackend.modules.Auth.Infra.validation.utils.DocumentValidator;
 import com.api.apibackend.modules.Auth.Infra.validation.utils.EmailValidator;
+import com.api.apibackend.modules.Auth.Infra.validation.utils.PasswordValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -100,6 +101,42 @@ public class AutheticationValidationServiceTest {
         assertTrue(errorsList.size() >= 5, "Pelo menos 5 CPFs devem ser inválidos.");
         if (!errorsList.isEmpty()) {
             System.out.println("CPFs que causaram erro de validação: \n" + String.join(", ", customerInvalidCpfs));
+        }
+    }
+
+    @Test
+    @DisplayName("TestRegisterInvalidPassword")
+    public void test_Register_When_InvalidPassword_ReturnError() {
+        Set<String> errorsList = new HashSet<>();
+        List<String> customerInvalidPassword = Arrays.asList(
+                "kfjslfkdsB",
+                "987.654.321-01",
+                "000.111.222-33",
+                "999.888.777-66",
+                "12345678900",
+                "WeakPassword123",
+                "password",
+                "123456789",
+                "abcdefghi"
+        );
+
+        PasswordValidator passwordValidator = new PasswordValidator();
+        Mockito.lenient().when(autheticationValidationServiceHandler.isValidPassword(anyString())).thenAnswer(invocation -> {
+            String password = invocation.getArgument(0);
+            return passwordValidator.isValidPassword(password);
+        });
+
+        for (String invalidPassword : customerInvalidPassword) {
+            boolean isValid = Boolean.parseBoolean(passwordValidator.isValidPassword(invalidPassword));
+            if (!isValid) {
+                errorsList.add("Password inválido: " + invalidPassword);
+                System.out.println("Password se encontra inválido: " + invalidPassword);
+            }
+        }
+
+        assertEquals(errorsList.size(), customerInvalidPassword.size());
+        if (!errorsList.isEmpty()) {
+            System.out.println("Senhas que causaram erro de validação: \n" + String.join(", ", customerInvalidPassword));
         }
     }
 }
