@@ -1,75 +1,40 @@
-name: Nova-core file deployment staging
+name: Nova core Application
+
 on:
   push:
-    branches:
-      - staging
-  pull_request:
-    branches:
-      - "staging"
+    branches: [master,
+    staging]
 
 jobs:
-  build_and_deploy_staging:
+  build:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        java-version: [17, 21]
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
-      - name: Set up JDK ${{ matrix.java-version }}
+      - name: Setup Java
         uses: actions/setup-java@v3
         with:
-          java-version: ${{ matrix.java-version }}
-          distribution: 'temurin'
-
-      - name: Build project and run tests
-        run: |
-          mvn clean install -DskipTests
-
-      - name: Login Docker Hub
-        run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
-
-      - name: Build Docker image for staging
-        run: docker build -t ikaue573/nova-core-staging .
-
-      - name: Push Docker image to Docker Hub for staging
-        run: docker push ikaue573/nova-core-staging
-
-      - name: Archive built artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: project-artifact-staging
-          path: ./
-          
-  deploy_to_staging:
-    runs-on: ubuntu-latest
-    needs: build_and_deploy_staging
-
-    steps:
-      - name: Download project artifact from staging build
-        uses: actions/download-artifact@v2
-        with:
-          name: project-artifact-staging
-          path: ./downloaded-project-staging
-
-      - name: Check the contents of the downloaded project for staging
-        run: ls -l ./downloaded-project-staging
-
-      - name: Set up JDK for staging deployment
-        uses: actions/setup-java@v2
-        with:
+          distribution: temurin
           java-version: 17
-
-      - name: Change directory to the downloaded project for staging
-        run: cd downloaded-project-staging
-
-      - name: Run tests on downloaded project for staging
+      - name: Build project
+        run: mvn clean install
+      - name: Login docker
+        run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
+      - name: Build docker image
+        run: docker build -t ikaue573/nova-core-staging.
+      - name: Publish image ikaue573/nova-core-staging
+        run: docker push
+      - name: Run tests on downloaded project
         run: |
-          ./mvnw test
-    
-      - name: Run Spring application with dev profile
-        run: |
-          java -Dspring.profiles.active=dev -jar apibackend-0.0.1-SNAPSHOT.jar
+            ./mvnw test
+
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Pull image docker hub
+        run: docker pull ikaue573/nova-core-staging:latest
+      - name: remove container
+        run: docker rm -f nova-core
+      - name: Run docker container nova-core
+        run: docker run -d -p 8080:8080 -e DATABASE_URL=${{secrets.DATABASE_URL}} -e DATABASE_PASSWORD='${{secrets.DATABASE_PASSWORD}}' -e DATABASE_USERNAME=${{secrets.DATABASE_USERNAME}} --name nova-core  ikaue573/nova-core-staging
