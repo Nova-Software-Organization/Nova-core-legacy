@@ -13,6 +13,7 @@ import com.api.apibackend.modules.Auth.Infra.persistence.entity.UserEntity;
 import com.api.apibackend.modules.Auth.Infra.persistence.repository.UserRepository;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ import java.util.List;
 /**
  * Implementação em memória do repositório de usuários.
  */
-@Component
+@DataJpaTest
 public class IMemoryUserRepositoryTest implements IUserRepository {
 
     public EntityManager entityManager;

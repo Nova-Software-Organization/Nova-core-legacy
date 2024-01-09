@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Supplier.Infra.entity;
+package com.api.apibackend.modules.Supplier.Infra.persistence.entity;
 
 /**
  * ----------------------------------------------------------------------------

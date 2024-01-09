@@ -1,5 +1,3 @@
-package com.api.apibackend.modules.Supplier.Domain.service;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,6 +5,8 @@ package com.api.apibackend.modules.Supplier.Domain.service;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+
+package com.api.apibackend.modules.Supplier.Domain.service;
 
 import java.util.Date;
 import java.util.List;
@@ -21,8 +21,8 @@ import com.api.apibackend.modules.Supplier.Application.DTOs.ResponseMessageDTO;
 import com.api.apibackend.modules.Supplier.Application.DTOs.SupplierDTO;
 import com.api.apibackend.modules.Supplier.Application.repository.ISupplierService;
 import com.api.apibackend.modules.Supplier.Domain.exception.ErrorValidationSupplier;
-import com.api.apibackend.modules.Supplier.Infra.entity.SupplierEntity;
-import com.api.apibackend.modules.Supplier.Infra.repository.SupplierRepository;
+import com.api.apibackend.modules.Supplier.Infra.persistence.entity.SupplierEntity;
+import com.api.apibackend.modules.Supplier.Infra.persistence.repository.SupplierRepository;
 import com.api.apibackend.modules.Supplier.Infra.validation.SupplierValidation;
 import com.api.apibackend.modules.SupplierAddress.infra.persistence.entity.SupplierAddressEntity;
 

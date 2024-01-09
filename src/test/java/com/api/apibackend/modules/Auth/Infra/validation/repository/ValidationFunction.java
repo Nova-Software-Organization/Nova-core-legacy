@@ -6,8 +6,8 @@
  * ----------------------------------------------------------------------------
  */
 
-package com.api.apibackend.modules.Midia.Application.useCases;
+package com.api.apibackend.modules.Auth.Infra.validation.repository;
 
-public class MidiaController {
-
+public interface ValidationFunction {
+    boolean validate(String input);
 }

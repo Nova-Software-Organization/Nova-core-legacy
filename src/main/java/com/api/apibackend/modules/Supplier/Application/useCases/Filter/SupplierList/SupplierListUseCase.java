@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.api.apibackend.modules.Supplier.Domain.service.SupplierService;
-import com.api.apibackend.modules.Supplier.Infra.entity.SupplierEntity;
+import com.api.apibackend.modules.Supplier.Infra.persistence.entity.SupplierEntity;
 
 @Service
 public class SupplierListUseCase {

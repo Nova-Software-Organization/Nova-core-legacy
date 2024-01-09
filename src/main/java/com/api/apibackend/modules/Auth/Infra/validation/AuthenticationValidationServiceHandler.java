@@ -25,11 +25,11 @@ import jakarta.validation.ValidationException;
 import jakarta.validation.Validator;
 
 @Service
-public class AutheticationValidationServiceHandler {
+public class AuthenticationValidationServiceHandler {
 	private Validator validator;
 
 	@Autowired
-	public AutheticationValidationServiceHandler(Validator validator) {
+	public AuthenticationValidationServiceHandler(Validator validator) {
 		this.validator = validator;
 	}
 

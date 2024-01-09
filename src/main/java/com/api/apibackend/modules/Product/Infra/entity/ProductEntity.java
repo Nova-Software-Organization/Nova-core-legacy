@@ -17,7 +17,7 @@ import com.api.apibackend.modules.Midia.infra.persistence.entity.MidiaEntity;
 import com.api.apibackend.modules.Price.infra.entity.PriceEntity;
 import com.api.apibackend.modules.ProductCategory.infra.persistence.entity.ProductCategoryEntity;
 import com.api.apibackend.modules.Stock.Infra.persistence.entity.StockEntity;
-import com.api.apibackend.modules.Supplier.Infra.entity.SupplierEntity;
+import com.api.apibackend.modules.Supplier.Infra.persistence.entity.SupplierEntity;
 import com.api.apibackend.modules.Unity.infra.persistence.entity.UnityEntity;
 
 import jakarta.persistence.CascadeType;

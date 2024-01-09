@@ -11,14 +11,14 @@ package com.api.apibackend.modules.ContactNewsletter.Domain.validation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.api.apibackend.modules.Auth.Infra.validation.AutheticationValidationServiceHandler;
+import com.api.apibackend.modules.Auth.Infra.validation.AuthenticationValidationServiceHandler;
 import com.api.apibackend.modules.ContactNewsletter.Application.DTOs.ContactDTO;
 
 @Service
 public class ValidateContactClient {
 
     @Autowired
-    private AutheticationValidationServiceHandler clientValidationServiceHandler;
+    private AuthenticationValidationServiceHandler clientValidationServiceHandler;
 
     public boolean validateContactHandler(ContactDTO contactRequest) {
         if (contactRequest != null) {

@@ -25,7 +25,7 @@ import com.api.apibackend.modules.Auth.Domain.service.UserService;
 import com.api.apibackend.modules.Auth.Domain.token.GeneratedTokenAuthorizationService;
 import com.api.apibackend.modules.Auth.Infra.persistence.entity.UserEntity;
 import com.api.apibackend.modules.Auth.Infra.persistence.repository.UserRepository;
-import com.api.apibackend.modules.Auth.Infra.validation.AutheticationValidationServiceHandler;
+import com.api.apibackend.modules.Auth.Infra.validation.AuthenticationValidationServiceHandler;
 import com.api.apibackend.modules.Customer.Application.DTOs.registration.CustomerAddressDTO;
 import com.api.apibackend.modules.Customer.Application.DTOs.registration.CustomerDTO;
 import com.api.apibackend.modules.Customer.Domain.event.CustomerCreated;
@@ -49,14 +49,14 @@ public class AutheticationRegisterService implements IAutheticationRegister {
     private CustomerFilterService clientSearchService;
     private CustomerAddressModelMapper customerAddressModelMapper;
     private GeneratedTokenAuthorizationService generatedTokenAuthorizationService;
-    private AutheticationValidationServiceHandler autheticationValidationServiceHandler;
+    private AuthenticationValidationServiceHandler autheticationValidationServiceHandler;
     private AnonymizationService anonymizationService;
     private CustomerRepository customerRepository;
     private UserRepository userRepository;
 
     @Autowired
     public AutheticationRegisterService(
-            AutheticationValidationServiceHandler autheticationValidationServiceHandler,
+            AuthenticationValidationServiceHandler autheticationValidationServiceHandler,
             CustomerFilterService clientSearchService,
             CustomerService clientServiceImp,
             GeneratedTokenAuthorizationService generatedTokenAuthorizationService,
@@ -94,7 +94,6 @@ public class AutheticationRegisterService implements IAutheticationRegister {
 
             if (emailValidation != null || passwordValidation != null) {
                 String errorMessage = "Erro de validação: ";
-
                 if (emailValidation != null) {
                     errorMessage += String.join(", ", emailValidation);
                 }
@@ -124,9 +123,7 @@ public class AutheticationRegisterService implements IAutheticationRegister {
 
             String emailAnonymization = anonymizationService.encrypt(customerDTO.getEmail());
             String cpfAnonymization = anonymizationService.encrypt(customerDTO.getCpf());
-
             String hashedPassword = passwordEncoder.encode(customerDTO.getPassword());
-
             CustomerEntity newCustomerEntity = createNewCustomerEntity(customerDTO, emailAnonymization,
                     cpfAnonymization);
             UserEntity newUserEntity = createUserEntity(customerDTO, hashedPassword, newCustomerEntity,
@@ -139,10 +136,8 @@ public class AutheticationRegisterService implements IAutheticationRegister {
 
             CustomerEntity savedClient = customerRepository.save(newCustomerEntity);
             Set<CustomGrantedAuthority> userRoles = determineUserRoles(customerDTO);
-
             String jwtToken = generatedTokenAuthorizationService.generateToken(newUserEntity.getUsername(), userRoles);
             newCustomerEntity.setUser(newUserEntity);
-
             publishCustomerCreatedEvent(savedClient.getId());
 
             return ResponseEntity.status(HttpStatus.CREATED).body(

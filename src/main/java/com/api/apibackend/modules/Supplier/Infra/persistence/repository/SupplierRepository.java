@@ -1,4 +1,4 @@
-package com.api.apibackend.modules.Supplier.Infra.repository;
+package com.api.apibackend.modules.Supplier.Infra.persistence.repository;
 
 /**
  * ----------------------------------------------------------------------------
@@ -11,7 +11,7 @@ package com.api.apibackend.modules.Supplier.Infra.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.api.apibackend.modules.Supplier.Infra.entity.SupplierEntity;
+import com.api.apibackend.modules.Supplier.Infra.persistence.entity.SupplierEntity;
 
 @Repository
 public interface SupplierRepository extends JpaRepository<SupplierEntity, Long>{ }
