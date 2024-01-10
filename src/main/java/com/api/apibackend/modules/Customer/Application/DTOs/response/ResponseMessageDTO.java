@@ -6,7 +6,7 @@
  * ----------------------------------------------------------------------------
  */
 
-package com.api.apibackend.modules.Customer.Application.DTOs;
+package com.api.apibackend.modules.Customer.Application.DTOs.response;
 
 import java.util.List;
 

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.apibackend.modules.Order.Application.DTOs.OrderRequest;
-import com.api.apibackend.modules.Order.Application.DTOs.ResponseMessageDTO;
+import com.api.apibackend.modules.Order.Application.DTOs.response.ResponseMessageDTO;
 import com.api.apibackend.modules.Order.infra.persistence.entity.OrderEntity;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;

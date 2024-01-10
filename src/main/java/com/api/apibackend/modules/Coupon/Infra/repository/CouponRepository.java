@@ -15,5 +15,5 @@ import com.api.apibackend.modules.Coupon.Infra.entity.CouponEntity;
 
 @Repository
 public interface CouponRepository extends JpaRepository<CouponEntity, Long> {
-    
+    boolean existsByCouponCode(String couponCode);
 }

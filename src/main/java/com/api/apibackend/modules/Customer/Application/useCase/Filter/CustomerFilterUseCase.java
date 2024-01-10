@@ -16,7 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.api.apibackend.modules.Customer.Application.DTOs.ResponseMessageDTO;
+import com.api.apibackend.modules.Customer.Application.DTOs.response.ResponseMessageDTO;
 import com.api.apibackend.modules.Customer.Domain.service.CustomerFilterService;
 import com.api.apibackend.modules.Customer.Infra.persistence.entity.CustomerEntity;
 

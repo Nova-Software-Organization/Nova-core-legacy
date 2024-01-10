@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.apibackend.modules.Order.Application.DTOs.ResponseMessageDTO;
+import com.api.apibackend.modules.Order.Application.DTOs.response.ResponseMessageDTO;
 import com.api.apibackend.modules.Order.Domain.service.filters.OrderListService;
 import com.api.apibackend.modules.Order.infra.persistence.entity.OrderEntity;
 

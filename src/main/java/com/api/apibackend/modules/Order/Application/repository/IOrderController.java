@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.api.apibackend.modules.Order.Application.DTOs.CreateOrderRequest;
 import com.api.apibackend.modules.Order.Application.DTOs.OrderRequest;
 import com.api.apibackend.modules.Order.Application.DTOs.OrderUpdateAddressRequest;
-import com.api.apibackend.modules.Order.Application.DTOs.ResponseMessageDTO;
+import com.api.apibackend.modules.Order.Application.DTOs.response.ResponseMessageDTO;
 
 public interface IOrderController {
 	ResponseEntity<ResponseMessageDTO> listOrders();
