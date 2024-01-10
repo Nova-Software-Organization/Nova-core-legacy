@@ -16,4 +16,5 @@ import com.api.apibackend.modules.Auth.Infra.persistence.entity.UserEntity;
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
     UserEntity findByUsername(String username);
+    UserEntity findByEmail(String email);
 }
