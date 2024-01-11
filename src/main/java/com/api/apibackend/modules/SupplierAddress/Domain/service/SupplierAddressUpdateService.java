@@ -8,6 +8,7 @@
 
 package com.api.apibackend.modules.SupplierAddress.Domain.service;
 
+import com.api.apibackend.shared.util.ValidationAreEqual;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +19,12 @@ import com.api.apibackend.modules.SupplierAddress.Application.DTOs.SupplierAddre
 import com.api.apibackend.modules.SupplierAddress.Application.DTOs.response.ResponseMessageDTO;
 import com.api.apibackend.modules.SupplierAddress.infra.persistence.entity.SupplierAddressEntity;
 
+import java.util.Objects;
+import java.util.function.Consumer;
+
 @Service
 public class SupplierAddressUpdateService {
-    private final SupplierRepository supplierRepository;
+    private SupplierRepository supplierRepository;
 
     @Autowired
     public SupplierAddressUpdateService(SupplierRepository supplierRepository) {
@@ -31,25 +35,25 @@ public class SupplierAddressUpdateService {
         return supplierRepository.findById(supplierId)
                 .map(existingSupplier -> {
                     SupplierAddressEntity currentSupplierAddress = existingSupplier.getSupplierAddressEntity();
+                    ValidationAreEqual validationAreEqual = new ValidationAreEqual();
+                    boolean isDataUpdated = !validationAreEqual.areEqual(currentSupplierAddress.getCep(), updatedSupplierAddressDTO.getCep(), currentSupplierAddress::setCep) ||
+                            !validationAreEqual.areEqual(currentSupplierAddress.getNeighborhood(), updatedSupplierAddressDTO.getNeighborhood(), currentSupplierAddress::setNeighborhood) ||
+                            !validationAreEqual.areEqual(currentSupplierAddress.getNumberCompany(), updatedSupplierAddressDTO.getNumberHouseOrCompany(), currentSupplierAddress::setNumberCompany) ||
+                            !validationAreEqual.areEqual(currentSupplierAddress.getRoad(), updatedSupplierAddressDTO.getRoad(), currentSupplierAddress::setRoad) ||
+                            !validationAreEqual.areEqual(existingSupplier.getCnpj(), updatedSupplierAddressDTO.getSupplierDTO().getCnpj(), existingSupplier::setCnpj) ||
+                            !validationAreEqual.areEqual(existingSupplier.getContact(), updatedSupplierAddressDTO.getSupplierDTO().getContact(), existingSupplier::setContact) ||
+                            !validationAreEqual.areEqual(existingSupplier.getRegion(), updatedSupplierAddressDTO.getSupplierDTO().getRegion(), existingSupplier::setRegion) ||
+                            !validationAreEqual.areEqual(existingSupplier.getNameCompany(), updatedSupplierAddressDTO.getSupplierDTO().getNameCompany(), existingSupplier::setNameCompany) ||
+                            !validationAreEqual.areEqual(existingSupplier.getOfficeSupplier(), updatedSupplierAddressDTO.getSupplierDTO().getOfficeSupplier(), existingSupplier::setOfficeSupplier) ||
+                            !validationAreEqual.areEqual(existingSupplier.getStatus(), updatedSupplierAddressDTO.getSupplierDTO().getStatus(), existingSupplier::setStatus);
 
-                    currentSupplierAddress.setCep(updatedSupplierAddressDTO.getCep());
-                    currentSupplierAddress.setNeighborhood(updatedSupplierAddressDTO.getNeighborhood());
-                    currentSupplierAddress.setNumberCompany(updatedSupplierAddressDTO.getNumberHouseOrCompany());
-                    currentSupplierAddress.setRoad(updatedSupplierAddressDTO.getRoad());
-
-                    existingSupplier.setCnpj(updatedSupplierAddressDTO.getSupplierDTO().getCnpj());
-                    existingSupplier.setContact(updatedSupplierAddressDTO.getSupplierDTO().getContact());
-                    existingSupplier.setRegion(updatedSupplierAddressDTO.getSupplierDTO().getRegion());
-                    existingSupplier.setNameCompany(updatedSupplierAddressDTO.getSupplierDTO().getNameCompany());
-                    existingSupplier.setOfficeSupplier(updatedSupplierAddressDTO.getSupplierDTO().getOfficeSupplier());
-                    existingSupplier.setStatus(updatedSupplierAddressDTO.getSupplierDTO().getStatus());
-
-                    supplierRepository.save(existingSupplier);
-
-                    return ResponseEntity.ok(new ResponseMessageDTO(
-                            "Fornecedor e endereço atualizados com sucesso! ", this.getClass().getName(), null));
+                    if (isDataUpdated) {
+                        supplierRepository.save(existingSupplier);
+                        return ResponseEntity.ok(new ResponseMessageDTO("Fornecedor e endereço atualizados com sucesso! ", this.getClass().getName(), null));
+                    } else {
+                        return ResponseEntity.ok(new ResponseMessageDTO("Nenhum dado foi alterado. Nenhuma atualização necessária.", this.getClass().getName(), null));
+                    }
                 })
-                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResponseMessageDTO(
-                        "Fornecedor não encontrado com o ID fornecido.", this.getClass().getName(), null)));
+                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResponseMessageDTO("Fornecedor não encontrado com o ID fornecido.", this.getClass().getName(), null)));
     }
 }

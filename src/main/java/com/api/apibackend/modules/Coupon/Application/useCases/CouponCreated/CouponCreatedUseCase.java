@@ -10,6 +10,7 @@ package com.api.apibackend.modules.Coupon.Application.useCases.CouponCreated;
 import com.api.apibackend.modules.Coupon.Application.DTOs.CouponDTO;
 import com.api.apibackend.modules.Coupon.Application.DTOs.response.CouponResponseDTO;
 import com.api.apibackend.modules.Coupon.Domain.service.CouponCreatedService;
+import com.api.apibackend.modules.Coupon.Infra.validation.CouponValidation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,7 +39,8 @@ public class CouponCreatedUseCase {
                                         .getName(),"Cupom não pode ser criado",null));
             }
 
-            if (invalidCouponValues(couponDTO)) {
+            CouponValidation invalidCouponCreated = new CouponValidation();
+            if (invalidCouponCreated.invalidCouponValues(couponDTO)) {
                 log.error("O cupom não e válido para criação");
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new CouponResponseDTO("O cupom não pode ser criado porque contem erro de validação",
                         this.getClass()
@@ -50,13 +52,5 @@ public class CouponCreatedUseCase {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new CouponResponseDTO(
                     "Ocorreu um erro ao processar a requisição", this.getClass().getName(), e.getMessage(), null));
         }
-    }
-
-    private boolean invalidCouponValues(CouponDTO couponDTO) {
-        return couponDTO.getDiscountValue() < 0 ||
-                couponDTO.getUsesRemaining() < 0 ||
-                couponDTO.getMaxUsesPerCustomer() < 0 ||
-                couponDTO.getMinimumOrderValue() < 0 ||
-                couponDTO.getStatus() < 0;
     }
 }

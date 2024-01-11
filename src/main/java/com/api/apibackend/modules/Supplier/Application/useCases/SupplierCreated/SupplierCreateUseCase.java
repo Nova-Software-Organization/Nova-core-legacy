@@ -16,14 +16,14 @@ import org.springframework.stereotype.Service;
 import com.api.apibackend.modules.Supplier.Application.DTOs.ResponseMessageDTO;
 import com.api.apibackend.modules.Supplier.Application.DTOs.SupplierDTO;
 import com.api.apibackend.modules.Supplier.Domain.exception.ErrorEmptySupplier;
-import com.api.apibackend.modules.Supplier.Domain.service.SupplierService;
+import com.api.apibackend.modules.Supplier.Domain.service.SupplierCreatedService;
 
 @Service
 public class SupplierCreateUseCase {
-    private SupplierService supplierService;
+    private SupplierCreatedService supplierService;
 
     @Autowired
-    public SupplierCreateUseCase(SupplierService supplierService) {
+    public SupplierCreateUseCase(SupplierCreatedService supplierService) {
         this.supplierService = supplierService;
     }
 

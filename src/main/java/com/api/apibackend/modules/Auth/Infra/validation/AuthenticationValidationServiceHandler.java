@@ -152,7 +152,7 @@ public class AuthenticationValidationServiceHandler {
 			errorsList.add("O email não pode começar ou terminar com underscore (_)");
 		}
 
-		if (email.endsWith(".com") || email.endsWith(".com.")) {
+		if (email.endsWith(".com.")) {
 			errorsList.add("O email não pode terminar com '.com' ou '.com.'");
 		}
 

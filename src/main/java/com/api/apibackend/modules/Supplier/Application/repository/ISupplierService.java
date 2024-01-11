@@ -18,9 +18,5 @@ import com.api.apibackend.modules.Supplier.Application.DTOs.SupplierDTO;
 import com.api.apibackend.modules.Supplier.Infra.persistence.entity.SupplierEntity;
 
 public interface ISupplierService {
-    public List<SupplierEntity> listSupplier();
     public ResponseEntity<ResponseMessageDTO> create(@RequestBody SupplierDTO supplierRequest);
-    public ResponseEntity<ResponseMessageDTO> deleteSupplier(Long supplierId);
-    public ResponseEntity<ResponseMessageDTO> updateSupplier(Long supplierId, @RequestBody SupplierDTO updatedSupplier);
-    public ResponseEntity<ResponseMessageDTO> deactivateSupplier(Long supplierId);
 }

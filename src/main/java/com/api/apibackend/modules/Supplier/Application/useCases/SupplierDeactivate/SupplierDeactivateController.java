@@ -35,14 +35,12 @@ public class SupplierDeactivateController {
     @PatchMapping(path = "/desativar/{id}")
     @Tag(name = "Fornecedor")
     @Operation(summary = "Desativa um fornecedor por ID")
-    public ResponseEntity<ResponseMessageDTO> deactivate(
-            @Parameter(description = "ID do fornecedor a ser desativado", required = true) @PathVariable Long id) {
+    public ResponseEntity<ResponseMessageDTO> deactivate(@Parameter(description = "ID do fornecedor a ser desativado", required = true) @PathVariable Long id) {
         try {
             if (id == null || id <= 0) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                         .body(new ResponseMessageDTO("ID do cliente inválido", this.getClass().getName(), null));
             }
-
             return supplierDeactivateUseCase.execute(id);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessageDTO(

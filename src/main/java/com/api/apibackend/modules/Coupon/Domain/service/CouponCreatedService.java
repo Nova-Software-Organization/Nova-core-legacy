@@ -9,8 +9,10 @@ package com.api.apibackend.modules.Coupon.Domain.service;
 
 import com.api.apibackend.modules.Coupon.Application.DTOs.CouponDTO;
 import com.api.apibackend.modules.Coupon.Application.DTOs.response.CouponResponseDTO;
+import com.api.apibackend.modules.Coupon.Domain.provider.GenerateCouponProvider;
 import com.api.apibackend.modules.Coupon.Infra.entity.CouponEntity;
 import com.api.apibackend.modules.Coupon.Infra.repository.CouponRepository;
+import com.api.apibackend.modules.Coupon.Infra.validation.CouponValidation;
 import com.api.apibackend.shared.helpers.ModelMappersConvertion;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -30,10 +32,12 @@ import java.util.Random;
 public class CouponCreatedService {
 
     private CouponRepository couponRepository;
+    private GenerateCouponProvider generateCouponProvider;
 
     @Autowired
-    public CouponCreatedService(CouponRepository couponRepository) {
+    public CouponCreatedService(CouponRepository couponRepository, GenerateCouponProvider generateCouponProvider) {
         this.couponRepository = couponRepository;
+        this.generateCouponProvider = generateCouponProvider;
     }
 
     public ResponseEntity<CouponResponseDTO> createCoupon(CouponDTO couponDTO) {
@@ -43,16 +47,17 @@ public class CouponCreatedService {
                 errors.add("O cupom não pode ser criado porque se encontra as informações estão vazias");
             }
 
-            validateCouponValues(couponDTO, errors);
+            CouponValidation couponValidation = new CouponValidation();
+            couponValidation.validateCouponValues(couponDTO, errors);
             if (!errors.isEmpty()) {
                 logErrors(errors);
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new CouponResponseDTO(
                         "O cupom não pode ser criado devido a erros de validação", this.getClass().getName(), errors.toString(), null));
             }
 
-            String couponCode = generateRandomCode();
+            String couponCode = generateCouponProvider.generateRandomCode();
             while (couponRepository.existsByCouponCode(couponCode)) {
-                couponCode = generateRandomCode();
+                couponCode = generateCouponProvider.generateRandomCode();
             }
 
             ModelMappersConvertion<CouponDTO, CouponEntity> toCouponDTOFromCouponEntity = new ModelMappersConvertion<>(new ModelMapper());
@@ -66,42 +71,6 @@ public class CouponCreatedService {
             log.error("Ocorreu um erro ao processar a requisição", e);
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new CouponResponseDTO(
                     "Ocorreu um erro ao processar a requisição", this.getClass().getName(), e.getMessage(), null));
-        }
-    }
-
-    private String generateRandomCode() {
-        int length = 8;
-        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        StringBuilder randomCode = new StringBuilder();
-
-        for (int i = 0; i < length; i++) {
-            int index = new Random().nextInt(characters.length());
-            randomCode.append(characters.charAt(index));
-        }
-
-        return randomCode.toString();
-    }
-
-    private void validateCouponValues(CouponDTO couponDTO, List<String> errors) {
-        if (couponDTO == null) {
-            errors.add("O cupom não pode ser criado porque as informações estão vazias");
-            return;
-        }
-
-        if (couponDTO.getDiscountValue() < 0) {
-            errors.add("Valor de desconto inválido");
-        }
-
-        if (couponDTO.getUsesRemaining() < 0) {
-            errors.add("Número de usos restantes inválido");
-        }
-
-        if (couponDTO.getExpirationDate() != null && couponDTO.getExpirationDate().isBefore(LocalDate.now())) {
-            errors.add("Data de expiração inválida");
-        }
-
-        if (couponDTO.getStartDate() != null && couponDTO.getStartDate().isAfter(LocalDate.now())) {
-            errors.add("Data de início inválida");
         }
     }
 
