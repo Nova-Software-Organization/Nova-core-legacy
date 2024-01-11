@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import com.api.apibackend.modules.Auth.Application.DTOs.mail.AuthUserResetPassawordDTO;
 import com.api.apibackend.modules.Auth.Application.DTOs.response.ResponseMessageDTO;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -67,9 +68,11 @@ public class ResetPasswordAuthUserService {
     private ResponseEntity<ResponseMessageDTO> apply(UserEntity user) {
         GenerateRandomCodeResetPasswordProvider generateRandomCodeResetPasswordProvider = new GenerateRandomCodeResetPasswordProvider();
         String resetCode = generateRandomCodeResetPasswordProvider.generateRandomCode();
+        user.setResetPasswordToken(resetCode);
+        user.setResetPasswordTokenExpiration(LocalDateTime.now());
+        userRepository.save(user);
         String emailUser = anonymizationService.decrypt(user.getEmail());
         mailSendResetPassword.sendEmail(emailUser, resetCode);
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessageDTO("Sucesso", this.getClass().getName(), "Email enviado com sucesso", null));
     }
-
 }
