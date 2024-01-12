@@ -1,10 +1,15 @@
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
 package com.api.apibackend.modules.Auth.Domain.service.resetPassword;
 
-import com.api.apibackend.modules.Auth.Domain.provider.GenerateRandomCodeResetPasswordProvider;
-import com.api.apibackend.modules.Auth.Domain.service.AnonymizationService;
-import com.api.apibackend.modules.Auth.Infra.persistence.entity.UserEntity;
-import com.api.apibackend.modules.Auth.Infra.persistence.repository.UserRepository;
-import com.api.apibackend.modules.Mail.Domain.service.EmailSenderServiceMail;
+import java.time.LocalDateTime;
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +19,11 @@ import org.springframework.stereotype.Service;
 
 import com.api.apibackend.modules.Auth.Application.DTOs.mail.AuthUserResetPassawordDTO;
 import com.api.apibackend.modules.Auth.Application.DTOs.response.ResponseMessageDTO;
-
-import java.time.LocalDateTime;
-import java.util.Optional;
+import com.api.apibackend.modules.Auth.Domain.provider.GenerateRandomCodeResetPasswordProvider;
+import com.api.apibackend.modules.Auth.Domain.service.AnonymizationService;
+import com.api.apibackend.modules.Auth.Infra.persistence.entity.UserEntity;
+import com.api.apibackend.modules.Auth.Infra.persistence.repository.UserRepository;
+import com.api.apibackend.modules.Mail.Domain.service.EmailSenderServiceMail;
 
 @Service
 public class ResetPasswordAuthUserService {
@@ -72,7 +79,9 @@ public class ResetPasswordAuthUserService {
         user.setResetPasswordTokenExpiration(LocalDateTime.now());
         userRepository.save(user);
         String emailUser = anonymizationService.decrypt(user.getEmail());
-        mailSendResetPassword.sendEmail(emailUser, resetCode);
-        return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessageDTO("Sucesso", this.getClass().getName(), "Email enviado com sucesso", null));
+        mailSendResetPassword.sendEmail(emailUser, resetCode, "reset-password");
+        return ResponseEntity.status(HttpStatus.OK)
+            .body(new ResponseMessageDTO("Sucesso",
+                 this.getClass().getName(), "Email enviado com sucesso", null));
     }
 }

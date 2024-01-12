@@ -1,11 +1,19 @@
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
 package com.api.apibackend.modules.Auth.Domain.provider;
 
-import com.api.apibackend.modules.Auth.Infra.persistence.entity.UserEntity;
-import com.api.apibackend.modules.Auth.Infra.persistence.repository.UserRepository;
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
+import com.api.apibackend.modules.Auth.Infra.persistence.entity.UserEntity;
+import com.api.apibackend.modules.Auth.Infra.persistence.repository.UserRepository;
 
 @Service
 public class CodeExpiration {
@@ -23,7 +31,7 @@ public class CodeExpiration {
      * @return boolean
      */
     public boolean isCodeExpired(String code) {
-        return userRepository.findByResetPasswordTokenExpiration(code)
+        return userRepository.findByResetPasswordToken(code)
                 .map(UserEntity::getResetPasswordTokenExpiration)
                 .map(expiration -> expiration.isBefore(LocalDateTime.now().minusMinutes(10)))
                 .orElse(true);

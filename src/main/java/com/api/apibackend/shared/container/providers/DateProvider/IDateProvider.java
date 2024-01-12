@@ -5,8 +5,7 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-
-package com.api.apibackend.shared.Container.Providers.DateProvider;
+package com.api.apibackend.shared.container.providers.DateProvider;
 
 import java.util.Date;
 import java.util.List;

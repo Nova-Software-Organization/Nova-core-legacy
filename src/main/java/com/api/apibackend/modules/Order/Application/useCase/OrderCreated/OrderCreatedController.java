@@ -5,7 +5,6 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-
 package com.api.apibackend.modules.Order.Application.useCase.OrderCreated;
 
 import org.springframework.beans.factory.annotation.Autowired;

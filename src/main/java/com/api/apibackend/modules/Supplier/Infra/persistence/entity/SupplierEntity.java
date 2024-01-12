@@ -1,5 +1,3 @@
-package com.api.apibackend.modules.Supplier.Infra.persistence.entity;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -8,6 +6,7 @@ package com.api.apibackend.modules.Supplier.Infra.persistence.entity;
  * ----------------------------------------------------------------------------
  * Representa uma entidade de fornecedor dentro da empresa.
  */
+ package com.api.apibackend.modules.Supplier.Infra.persistence.entity;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -107,10 +106,8 @@ public class SupplierEntity implements Serializable {
      * Lista de marcas fornecidas pelo fornecedor.
      */
     @ManyToMany
-    @JoinTable(
-        name = "fornecedor_marca",
-        joinColumns = @JoinColumn(name = "idfornecedor"),
-        inverseJoinColumns = @JoinColumn(name = "idmarca")
-    )
-    private List<BrandEntity> brandsProvided;
+    @JoinTable(name = "fornecedor_marca",
+            joinColumns = @JoinColumn(name = "idmarca"),
+            inverseJoinColumns = @JoinColumn(name = "idfornecedor"))
+    private List<BrandEntity> brands;
 }

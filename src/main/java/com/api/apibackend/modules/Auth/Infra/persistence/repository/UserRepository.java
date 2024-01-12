@@ -14,11 +14,12 @@ import org.springframework.stereotype.Repository;
 
 import com.api.apibackend.modules.Auth.Infra.persistence.entity.UserEntity;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
     UserEntity findByUsername(String username);
     UserEntity findByEmail(String email);
-    Optional<UserEntity> findByResetPasswordTokenExpiration(String code);
+    Optional<UserEntity> findByResetPasswordToken(String code);
 }
