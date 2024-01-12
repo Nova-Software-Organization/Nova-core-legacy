@@ -1,5 +1,3 @@
-package com.api.apibackend.modules.Product.Application.DTOs;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,6 +5,7 @@ package com.api.apibackend.modules.Product.Application.DTOs;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+package com.api.apibackend.modules.Product.Application.DTOs;
 
 import com.api.apibackend.modules.Midia.Application.DTOs.MidiaDTO;
 import com.api.apibackend.modules.Price.Application.DTOs.PriceDTO;

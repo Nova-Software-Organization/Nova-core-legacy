@@ -1,3 +1,10 @@
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
 package com.api.apibackend.modules.Supplier.Application.useCases.Filter.SupplierList;
 
 import java.util.Collections;
@@ -11,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.apibackend.modules.Supplier.Domain.exception.ErrorEmptySupplier;
-import com.api.apibackend.modules.Supplier.Infra.entity.SupplierEntity;
+import com.api.apibackend.modules.Supplier.Infra.persistence.entity.SupplierEntity;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

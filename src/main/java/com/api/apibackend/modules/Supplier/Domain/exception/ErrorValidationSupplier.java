@@ -1,5 +1,3 @@
-package com.api.apibackend.modules.Supplier.Domain.exception;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,6 +5,8 @@ package com.api.apibackend.modules.Supplier.Domain.exception;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+
+package com.api.apibackend.modules.Supplier.Domain.exception;
 
 public class ErrorValidationSupplier extends Exception {
     public ErrorValidationSupplier(String message) {

@@ -5,7 +5,6 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-
 package com.api.apibackend.modules.Auth.Infra.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +33,7 @@ public class SecurityConfig {
     private static final String[] SWAGGER_LIST = {
         "/swagger-ui/**",
         "/api/swagger-ui/**",
-        "/swagger-resources/**"
+        "/swagger-resources/**",
     };
 
     @Autowired
@@ -48,6 +47,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> {
                 auth.requestMatchers("v1/produto/**").permitAll()
                     .requestMatchers("v1/auth/registrar/**").permitAll()
+                    .requestMatchers("v1/auth/valida/token").permitAll()
                     .requestMatchers("/**").permitAll()
                     .requestMatchers(SWAGGER_LIST);
                 auth.anyRequest().authenticated();

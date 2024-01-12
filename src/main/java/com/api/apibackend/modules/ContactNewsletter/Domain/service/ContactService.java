@@ -5,7 +5,6 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-
 package com.api.apibackend.modules.ContactNewsletter.Domain.service;
 
 import org.modelmapper.ModelMapper;
@@ -42,7 +41,6 @@ public class ContactService {
             ModelMappersConvertion<ContactDTO, ContactEntity> contactModelMapper = new ModelMappersConvertion<>(
                     new ModelMapper());
             ContactEntity contactEntity = contactModelMapper.toDTOFromEntity(contactDTO, ContactEntity.class);
-
             ContactEntity savedContact = contactRepository.save(contactEntity);
 
             if (savedContact != null) {

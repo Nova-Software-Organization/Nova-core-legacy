@@ -86,7 +86,7 @@ public class UserEntity implements UserDetails {
     /**
      * Expiração do token de renovação de senha do usuário.
      */
-    @Column(name = "expiracao_token_redefinicao_senha")
+    @Column(name = "reset_password_token_expiration")
     private LocalDateTime resetPasswordTokenExpiration;
 
     /**

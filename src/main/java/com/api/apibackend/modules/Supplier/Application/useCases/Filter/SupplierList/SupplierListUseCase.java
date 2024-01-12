@@ -10,23 +10,24 @@ package com.api.apibackend.modules.Supplier.Application.useCases.Filter.Supplier
 
 import java.util.List;
 
+import com.api.apibackend.modules.Supplier.Domain.service.filter.SupplierFilterList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.api.apibackend.modules.Supplier.Domain.service.SupplierService;
-import com.api.apibackend.modules.Supplier.Infra.entity.SupplierEntity;
+import com.api.apibackend.modules.Supplier.Domain.service.SupplierCreatedService;
+import com.api.apibackend.modules.Supplier.Infra.persistence.entity.SupplierEntity;
 
 @Service
 public class SupplierListUseCase {
-    private SupplierService supplierService;
+    private SupplierFilterList supplierFilterList;
 
     @Autowired
-    public SupplierListUseCase(SupplierService supplierService) {
-        this.supplierService = supplierService;
+    public SupplierListUseCase(SupplierFilterList supplierFilterList) {
+        this.supplierFilterList = supplierFilterList;
     }
 
     public List<SupplierEntity> execute() {
-        List<SupplierEntity> findAllSupplier = supplierService.listSupplier();
+        List<SupplierEntity> findAllSupplier = supplierFilterList.list();
         return findAllSupplier;
     }
 }

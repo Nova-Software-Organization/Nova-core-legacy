@@ -14,7 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.api.apibackend.modules.Customer.Infra.persistence.entity.CustomerEntity;
 import com.api.apibackend.modules.Customer.Infra.persistence.repository.CustomerRepository;
 import com.api.apibackend.modules.CustomerAddress.Infra.persistence.entity.AddressEntity;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CustomerAddAddressService {
     
 	@Autowired

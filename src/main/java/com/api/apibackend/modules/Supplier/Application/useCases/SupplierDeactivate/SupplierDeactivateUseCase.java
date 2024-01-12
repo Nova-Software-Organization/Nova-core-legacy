@@ -8,23 +8,24 @@
 
 package com.api.apibackend.modules.Supplier.Application.useCases.SupplierDeactivate;
 
+import com.api.apibackend.modules.Supplier.Domain.service.SupplierDeactivateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.api.apibackend.modules.Supplier.Application.DTOs.ResponseMessageDTO;
-import com.api.apibackend.modules.Supplier.Domain.service.SupplierService;
+import com.api.apibackend.modules.Supplier.Domain.service.SupplierCreatedService;
 
 @Service
 public class SupplierDeactivateUseCase {
-    private SupplierService supplierService;
+    private SupplierDeactivateService supplierDeactivateService;
 
     @Autowired
-    public SupplierDeactivateUseCase(SupplierService supplierService) {
-        this.supplierService = supplierService;
+    public SupplierDeactivateUseCase(SupplierDeactivateService supplierDeactivateService) {
+        this.supplierDeactivateService = supplierDeactivateService;
     }
 
     public ResponseEntity<ResponseMessageDTO> execute(Long id) {
-        return supplierService.deactivateSupplier(id);
+        return supplierDeactivateService.deactivate(id);
     }
 }

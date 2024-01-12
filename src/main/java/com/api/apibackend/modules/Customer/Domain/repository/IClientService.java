@@ -11,7 +11,7 @@ package com.api.apibackend.modules.Customer.Domain.repository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
-import com.api.apibackend.modules.Customer.Application.DTOs.ResponseMessageDTO;
+import com.api.apibackend.modules.Customer.Application.DTOs.response.ResponseMessageDTO;
 import com.api.apibackend.modules.Customer.Application.DTOs.registration.CustomerAddressDTO;
 import com.api.apibackend.modules.Customer.Application.DTOs.registration.CustomerDTO;
 import com.api.apibackend.modules.Customer.Infra.persistence.entity.CustomerEntity;

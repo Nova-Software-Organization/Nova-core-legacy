@@ -184,7 +184,7 @@ public class OrderCreationService implements IOrderCreationService {
             updateProductStock(orderItem, stockUpdates);
         }
 
-        // Aplicar todas as atualizações em uma única transação
+        // aplly a update in a one transaction
         applyStockUpdates(stockUpdates);
     }
 

@@ -1,5 +1,3 @@
-package com.api.apibackend.modules.Product.Application.component;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,6 +5,7 @@ package com.api.apibackend.modules.Product.Application.component;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+package com.api.apibackend.modules.Product.Application.component;
 
 import java.util.Date;
 
@@ -17,8 +16,8 @@ import com.api.apibackend.modules.Price.infra.entity.PriceEntity;
 import com.api.apibackend.modules.Price.infra.repository.PriceRepository;
 import com.api.apibackend.modules.Product.Application.DTOs.ProductDTO;
 import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
-import com.api.apibackend.modules.Supplier.Infra.entity.SupplierEntity;
-import com.api.apibackend.modules.Supplier.Infra.repository.SupplierRepository;
+import com.api.apibackend.modules.Supplier.Infra.persistence.entity.SupplierEntity;
+import com.api.apibackend.modules.Supplier.Infra.persistence.repository.SupplierRepository;
 import com.api.apibackend.modules.SupplierAddress.infra.persistence.entity.SupplierAddressEntity;
 import com.api.apibackend.modules.SupplierAddress.infra.repository.SupplierAddressRepository;
 

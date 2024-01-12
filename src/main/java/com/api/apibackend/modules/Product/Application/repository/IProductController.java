@@ -1,5 +1,3 @@
-package com.api.apibackend.modules.Product.Application.repository;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,6 +5,7 @@ package com.api.apibackend.modules.Product.Application.repository;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+package com.api.apibackend.modules.Product.Application.repository;
 
 import java.util.List;
 
@@ -19,5 +18,5 @@ import com.api.apibackend.modules.Product.Domain.model.Product;
 public interface IProductController {
 	ResponseEntity<?> populationCreationProduct(@RequestBody List<ProductDTO> productDTOList);
 	ResponseEntity<List<Product>> getFirstProducts();
-	public ResponseEntity<List<Product>> getAllProductsEndpoint();
+	ResponseEntity<List<Product>> getAllProductsEndpoint();
 }

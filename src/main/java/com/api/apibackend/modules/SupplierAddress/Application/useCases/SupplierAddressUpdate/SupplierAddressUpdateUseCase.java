@@ -14,8 +14,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.api.apibackend.modules.Supplier.Infra.entity.SupplierEntity;
-import com.api.apibackend.modules.Supplier.Infra.repository.SupplierRepository;
+import com.api.apibackend.modules.Supplier.Infra.persistence.entity.SupplierEntity;
+import com.api.apibackend.modules.Supplier.Infra.persistence.repository.SupplierRepository;
 import com.api.apibackend.modules.SupplierAddress.Application.DTOs.SupplierAddressDTO;
 import com.api.apibackend.modules.SupplierAddress.Application.DTOs.response.ResponseMessageDTO;
 import com.api.apibackend.modules.SupplierAddress.Domain.service.SupplierAddressUpdateService;

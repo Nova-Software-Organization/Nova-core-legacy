@@ -15,6 +15,5 @@ import com.api.apibackend.modules.Auth.Application.DTOs.response.LoginResponseDT
 import com.api.apibackend.modules.Auth.Domain.model.LoginRequest;
 
 public interface ICustomerController {
-
-	public ResponseEntity<LoginResponseDTO> login(@RequestBody LoginRequest loginRequest) throws Exception;
+	ResponseEntity<LoginResponseDTO> login(@RequestBody LoginRequest loginRequest) throws Exception;
 }
