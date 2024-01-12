@@ -5,10 +5,8 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-
 package com.api.apibackend.modules.SupplierAddress.Domain.service;
 
-import com.api.apibackend.shared.util.ValidationAreEqual;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +16,7 @@ import com.api.apibackend.modules.Supplier.Infra.persistence.repository.Supplier
 import com.api.apibackend.modules.SupplierAddress.Application.DTOs.SupplierAddressDTO;
 import com.api.apibackend.modules.SupplierAddress.Application.DTOs.response.ResponseMessageDTO;
 import com.api.apibackend.modules.SupplierAddress.infra.persistence.entity.SupplierAddressEntity;
-
-import java.util.Objects;
-import java.util.function.Consumer;
+import com.api.apibackend.shared.Util.ValidationAreEqual;
 
 @Service
 public class SupplierAddressUpdateService {

@@ -9,13 +9,13 @@ import org.springframework.stereotype.Service;
 
 import com.api.apibackend.modules.Auth.Application.DTOs.mail.AuthUserResetPassawordDTO;
 import com.api.apibackend.modules.Auth.Application.DTOs.response.ResponseMessageDTO;
-import com.api.apibackend.modules.Auth.Domain.service.resetPassword.ResetPasswordAuthUserService;
+import com.api.apibackend.modules.Mail.Domain.service.resetPassword.ResetPasswordAuthUserService;
 
 @Service
 public class ResetPasswordGeneratedTokenUseCase {
     private static final Logger logger = LoggerFactory.getLogger(ResetPasswordGeneratedTokenUseCase.class);
 
-    private final ResetPasswordAuthUserService resetPasswordAuthUserService;
+    private ResetPasswordAuthUserService resetPasswordAuthUserService;
 
     @Autowired
     public ResetPasswordGeneratedTokenUseCase(ResetPasswordAuthUserService resetPasswordAuthUserService) {

@@ -5,7 +5,7 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-package com.api.apibackend.modules.Auth.Domain.service.resetPassword;
+package com.api.apibackend.modules.Mail.Domain.service.resetPassword;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -63,7 +63,7 @@ public class ResetPasswordAuthUserService {
 
     private ResponseEntity<ResponseMessageDTO> applyAndRespond(UserEntity user) {
         try {
-            return apply(user);
+            return send(user);
         } catch (Exception e) {
             logger.error("Erro ao enviar email de redefinição de senha", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -72,12 +72,13 @@ public class ResetPasswordAuthUserService {
         }
     }
 
-    private ResponseEntity<ResponseMessageDTO> apply(UserEntity user) {
+    private ResponseEntity<ResponseMessageDTO> send(UserEntity user) {
         GenerateRandomCodeResetPasswordProvider generateRandomCodeResetPasswordProvider = new GenerateRandomCodeResetPasswordProvider();
         String resetCode = generateRandomCodeResetPasswordProvider.generateRandomCode();
         user.setResetPasswordToken(resetCode);
         user.setResetPasswordTokenExpiration(LocalDateTime.now());
         userRepository.save(user);
+        
         String emailUser = anonymizationService.decrypt(user.getEmail());
         mailSendResetPassword.sendEmail(emailUser, resetCode, "reset-password");
         return ResponseEntity.status(HttpStatus.OK)

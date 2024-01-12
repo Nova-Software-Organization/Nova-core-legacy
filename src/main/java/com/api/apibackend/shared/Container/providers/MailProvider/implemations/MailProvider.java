@@ -6,7 +6,7 @@
  * ----------------------------------------------------------------------------
  * Aviso! O mail provider sera ativado quando se tratar do ambiente local de desenvolvimento da aplicação!
  */
-package com.api.apibackend.shared.container.providers.MailProvider.implemations;
+package com.api.apibackend.shared.Container.providers.MailProvider.implemations;
 
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.thymeleaf.TemplateEngine;
@@ -14,7 +14,7 @@ import org.thymeleaf.context.Context;
 import org.thymeleaf.spring6.SpringTemplateEngine;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
-import com.api.apibackend.shared.container.providers.MailProvider.IMailProvider;
+import com.api.apibackend.shared.Container.providers.MailProvider.IMailProvider;
 
 import jakarta.mail.MessagingException;
 

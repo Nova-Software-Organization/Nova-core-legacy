@@ -5,7 +5,7 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-package com.api.apibackend.modules.Auth.Domain.service.resetPassword;
+package com.api.apibackend.modules.Mail.Domain.service.resetPassword;
 
 import org.springframework.stereotype.Service;
 

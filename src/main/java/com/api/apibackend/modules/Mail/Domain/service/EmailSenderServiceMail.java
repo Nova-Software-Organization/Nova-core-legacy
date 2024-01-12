@@ -9,7 +9,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import com.api.apibackend.modules.Auth.Application.DTOs.response.ResponseMessageDTO;
-import com.api.apibackend.shared.container.providers.MailProvider.implemations.MailProvider;
+import com.api.apibackend.shared.Container.providers.MailProvider.implemations.MailProvider;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;

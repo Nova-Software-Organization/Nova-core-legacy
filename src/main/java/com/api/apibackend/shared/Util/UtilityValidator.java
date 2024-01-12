@@ -5,8 +5,7 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-
-package com.api.apibackend.shared.util;
+package com.api.apibackend.shared.Util;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

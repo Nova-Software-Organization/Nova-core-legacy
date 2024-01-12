@@ -1,4 +1,4 @@
-package com.api.apibackend.shared.util;
+package com.api.apibackend.shared.Util;
 
 import java.util.Objects;
 import java.util.function.Consumer;

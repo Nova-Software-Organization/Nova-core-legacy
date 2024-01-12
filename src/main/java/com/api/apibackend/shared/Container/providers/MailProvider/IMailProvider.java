@@ -5,7 +5,7 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-package com.api.apibackend.shared.container.providers.MailProvider;
+package com.api.apibackend.shared.Container.providers.MailProvider;
 
 import org.springframework.mail.javamail.MimeMessageHelper;
 
