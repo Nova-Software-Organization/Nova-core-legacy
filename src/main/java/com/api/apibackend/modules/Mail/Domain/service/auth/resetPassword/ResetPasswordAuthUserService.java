@@ -23,6 +23,7 @@ import com.api.apibackend.modules.Auth.Domain.provider.resetPassword.GenerateRan
 import com.api.apibackend.modules.Auth.Domain.service.cryptography.AnonymizationService;
 import com.api.apibackend.modules.Auth.Infra.persistence.entity.UserEntity;
 import com.api.apibackend.modules.Auth.Infra.persistence.repository.UserRepository;
+import com.api.apibackend.modules.Mail.Domain.service.auth.EmailSenderService;
 
 @Service
 public class ResetPasswordAuthUserService {

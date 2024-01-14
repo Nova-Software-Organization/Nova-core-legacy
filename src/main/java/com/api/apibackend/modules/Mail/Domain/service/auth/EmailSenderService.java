@@ -5,7 +5,7 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-package com.api.apibackend.modules.Mail.Domain.service.auth.resetPassword;
+package com.api.apibackend.modules.Mail.Domain.service.auth;
 
 import java.util.Optional;
 

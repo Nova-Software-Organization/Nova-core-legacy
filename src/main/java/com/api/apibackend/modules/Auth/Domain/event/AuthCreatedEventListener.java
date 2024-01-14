@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.api.apibackend.modules.Auth.Domain.service.cryptography.AnonymizationService;
 import com.api.apibackend.modules.Auth.Infra.persistence.repository.UserRepository;
-import com.api.apibackend.modules.Mail.Domain.service.auth.resetPassword.EmailSenderService;
+import com.api.apibackend.modules.Mail.Domain.service.auth.EmailSenderService;
 import com.api.apibackend.shared.Event.Domain.IDomainEventListener;
 
 @Component

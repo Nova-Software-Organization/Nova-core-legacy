@@ -17,7 +17,7 @@ import org.springframework.context.annotation.PropertySources;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
-import com.api.apibackend.modules.Mail.Domain.service.auth.resetPassword.EmailSenderService;
+import com.api.apibackend.modules.Mail.Domain.service.auth.EmailSenderService;
 
 @Configuration
 @PropertySources({
