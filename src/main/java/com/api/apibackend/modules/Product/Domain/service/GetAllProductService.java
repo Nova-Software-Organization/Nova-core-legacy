@@ -10,7 +10,6 @@ package com.api.apibackend.modules.Product.Domain.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Service;
@@ -30,13 +29,6 @@ public class GetAllProductService implements IGetAllProductService {
     private ProductRepository productRepository;
     private MyRedisCacheManager myRedisCacheManager;
     
-    @Autowired
-    public GetAllProductService(ProductRepository productRepository, MyRedisCacheManager myRedisCacheManager) {
-        this.productRepository = productRepository;
-        this.myRedisCacheManager = myRedisCacheManager;
-    }
-
-    @Autowired
     public GetAllProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }

@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Data;
 
 @Data
-@JsonPropertyOrder("CustomerAddress")
+@JsonPropertyOrder("customerAddress")
 public class CustomerAddressDTO {
 	private String road;
 	private String neighborhood;
