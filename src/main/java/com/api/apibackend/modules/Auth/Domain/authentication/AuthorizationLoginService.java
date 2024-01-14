@@ -5,7 +5,6 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-
 package com.api.apibackend.modules.Auth.Domain.authentication;
 
 import java.util.HashSet;
@@ -21,11 +20,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.api.apibackend.modules.Auth.Application.DTOs.request.LoginRequest;
 import com.api.apibackend.modules.Auth.Application.DTOs.response.LoginResponseDTO;
 import com.api.apibackend.modules.Auth.Domain.Enum.CustomGrantedAuthority;
-import com.api.apibackend.modules.Auth.Domain.model.LoginRequest;
 import com.api.apibackend.modules.Auth.Domain.repository.IAutheticationLogin;
-import com.api.apibackend.modules.Auth.Domain.service.AnonymizationService;
+import com.api.apibackend.modules.Auth.Domain.service.cryptography.AnonymizationService;
 import com.api.apibackend.modules.Auth.Domain.token.GeneratedTokenAuthorizationService;
 import com.api.apibackend.modules.Auth.Infra.persistence.repository.UserRepository;
 

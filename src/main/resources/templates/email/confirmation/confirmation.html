@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Confirmação de E-mail</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <p>Olá, <span th:text="${user}">user</span></p>
+    <p>Obrigado por se cadastrar no site <strong th:text="${appName}">Nova Software</strong>!</p>
+    <p>Para ativar a sua conta, clique no link abaixo:</p>
+    <p>
+        <a href="<URL_da_página_de_confirmação>" th:href="@{${'URL_da_página_de_confirmação'}}" 
+           style="background-color: #4CAF50; color: white; padding: 10px; text-decoration: none; display: inline-block;">
+            Confirmar E-mail
+        </a>
+    </p>
+    <p>Se o botão acima não funcionar, você também pode copiar e colar o seguinte link no seu navegador:</p>
+    <p>${confirmationLink}</p>
+    <p>Atenciosamente,<br/>Equipe de Suporte <strong th:text="${appName}">Nova Software</strong></p>
+</body>
+</html>

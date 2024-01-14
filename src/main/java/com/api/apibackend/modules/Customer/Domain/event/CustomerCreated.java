@@ -5,7 +5,6 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-
 package com.api.apibackend.modules.Customer.Domain.event;
 
 import java.time.LocalDate;
@@ -13,7 +12,6 @@ import java.time.LocalDate;
 import org.springframework.context.ApplicationEvent;
 
 public class CustomerCreated extends ApplicationEvent {
-
     private final Long createdClientId;
     private final LocalDate dateCreated;
 

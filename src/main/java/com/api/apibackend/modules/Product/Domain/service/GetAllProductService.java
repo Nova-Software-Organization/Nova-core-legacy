@@ -5,7 +5,6 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-
 package com.api.apibackend.modules.Product.Domain.service;
 
 import java.util.List;
@@ -13,8 +12,10 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Service;
 
+import com.api.apibackend.core.redis.MyRedisCacheManager;
 import com.api.apibackend.modules.Midia.infra.persistence.entity.MidiaEntity;
 import com.api.apibackend.modules.Price.infra.entity.PriceEntity;
 import com.api.apibackend.modules.Product.Domain.model.Product;
@@ -24,9 +25,17 @@ import com.api.apibackend.modules.Product.Infra.repository.ProductRepository;
 import com.api.apibackend.modules.Stock.Infra.persistence.entity.StockEntity;
 
 @Service
+@EnableScheduling
 public class GetAllProductService implements IGetAllProductService {
     private ProductRepository productRepository;
+    private MyRedisCacheManager myRedisCacheManager;
     
+    @Autowired
+    public GetAllProductService(ProductRepository productRepository, MyRedisCacheManager myRedisCacheManager) {
+        this.productRepository = productRepository;
+        this.myRedisCacheManager = myRedisCacheManager;
+    }
+
     @Autowired
     public GetAllProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;

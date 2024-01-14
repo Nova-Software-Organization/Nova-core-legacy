@@ -2,9 +2,7 @@ name: Nova core Application
 
 on:
   push:
-    branches: [master,
-    staging]
-
+    branches: [master, staging]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -26,7 +24,7 @@ jobs:
         run: docker push
       - name: Run tests on downloaded project
         run: |
-            ./mvnw test
+          ./mvnw test
 
   deploy:
     needs: build

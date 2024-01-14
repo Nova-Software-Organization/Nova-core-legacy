@@ -10,6 +10,8 @@ package com.api.apibackend.modules.Order.Application.DTOs;
 
 import com.api.apibackend.modules.Customer.Application.DTOs.ClientRequest;
 import com.api.apibackend.modules.CustomerAddress.Domain.model.CustomerAddressRequest;
+import com.api.apibackend.shared.util.InputValidator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CreateOrderRequest {
@@ -21,6 +23,9 @@ public class CreateOrderRequest {
 
 	@JsonProperty("clientRequest")
 	private ClientRequest clientRequest;
+
+	@JsonIgnore
+	private InputValidator inputValidator;
 
 	public CreateOrderRequest() {
 	}
@@ -48,4 +53,12 @@ public class CreateOrderRequest {
 	public void setClientRequest(ClientRequest clientRequest) {
 		this.clientRequest = clientRequest;
 	}
+
+	/**
+     * Verifica se a instância de CreateOrderRequest é válido para criação do pedido.
+     * @return true se for válida, false caso contrário.
+     */
+    public boolean isValid() {
+        return inputValidator.isValidInput(this);
+    }
 }

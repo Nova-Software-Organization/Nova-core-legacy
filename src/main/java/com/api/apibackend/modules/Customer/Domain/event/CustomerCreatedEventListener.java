@@ -18,7 +18,6 @@ import com.api.apibackend.shared.Event.Domain.IDomainEventListener;
 
 @Component
 public class CustomerCreatedEventListener implements IDomainEventListener<CustomerCreated> {
-
     private final CustomerRepository customerRepository;
 
     @Autowired

@@ -16,7 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.api.apibackend.modules.Auth.Domain.provider.JWTProvider;
+import com.api.apibackend.modules.Auth.Domain.provider.jwt.JWTProvider;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

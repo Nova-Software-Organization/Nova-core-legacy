@@ -7,10 +7,10 @@
  */
 package com.api.apibackend.modules.Auth.Application.useCases;
 
-import com.api.apibackend.modules.Auth.Application.DTOs.response.LoginResponseDTO;
-import com.api.apibackend.modules.Auth.Application.useCases.AuthenticateCustomer.AuthenticateCustomerUseCase;
-import com.api.apibackend.modules.Auth.Domain.authentication.AuthorizationLoginService;
-import com.api.apibackend.modules.Auth.Domain.model.LoginRequest;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.*;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -18,8 +18,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import com.api.apibackend.modules.Auth.Application.DTOs.request.LoginRequest;
+import com.api.apibackend.modules.Auth.Application.DTOs.response.LoginResponseDTO;
+import com.api.apibackend.modules.Auth.Application.useCases.AuthenticateCustomer.AuthenticateCustomerUseCase;
+import com.api.apibackend.modules.Auth.Domain.authentication.AuthorizationLoginService;
 
 @SpringBootTest
 public class AuthenticateCustomerUseCaseTest {

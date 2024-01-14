@@ -5,10 +5,13 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-
 package com.api.apibackend.modules.Auth.Domain.authentication;
 
-import java.util.*;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
@@ -19,9 +22,10 @@ import org.springframework.stereotype.Service;
 
 import com.api.apibackend.modules.Auth.Application.DTOs.response.ResponseMessageDTO;
 import com.api.apibackend.modules.Auth.Domain.Enum.CustomGrantedAuthority;
+import com.api.apibackend.modules.Auth.Domain.event.AuthCreated;
 import com.api.apibackend.modules.Auth.Domain.repository.IAutheticationRegister;
-import com.api.apibackend.modules.Auth.Domain.service.AnonymizationService;
-import com.api.apibackend.modules.Auth.Domain.service.UserService;
+import com.api.apibackend.modules.Auth.Domain.service.cryptography.AnonymizationService;
+import com.api.apibackend.modules.Auth.Domain.service.user.UserService;
 import com.api.apibackend.modules.Auth.Domain.token.GeneratedTokenAuthorizationService;
 import com.api.apibackend.modules.Auth.Infra.persistence.entity.UserEntity;
 import com.api.apibackend.modules.Auth.Infra.persistence.repository.UserRepository;
@@ -38,7 +42,9 @@ import com.api.apibackend.modules.CustomerAddress.Domain.helpers.CustomerAddress
 import com.api.apibackend.modules.CustomerAddress.Infra.persistence.entity.AddressEntity;
 
 import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 public class AutheticationRegisterService implements IAutheticationRegister {
     private PasswordEncoder passwordEncoder;
@@ -111,12 +117,14 @@ public class AutheticationRegisterService implements IAutheticationRegister {
 
             Optional<CustomerEntity> existingCustomer = clientSearchService.searchClientByEmail(customerDTO.getEmail());
             if (existingCustomer.isPresent()) {
+                log.warn("usuário já existe {}");
                 return ResponseEntity.badRequest()
                         .body(new ResponseMessageDTO("E-mail já está em uso.", this.getClass().getSimpleName(), null,
                                 null));
             }
 
             if (!autheticationValidationServiceHandler.isValidCPF(customerDTO.getCpf())) {
+                log.warn("erro de válidação no cpf do usuário {}");
                 return ResponseEntity.badRequest()
                         .body(new ResponseMessageDTO("CPF inválido.", this.getClass().getSimpleName(), null, null));
             }
@@ -139,11 +147,17 @@ public class AutheticationRegisterService implements IAutheticationRegister {
             String jwtToken = generatedTokenAuthorizationService.generateToken(newUserEntity.getUsername(), userRoles);
             newCustomerEntity.setUser(newUserEntity);
             publishCustomerCreatedEvent(savedClient.getId());
+            
+            //Create event for sending email
+            AuthCreated user = new AuthCreated(this, savedClient.getId());
+            eventPublisher.publishEvent(user);
 
+            log.info("usuario criado com sucesso {}");
             return ResponseEntity.status(HttpStatus.CREATED).body(
                     new ResponseMessageDTO("Usuário registrado com sucesso!",
                             this.getClass().getSimpleName(), null, jwtToken));
         } catch (Exception e) {
+            log.error("Ocorreu um erro ao processar a requisição!", e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(new ResponseMessageDTO(null, this.getClass().getSimpleName(),
                             "Erro ao registrar o cliente: " + e.getMessage(), null));
