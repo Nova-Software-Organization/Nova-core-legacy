@@ -13,7 +13,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
-import com.api.apibackend.modules.Auth.Domain.provider.JWTProvider;
+import com.api.apibackend.modules.Auth.Domain.provider.jwt.JWTProvider;
 import com.api.apibackend.modules.Auth.Domain.token.GeneratedTokenAuthorizationService;
 import com.api.apibackend.modules.Auth.Infra.persistence.entity.UserEntity;
 import com.api.apibackend.modules.Auth.Infra.persistence.repository.UserRepository;

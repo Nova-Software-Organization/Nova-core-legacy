@@ -1,3 +1,10 @@
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
 package com.api.apibackend.modules.Auth.Application.useCases.ResetPasswordCustomer;
 
 import org.slf4j.Logger;
@@ -9,12 +16,14 @@ import org.springframework.stereotype.Service;
 
 import com.api.apibackend.modules.Auth.Application.DTOs.mail.AuthUserResetPassawordDTO;
 import com.api.apibackend.modules.Auth.Application.DTOs.response.ResponseMessageDTO;
-import com.api.apibackend.modules.Mail.Domain.service.resetPassword.ResetPasswordAuthUserService;
+import com.api.apibackend.modules.Mail.Domain.service.auth.resetPassword.ResetPasswordAuthUserService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class ResetPasswordGeneratedTokenUseCase {
     private static final Logger logger = LoggerFactory.getLogger(ResetPasswordGeneratedTokenUseCase.class);
-
     private ResetPasswordAuthUserService resetPasswordAuthUserService;
 
     @Autowired

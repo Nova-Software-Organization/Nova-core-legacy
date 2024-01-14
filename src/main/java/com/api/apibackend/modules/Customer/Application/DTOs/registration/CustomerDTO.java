@@ -5,14 +5,16 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-
 package com.api.apibackend.modules.Customer.Application.DTOs.registration;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import lombok.Data;
 
 @Data
+@JsonPropertyOrder("Customer")
 public class CustomerDTO {
     private Boolean isAdmin;
     private String name;

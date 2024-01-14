@@ -5,7 +5,6 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-
 package com.api.apibackend.modules.Customer.Domain.service;
 
 import java.util.Objects;
@@ -14,7 +13,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.api.apibackend.modules.Auth.Domain.service.AnonymizationService;
+import com.api.apibackend.modules.Auth.Domain.service.cryptography.AnonymizationService;
 import com.api.apibackend.modules.Auth.Infra.persistence.entity.UserEntity;
 import com.api.apibackend.modules.Customer.Application.DTOs.ClientRequest;
 import com.api.apibackend.modules.Customer.Infra.persistence.entity.CustomerEntity;

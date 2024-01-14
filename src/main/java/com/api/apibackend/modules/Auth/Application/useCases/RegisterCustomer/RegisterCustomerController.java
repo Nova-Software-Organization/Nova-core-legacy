@@ -5,7 +5,6 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-
 package com.api.apibackend.modules.Auth.Application.useCases.RegisterCustomer;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,9 @@ import com.api.apibackend.modules.Customer.Application.DTOs.registration.Registr
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 @RequestMapping("v1/auth")
 public class RegisterCustomerController {

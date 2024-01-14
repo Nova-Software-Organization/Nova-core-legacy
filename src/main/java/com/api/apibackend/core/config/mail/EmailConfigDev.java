@@ -1,3 +1,10 @@
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
 package com.api.apibackend.core.config.mail;
 
 import java.util.Properties;
@@ -10,7 +17,7 @@ import org.springframework.context.annotation.PropertySources;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
-import com.api.apibackend.modules.Mail.Domain.service.EmailSenderServiceMail;
+import com.api.apibackend.modules.Mail.Domain.service.auth.resetPassword.EmailSenderService;
 
 @Configuration
 @PropertySources({
@@ -48,7 +55,7 @@ public class EmailConfigDev {
     }
 
     @Bean
-    public EmailSenderServiceMail emailSenderServiceMail(JavaMailSender javaMailSender) {
-        return new EmailSenderServiceMail(javaMailSender, null);
+    public EmailSenderService emailSenderServiceMail(JavaMailSender javaMailSender) {
+        return new EmailSenderService(javaMailSender, null, null, null);
     }
 }

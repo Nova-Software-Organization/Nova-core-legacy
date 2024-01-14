@@ -5,9 +5,11 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-
 package com.api.apibackend.modules.Customer.Application.DTOs.registration;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+@JsonPropertyOrder("Registration")
 public class RegistrationRequest {
 	private CustomerDTO customerDTO;
 	private CustomerAddressDTO customerAddressDTO;

@@ -5,12 +5,14 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-
 package com.api.apibackend.modules.Customer.Application.DTOs.registration;
+
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import lombok.Data;
 
 @Data
+@JsonPropertyOrder("CustomerAddress")
 public class CustomerAddressDTO {
 	private String road;
 	private String neighborhood;

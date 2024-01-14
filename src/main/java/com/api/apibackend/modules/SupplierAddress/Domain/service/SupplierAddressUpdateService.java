@@ -16,7 +16,7 @@ import com.api.apibackend.modules.Supplier.Infra.persistence.repository.Supplier
 import com.api.apibackend.modules.SupplierAddress.Application.DTOs.SupplierAddressDTO;
 import com.api.apibackend.modules.SupplierAddress.Application.DTOs.response.ResponseMessageDTO;
 import com.api.apibackend.modules.SupplierAddress.infra.persistence.entity.SupplierAddressEntity;
-import com.api.apibackend.shared.Util.ValidationAreEqual;
+import com.api.apibackend.shared.util.ValidationAreEqual;
 
 @Service
 public class SupplierAddressUpdateService {

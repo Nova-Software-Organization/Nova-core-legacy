@@ -5,20 +5,20 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-
 package com.api.apibackend.modules.Auth.Application.useCases.AuthenticateCustomer;
-
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.api.apibackend.modules.Auth.Application.DTOs.request.LoginRequest;
 import com.api.apibackend.modules.Auth.Application.DTOs.response.LoginResponseDTO;
 import com.api.apibackend.modules.Auth.Domain.authentication.AuthorizationLoginService;
-import com.api.apibackend.modules.Auth.Domain.model.LoginRequest;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class AuthenticateCustomerUseCase {
     private final AuthorizationLoginService authenticationLogin;

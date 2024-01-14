@@ -7,6 +7,8 @@
  */
 package com.api.apibackend.modules.Auth.Application.useCases.AuthenticateCustomer;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,15 +18,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.api.apibackend.modules.Auth.Application.DTOs.request.LoginRequest;
 import com.api.apibackend.modules.Auth.Application.DTOs.response.LoginResponseDTO;
-import com.api.apibackend.modules.Auth.Domain.model.LoginRequest;
 import com.api.apibackend.modules.Customer.Domain.exception.ClientNotFoundException;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.extern.slf4j.Slf4j;
 
-import java.util.Optional;
-
+@Slf4j
 @RestController
 @RequestMapping("v1/auth")
 public class AuthenticateCustomerController {
