@@ -8,10 +8,8 @@
 
 package com.api.apibackend.modules.Midia.Application.useCases.CreatedMidia;
 
-import com.api.apibackend.modules.Midia.Application.DTOs.MidiaDTO;
-import com.api.apibackend.modules.Supplier.Application.DTOs.ResponseMessageDTO;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,11 +18,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Objects;
-import java.util.Optional;
+import com.api.apibackend.modules.Midia.Application.DTOs.MidiaDTO;
+import com.api.apibackend.modules.Supplier.Application.DTOs.ResponseMessageDTO;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@RequestMapping("/midia")
+@RequestMapping("v1/midia")
 public class MidiaCreatedController {
 
     private MidiaUseCaseCreated midiaUseCaseCreated;

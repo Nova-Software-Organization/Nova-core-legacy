@@ -14,10 +14,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class MyOrdersAccountRequest {
 	
-	@JsonProperty("client")
+	@JsonProperty("customer")
 	private CustomerEntity client;
 
-	@JsonProperty("address")
+	@JsonProperty("customerAddress")
 	private AddressEntity address;
 
 	public MyOrdersAccountRequest(CustomerEntity client, AddressEntity address) {

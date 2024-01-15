@@ -17,7 +17,6 @@ import lombok.Data;
 @Component
 @ConfigurationProperties(prefix = "redis")
 public class RedisProperties {
-
     private String host;
     private int port;
     private String pass;
