@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.api.apibackend.modules.Price.infra.entity.PriceEntity;
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
+import com.api.apibackend.modules.Product.Infra.persistence.entity.ProductEntity;
 
 import lombok.Data;
 

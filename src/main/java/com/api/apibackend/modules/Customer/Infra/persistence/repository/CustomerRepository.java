@@ -8,6 +8,7 @@
 
 package com.api.apibackend.modules.Customer.Infra.persistence.repository;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,4 +31,8 @@ public interface CustomerRepository extends JpaRepository<CustomerEntity, Long> 
     List<CustomerEntity> findByGenderContaining(String gender);
     List<CustomerEntity> findByEmailContaining(String email);
     List<CustomerEntity> findByAddress_CepContaining(String cep);
+    List<CustomerEntity> findByNameContainingIgnoreCase(String name);
+    List<CustomerEntity> findByDateCreate(Date Date);
+    List<CustomerEntity> findAllByOrderByNameAsc();
+    List<CustomerEntity> findAllByOrderByNameDesc();
 }

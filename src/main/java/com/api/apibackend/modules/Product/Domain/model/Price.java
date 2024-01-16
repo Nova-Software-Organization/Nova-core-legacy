@@ -1,5 +1,3 @@
-package com.api.apibackend.modules.Product.Domain.model;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,11 +5,12 @@ package com.api.apibackend.modules.Product.Domain.model;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+package com.api.apibackend.modules.Product.Domain.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
+import com.api.apibackend.modules.Product.Infra.persistence.entity.ProductEntity;
 
 import lombok.Data;
 

@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 import com.api.apibackend.modules.Price.infra.entity.PriceEntity;
 import com.api.apibackend.modules.Price.infra.repository.PriceRepository;
 import com.api.apibackend.modules.Product.Application.DTOs.ProductDTO;
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
+import com.api.apibackend.modules.Product.Infra.persistence.entity.ProductEntity;
 import com.api.apibackend.modules.Supplier.Infra.persistence.entity.SupplierEntity;
 import com.api.apibackend.modules.Supplier.Infra.persistence.repository.SupplierRepository;
 import com.api.apibackend.modules.SupplierAddress.infra.persistence.entity.SupplierAddressEntity;

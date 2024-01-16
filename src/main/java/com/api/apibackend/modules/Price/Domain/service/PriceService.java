@@ -1,5 +1,3 @@
-package com.api.apibackend.modules.Price.Domain.service;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,6 +5,7 @@ package com.api.apibackend.modules.Price.Domain.service;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+package com.api.apibackend.modules.Price.Domain.service;
 
 import java.util.Optional;
 
@@ -19,8 +18,8 @@ import com.api.apibackend.modules.Price.Application.DTOs.PriceDTO;
 import com.api.apibackend.modules.Price.Application.DTOs.response.ResponseMessageDTO;
 import com.api.apibackend.modules.Price.infra.entity.PriceEntity;
 import com.api.apibackend.modules.Price.infra.repository.PriceRepository;
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
-import com.api.apibackend.modules.Product.Infra.repository.ProductRepository;
+import com.api.apibackend.modules.Product.Infra.persistence.entity.ProductEntity;
+import com.api.apibackend.modules.Product.Infra.persistence.repository.ProductRepository;
 
 @Service
 public class PriceService {

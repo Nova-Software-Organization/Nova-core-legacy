@@ -20,8 +20,8 @@ import com.api.apibackend.modules.Order.infra.persistence.entity.OrderEntity;
 import com.api.apibackend.modules.OrderItem.Domain.exception.NonExistentesItemsException;
 import com.api.apibackend.modules.OrderItem.Domain.model.OrderItem;
 import com.api.apibackend.modules.OrderItem.infra.persistence.entity.OrderItemEntity;
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
-import com.api.apibackend.modules.Product.Infra.repository.ProductRepository;
+import com.api.apibackend.modules.Product.Infra.persistence.entity.ProductEntity;
+import com.api.apibackend.modules.Product.Infra.persistence.repository.ProductRepository;
 
 @Service
 public class OrderItemCreationService {

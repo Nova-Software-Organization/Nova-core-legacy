@@ -9,6 +9,8 @@ package com.api.apibackend.modules.Customer.Application.DTOs.response;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+
 import com.api.apibackend.modules.Customer.Infra.persistence.entity.CustomerEntity;
 
 import lombok.Data;
@@ -19,6 +21,7 @@ public class ResponseMessageDTO {
     private String className;
     private String errorMessage;
     private List<CustomerEntity> customer;
+    private Page<CustomerEntity> consultPageCustomer;
 
     public ResponseMessageDTO(String message, String className, List<CustomerEntity> customer, String errorMessage) {
         this.message = message;
@@ -31,5 +34,13 @@ public class ResponseMessageDTO {
         this.message = message;
         this.className = className;
         this.errorMessage = errorMessage;
+    }
+    
+    public ResponseMessageDTO(String message, String className, String errorMessage, List<CustomerEntity> customer, Page<CustomerEntity> consultPageCustomer) {
+        this.message = message;
+        this.className = className;
+        this.errorMessage = errorMessage;
+        this.customer = customer;
+        this.consultPageCustomer = consultPageCustomer;
     }
 }

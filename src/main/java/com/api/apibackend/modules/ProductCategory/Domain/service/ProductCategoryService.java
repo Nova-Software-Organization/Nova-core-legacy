@@ -16,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.api.apibackend.modules.Product.Domain.model.Product;
-import com.api.apibackend.modules.Product.Infra.repository.ProductRepository;
+import com.api.apibackend.modules.Product.Infra.persistence.repository.ProductRepository;
 import com.api.apibackend.modules.ProductCategory.infra.persistence.entity.ProductCategoryEntity;
 import com.api.apibackend.modules.ProductCategory.infra.persistence.repository.ProductCategoryRepository;
 

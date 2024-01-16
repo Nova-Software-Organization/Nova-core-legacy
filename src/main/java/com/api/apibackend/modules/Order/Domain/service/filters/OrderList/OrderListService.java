@@ -5,8 +5,7 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-
-package com.api.apibackend.modules.Order.Domain.service.filters;
+package com.api.apibackend.modules.Order.Domain.service.filters.OrderList;
 
 import java.util.List;
 

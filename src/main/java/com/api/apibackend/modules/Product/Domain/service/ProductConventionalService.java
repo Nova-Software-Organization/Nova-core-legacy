@@ -5,7 +5,6 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-
 package com.api.apibackend.modules.Product.Domain.service;
 
 import java.util.ArrayList;
@@ -13,7 +12,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import com.api.apibackend.modules.Midia.infra.persistence.repository.MidiaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,12 +19,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.api.apibackend.modules.Midia.infra.persistence.entity.MidiaEntity;
+import com.api.apibackend.modules.Midia.infra.persistence.repository.MidiaRepository;
 import com.api.apibackend.modules.Product.Application.DTOs.ProductDTO;
 import com.api.apibackend.modules.Product.Application.DTOs.ResponseMessageDTO;
 import com.api.apibackend.modules.Product.Application.component.ProductComponentAdd;
 import com.api.apibackend.modules.Product.Domain.repository.IProductConventionalService;
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
-import com.api.apibackend.modules.Product.Infra.repository.ProductRepository;
+import com.api.apibackend.modules.Product.Infra.persistence.entity.ProductEntity;
+import com.api.apibackend.modules.Product.Infra.persistence.repository.ProductRepository;
 import com.api.apibackend.modules.ProductCategory.infra.persistence.entity.ProductCategoryEntity;
 import com.api.apibackend.modules.ProductCategory.infra.persistence.repository.ProductCategoryRepository;
 import com.api.apibackend.modules.Stock.Infra.persistence.entity.StockEntity;

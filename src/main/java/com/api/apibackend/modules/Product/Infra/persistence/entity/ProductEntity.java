@@ -6,8 +6,7 @@
  * ----------------------------------------------------------------------------
  * Representa uma entidade de Produto dentro da empresa.
  */
-
-package com.api.apibackend.modules.Product.Infra.entity;
+package com.api.apibackend.modules.Product.Infra.persistence.entity;
 
 import java.io.Serializable;
 

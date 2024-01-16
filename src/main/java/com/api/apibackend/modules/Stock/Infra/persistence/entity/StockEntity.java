@@ -6,7 +6,6 @@
  * ----------------------------------------------------------------------------
  * Representa uma entidade de Estoque no sistema.
  */
-
 package com.api.apibackend.modules.Stock.Infra.persistence.entity;
 
 import java.io.Serializable;
@@ -15,7 +14,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.api.apibackend.modules.MovementStock.Infra.persistence.entity.StockMovementEntity;
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
+import com.api.apibackend.modules.Product.Infra.persistence.entity.ProductEntity;
 import com.api.apibackend.modules.Unity.infra.persistence.entity.UnityEntity;
 
 import jakarta.persistence.CascadeType;

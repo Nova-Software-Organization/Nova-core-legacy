@@ -6,7 +6,6 @@
  * ----------------------------------------------------------------------------
  * Representa uma entidade de item do pedido dentro da empresa.
  */
-
 package com.api.apibackend.modules.OrderItem.infra.persistence.entity;
 
 import java.io.Serializable;
@@ -15,7 +14,7 @@ import java.math.BigDecimal;
 import org.springframework.context.annotation.Lazy;
 
 import com.api.apibackend.modules.Order.infra.persistence.entity.OrderEntity;
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
+import com.api.apibackend.modules.Product.Infra.persistence.entity.ProductEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

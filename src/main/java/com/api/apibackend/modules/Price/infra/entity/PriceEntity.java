@@ -1,5 +1,3 @@
-package com.api.apibackend.modules.Price.infra.entity;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -8,6 +6,7 @@ package com.api.apibackend.modules.Price.infra.entity;
  * ----------------------------------------------------------------------------
  * Representa uma entidade de Preço de Produto no sistema.
  */
+package com.api.apibackend.modules.Price.infra.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,7 +14,7 @@ import java.util.Date;
 
 import org.springframework.context.annotation.Lazy;
 
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
+import com.api.apibackend.modules.Product.Infra.persistence.entity.ProductEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

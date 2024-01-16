@@ -1,4 +1,11 @@
-package com.api.apibackend.modules.Order.Domain.service.filters;
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
+package com.api.apibackend.modules.Order.Domain.service.filters.OrderFindById;
 
 import java.util.Optional;
 

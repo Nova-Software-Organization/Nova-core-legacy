@@ -5,8 +5,7 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-
-package com.api.apibackend.modules.Product.Application.useCase.Filter;
+package com.api.apibackend.modules.Product.Application.useCase.Filter.ProductFIlterById;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -12,7 +12,7 @@ package com.api.apibackend.modules.CartItem.Infra.persistence.entity;
 import java.io.Serializable;
 
 import com.api.apibackend.modules.Cart.Infra.persistence.entity.CartEntity;
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
+import com.api.apibackend.modules.Product.Infra.persistence.entity.ProductEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

@@ -1,5 +1,3 @@
-package com.api.apibackend.modules.Order.Application.DTOs;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,6 +5,7 @@ package com.api.apibackend.modules.Order.Application.DTOs;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+package com.api.apibackend.modules.Order.Application.DTOs;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +13,7 @@ import java.util.List;
 import com.api.apibackend.modules.Customer.Application.DTOs.ClientRequest;
 import com.api.apibackend.modules.CustomerAddress.Domain.model.CustomerAddressRequest;
 import com.api.apibackend.modules.OrderItem.Domain.model.OrderItem;
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
+import com.api.apibackend.modules.Product.Infra.persistence.entity.ProductEntity;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import lombok.Data;

@@ -8,8 +8,8 @@
 
 package com.api.apibackend.modules.Customer.Domain.exception;
 
-public class ClientNotFoundException extends RuntimeException {
-    public ClientNotFoundException(String message) {
+public class CustomerNotFoundException extends RuntimeException {
+    public CustomerNotFoundException(String message) {
         super(message);
     }
 }

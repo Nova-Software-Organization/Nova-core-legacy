@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service;
 import com.api.apibackend.modules.Customer.Infra.persistence.entity.CustomerEntity;
 import com.api.apibackend.modules.CustomerAddress.Infra.persistence.entity.AddressEntity;
 import com.api.apibackend.modules.Order.infra.persistence.entity.OrderEntity;
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
+import com.api.apibackend.modules.Product.Infra.persistence.entity.ProductEntity;
 
 @Service
 public class MyRequestCustomerService {

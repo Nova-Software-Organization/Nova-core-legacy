@@ -1,5 +1,3 @@
-package com.api.apibackend.modules.Order.infra.persistence.entity;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -8,6 +6,7 @@ package com.api.apibackend.modules.Order.infra.persistence.entity;
  * ----------------------------------------------------------------------------
  * Representa uma entidade de Pedido no sistema.
  */
+package com.api.apibackend.modules.Order.infra.persistence.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -19,7 +18,7 @@ import org.springframework.context.annotation.Lazy;
 import com.api.apibackend.modules.Customer.Infra.persistence.entity.CustomerEntity;
 import com.api.apibackend.modules.OrderAddress.Infra.persistence.entity.OrderAddressEntity;
 import com.api.apibackend.modules.OrderItem.infra.persistence.entity.OrderItemEntity;
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
+import com.api.apibackend.modules.Product.Infra.persistence.entity.ProductEntity;
 import com.api.apibackend.modules.Transaction.infra.entity.TransactionEntity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 

@@ -1,26 +1,29 @@
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
 package com.api.apibackend.modules.Midia.Domain.service;
 
-import com.api.apibackend.modules.Midia.Application.DTOs.MidiaDTO;
-import com.api.apibackend.modules.Midia.Application.DTOs.ProductMidiaDTO;
-import com.api.apibackend.modules.Midia.Domain.exception.ErrorValidationMidia;
-import com.api.apibackend.modules.Midia.infra.persistence.entity.MidiaEntity;
-import com.api.apibackend.modules.Midia.infra.persistence.repository.MidiaRepository;
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
-import com.api.apibackend.modules.Product.Infra.repository.ProductRepository;
-import com.api.apibackend.modules.Supplier.Application.DTOs.ResponseMessageDTO;
-import com.api.apibackend.modules.Supplier.Application.DTOs.SupplierDTO;
-import com.api.apibackend.modules.Supplier.Domain.exception.ErrorValidationSupplier;
-import com.api.apibackend.modules.Supplier.Infra.persistence.entity.SupplierEntity;
-import com.api.apibackend.modules.SupplierAddress.infra.persistence.entity.SupplierAddressEntity;
-import com.api.apibackend.shared.helpers.ModelMappersConvertion;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.*;
+import com.api.apibackend.modules.Midia.Application.DTOs.MidiaDTO;
+import com.api.apibackend.modules.Midia.Application.DTOs.ProductMidiaDTO;
+import com.api.apibackend.modules.Midia.infra.persistence.entity.MidiaEntity;
+import com.api.apibackend.modules.Product.Infra.persistence.entity.ProductEntity;
+import com.api.apibackend.modules.Product.Infra.persistence.repository.ProductRepository;
+import com.api.apibackend.modules.Supplier.Application.DTOs.ResponseMessageDTO;
+import com.api.apibackend.shared.helpers.ModelMappersConvertion;
 
 @Service
 public class MidiaServiceCreated {

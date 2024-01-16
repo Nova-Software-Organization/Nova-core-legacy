@@ -11,7 +11,7 @@ package com.api.apibackend.modules.OrderItem.Application.DTOs;
 import java.math.BigDecimal;
 
 import com.api.apibackend.modules.Order.infra.persistence.entity.OrderEntity;
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
+import com.api.apibackend.modules.Product.Infra.persistence.entity.ProductEntity;
 
 import lombok.Data;
 

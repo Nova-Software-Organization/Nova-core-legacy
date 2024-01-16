@@ -5,10 +5,12 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-
 package com.api.apibackend.modules.Customer.Domain.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -16,16 +18,18 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.api.apibackend.modules.Customer.Application.DTOs.ClientRequest;
+import com.api.apibackend.modules.Customer.Domain.exception.CustomerNotFoundException;
 import com.api.apibackend.modules.Customer.Infra.persistence.entity.CustomerEntity;
 import com.api.apibackend.modules.Customer.Infra.persistence.repository.CustomerRepository;
 import com.api.apibackend.modules.CustomerAddress.Infra.persistence.entity.AddressEntity;
 
 @Service
 public class CustomerFilterService {
-
     private CustomerRepository customerRepository;
 
     @Autowired
@@ -119,5 +123,35 @@ public class CustomerFilterService {
 
     public CustomerEntity getClientById(Long clientId) {
         return customerRepository.findById(clientId).orElse(null);
+    }
+
+    public List<CustomerEntity> searchCustomersByName(String name) {
+        List<CustomerEntity> customers = customerRepository.findByNameContainingIgnoreCase(name);
+        if (customers.isEmpty()) {
+            throw new CustomerNotFoundException("Cliente não encontrado com o nome: " + name);
+        }
+        return customers;
+    }
+
+    public List<CustomerEntity> getAllCustomers() {
+        return customerRepository.findAll();
+    }
+
+     public List<CustomerEntity> findByRegistrationDate(String registrationDate) throws java.text.ParseException {
+        try {
+            Date date = new SimpleDateFormat("yyyy-MM-dd").parse(registrationDate);
+            return customerRepository.findByDateCreate(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            throw new IllegalArgumentException("Formato de data inválido. Use o formato yyyy-MM-dd.");
+        }
+    }
+
+     public Page<CustomerEntity> getCustomersWithPagination(PageRequest pageRequest) {
+        return customerRepository.findAll(pageRequest);
+    }
+
+    public List<CustomerEntity> getCustomersSortedByName(String sort) {
+        return customerRepository.findAllByOrderByNameAsc();
     }
 }
