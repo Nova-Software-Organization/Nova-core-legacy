@@ -25,11 +25,11 @@ import jakarta.validation.constraints.PositiveOrZero;
 
 @RestController
 @RequestMapping("v1/produto")
-public class ProductFilterActiveController {
-    private ProductFilterActiveUseCase productFilterActiveUseCase;
+public class ProductFilterStatusController {
+    private ProductFilterStatusUseCase productFilterActiveUseCase;
 
     @Autowired
-    public ProductFilterActiveController(ProductFilterActiveUseCase productFilterActiveUseCase) {
+    public ProductFilterStatusController(ProductFilterStatusUseCase productFilterActiveUseCase) {
         this.productFilterActiveUseCase = productFilterActiveUseCase;
     }
 

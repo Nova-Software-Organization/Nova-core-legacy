@@ -30,5 +30,4 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
     List<ProductEntity> findBySupplierEntity(SupplierEntity supplierEntity);
     List<ProductEntity> findByStatus(int status);
     List<ProductEntity> findBySku(String sku);
-    List<ProductEntity> findBySupplierEntity(Long idSupplier);
 }

@@ -49,7 +49,6 @@ public class ProductSkuFilterController {
 
         try {
             List<ProductEntity> filteredProducts = productSkuFilterUseCase.execute(sku);
-
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessageDTO("Sucesso!", this.getClass().getName(), filteredProducts, null));
         } catch (ValidationException e) {
             return ResponseEntity.badRequest().body(new ResponseMessageDTO("Erro de validação", this.getClass().getName(), e.getMessage()));

@@ -12,18 +12,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.api.apibackend.modules.Product.Application.DTOs.ResponseMessageDTO;
-import com.api.apibackend.modules.Product.Domain.service.ProductFilterService;
+import com.api.apibackend.modules.Product.Domain.service.filter.ProductFilterStatusService;
 
 @Service
-public class ProductFilterActiveUseCase {
-    private ProductFilterService productFilterService;
+public class ProductFilterStatusUseCase {
+    private ProductFilterStatusService productFilterStatusService;
 
     @Autowired
-    public ProductFilterActiveUseCase(ProductFilterService productFilterService) {
-        this.productFilterService = productFilterService;
+    public ProductFilterStatusUseCase(ProductFilterStatusService productFilterStatusService) {
+        this.productFilterStatusService = productFilterStatusService;
     }
+    
 
     public ResponseEntity<ResponseMessageDTO> execute(int status) {
-        return productFilterService.processProductFiltering(status);
+        return productFilterStatusService.processProductFiltering(status);
     }
 }

@@ -16,7 +16,4 @@ import com.api.apibackend.modules.Product.Application.DTOs.ResponseMessageDTO;
 
 public interface IProductConventionalService {
      ResponseEntity<ResponseMessageDTO> populationProduct(List<ProductDTO> productDTOList);
-     ResponseEntity<ResponseMessageDTO> create(ProductDTO productDTO);
-     ResponseEntity<ResponseMessageDTO> delete(Long productId);
-     ResponseEntity<ResponseMessageDTO> deactivate(Long productId);
 }

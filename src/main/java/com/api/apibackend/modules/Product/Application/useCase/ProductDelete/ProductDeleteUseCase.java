@@ -13,22 +13,22 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.api.apibackend.modules.Product.Application.DTOs.ResponseMessageDTO;
-import com.api.apibackend.modules.Product.Domain.service.ProductConventionalService;
+import com.api.apibackend.modules.Product.Domain.service.ProductDeleteService;
 
 @Service
 public class ProductDeleteUseCase {
-    private ProductConventionalService productConventionalService;
+    private ProductDeleteService productDeleteService;
 
     @Autowired
-    public ProductDeleteUseCase(ProductConventionalService productConventionalService) {
-        this.productConventionalService = productConventionalService;
+    public ProductDeleteUseCase(ProductDeleteService productDeleteService) {
+        this.productDeleteService = productDeleteService;
     }
-
+    
     public ResponseEntity<ResponseMessageDTO> execute(Long id) {
         if (id == null || id <= 0) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessageDTO("id do produto invalido", this.getClass().getName(), null));
         }
         
-        return productConventionalService.delete(id);
+        return productDeleteService.delete(id);
     }
 }

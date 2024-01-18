@@ -12,19 +12,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.api.apibackend.modules.Product.Domain.service.ProductFilterService;
+import com.api.apibackend.modules.Product.Domain.service.filter.ProductFilterSkuService;
 import com.api.apibackend.modules.Product.Infra.persistence.entity.ProductEntity;
 @Service
 public class ProductSkuFilterUseCase {
-    private ProductFilterService productFilterService;
+    private ProductFilterSkuService productFilterSkuService;
 
     @Autowired
-    public ProductSkuFilterUseCase(ProductFilterService productFilterService) {
-        this.productFilterService = productFilterService;
+    public ProductSkuFilterUseCase(ProductFilterSkuService productFilterSkuService) {
+        this.productFilterSkuService = productFilterSkuService;
     }
-
+    
     public List<ProductEntity> execute(String sku) {
-        List<ProductEntity> productsBySku = productFilterService.filterProductsBySku(sku);
-        return productsBySku;
+        return (List<ProductEntity>) productFilterSkuService.filterProductsBySku(sku);
     }
 }

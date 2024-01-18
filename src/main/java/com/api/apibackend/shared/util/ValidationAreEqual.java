@@ -18,4 +18,12 @@ public class ValidationAreEqual {
         }
         return false;
     }
+
+    public <T, U> boolean areEqualAdapter(T currentValue, U newValue, Consumer<U> setter) {
+        if (!Objects.equals(currentValue, newValue)) {
+            setter.accept(newValue);
+            return true;
+        }
+        return false;
+    }
 }
