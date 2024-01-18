@@ -1,8 +1,16 @@
-package com.api.apibackend.modules.Product.Application.useCase.GetFirstProduct;
+/**
+ * ----------------------------------------------------------------------------
+ * Autor: Kaue de Matos
+ * Empresa: Nova Software
+ * Propriedade da Empresa: Todos os direitos reservados
+ * ----------------------------------------------------------------------------
+ */
+package com.api.apibackend.modules.Product.Application.useCase.Filter.GetAllProduct;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,19 +26,19 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 @RestController
 @RequestMapping("v1/produto")
-public class GetFirstProductController {
-    private GetFirstProductUseCase getFirstProductUseCase;
+public class GetAllProductController {
+    private GetAllProductUseCase getAllProductUseCase;
 
     @Autowired
-    public GetFirstProductController(GetFirstProductUseCase getFirstProductUseCase) {
-        this.getFirstProductUseCase = getFirstProductUseCase;
+    public GetAllProductController(GetAllProductUseCase getAllProductUseCase) {
+        this.getAllProductUseCase = getAllProductUseCase;
     }
 
-    @GetMapping("/limitado")
+    @GetMapping("/todos")
     @PreAuthorize("hasRole('ADMIN')")
     @Operation(
-        summary = "Listar os 12 Primeiros Produtos",
-        description = "Lista os 12 primeiros produtos no banco de dados."
+        summary = "Listar Todos os Produtos",
+        description = "Lista todos os produtos no banco de dados."
     )
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Produtos listados com sucesso"),
@@ -38,7 +46,7 @@ public class GetFirstProductController {
     })
     @SecurityRequirement(name = "jwt_auth")
 	public ResponseEntity<List<Product>> handle() {
-		List<Product> products = getFirstProductUseCase.execute();
-		return ResponseEntity.ok(products);
+		List<Product> products = getAllProductUseCase.execute();
+		return new ResponseEntity<>(products, HttpStatus.OK);
 	}
 }

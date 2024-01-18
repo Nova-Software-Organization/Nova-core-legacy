@@ -9,17 +9,17 @@
 package com.api.apibackend.modules.CustomerAddress.Application.DTO;
 
 import com.api.apibackend.modules.Customer.Infra.persistence.entity.CustomerEntity;
-import com.api.apibackend.modules.CustomerAddress.Infra.persistence.entity.AddressEntity;
+import com.api.apibackend.modules.CustomerAddress.Infra.persistence.entity.CustomerAddressEntity;
 
 public class CustomerAddress {
 
 	private CustomerEntity customerEntity;
 
-	private AddressEntity addressEntity;
+	private CustomerAddressEntity addressEntity;
 
 	public CustomerAddress() { }
 
-	public CustomerAddress(CustomerEntity customerEntity, AddressEntity addressEntity) {
+	public CustomerAddress(CustomerEntity customerEntity, CustomerAddressEntity addressEntity) {
 		this.customerEntity = customerEntity;
 		this.addressEntity = addressEntity;
 	}
@@ -32,11 +32,11 @@ public class CustomerAddress {
 		this.customerEntity = customerEntity;
 	}
 
-	public AddressEntity getAddressEntity() {
+	public CustomerAddressEntity getAddressEntity() {
 		return addressEntity;
 	}
 
-	public void setAddressEntity(AddressEntity addressEntity) {
+	public void setAddressEntity(CustomerAddressEntity addressEntity) {
 		this.addressEntity = addressEntity;
 	}
 }

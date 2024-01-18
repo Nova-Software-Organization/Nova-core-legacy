@@ -14,15 +14,15 @@ import org.springframework.stereotype.Service;
 
 import com.api.apibackend.modules.Customer.Application.DTOs.registration.CustomerAddressDTO;
 import com.api.apibackend.modules.Customer.Infra.persistence.entity.CustomerEntity;
-import com.api.apibackend.modules.CustomerAddress.Infra.persistence.entity.AddressEntity;
+import com.api.apibackend.modules.CustomerAddress.Infra.persistence.entity.CustomerAddressEntity;
 
 @Service
 public class CustomerAddressModelMapper {
     @Autowired
     private ModelMapper modelMapper;
 
-    public AddressEntity toCustomerDTOFromAddressEntity(CustomerAddressDTO requestCustomerDTO) {
-        return modelMapper.map(requestCustomerDTO, AddressEntity.class);
+    public CustomerAddressEntity toCustomerDTOFromAddressEntity(CustomerAddressDTO requestCustomerDTO) {
+        return modelMapper.map(requestCustomerDTO, CustomerAddressEntity.class);
     }
 
     public CustomerAddressDTO toCustomerEntityFromCustomerAddressDTO(CustomerEntity requestCustomerEntity) {

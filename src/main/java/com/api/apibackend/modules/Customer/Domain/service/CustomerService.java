@@ -15,29 +15,29 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.api.apibackend.modules.Customer.Application.DTOs.response.ResponseMessageDTO;
 import com.api.apibackend.modules.Customer.Application.DTOs.registration.CustomerAddressDTO;
 import com.api.apibackend.modules.Customer.Application.DTOs.registration.CustomerDTO;
+import com.api.apibackend.modules.Customer.Application.DTOs.response.ResponseMessageDTO;
 import com.api.apibackend.modules.Customer.Domain.repository.IClientService;
 import com.api.apibackend.modules.Customer.Infra.persistence.entity.CustomerEntity;
 import com.api.apibackend.modules.Customer.Infra.persistence.repository.CustomerRepository;
-import com.api.apibackend.modules.CustomerAddress.Infra.persistence.entity.AddressEntity;
-import com.api.apibackend.modules.CustomerAddress.Infra.persistence.repository.AddressRepository;
+import com.api.apibackend.modules.CustomerAddress.Infra.persistence.entity.CustomerAddressEntity;
+import com.api.apibackend.modules.CustomerAddress.Infra.persistence.repository.CustomerAddressRepository;
 
 import jakarta.transaction.Transactional;
 
 @Service
 public class CustomerService implements IClientService {
 	private CustomerRepository customerRepository;
-	private AddressRepository addressRepository;
+	private CustomerAddressRepository addressRepository;
 
 	@Autowired
-	public CustomerService(CustomerRepository customerRepository, AddressRepository addressRepository) {
+	public CustomerService(CustomerRepository customerRepository, CustomerAddressRepository addressRepository) {
 		this.customerRepository = customerRepository;
 		this.addressRepository = addressRepository;
 	}
 
-	public CustomerEntity createClient(CustomerEntity customerEntity, AddressEntity addressEntity) {
+	public CustomerEntity createClient(CustomerEntity customerEntity, CustomerAddressEntity addressEntity) {
 		customerEntity.setAddress(addressEntity);
 		CustomerEntity savedClient = customerRepository.save(customerEntity);
 		return savedClient;
@@ -47,7 +47,7 @@ public class CustomerService implements IClientService {
 	public ResponseEntity<ResponseMessageDTO> update(Long clientId, CustomerDTO updatedClient,
 			CustomerAddressDTO updatedAddress) {
 		Optional<CustomerEntity> existingClient = customerRepository.findById(clientId);
-		Optional<AddressEntity> existingAddress = addressRepository.findById(clientId);
+		Optional<CustomerAddressEntity> existingAddress = addressRepository.findById(clientId);
 
 		if (existingClient.isPresent()) {
 			CustomerEntity clientToUpdate = existingClient.get();
@@ -55,7 +55,7 @@ public class CustomerService implements IClientService {
 		}
 
 		if (existingAddress.isPresent()) {
-			AddressEntity addressToUpdate = existingAddress.get();
+			CustomerAddressEntity addressToUpdate = existingAddress.get();
 			addressToUpdate.setCep(updatedAddress.getCep() != addressToUpdate.getCep() ? updatedAddress.getCep()
 					: addressToUpdate.getCep());
 			addressToUpdate.setRoad(updatedAddress.getRoad() != addressToUpdate.getRoad() ? updatedAddress.getRoad()

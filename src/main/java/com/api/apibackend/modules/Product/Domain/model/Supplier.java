@@ -1,5 +1,3 @@
-package com.api.apibackend.modules.Product.Domain.model;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,6 +5,7 @@ package com.api.apibackend.modules.Product.Domain.model;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+package com.api.apibackend.modules.Product.Domain.model;
 
 import java.time.LocalDateTime;
 

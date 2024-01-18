@@ -5,7 +5,6 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-
 package com.api.apibackend.modules.Customer.Domain.service;
 
 import java.util.ArrayList;
@@ -19,7 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.api.apibackend.modules.Customer.Infra.persistence.entity.CustomerEntity;
-import com.api.apibackend.modules.CustomerAddress.Infra.persistence.entity.AddressEntity;
+import com.api.apibackend.modules.CustomerAddress.Infra.persistence.entity.CustomerAddressEntity;
 import com.api.apibackend.modules.Order.infra.persistence.entity.OrderEntity;
 import com.api.apibackend.modules.Product.Infra.persistence.entity.ProductEntity;
 
@@ -27,7 +26,7 @@ import com.api.apibackend.modules.Product.Infra.persistence.entity.ProductEntity
 public class MyRequestCustomerService {
 
     public ResponseEntity<Map<String, Object>> buildUserResponse(CustomerEntity client) {
-        AddressEntity address = client.getAddress();
+        CustomerAddressEntity address = client.getAddress();
         List<OrderEntity> orders = client.getOrders();
         List<ProductEntity> products = new ArrayList<>();
 

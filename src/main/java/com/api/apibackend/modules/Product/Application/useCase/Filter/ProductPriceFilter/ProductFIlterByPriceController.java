@@ -5,14 +5,13 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-
-package com.api.apibackend.modules.ProductCategory.Application.useCases.Filter;
+package com.api.apibackend.modules.Product.Application.useCase.Filter.ProductPriceFilter;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("v1/produto/categoria/filter")
-public class ProductCategoryFindByIdController {
-
+@RequestMapping("v1/produto")
+public class ProductFIlterByPriceController {
+    
 }

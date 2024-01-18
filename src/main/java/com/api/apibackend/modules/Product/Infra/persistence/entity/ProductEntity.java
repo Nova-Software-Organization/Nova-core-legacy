@@ -9,6 +9,7 @@
 package com.api.apibackend.modules.Product.Infra.persistence.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import org.springframework.context.annotation.Lazy;
 
@@ -112,4 +113,24 @@ public class ProductEntity implements Serializable {
      */
     @Column(name = "sku")
     private String sku;
+
+    /**
+     * Peso do produto
+     */
+    private BigDecimal weight;
+
+    /**
+     * Largura do produto
+     */
+    private BigDecimal width;
+
+    /**
+     * Atura do produto
+     */
+    private BigDecimal height;
+
+    /**
+     * Comprimento do produto
+     */
+    private BigDecimal length;
 }

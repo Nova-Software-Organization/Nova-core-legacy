@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Service;
 
 import com.api.apibackend.core.redis.MyRedisCacheManager;
@@ -19,12 +18,11 @@ import com.api.apibackend.modules.Midia.infra.persistence.entity.MidiaEntity;
 import com.api.apibackend.modules.Price.infra.entity.PriceEntity;
 import com.api.apibackend.modules.Product.Domain.model.Product;
 import com.api.apibackend.modules.Product.Domain.repository.IGetAllProductService;
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
-import com.api.apibackend.modules.Product.Infra.repository.ProductRepository;
+import com.api.apibackend.modules.Product.Infra.persistence.entity.ProductEntity;
+import com.api.apibackend.modules.Product.Infra.persistence.repository.ProductRepository;
 import com.api.apibackend.modules.Stock.Infra.persistence.entity.StockEntity;
 
 @Service
-@EnableScheduling
 public class GetAllProductService implements IGetAllProductService {
     private ProductRepository productRepository;
     private MyRedisCacheManager myRedisCacheManager;

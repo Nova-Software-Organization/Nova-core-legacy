@@ -1,5 +1,3 @@
-package com.api.apibackend.modules.Product.Domain.repository;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,6 +5,7 @@ package com.api.apibackend.modules.Product.Domain.repository;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+package com.api.apibackend.modules.Product.Domain.repository;
 
 import java.util.List;
 

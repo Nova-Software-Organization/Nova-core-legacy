@@ -1,5 +1,3 @@
-package com.api.apibackend.modules.Product.Infra.persistence.repository;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,6 +5,8 @@ package com.api.apibackend.modules.Product.Infra.persistence.repository;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+package com.api.apibackend.modules.Product.Infra.persistence.repository;
+
 import java.util.List;
 import java.util.Optional;
 

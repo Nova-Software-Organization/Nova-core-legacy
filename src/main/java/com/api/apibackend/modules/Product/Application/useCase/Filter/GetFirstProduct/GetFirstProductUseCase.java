@@ -1,5 +1,3 @@
-package com.api.apibackend.modules.Product.Application.useCase.GetFirstProduct;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,6 +5,7 @@ package com.api.apibackend.modules.Product.Application.useCase.GetFirstProduct;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+package com.api.apibackend.modules.Product.Application.useCase.Filter.GetFirstProduct;
 
 import java.util.List;
 

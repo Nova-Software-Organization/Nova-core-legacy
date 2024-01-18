@@ -5,13 +5,14 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-
-package com.api.apibackend.modules.CustomerAddress.Infra.persistence.repository;
+package com.api.apibackend.modules.Delivery.infra.persistence.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.api.apibackend.modules.CustomerAddress.Infra.persistence.entity.AddressEntity;
+import com.api.apibackend.modules.Delivery.infra.persistence.entity.DeliveryEntity;
 
 @Repository
-public interface AddressRepository extends JpaRepository<AddressEntity, Long> { }
+public interface DeliveryRepository extends JpaRepository<Long, DeliveryEntity> {
+    
+}

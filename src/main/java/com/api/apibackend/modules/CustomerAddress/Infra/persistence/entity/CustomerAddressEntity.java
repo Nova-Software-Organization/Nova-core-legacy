@@ -35,7 +35,7 @@ import lombok.EqualsAndHashCode;
 @Table(name = "Endereco")
 @EqualsAndHashCode(of = "id")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class AddressEntity implements Serializable {
+public class CustomerAddressEntity implements Serializable {
 
     /**
      * Identificador único do endereço.
@@ -89,7 +89,7 @@ public class AddressEntity implements Serializable {
     /**
      * Construtor padrão.
      */
-    public AddressEntity() { }
+    public CustomerAddressEntity() { }
 
     /**
      * Obtém o cliente associado ao endereço.
@@ -107,7 +107,7 @@ public class AddressEntity implements Serializable {
      * @param other Outro endereço a ser comparado.
      * @return True se os endereços são iguais, False caso contrário.
      */
-    public boolean isSameAddress(AddressEntity other) {
+    public boolean isSameAddress(CustomerAddressEntity other) {
         return this.getRoad().equals(other.getRoad()) &&
                this.getNeighborhood().equals(other.getNeighborhood()) &&
                this.getHousenumber().equals(other.getHousenumber()) &&

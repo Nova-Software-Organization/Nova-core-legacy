@@ -9,15 +9,15 @@ package com.api.apibackend.modules.Auth.Application.DTOs.response;
 
 
 import com.api.apibackend.modules.Customer.Infra.persistence.entity.CustomerEntity;
-import com.api.apibackend.modules.CustomerAddress.Infra.persistence.entity.AddressEntity;
+import com.api.apibackend.modules.CustomerAddress.Infra.persistence.entity.CustomerAddressEntity;
 
 public class LoginResponse {
 	private CustomerEntity client;
-	private AddressEntity address;
+	private CustomerAddressEntity address;
 
 	public LoginResponse() { }
 
-	public LoginResponse(CustomerEntity client, AddressEntity address) {
+	public LoginResponse(CustomerEntity client, CustomerAddressEntity address) {
 		this.client = client;
 		this.address = address;
 	}
@@ -30,11 +30,11 @@ public class LoginResponse {
 		this.client = client;
 	}
 
-	public AddressEntity getAddress() {
+	public CustomerAddressEntity getAddress() {
 		return address;
 	}
 
-	public void setAddress(AddressEntity address) {
+	public void setAddress(CustomerAddressEntity address) {
 		this.address = address;
 	}
 }
