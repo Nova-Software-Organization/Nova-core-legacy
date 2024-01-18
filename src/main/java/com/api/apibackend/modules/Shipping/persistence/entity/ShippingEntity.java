@@ -38,7 +38,7 @@ public class ShippingEntity {
     private Long idShipping;
 
     @ManyToOne
-    @JoinColumn(name = "id_tipo_entrega")
+    @JoinColumn(name = "id_tipo_entrega", referencedColumnName = "idShippingType")
     private ShippingTypeEntity shippingType;
 
     @ManyToOne
@@ -46,7 +46,7 @@ public class ShippingEntity {
     private OrderEntity order;
 
     @ManyToOne
-    @JoinColumn(name = "id_empresa_entrega")
+    @JoinColumn(name = "id_empresa_entrega", referencedColumnName = "idDeliveryCompany")
     private DeliveryCompanyEntity deliveryCompanyEntity;
 
     /**
@@ -78,11 +78,4 @@ public class ShippingEntity {
      * observações de entrega
      */
     private String observations;
-
-    /**
-     * Entidade de frete associada a entidade (pedido).
-     */
-    @ManyToOne
-    @JoinColumn(name = "shipping_id", referencedColumnName = "id")
-    private ShippingEntity shippingEntity;
 }

@@ -21,21 +21,23 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.ws.rs.ext.ParamConverter.Lazy;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Lazy
+@Data
 @Entity
 @Table(name = "entrega")
 @EqualsAndHashCode(of = "idDelivery")
 public class DeliveryEntity {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_entrega")
     private Long idDelivery;
 
     @ManyToOne
-    @JoinColumn(name = "id_frete")
+    @JoinColumn(name = "idFrete")
     private ShippingEntity shipping;
 
     /**

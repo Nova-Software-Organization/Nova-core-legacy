@@ -21,9 +21,11 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.ws.rs.ext.ParamConverter.Lazy;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Lazy
+@Data
 @Entity
 @Table(name = "servico_entrega")
 @EqualsAndHashCode(of = "idDeliveryService")
@@ -62,6 +64,6 @@ public class DeliveryServiceEntity {
     private Integer estimatedDeliveryTime;
 
     @ManyToOne
-    @JoinColumn(name = "id_empresa_entrega")
+    @JoinColumn(name = "id_empresa_entrega", referencedColumnName = "idDeliveryCompany")
     private DeliveryCompanyEntity deliveryCompanyEntity;
 }

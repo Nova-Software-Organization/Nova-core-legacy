@@ -25,9 +25,11 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.ws.rs.ext.ParamConverter.Lazy;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Lazy
+@Data
 @Entity
 @Table(name = "tipo_entrega")
 @EqualsAndHashCode(of = "idShippingType")
@@ -37,7 +39,7 @@ public class ShippingTypeEntity {
      * id (Primary key) tipo de entrega
      */
     @Id
-    @Column(name = "tipo_entrega")
+    @Column(name = "id_tipo_entrega")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idShippingType;
 
@@ -102,9 +104,9 @@ public class ShippingTypeEntity {
     private Boolean priorityService;
 
     @ManyToOne
-    @JoinColumn(name = "id_empresa_entrega", referencedColumnName = "id")
+    @JoinColumn(name = "id_empresa_entrega", referencedColumnName = "id_empresa_entrega")
     private DeliveryCompanyEntity empresaEntrega;
 
-    @OneToMany(mappedBy = "id_tipo_entrega", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "deliveryCompanyEntity", cascade = CascadeType.ALL)
     private List<ShippingEntity> shippings;
 }

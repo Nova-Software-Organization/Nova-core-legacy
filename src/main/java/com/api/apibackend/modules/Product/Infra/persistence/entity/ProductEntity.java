@@ -117,20 +117,24 @@ public class ProductEntity implements Serializable {
     /**
      * Peso do produto
      */
+    @Column(name = "peso")
     private BigDecimal weight;
 
     /**
      * Largura do produto
      */
+    @Column(name = "largura")
     private BigDecimal width;
 
     /**
      * Atura do produto
      */
+    @Column(name = "altura")
     private BigDecimal height;
 
     /**
      * Comprimento do produto
      */
+    @Column(name = "comprimento")
     private BigDecimal length;
 }

@@ -21,9 +21,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.ws.rs.ext.ParamConverter.Lazy;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Lazy
+@Data
 @Entity
 @Table(name = "empresa_entrega")
 @EqualsAndHashCode(of = "idDeliveryCompany")
@@ -67,6 +69,6 @@ public class DeliveryCompanyEntity {
     @Column(name = "site")
     private String website;
 
-    @OneToMany(mappedBy = "deliveryCompany", cascade = CascadeType.ALL)
-    private List<DeliveryServiceEntity> deliveryServices;
+    @OneToMany(mappedBy = "deliveryCompanyEntity", cascade = CascadeType.ALL)
+    private List<DeliveryServiceEntity> deliveryServiceEntities;
 }
