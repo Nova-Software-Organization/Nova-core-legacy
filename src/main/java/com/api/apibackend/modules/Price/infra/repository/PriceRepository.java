@@ -7,6 +7,8 @@
  */
 package com.api.apibackend.modules.Price.infra.repository;
 
+import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,4 +20,5 @@ import com.api.apibackend.modules.Product.Infra.persistence.entity.ProductEntity
 @Repository
 public interface PriceRepository extends JpaRepository<PriceEntity, Long> {
     Optional<PriceEntity> findByProductEntityAndStatus(ProductEntity product, int status);
+    List<ProductEntity> findByPriceBetween(BigDecimal minPrice, BigDecimal maxPrice);
 }

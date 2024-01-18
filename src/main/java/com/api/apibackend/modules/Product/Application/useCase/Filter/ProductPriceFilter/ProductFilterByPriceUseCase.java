@@ -5,25 +5,28 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-package com.api.apibackend.modules.Product.Application.useCase.Filter.ProductActiveFilter;
+package com.api.apibackend.modules.Product.Application.useCase.Filter.ProductPriceFilter;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.api.apibackend.modules.Product.Application.DTOs.ResponseMessageDTO;
 import com.api.apibackend.modules.Product.Domain.service.ProductFilterService;
+import com.api.apibackend.modules.Product.Infra.persistence.entity.ProductEntity;
 
 @Service
-public class ProductFilterActiveUseCase {
+public class ProductFilterByPriceUseCase {
     private ProductFilterService productFilterService;
 
     @Autowired
-    public ProductFilterActiveUseCase(ProductFilterService productFilterService) {
+    public ProductFilterByPriceUseCase(ProductFilterService productFilterService) {
         this.productFilterService = productFilterService;
     }
 
-    public ResponseEntity<ResponseMessageDTO> execute(int status) {
-        return productFilterService.processProductFiltering(status);
+    public List<ProductEntity> execute(BigDecimal minPrice, BigDecimal maxPrice) {
+        List<ProductEntity> productsInRange = productFilterService.filterProductsByPrice(minPrice, maxPrice);
+        return productsInRange;
     }
 }

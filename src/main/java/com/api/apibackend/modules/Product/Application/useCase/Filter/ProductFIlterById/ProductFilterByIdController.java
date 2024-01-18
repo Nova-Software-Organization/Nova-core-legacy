@@ -22,6 +22,9 @@ import com.api.apibackend.modules.Product.Domain.model.Product;
 import com.api.apibackend.modules.Product.Domain.service.GetAllProductService;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
@@ -40,7 +43,13 @@ public class ProductFilterByIdController {
 	@Tag(name = "Busca por um produto pelo ID", description = "Busca pelo produto pelo ID passado na requisição")
 	@Operation(summary = "Rota responsável por buscar produtos no banco de dados pelo ID")
 	@SecurityRequirement(name = "jwt_auth")
-	public ResponseEntity<List<Product>> handle(@PathVariable Long id) {
+	@ApiResponses(value = {
+		@ApiResponse(responseCode = "200", description = "Produtos filtrados com sucesso", content = @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json")),
+		@ApiResponse(responseCode = "403", description = "Acesso negado", content = @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json")),
+		@ApiResponse(responseCode = "500", description = "Erro interno do servidor", content = @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json"))
+	})
+	public ResponseEntity<List<Product>> handle(@Parameter(description = "ID do produto a ser pesquisado", required = true)
+	@PathVariable Long id) {
 		List<Product> products = getAllProductsService.listProducts();
 		List<Product> filteredProducts = products.stream()
 				.filter(product -> product.getId().equals(id))

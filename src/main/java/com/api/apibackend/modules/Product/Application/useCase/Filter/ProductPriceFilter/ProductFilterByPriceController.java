@@ -5,12 +5,15 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-package com.api.apibackend.modules.Product.Application.useCase.Filter.ProductSupplierFilter;
+package com.api.apibackend.modules.Product.Application.useCase.Filter.ProductPriceFilter;
+
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,30 +27,35 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.ValidationException;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
 
+@Validated
 @RestController
 @RequestMapping("v1/produto")
-public class ProductFilterSupplierController {
-    private ProductFIlterSupplierUseCase productFilterSupplierUseCase;
+public class ProductFilterByPriceController {
+    private ProductFilterByPriceUseCase productFilterByPriceUseCase;
 
     @Autowired
-    public ProductFilterSupplierController(ProductFIlterSupplierUseCase productFilterSupplierUseCase) {
-        this.productFilterSupplierUseCase = productFilterSupplierUseCase;
+    public ProductFilterByPriceController(ProductFilterByPriceUseCase productFilterByPriceUseCase) {
+        this.productFilterByPriceUseCase = productFilterByPriceUseCase;
     }
 
-    @GetMapping("/filtrarPorFornecedor")
-    @Operation(summary = "Filtrar produtos por fornecedor")
+    @GetMapping("/filtrarPorPreco")
+    @Operation(summary = "Filtrar produtos por faixa de preço")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Produtos filtrados com sucesso", content = @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json")),
             @ApiResponse(responseCode = "400", description = "Erro de validação", content = @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json")),
             @ApiResponse(responseCode = "500", description = "Erro interno do servidor", content = @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json"))
     })
-    public ResponseEntity<ResponseMessageDTO> filterBySupplier(
-            @Parameter(description = "ID do fornecedor dos produtos a serem filtrados", required = true)
-            @RequestParam Long supplierId) {
+    public ResponseEntity<ResponseMessageDTO> filterByPriceRange(
+            @Parameter(description = "Preço mínimo", required = true)
+            @RequestParam @DecimalMin(value = "0.0", message = "O preço mínimo deve ser maior ou igual a 0.0") BigDecimal minPrice,
 
+            @Parameter(description = "Preço máximo", required = true)
+            @RequestParam @DecimalMax(value = "1000000.0", message = "O preço máximo deve ser menor ou igual a 1000000.0") BigDecimal maxPrice) {
         try {
-            List<ProductEntity> filteredProducts = productFilterSupplierUseCase.execute(supplierId);
+            List<ProductEntity> filteredProducts = productFilterByPriceUseCase.execute(minPrice, maxPrice);
 
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessageDTO("Sucesso!", this.getClass().getName(), filteredProducts, null));
         } catch (ValidationException e) {
