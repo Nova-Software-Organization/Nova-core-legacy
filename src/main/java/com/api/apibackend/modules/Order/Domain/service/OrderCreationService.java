@@ -39,8 +39,8 @@ import com.api.apibackend.modules.OrderItem.Domain.exception.NonExistentesItemsE
 import com.api.apibackend.modules.OrderItem.Domain.service.OrderItemCreationService;
 import com.api.apibackend.modules.OrderItem.infra.persistence.entity.OrderItemEntity;
 import com.api.apibackend.modules.OrderItem.infra.persistence.repository.OrderItemRepository;
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
-import com.api.apibackend.modules.Product.Infra.repository.ProductRepository;
+import com.api.apibackend.modules.Product.Infra.persistence.entity.ProductEntity;
+import com.api.apibackend.modules.Product.Infra.persistence.repository.ProductRepository;
 import com.api.apibackend.modules.Stock.Infra.persistence.entity.StockEntity;
 import com.api.apibackend.modules.Stock.Infra.persistence.repository.StockRepository;
 

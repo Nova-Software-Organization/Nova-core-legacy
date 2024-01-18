@@ -39,7 +39,7 @@ import com.api.apibackend.modules.Customer.Domain.service.CustomerService;
 import com.api.apibackend.modules.Customer.Infra.persistence.entity.CustomerEntity;
 import com.api.apibackend.modules.Customer.Infra.persistence.repository.CustomerRepository;
 import com.api.apibackend.modules.CustomerAddress.Domain.helpers.CustomerAddressModelMapper;
-import com.api.apibackend.modules.CustomerAddress.Infra.persistence.entity.AddressEntity;
+import com.api.apibackend.modules.CustomerAddress.Infra.persistence.entity.CustomerAddressEntity;
 
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
@@ -138,7 +138,7 @@ public class AutheticationRegisterService implements IAutheticationRegister {
                     emailAnonymization);
             userRepository.save(newUserEntity);
 
-            AddressEntity newAddressEntityCustomer = createNewAddressEntityCustomer(customerAddressDTO);
+            CustomerAddressEntity newAddressEntityCustomer = createNewAddressEntityCustomer(customerAddressDTO);
             newCustomerEntity.setAddress(newAddressEntityCustomer);
             newCustomerEntity.setUser(newUserEntity);
 
@@ -174,8 +174,8 @@ public class AutheticationRegisterService implements IAutheticationRegister {
         return newCustomerModelMapperEntity;
     }
 
-    private AddressEntity createNewAddressEntityCustomer(CustomerAddressDTO customerAddressDTO) {
-        AddressEntity newAddressEntityCustomer = customerAddressModelMapper
+    private CustomerAddressEntity createNewAddressEntityCustomer(CustomerAddressDTO customerAddressDTO) {
+        CustomerAddressEntity newAddressEntityCustomer = customerAddressModelMapper
                 .toCustomerDTOFromAddressEntity(customerAddressDTO);
         newAddressEntityCustomer.setCep(anonymizationService.anonymizeCep(customerAddressDTO.getCep()));
         return newAddressEntityCustomer;

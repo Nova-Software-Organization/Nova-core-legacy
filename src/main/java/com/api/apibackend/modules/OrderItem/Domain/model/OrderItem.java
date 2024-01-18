@@ -5,7 +5,6 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-
 package com.api.apibackend.modules.OrderItem.Domain.model;
 
 import java.math.BigDecimal;
@@ -13,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.api.apibackend.modules.Price.infra.entity.PriceEntity;
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
+import com.api.apibackend.modules.Product.Infra.persistence.entity.ProductEntity;
 
 import lombok.Data;
 

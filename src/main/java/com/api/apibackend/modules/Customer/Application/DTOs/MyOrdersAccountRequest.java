@@ -5,31 +5,30 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-
 package com.api.apibackend.modules.Customer.Application.DTOs;
 
 import com.api.apibackend.modules.Customer.Infra.persistence.entity.CustomerEntity;
-import com.api.apibackend.modules.CustomerAddress.Infra.persistence.entity.AddressEntity;
+import com.api.apibackend.modules.CustomerAddress.Infra.persistence.entity.CustomerAddressEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class MyOrdersAccountRequest {
 	
-	@JsonProperty("client")
+	@JsonProperty("customer")
 	private CustomerEntity client;
 
-	@JsonProperty("address")
-	private AddressEntity address;
+	@JsonProperty("customerAddress")
+	private CustomerAddressEntity address;
 
-	public MyOrdersAccountRequest(CustomerEntity client, AddressEntity address) {
+	public MyOrdersAccountRequest(CustomerEntity client, CustomerAddressEntity address) {
 		this.client = client;
 		this.address = address;
 	}
 
-	public AddressEntity getAddress() {
+	public CustomerAddressEntity getAddress() {
 		return address;
 	}
 
-	public void setAddress(AddressEntity address) {
+	public void setAddress(CustomerAddressEntity address) {
 		this.address = address;
 	}
 

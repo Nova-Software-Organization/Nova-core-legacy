@@ -1,5 +1,3 @@
-package com.api.apibackend.modules.Product.Domain.handler;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,6 +5,7 @@ package com.api.apibackend.modules.Product.Domain.handler;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+package com.api.apibackend.modules.Product.Domain.handler;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

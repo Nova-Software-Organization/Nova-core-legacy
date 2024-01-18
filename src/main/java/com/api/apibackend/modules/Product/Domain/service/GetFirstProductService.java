@@ -5,7 +5,6 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-
 package com.api.apibackend.modules.Product.Domain.service;
 
 import java.util.ArrayList;
@@ -19,8 +18,8 @@ import com.api.apibackend.modules.Midia.infra.persistence.entity.MidiaEntity;
 import com.api.apibackend.modules.Price.infra.entity.PriceEntity;
 import com.api.apibackend.modules.Product.Domain.model.Product;
 import com.api.apibackend.modules.Product.Domain.repository.IGetFirstService;
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
-import com.api.apibackend.modules.Product.Infra.repository.ProductRepository;
+import com.api.apibackend.modules.Product.Infra.persistence.entity.ProductEntity;
+import com.api.apibackend.modules.Product.Infra.persistence.repository.ProductRepository;
 import com.api.apibackend.modules.Stock.Infra.persistence.entity.StockEntity;
 
 @Service

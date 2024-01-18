@@ -11,16 +11,16 @@ package com.api.apibackend.modules.Customer.Domain.repository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
-import com.api.apibackend.modules.Customer.Application.DTOs.response.ResponseMessageDTO;
 import com.api.apibackend.modules.Customer.Application.DTOs.registration.CustomerAddressDTO;
 import com.api.apibackend.modules.Customer.Application.DTOs.registration.CustomerDTO;
+import com.api.apibackend.modules.Customer.Application.DTOs.response.ResponseMessageDTO;
 import com.api.apibackend.modules.Customer.Infra.persistence.entity.CustomerEntity;
-import com.api.apibackend.modules.CustomerAddress.Infra.persistence.entity.AddressEntity;
+import com.api.apibackend.modules.CustomerAddress.Infra.persistence.entity.CustomerAddressEntity;
 
 @Repository
 public interface IClientService {
     
-    CustomerEntity createClient(CustomerEntity customerEntity, AddressEntity addressEntity);
+    CustomerEntity createClient(CustomerEntity customerEntity, CustomerAddressEntity addressEntity);
 
     ResponseEntity<ResponseMessageDTO> update(Long clientId, CustomerDTO updatedClient, CustomerAddressDTO updatedAddress);
 

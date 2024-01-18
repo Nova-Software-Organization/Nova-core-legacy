@@ -5,7 +5,6 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-
 package com.api.apibackend.modules.Order.Application.useCase.OrderList;
 
 import java.util.List;
@@ -19,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.apibackend.modules.Order.Application.DTOs.response.ResponseMessageDTO;
-import com.api.apibackend.modules.Order.Domain.service.filters.OrderListService;
+import com.api.apibackend.modules.Order.Domain.service.filters.OrderList.OrderListService;
 import com.api.apibackend.modules.Order.infra.persistence.entity.OrderEntity;
 
 import io.swagger.v3.oas.annotations.Operation;

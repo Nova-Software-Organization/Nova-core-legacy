@@ -1,5 +1,3 @@
-package com.api.apibackend.modules.ProductCategory.Domain.repository;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,11 +5,12 @@ package com.api.apibackend.modules.ProductCategory.Domain.repository;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+package com.api.apibackend.modules.ProductCategory.Domain.repository;
 
 import java.util.List;
 
 import com.api.apibackend.modules.Product.Domain.model.Product;
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
+import com.api.apibackend.modules.Product.Infra.persistence.entity.ProductEntity;
 import com.api.apibackend.modules.ProductCategory.infra.persistence.entity.ProductCategoryEntity;
 
 public interface IProductCategoryService {

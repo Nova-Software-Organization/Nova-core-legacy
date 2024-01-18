@@ -1,5 +1,3 @@
-package com.api.apibackend.modules.Transaction.infra.entity;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -8,6 +6,7 @@ package com.api.apibackend.modules.Transaction.infra.entity;
  * Entidade responsavel por gerenciar toda a parte de transações da aplicação confirmação de pagamento de um pedido
  * ----------------------------------------------------------------------------
  */
+package com.api.apibackend.modules.Transaction.infra.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

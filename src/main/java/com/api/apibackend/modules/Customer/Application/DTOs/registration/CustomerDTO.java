@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Data;
 
 @Data
-@JsonPropertyOrder("Customer")
+@JsonPropertyOrder("customer")
 public class CustomerDTO {
     private Boolean isAdmin;
     private String name;

@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 import com.api.apibackend.modules.Customer.Application.DTOs.registration.CustomerAddressDTO;
 import com.api.apibackend.modules.Customer.Application.DTOs.registration.CustomerDTO;
 import com.api.apibackend.modules.Customer.Infra.persistence.entity.CustomerEntity;
-import com.api.apibackend.modules.CustomerAddress.Infra.persistence.entity.AddressEntity;
+import com.api.apibackend.modules.CustomerAddress.Infra.persistence.entity.CustomerAddressEntity;
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ValidationException;
@@ -40,8 +40,8 @@ public class AuthenticationValidationServiceHandler {
 		}
 	}
 
-	public void validateAddressClient(AddressEntity addressEntity) {
-		Set<ConstraintViolation<AddressEntity>> violations = validator.validate(addressEntity);
+	public void validateAddressClient(CustomerAddressEntity addressEntity) {
+		Set<ConstraintViolation<CustomerAddressEntity>> violations = validator.validate(addressEntity);
 		if (!violations.isEmpty()) {
 			throw new ValidationException("Erros de validação encontrados");
 		}

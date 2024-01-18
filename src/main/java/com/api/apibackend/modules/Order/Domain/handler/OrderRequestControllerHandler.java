@@ -22,8 +22,8 @@ import com.api.apibackend.modules.Order.Domain.exception.OrderCannotBeCreatedExc
 import com.api.apibackend.modules.Order.Domain.service.OrderCreationService;
 import com.api.apibackend.modules.OrderItem.Domain.exception.NonExistentesItemsException;
 import com.api.apibackend.modules.OrderItem.Domain.model.OrderItem;
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
-import com.api.apibackend.modules.Product.Infra.repository.ProductRepository;
+import com.api.apibackend.modules.Product.Infra.persistence.entity.ProductEntity;
+import com.api.apibackend.modules.Product.Infra.persistence.repository.ProductRepository;
 
 import jakarta.transaction.Transactional;
 

@@ -16,7 +16,7 @@ import java.util.List;
 import com.api.apibackend.modules.Auth.Infra.persistence.entity.UserEntity;
 import com.api.apibackend.modules.Cart.Infra.persistence.entity.CartEntity;
 import com.api.apibackend.modules.Customer.Application.DTOs.registration.CustomerDTO;
-import com.api.apibackend.modules.CustomerAddress.Infra.persistence.entity.AddressEntity;
+import com.api.apibackend.modules.CustomerAddress.Infra.persistence.entity.CustomerAddressEntity;
 import com.api.apibackend.modules.Order.infra.persistence.entity.OrderEntity;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -63,7 +63,7 @@ public class CustomerEntity implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idendereco")
     @JsonManagedReference
-    private AddressEntity address;
+    private CustomerAddressEntity address;
 
     /**
      * Nome do cliente.

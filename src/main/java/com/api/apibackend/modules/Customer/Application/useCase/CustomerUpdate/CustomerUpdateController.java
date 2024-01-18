@@ -5,7 +5,6 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-
 package com.api.apibackend.modules.Customer.Application.useCase.CustomerUpdate;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.apibackend.modules.Customer.Application.DTOs.response.ResponseMessageDTO;
 import com.api.apibackend.modules.Customer.Application.DTOs.registration.CustomerAddressDTO;
 import com.api.apibackend.modules.Customer.Application.DTOs.registration.CustomerDTO;
+import com.api.apibackend.modules.Customer.Application.DTOs.response.ResponseMessageDTO;
 import com.api.apibackend.modules.Customer.Domain.exception.ErrorEmptyCustomer;
 
 import io.swagger.v3.oas.annotations.Operation;

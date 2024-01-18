@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.api.apibackend.modules.Auth.Application.DTOs.request.LoginRequest;
 import com.api.apibackend.modules.Auth.Application.DTOs.response.LoginResponseDTO;
-import com.api.apibackend.modules.Customer.Domain.exception.ClientNotFoundException;
+import com.api.apibackend.modules.Customer.Domain.exception.CustomerNotFoundException;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -46,7 +46,7 @@ public class AuthenticateCustomerController {
             Optional.ofNullable(loginRequest)
                   .orElseThrow(() -> new IllegalArgumentException("Erro: dados de login não fornecidos"));
             return customerLoginUseCase.execute(loginRequest);
-        } catch (ClientNotFoundException ex) {
+        } catch (CustomerNotFoundException ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new LoginResponseDTO("Usuario não encontrado"));
         }
     }

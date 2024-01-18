@@ -5,7 +5,6 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-
 package com.api.apibackend.modules.Brand.infra.persistence.entity;
 
 import java.io.Serializable;
@@ -13,10 +12,7 @@ import java.util.List;
 
 import org.springframework.context.annotation.Lazy;
 
-/**
- * Lista de fornecedores que fornecem esta marca.
- * Mapeado pela propriedade 'brandsProvided' na entidade 'SupplierEntity'.
- */import com.api.apibackend.modules.Supplier.Infra.persistence.entity.SupplierEntity;
+import com.api.apibackend.modules.Supplier.Infra.persistence.entity.SupplierEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

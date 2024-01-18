@@ -1,5 +1,3 @@
-package com.api.apibackend.modules.Price.infra.repository;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,6 +5,7 @@ package com.api.apibackend.modules.Price.infra.repository;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+package com.api.apibackend.modules.Price.infra.repository;
 
 import java.util.Optional;
 
@@ -14,7 +13,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.api.apibackend.modules.Price.infra.entity.PriceEntity;
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
+import com.api.apibackend.modules.Product.Infra.persistence.entity.ProductEntity;
 
 @Repository
 public interface PriceRepository extends JpaRepository<PriceEntity, Long> {

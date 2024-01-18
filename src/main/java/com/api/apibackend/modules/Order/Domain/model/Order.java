@@ -1,5 +1,3 @@
-package com.api.apibackend.modules.Order.Domain.model;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,13 +5,14 @@ package com.api.apibackend.modules.Order.Domain.model;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+package com.api.apibackend.modules.Order.Domain.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.api.apibackend.modules.Order.infra.persistence.entity.OrderEntity;
 import com.api.apibackend.modules.OrderItem.infra.persistence.entity.OrderItemEntity;
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
+import com.api.apibackend.modules.Product.Infra.persistence.entity.ProductEntity;
 
 import lombok.Data;
 

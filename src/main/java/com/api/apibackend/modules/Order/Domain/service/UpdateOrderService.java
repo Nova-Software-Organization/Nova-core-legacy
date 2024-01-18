@@ -7,7 +7,6 @@ package com.api.apibackend.modules.Order.Domain.service;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-
 import java.util.List;
 import java.util.Optional;
 
@@ -25,8 +24,8 @@ import com.api.apibackend.modules.Order.infra.persistence.repository.OrderReposi
 import com.api.apibackend.modules.OrderAddress.Infra.persistence.entity.OrderAddressEntity;
 import com.api.apibackend.modules.OrderAddress.Infra.persistence.repository.OrderAddressRepository;
 import com.api.apibackend.modules.OrderItem.Domain.model.OrderItem;
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
-import com.api.apibackend.modules.Product.Infra.repository.ProductRepository;
+import com.api.apibackend.modules.Product.Infra.persistence.entity.ProductEntity;
+import com.api.apibackend.modules.Product.Infra.persistence.repository.ProductRepository;
 
 @Service
 public class UpdateOrderService implements IUpdateOrderService {

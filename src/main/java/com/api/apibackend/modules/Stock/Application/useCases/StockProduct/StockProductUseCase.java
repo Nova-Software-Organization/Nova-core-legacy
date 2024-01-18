@@ -5,7 +5,6 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-
 package com.api.apibackend.modules.Stock.Application.useCases.StockProduct;
 
 import java.util.ArrayList;
@@ -17,8 +16,8 @@ import org.springframework.stereotype.Service;
 
 import com.api.apibackend.modules.Cart.Application.DTOs.ProductCheckQuantity;
 import com.api.apibackend.modules.Cart.Domain.exception.CartNotFoundException;
-import com.api.apibackend.modules.Product.Infra.entity.ProductEntity;
-import com.api.apibackend.modules.Product.Infra.repository.ProductRepository;
+import com.api.apibackend.modules.Product.Infra.persistence.entity.ProductEntity;
+import com.api.apibackend.modules.Product.Infra.persistence.repository.ProductRepository;
 import com.api.apibackend.modules.Stock.Domain.model.StockProduct;
 
 @Service
