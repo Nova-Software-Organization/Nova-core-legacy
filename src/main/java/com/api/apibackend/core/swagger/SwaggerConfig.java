@@ -1,5 +1,3 @@
-package com.api.apibackend.core.swagger;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,6 +5,7 @@ package com.api.apibackend.core.swagger;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+package com.api.apibackend.core.swagger;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

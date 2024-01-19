@@ -5,13 +5,11 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-package com.api.apibackend.modules.ProductCategory.Application.DTOs;
+package com.api.apibackend.modules.MovementStock.Domain.service;
 
-import lombok.Data;
+import org.springframework.stereotype.Service;
 
-@Data
-public class ProductCategoryDTO {
-    private String name;
-    private int status;
-    private String typeCategory;
+@Service
+public class MovementStockOrderService {
+    
 }
