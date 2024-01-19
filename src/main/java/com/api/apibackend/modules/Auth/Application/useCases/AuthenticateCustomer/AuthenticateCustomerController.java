@@ -47,6 +47,7 @@ public class AuthenticateCustomerController {
                   .orElseThrow(() -> new IllegalArgumentException("Erro: dados de login não fornecidos"));
             return customerLoginUseCase.execute(loginRequest);
         } catch (CustomerNotFoundException ex) {
+            log.error("Usuario não encontrado", ex);
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new LoginResponseDTO("Usuario não encontrado"));
         }
     }
