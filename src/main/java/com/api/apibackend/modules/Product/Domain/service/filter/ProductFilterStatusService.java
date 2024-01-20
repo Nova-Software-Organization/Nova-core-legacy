@@ -33,7 +33,6 @@ public class ProductFilterStatusService {
                 return ResponseEntity.badRequest()
                         .body(new ResponseMessageDTO("O valor de 'status' deve ser 0 (inativo) ou 1 (ativo)", this.getClass().getName(), null, null));
             }
-
             List<ProductEntity> filteredProducts = productRepository.findByStatus(status);
             ResponseMessageDTO responseMessage = new ResponseMessageDTO("Produtos filtrados com sucesso", this.getClass().getName(), filteredProducts, null);
 

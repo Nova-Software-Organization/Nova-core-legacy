@@ -6,7 +6,6 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-
 package com.api.apibackend.modules.Order.Application.useCase.OrderCancel;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +15,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.api.apibackend.modules.Order.Application.DTOs.OrderRequest;
-import com.api.apibackend.modules.Order.Domain.service.UpdateOrderService;
+import com.api.apibackend.modules.Order.Domain.service.OrderCancelOrderService;
 import com.api.apibackend.modules.Order.infra.persistence.entity.OrderEntity;
 
 @Service
 public class OrderCancelOrderUseCase {
-    private UpdateOrderService updateOrderService;
+    private OrderCancelOrderService updateOrderService;
 
     @Autowired
-    public OrderCancelOrderUseCase(UpdateOrderService updateOrderService) {
+    public OrderCancelOrderUseCase(OrderCancelOrderService updateOrderService) {
         this.updateOrderService = updateOrderService;
     }
 

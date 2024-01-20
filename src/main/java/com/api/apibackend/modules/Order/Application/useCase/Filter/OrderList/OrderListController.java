@@ -5,7 +5,7 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-package com.api.apibackend.modules.Order.Application.useCase.OrderList;
+package com.api.apibackend.modules.Order.Application.useCase.Filter.OrderList;
 
 import java.util.List;
 
