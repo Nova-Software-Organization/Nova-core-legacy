@@ -13,4 +13,4 @@ import org.springframework.stereotype.Repository;
 import com.api.apibackend.modules.DeliveryCompany.infra.persistence.entity.DeliveryCompanyEntity;
 
 @Repository
-public interface DeliveryCompanyRepository extends JpaRepository<Long, DeliveryCompanyEntity> { }
+public interface DeliveryCompanyRepository extends JpaRepository<DeliveryCompanyEntity, Long> { }

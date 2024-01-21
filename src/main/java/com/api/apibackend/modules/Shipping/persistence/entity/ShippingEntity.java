@@ -38,15 +38,15 @@ public class ShippingEntity {
     private Long idShipping;
 
     @ManyToOne
-    @JoinColumn(name = "id_tipo_entrega", referencedColumnName = "idShippingType")
-    private ShippingTypeEntity shippingType;
+    @JoinColumn(name = "id_tipo_entrega", referencedColumnName = "id_tipo_entrega")
+    private ShippingTypeEntity shippingTypeEntity;
 
     @ManyToOne
     @JoinColumn(name = "idPedido")
     private OrderEntity order;
 
     @ManyToOne
-    @JoinColumn(name = "id_empresa_entrega", referencedColumnName = "idDeliveryCompany")
+    @JoinColumn(name = "id_empresa_entrega", referencedColumnName = "id_empresa_entrega")
     private DeliveryCompanyEntity deliveryCompanyEntity;
 
     /**

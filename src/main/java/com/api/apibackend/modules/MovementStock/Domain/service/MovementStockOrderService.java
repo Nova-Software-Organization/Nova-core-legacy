@@ -5,11 +5,11 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-package com.api.apibackend.modules.Product.Application.useCase.Filter.ProductActiveFilter;
+package com.api.apibackend.modules.MovementStock.Domain.service;
 
 import org.springframework.stereotype.Service;
 
 @Service
-public class ProductFilterActiveUseCase {
+public class MovementStockOrderService {
     
 }

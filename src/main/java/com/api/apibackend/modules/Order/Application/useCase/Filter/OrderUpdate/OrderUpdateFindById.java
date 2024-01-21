@@ -5,7 +5,6 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-
 package com.api.apibackend.modules.Order.Application.useCase.Filter.OrderUpdate;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.apibackend.modules.Order.Application.DTOs.OrderRequest;
-import com.api.apibackend.modules.Order.Domain.service.UpdateOrderService;
+import com.api.apibackend.modules.Order.Domain.service.OrderUpdateService;
 import com.api.apibackend.modules.Order.infra.persistence.entity.OrderEntity;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -28,10 +27,10 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RestController
 @RequestMapping("v1/pedido")
 public class OrderUpdateFindById {
-    private UpdateOrderService updateOrderService;
+    private OrderUpdateService updateOrderService;
 
     @Autowired
-    public OrderUpdateFindById(UpdateOrderService updateOrderService) {
+    public OrderUpdateFindById(OrderUpdateService updateOrderService) {
         this.updateOrderService = updateOrderService;
     }
 

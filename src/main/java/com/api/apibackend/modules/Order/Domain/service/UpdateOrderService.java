@@ -10,8 +10,6 @@ package com.api.apibackend.modules.Order.Domain.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -27,9 +25,11 @@ import com.api.apibackend.modules.OrderItem.Domain.model.OrderItem;
 import com.api.apibackend.modules.Product.Infra.persistence.entity.ProductEntity;
 import com.api.apibackend.modules.Product.Infra.persistence.repository.ProductRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class UpdateOrderService implements IUpdateOrderService {
-    private static final Logger logger = LogManager.getLogger(UpdateOrderService.class);
     private OrderRepository orderRepository;
     private ProductRepository productRepository;
     private OrderAddressRepository orderAddressRepository;
@@ -52,11 +52,11 @@ public class UpdateOrderService implements IUpdateOrderService {
             updateOrder.setCep(numberOrder.getCustomerAddressRequest().getCep() != updateOrder.getNeighborhood() ? numberOrder.getCustomerAddressRequest().getNeighborhood() : updateOrder.getNeighborhood());
             updateOrder.setRoad(numberOrder.getCustomerAddressRequest().getRoad() != updateOrder.getNeighborhood() ? numberOrder.getCustomerAddressRequest().getRoad() : updateOrder.getRoad());
 
-            logger.error("Atualização do endereço feita com sucesso!");
+            log.error("Atualização do endereço feita com sucesso!");
             return ResponseEntity.ok(orderAddressRepository.save(updateOrder));
         }
 
-        logger.error("Atualização do endereço não pode ser feita!, endereço não encontrado");
+        log.error("Atualização do endereço não pode ser feita!, endereço não encontrado");
         return ResponseEntity.notFound().build();
     }
 
@@ -80,7 +80,7 @@ public class UpdateOrderService implements IUpdateOrderService {
             return ResponseEntity.ok(orderRepository.save(orderEntity));
         }
 
-        logger.error("Atualização não pode ser concluida, não encontrado");
+        log.error("Atualização não pode ser concluida, não encontrado");
         return ResponseEntity.notFound().build();
     }
 
@@ -90,11 +90,11 @@ public class UpdateOrderService implements IUpdateOrderService {
         if (order.isPresent()) {
             OrderEntity updateOrder = order.get();
             updateOrder.setStatus("cancelado");
-            logger.error("Status do pedido foi alterado com sucesso");
+            log.error("Status do pedido foi alterado com sucesso");
             return ResponseEntity.ok(orderRepository.save(updateOrder));
         }
 
-        logger.error("Atualização não pode ser concluida, pedido não encontrado");
+        log.error("Atualização não pode ser concluida, pedido não encontrado");
         return ResponseEntity.notFound().build();
     }
 
@@ -106,7 +106,7 @@ public class UpdateOrderService implements IUpdateOrderService {
             return ResponseEntity.noContent().build();
         }
 
-        logger.error("Pedido não pode ser deletado, pedido não encontrado");
+        log.error("Pedido não pode ser deletado, pedido não encontrado");
         return ResponseEntity.notFound().build();
     }
 }

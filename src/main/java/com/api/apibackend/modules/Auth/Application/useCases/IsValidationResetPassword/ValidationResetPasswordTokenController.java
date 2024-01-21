@@ -40,8 +40,8 @@ public class ValidationResetPasswordTokenController {
         } catch (Exception ex) {
             log.error("Ocorreu um erro ao processar o token", ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ResponseMessageDTO(null, this.getClass().getSimpleName(),
-                            "Ocorreu um erro ao processar a requisição" + ex.getMessage(), null));
+                .body(new ResponseMessageDTO("Ocorreu um erro ao processar a requisição", this.getClass().getSimpleName(),
+                            ex.getMessage(), null));
         }
     }
 }

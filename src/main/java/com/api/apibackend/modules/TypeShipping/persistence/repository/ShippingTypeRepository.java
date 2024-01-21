@@ -13,4 +13,4 @@ import org.springframework.stereotype.Repository;
 import com.api.apibackend.modules.TypeShipping.persistence.entity.ShippingTypeEntity;
 
 @Repository
-public interface ShippingTypeRepository extends JpaRepository<Long, ShippingTypeEntity> {}
+public interface ShippingTypeRepository extends JpaRepository<ShippingTypeEntity, Long> {}

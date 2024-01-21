@@ -5,11 +5,8 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-package com.api.apibackend.modules.Product.Application.useCase.Filter.ProductSupplierFilter;
+package com.api.apibackend.modules.ProductCategory.Application.useCases.Filter.ProductFIndByStatus;
 
-import org.springframework.stereotype.Service;
-
-@Service
-public class ProductFIlterSupplierUseCase {
+public class ProductCategoryFilterStatusController {
     
 }

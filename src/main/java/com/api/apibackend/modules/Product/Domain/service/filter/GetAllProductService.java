@@ -5,7 +5,7 @@
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
-package com.api.apibackend.modules.Product.Domain.service;
+package com.api.apibackend.modules.Product.Domain.service.filter;
 
 import java.util.List;
 import java.util.stream.Collectors;

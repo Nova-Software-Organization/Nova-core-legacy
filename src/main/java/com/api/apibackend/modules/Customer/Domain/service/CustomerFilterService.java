@@ -137,7 +137,7 @@ public class CustomerFilterService {
         return customerRepository.findAll();
     }
 
-     public List<CustomerEntity> findByRegistrationDate(String registrationDate) throws java.text.ParseException {
+    public List<CustomerEntity> findByRegistrationDate(String registrationDate) throws java.text.ParseException {
         try {
             Date date = new SimpleDateFormat("yyyy-MM-dd").parse(registrationDate);
             return customerRepository.findByDateCreate(date);
@@ -147,7 +147,7 @@ public class CustomerFilterService {
         }
     }
 
-     public Page<CustomerEntity> getCustomersWithPagination(PageRequest pageRequest) {
+    public Page<CustomerEntity> getCustomersWithPagination(PageRequest pageRequest) {
         return customerRepository.findAll(pageRequest);
     }
 

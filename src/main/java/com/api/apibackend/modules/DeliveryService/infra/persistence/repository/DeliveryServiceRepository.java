@@ -11,4 +11,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.api.apibackend.modules.DeliveryService.infra.persistence.entity.DeliveryServiceEntity;
 
-public interface DeliveryServiceRepository extends JpaRepository<Long, DeliveryServiceEntity> { }
+public interface DeliveryServiceRepository extends JpaRepository<DeliveryServiceEntity, Long> { }

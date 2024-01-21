@@ -14,16 +14,17 @@ import org.springframework.stereotype.Service;
 
 import com.api.apibackend.modules.Product.Application.DTOs.ProductDTO;
 import com.api.apibackend.modules.Product.Application.DTOs.ResponseMessageDTO;
-import com.api.apibackend.modules.Product.Domain.service.ProductConventionalService;
+import com.api.apibackend.modules.Product.Domain.service.ProductUpdateService;
 
 @Service
 public class ProductUpdateUseCase {
-    private ProductConventionalService productConventionalService;
+    private ProductUpdateService productUpdateService;
 
     @Autowired
-    public ProductUpdateUseCase(ProductConventionalService productConventionalService) {
-        this.productConventionalService = productConventionalService;
+    public ProductUpdateUseCase(ProductUpdateService productUpdateService) {
+        this.productUpdateService = productUpdateService;
     }
+    
 
     public ResponseEntity<ResponseMessageDTO> execute(Long id, ProductDTO productDTO) {
         if (id == null || id <= 0) {
@@ -34,6 +35,6 @@ public class ProductUpdateUseCase {
              return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessageDTO("produto invalido", this.getClass().getName(), null));
         }
 
-        return productConventionalService.update(id, productDTO);
+        return productUpdateService.update(id, productDTO);
     }
 }

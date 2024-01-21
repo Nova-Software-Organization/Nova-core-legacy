@@ -64,6 +64,6 @@ public class DeliveryServiceEntity {
     private Integer estimatedDeliveryTime;
 
     @ManyToOne
-    @JoinColumn(name = "id_empresa_entrega", referencedColumnName = "idDeliveryCompany")
+    @JoinColumn(name = "id_empresa_entrega", referencedColumnName = "id_empresa_entrega")
     private DeliveryCompanyEntity deliveryCompanyEntity;
 }
