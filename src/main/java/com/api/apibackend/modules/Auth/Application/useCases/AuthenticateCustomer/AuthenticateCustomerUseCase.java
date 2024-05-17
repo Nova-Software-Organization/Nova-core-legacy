@@ -18,7 +18,6 @@ import com.api.apibackend.modules.Auth.Domain.authentication.AuthorizationLoginS
 
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Service
 public class AuthenticateCustomerUseCase {
     private final AuthorizationLoginService authenticationLogin;

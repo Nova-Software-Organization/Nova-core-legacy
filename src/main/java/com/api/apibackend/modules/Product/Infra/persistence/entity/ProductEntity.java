@@ -10,12 +10,14 @@ package com.api.apibackend.modules.Product.Infra.persistence.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.springframework.context.annotation.Lazy;
 
 import com.api.apibackend.modules.Midia.infra.persistence.entity.MidiaEntity;
 import com.api.apibackend.modules.Price.infra.entity.PriceEntity;
 import com.api.apibackend.modules.ProductCategory.infra.persistence.entity.ProductCategoryEntity;
+import com.api.apibackend.modules.ProductVariant.infra.persistence.entity.ProductVariantEntity;
 import com.api.apibackend.modules.Stock.Infra.persistence.entity.StockEntity;
 import com.api.apibackend.modules.Supplier.Infra.persistence.entity.SupplierEntity;
 import com.api.apibackend.modules.Unity.infra.persistence.entity.UnityEntity;
@@ -23,11 +25,13 @@ import com.api.apibackend.modules.Unity.infra.persistence.entity.UnityEntity;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -76,6 +80,12 @@ public class ProductEntity implements Serializable {
     @ManyToOne
     @JoinColumn(name = "idfornecedor", referencedColumnName = "idfornecedor")
     private SupplierEntity supplierEntity;
+
+    /**
+     * Entidade do variante de um produto associada ao produto.
+     */
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<ProductVariantEntity> productVariantList;
 
     /**
      * Entidade de preço associada ao produto.
