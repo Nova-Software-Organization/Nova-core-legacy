@@ -13,6 +13,7 @@ import java.io.Serializable;
 
 import com.api.apibackend.modules.Cart.Infra.persistence.entity.CartEntity;
 import com.api.apibackend.modules.Product.Infra.persistence.entity.ProductEntity;
+import com.api.apibackend.modules.ProductVariant.infra.persistence.entity.ProductVariantEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -44,4 +45,8 @@ public class CartItemEntity implements Serializable {
 
     @Column(name = "quantidade")
     private int quantity;
+
+    @ManyToOne
+    @JoinColumn(name = "product_variant_id")
+    private ProductVariantEntity productVariant;
 }
