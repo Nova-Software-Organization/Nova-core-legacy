@@ -7,17 +7,18 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "color", uniqueConstraints = {
     @UniqueConstraint(name = "color_hex_uindex", columnNames = {"hex"}),
     @UniqueConstraint(name = "color_name_uindex", columnNames = {"name"})
 })
 public class ColorEntity {
-
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int id;
+  private Long id;
 
   @Column(name = "nome")
   private String name;

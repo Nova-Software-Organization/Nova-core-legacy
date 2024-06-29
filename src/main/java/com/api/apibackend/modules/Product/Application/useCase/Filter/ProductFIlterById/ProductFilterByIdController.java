@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.apibackend.modules.Product.Domain.model.Product;
-import com.api.apibackend.modules.Product.Domain.service.filter.GetAllProductService;
+import com.api.apibackend.modules.Product.Domain.service.GetAllProductService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

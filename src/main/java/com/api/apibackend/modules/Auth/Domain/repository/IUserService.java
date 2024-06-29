@@ -1,5 +1,3 @@
-package com.api.apibackend.modules.Auth.Domain.repository;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,10 +5,13 @@ package com.api.apibackend.modules.Auth.Domain.repository;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+package com.api.apibackend.modules.Auth.Domain.repository;
 
 import com.api.apibackend.modules.Auth.Infra.persistence.entity.UserEntity;
 import com.api.apibackend.modules.Customer.Infra.persistence.entity.CustomerEntity;
 
 public interface IUserService {
     UserEntity createUser(UserEntity userEntity, CustomerEntity customerEntity);
+    UserEntity getUser();
+    UserEntity saveUser(UserEntity user);
 }

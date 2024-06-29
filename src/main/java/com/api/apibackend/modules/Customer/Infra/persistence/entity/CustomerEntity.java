@@ -146,7 +146,7 @@ public class CustomerEntity implements Serializable {
      * Lista de carrinhos associados ao cliente.
      */
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    private List<CartEntity> cartEntity;
+    private CartEntity cartEntity;
 
     public CustomerEntity(CustomerDTO customerDTO) {
         this.name = customerDTO.getName();

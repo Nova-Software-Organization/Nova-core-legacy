@@ -1,5 +1,3 @@
-package com.api.apibackend.modules.ProductCategory.infra.persistence.repository;
-
 /**
  * ----------------------------------------------------------------------------
  * Autor: Kaue de Matos
@@ -7,6 +5,7 @@ package com.api.apibackend.modules.ProductCategory.infra.persistence.repository;
  * Propriedade da Empresa: Todos os direitos reservados
  * ----------------------------------------------------------------------------
  */
+package com.api.apibackend.modules.ProductCategory.infra.persistence.repository;
 
 import java.util.List;
 
@@ -23,6 +22,6 @@ public interface ProductCategoryRepository extends JpaRepository<ProductCategory
 
     @Query("SELECT p FROM ProductEntity p JOIN p.category c WHERE c.name = :categoryName")
     List<ProductEntity> findByCategoryName(@Param("categoryName") String categoryName);
-
     ProductCategoryEntity findCategoryByName(String categoryName);
+    List<ProductCategoryEntity> findAllByOrderByName();
 }

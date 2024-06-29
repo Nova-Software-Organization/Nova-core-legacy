@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.api.apibackend.modules.Product.Application.DTOs.ResponseMessageDTO;
-import com.api.apibackend.modules.Product.Domain.service.filter.ProductFilterStatusService;
+import com.api.apibackend.modules.Product.Domain.service.ProductFilterStatusService;
 
 @Service
 public class ProductFilterStatusUseCase {

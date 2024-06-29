@@ -20,9 +20,9 @@ import com.api.apibackend.modules.Customer.Infra.persistence.entity.CustomerEnti
 
 @Repository
 public interface CustomerRepository extends JpaRepository<CustomerEntity, Long> {
-
     @Query("SELECT c FROM CustomerEntity c WHERE c.email = :email")
-    Optional<CustomerEntity> findByEmail(String email);
+    CustomerEntity findByEmail(String email);
+    Optional<CustomerEntity> findByEmailOptional(String email);
     List<CustomerEntity> findByNameContaining(String name);
     List<CustomerEntity> findByLastNameContaining(String lastName);
     List<CustomerEntity> findByCpfContaining(String cpf);

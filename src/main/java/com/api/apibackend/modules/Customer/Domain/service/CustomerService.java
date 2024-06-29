@@ -8,13 +8,16 @@
 
 package com.api.apibackend.modules.Customer.Domain.service;
 
+import java.util.Objects;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import com.api.apibackend.modules.Auth.Infra.persistence.entity.UserEntity;
 import com.api.apibackend.modules.Customer.Application.DTOs.registration.CustomerAddressDTO;
 import com.api.apibackend.modules.Customer.Application.DTOs.registration.CustomerDTO;
 import com.api.apibackend.modules.Customer.Application.DTOs.response.ResponseMessageDTO;
@@ -82,5 +85,37 @@ public class CustomerService implements IClientService {
 
 		return ResponseEntity.status(HttpStatus.OK)
 				.body(new ResponseMessageDTO("Deletado com sucesso", this.getClass().getName(), null));
+	}
+
+	@Override
+	public UserEntity getUser() {
+			String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+			if (Objects.isNull(userName)) {
+					return null;
+			}
+
+			Optional<UserEntity> user = Optional
+			.ofNullable(Optional
+			.ofNullable(customerRepository.findByEmail(userName)).get().getUser());
+
+			return user.get();
+	}
+
+	@Override
+	public CustomerEntity getCustomer() {
+			String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+			if (Objects.isNull(userName)) {
+					return null;
+			}
+
+			Optional<CustomerEntity> user = Optional
+			.ofNullable(Optional
+			.ofNullable(customerRepository.findByEmail(userName)).get());
+
+			return user.get();
+	}
+
+	public CustomerEntity saveCustomer(CustomerEntity customer) {
+		return customerRepository.save(customer);
 	}
 }

@@ -29,7 +29,7 @@ public class FindExistingClientService {
         if (clientRequest != null) {
             String email = clientRequest.getEmail();
             if (email != null) {
-                Optional<CustomerEntity> existingClient = customerRepository.findByEmail(email);
+                Optional<CustomerEntity> existingClient = customerRepository.findByEmailOptional(email);
                 return existingClient.orElse(null);
             }
         }

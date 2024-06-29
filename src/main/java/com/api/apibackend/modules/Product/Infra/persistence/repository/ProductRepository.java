@@ -7,14 +7,18 @@
  */
 package com.api.apibackend.modules.Product.Infra.persistence.repository;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+import org.springdoc.core.converters.models.Pageable;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.api.apibackend.modules.Product.Domain.model.Product;
 import com.api.apibackend.modules.Product.Infra.persistence.entity.ProductEntity;
 import com.api.apibackend.modules.ProductCategory.infra.persistence.entity.ProductCategoryEntity;
 import com.api.apibackend.modules.Supplier.Infra.persistence.entity.SupplierEntity;
@@ -30,4 +34,10 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
     List<ProductEntity> findBySupplierEntity(SupplierEntity supplierEntity);
     List<ProductEntity> findByStatus(int status);
     List<ProductEntity> findBySku(String sku);
+    List<ProductEntity> findAllByProductCategory(Pageable pageable, ProductCategoryEntity productCategory);
+    List<ProductEntity> findTop8ByOrderByDateCreatedDesc();
+    List<ProductEntity> findAllByNameContainingIgnoreCase(String name, Pageable pageable);
+    List<ProductEntity> findTop8ByProductCategoryAndIdIsNot(ProductCategoryEntity productCategory, Long id);
+    List<ProductEntity> findAllByProductCategoryIsNot(ProductCategoryEntity productCategory, PageRequest pageRequest);
+    List<Product> findAllByNameContainingIgnoreCase(String keyword, PageRequest pageRequest);
 }

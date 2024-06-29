@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.api.apibackend.modules.Product.Domain.model.Product;
-import com.api.apibackend.modules.Product.Domain.service.filter.GetAllProductService;
+import com.api.apibackend.modules.Product.Domain.service.GetAllProductService;
 
 @Service
 public class GetAllProductUseCase {
