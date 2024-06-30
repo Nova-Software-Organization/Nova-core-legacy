@@ -18,6 +18,5 @@ import java.util.List;
 public interface MidiaRepository extends JpaRepository<MidiaEntity, Long> {
    List<MidiaEntity> findByCategory(String category);
    List<MidiaEntity> findAllByCategoryIn(List<String> categories);
-   List<MidiaEntity> findByUrls(String url);
-   String findByUrl(String url);
+   List<MidiaEntity> findByUrl(String url);
 }

@@ -23,10 +23,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.ws.rs.ext.ParamConverter.Lazy;
 import lombok.EqualsAndHashCode;
 
-@Lazy
 @Entity
 @Table(name = "frete")
 @EqualsAndHashCode(of = "idFrete")

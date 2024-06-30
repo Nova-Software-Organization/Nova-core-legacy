@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import com.api.apibackend.modules.Auth.Application.DTOs.response.ResponseMessageDTO;
 import com.api.apibackend.modules.Auth.Application.DTOs.token.TokenResetPasswordDTO;
+import com.api.apibackend.modules.Auth.Application.services.IRedefinePasswordService;
 import com.api.apibackend.modules.Auth.Domain.provider.resetPassword.CodeExpiration;
 import com.api.apibackend.modules.Auth.Domain.service.cryptography.AnonymizationService;
 import com.api.apibackend.modules.Auth.Infra.persistence.entity.UserEntity;
@@ -26,7 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-public class RedefinePasswordService {
+public class RedefinePasswordService implements IRedefinePasswordService {
     private UserRepository userRepository;
     private AnonymizationService anonymizationService;
     private AuthenticationValidationServiceHandler authenticationValidationServiceHandler;

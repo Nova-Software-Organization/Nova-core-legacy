@@ -44,15 +44,15 @@ public class CheckoutController {
 
             if (unavailableProducts.isEmpty()) {
                 return ResponseEntity.ok().build(); // Todos os produtos têm estoque suficiente
-            } else {
-                ResponseMessageDTO responseMessage = new ResponseMessageDTO(
-                        "Os seguintes produtos não estão disponíveis",
-                        this.getClass().getName(),
-                        null, unavailableProducts);
-                UnavailableProductsResponseDTO responseDTO = new UnavailableProductsResponseDTO(unavailableProducts,
-                        responseMessage);
-                return ResponseEntity.badRequest().body(responseDTO);
-            }
+            } 
+            
+            ResponseMessageDTO responseMessage = new ResponseMessageDTO(
+                    "Os seguintes produtos não estão disponíveis",
+                    this.getClass().getName(),
+                    null, unavailableProducts);
+            UnavailableProductsResponseDTO responseDTO = new UnavailableProductsResponseDTO(unavailableProducts,
+                    responseMessage);
+            return ResponseEntity.badRequest().body(responseDTO);
         } catch (CartNotFoundException e) {
             ResponseMessageDTO responseMessage = new ResponseMessageDTO(
                     "Erro ao verificar o estoque do produto",

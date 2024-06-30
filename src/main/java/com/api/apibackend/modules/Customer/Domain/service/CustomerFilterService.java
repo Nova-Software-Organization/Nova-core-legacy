@@ -38,7 +38,7 @@ public class CustomerFilterService {
     }
 
     public Optional<CustomerEntity> searchClientByEmail(String email) {
-        Optional<CustomerEntity> clientByEmail = customerRepository.findByEmailOptional(email);
+        Optional<CustomerEntity> clientByEmail = Optional.of(customerRepository.findByEmail(email));
 
         if (clientByEmail.isPresent()) {
             CustomerEntity customerEntity = clientByEmail.get();
@@ -57,7 +57,7 @@ public class CustomerFilterService {
         if (clientRequest != null) {
             String email = clientRequest.getEmail();
             if (email != null) {
-                Optional<CustomerEntity> existingClient = customerRepository.findByEmailOptional(email);
+                Optional<CustomerEntity> existingClient = Optional.ofNullable(customerRepository.findByEmail(email));
                 return existingClient.orElse(null);
             }
         }

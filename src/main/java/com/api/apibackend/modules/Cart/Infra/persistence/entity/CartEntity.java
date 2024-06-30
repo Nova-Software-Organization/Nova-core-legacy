@@ -24,6 +24,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -38,7 +39,7 @@ public class CartEntity implements Serializable {
     @Column(name = "idcarrinho")
     private Long id;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "idcliente")
     private CustomerEntity customer;
 

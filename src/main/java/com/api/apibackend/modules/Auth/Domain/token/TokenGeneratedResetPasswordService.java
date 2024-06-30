@@ -14,9 +14,10 @@ import java.util.Base64;
 import org.springframework.stereotype.Service;
 
 import com.api.apibackend.modules.Auth.Domain.model.PasswordResetToken;
+import com.api.apibackend.modules.Auth.Infra.services.ITokenGeneratedResetPasswordService;
 
 @Service
-public class TokenGeneratedResetPasswordService {
+public class TokenGeneratedResetPasswordService implements ITokenGeneratedResetPasswordService {
     private static final SecureRandom SECURE_RANDOM = new SecureRandom();
 
     public static PasswordResetToken generateTokenWithExpiration() {

@@ -53,7 +53,7 @@ public class UserService implements IUserService {
     @Override
     public UserEntity saveUser(UserEntity user) {
         if (Objects.isNull(user)) {
-            throw new InvalidArgumentException("Null user");
+            throw new InvalidArgumentException("Usuário não encontrado!");
         }
 
         return userRepository.save(user);

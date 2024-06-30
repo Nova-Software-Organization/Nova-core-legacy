@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import org.springdoc.core.converters.models.Sort;
+import org.springframework.data.domain.Sort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
@@ -29,7 +29,8 @@ import com.api.apibackend.modules.Product.Application.DTOs.ProductDTO;
 import com.api.apibackend.modules.Product.Application.DTOs.ProductResponse;
 import com.api.apibackend.modules.Product.Application.DTOs.ResponseMessageDTO;
 import com.api.apibackend.modules.Product.Application.component.ProductComponentAdd;
-import com.api.apibackend.modules.Product.Domain.model.Product;
+import com.api.apibackend.modules.Product.Application.converter.ProductDetailsResponseConverter;
+import com.api.apibackend.modules.Product.Application.converter.ProductResponseConverter;
 import com.api.apibackend.modules.Product.Domain.repository.IProductConventionalService;
 import com.api.apibackend.modules.Product.Domain.specs.ProductVariantSpecs;
 import com.api.apibackend.modules.Product.Infra.persistence.entity.ProductEntity;
@@ -39,6 +40,7 @@ import com.api.apibackend.modules.Product.Infra.useCases.ProductVariantCacheServ
 import com.api.apibackend.modules.ProductCategory.infra.persistence.entity.ProductCategoryEntity;
 import com.api.apibackend.modules.ProductCategory.infra.persistence.repository.ProductCategoryRepository;
 import com.api.apibackend.modules.ProductVariant.Application.DTOs.ProductVariantResponse;
+import com.api.apibackend.modules.ProductVariant.Application.converter.ProductVariantResponseConverter;
 import com.api.apibackend.modules.ProductVariant.infra.persistence.entity.ProductVariantEntity;
 import com.api.apibackend.modules.ProductVariant.infra.persistence.repository.ProductVariantRepository;
 import com.api.apibackend.modules.Stock.Infra.persistence.entity.StockEntity;
@@ -56,9 +58,12 @@ public class ProductConventionalService implements IProductConventionalService {
     private ProductComponentAdd productComponentAdd;
     private UnityRepository unityRepository;
     private StockRepository stockRepository;
-    private ProductCacheService productCacheService;
     private ProductVariantCacheService productVariantCacheService;
     private ProductVariantRepository productVariantRepository;
+    private ProductResponseConverter productResponseConverter;
+    private ProductVariantResponseConverter productVariantResponseConverter;
+    private ProductDetailsResponseConverter productDetailsResponseConverter;
+
 
     @Autowired
     public ProductConventionalService(
@@ -67,7 +72,6 @@ public class ProductConventionalService implements IProductConventionalService {
             ProductComponentAdd productComponentAdd,
             UnityRepository unityRepository,
             StockRepository stockRepository,
-            ProductCacheService productCacheService,
             ProductVariantRepository productVariantRepository) {
         this.productCategoryRepository = productCategoryRepository;
         this.midiaRepository = midiaRepository;
@@ -75,8 +79,6 @@ public class ProductConventionalService implements IProductConventionalService {
         this.productComponentAdd = productComponentAdd;
         this.unityRepository = unityRepository;
         this.stockRepository = stockRepository;
-        this.productCacheService = productCacheService;
-        this.productCacheService = productCacheService;
         this.productVariantRepository = productVariantRepository;
     }
 
@@ -133,16 +135,20 @@ public class ProductConventionalService implements IProductConventionalService {
         }
 
         if (!errorMessages.isEmpty()) {
-            return ResponseEntity.badRequest().body(new ResponseMessageDTO("erro detectado na criação do produto", this.getClass().getName(), String.join("\n", errorMessages)));
+            return ResponseEntity.badRequest().body(new ResponseMessageDTO("Erro detectado na criação do produto",
+             this.getClass().getName(), String.join("\n", 
+             errorMessages
+             )));
         }
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseMessageDTO("Produtos Adicionados com sucesso!", this.getClass().getName(), null));
+        return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseMessageDTO("Produtos Adicionados com sucesso!",
+         this.getClass().getName(), null));
     }
 
     public ProductVariantEntity findProductVariantById(Long id) {
         ProductVariantEntity productVariant = productVariantCacheService.findById(id);
         if (Objects.isNull(productVariant)) {
-            throw new ResourceNotFoundException(String.format("Could not find any product variant with the id %d", id));
+            throw new ResourceNotFoundException(String.format("Não foi possível encontrar nenhuma variante do produto com o ID %d", id));
         }
         return productVariant;
     }
@@ -152,19 +158,19 @@ public class ProductConventionalService implements IProductConventionalService {
         if (Objects.nonNull(sort) && !sort.isBlank()) {
             Sort sortRequest = getSort(sort);
             if (Objects.isNull(sortRequest)) {
-                throw new InvalidArgumentException("Invalid sort parameter");
+                throw new InvalidArgumentException("Parâmetro de classificação inválido");
             }
-            pageRequest = PageRequest.of(page, size, sortRequest);
+            pageRequest = PageRequest.of(page.intValue(), size.intValue(), sortRequest);
         } else {
-            pageRequest = PageRequest.of(page, size);
+            pageRequest = PageRequest.of(page.intValue(), size.intValue());
         }
-
+    
         Specification<ProductVariantEntity> combinations =
                 Objects.requireNonNull(Specification.where(ProductVariantSpecs.withColor(color)))
                         .and(ProductVariantSpecs.withCategory(category))
                         .and(ProductVariantSpecs.minPrice(minPrice))
                         .and(ProductVariantSpecs.maxPrice(maxPrice));
-
+    
         return productVariantRepository.findAll(combinations, pageRequest)
                 .stream()
                 .map(productVariantResponseConverter)
@@ -181,33 +187,10 @@ public class ProductConventionalService implements IProductConventionalService {
         return productVariantRepository.count(combinations);
     }
 
-    public List<ProductResponse> getRelatedProducts(String url) {
-        ProductEntity product = productCacheService.findByUrl(url);
-        if (Objects.isNull(product)) {
-            throw new ResourceNotFoundException("Related products not found");
-        }
-        List<ProductEntity> products = productCacheService.getRelatedProducts(product.getCategory(), product.getIdProduct());
-        return products
-                .stream()
-                .map(productResponseConverter)
-                .collect(Collectors.toList());
-    }
-
-    public List<ProductResponse> getNewlyAddedProducts() {
-        List<ProductEntity> products = productCacheService.findTop8ByOrderByDateCreatedDesc();
-        if (products.isEmpty()) {
-            throw new ResourceNotFoundException("Newly added products not found");
-        }
-        return products
-                .stream()
-                .map(productResponseConverter)
-                .collect(Collectors.toList());
-    }
-
     public List<ProductVariantResponse> getMostSelling() {
         List<ProductVariantEntity> productVariants = productVariantCacheService.findTop8ByOrderBySellCountDesc();
         if (productVariants.isEmpty()) {
-            throw new ResourceNotFoundException("Most selling products not found");
+            throw new ResourceNotFoundException("Produtos mais vendidos não encontrados");
         }
 
         return productVariants
@@ -216,23 +199,12 @@ public class ProductConventionalService implements IProductConventionalService {
                 .collect(Collectors.toList());
     }
 
-    public List<ProductResponse> getInterested() {
-        List<ProductEntity> products = productCacheService.findTop8ByOrderByDateCreatedDesc();
-        if (products.isEmpty()) {
-            throw new ResourceNotFoundException("Interested products not found");
-        }
-        return products
-                .stream()
-                .map(productResponseConverter)
-                .collect(Collectors.toList());
-    }
-
     public List<ProductResponse> searchProductDisplay(String keyword, Integer page, Integer size) {
         if (Objects.isNull(page) || Objects.isNull(size)) {
             throw new InvalidArgumentException("Page and size are required");
         }
         PageRequest pageRequest = PageRequest.of(page, size);
-        List<Product> products = productRepository.findAllByNameContainingIgnoreCase(keyword, pageRequest);
+        List<ProductEntity> products = productRepository.findAllByNameContainingIgnoreCase(keyword, pageRequest);
         return products
                 .stream()
                 .map(productResponseConverter)

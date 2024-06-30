@@ -16,39 +16,39 @@ import com.api.apibackend.modules.Color.Application.DTOs.ColorDTO;
 @Component
 public class CartResponseConverter implements Function<CartEntity, CartResponse> {
 
-     @Override
-        public CartResponse apply(CartEntity cart) {
-                CartResponse cartResponse = new CartResponse();
+  @Override
+  public CartResponse apply(CartEntity cart) {
+    CartResponse cartResponse = new CartResponse();
 
-                List<CartItemDTO> cartItems = cart.getCartItems()
-                                .stream()
-                                .map(cartItem -> CartItemDTO.builder()
-                                                .id(cartItem.getId())
-                                                .url(cartItem.getProductVariant().getProduct().getUrl())
-                                                .name(cartItem.getProductVariant().getProduct().getName())
-                                                .price(cartItem.getProductVariant().getPrice())
-                                                .amount(cartItem.getAmount())
-                                                .thumb(cartItem.getProductVariant().getThumb())
-                                                .stock(cartItem.getProductVariant().getStock())
-                                                .color(ColorDTO.builder()
-                                                                .name(cartItem.getProductVariant().getColor().getName())
-                                                                .hex(cartItem.getProductVariant().getColor().getHex())
-                                                                .build())
-                                                .build())
-                                .collect(Collectors.toList());
+    List<CartItemDTO> cartItems = cart.getCartItems()
+        .stream()
+        .map(cartItem -> CartItemDTO.builder()
+            .id(cartItem.getId())
+            .url(cartItem.getProductVariant().getProduct().getMidia().getUrl())
+            .name(cartItem.getProductVariant().getProduct().getName())
+            .price(cartItem.getProductVariant().getPrice())
+            .amount(cartItem.getAmount())
+            .thumb(cartItem.getProductVariant().getThumb())
+            .stock(cartItem.getProductVariant().getStock())
+            .color(ColorDTO.builder()
+                .name(cartItem.getProductVariant().getColor().getName())
+                .hex(cartItem.getProductVariant().getColor().getHex())
+                .build())
+            .build())
+        .collect(Collectors.toList());
 
-                cartResponse.setCartItems(cartItems);
+    cartResponse.setCartItems(cartItems);
 
-                if (Objects.nonNull(cart.getDiscount())) {
-                        cartResponse.setDiscount(DiscountDTO.builder()
-                                        .discountPercent(cart.getDiscount().getRoundedDiscountValue())
-                                        .status(cart.getDiscount().getStatus())
-                                        .build());
-                }
+    if (Objects.nonNull(cart.getDiscount())) {
+      cartResponse.setDiscount(DiscountDTO.builder()
+          .discountPercent(cart.getDiscount().getRoundedDiscountValue())
+          .status(cart.getDiscount().getStatus())
+          .build());
+    }
 
-                cartResponse.setTotalCartPrice(cart.getTotalCartPrice());
-                cartResponse.setTotalCargoPrice(cart.getTotalCargoPrice());
-                cartResponse.setTotalPrice(cart.getTotalPrice());
-                return cartResponse;
-        }
+    cartResponse.setTotalCartPrice(cart.getTotalCartPrice());
+    cartResponse.setTotalCargoPrice(cart.getTotalCargoPrice());
+    cartResponse.setTotalPrice(cart.getTotalPrice());
+    return cartResponse;
+  }
 }

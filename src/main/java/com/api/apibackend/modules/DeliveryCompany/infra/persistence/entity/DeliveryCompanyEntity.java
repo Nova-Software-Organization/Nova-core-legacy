@@ -20,11 +20,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.ws.rs.ext.ParamConverter.Lazy;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-@Lazy
 @Data
 @Entity
 @Table(name = "empresa_entrega")

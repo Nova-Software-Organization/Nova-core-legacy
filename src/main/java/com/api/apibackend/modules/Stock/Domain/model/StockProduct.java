@@ -8,18 +8,20 @@
 
 package com.api.apibackend.modules.Stock.Domain.model;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import lombok.Data;
 
 @Data
+@Component
 public class StockProduct {
     private Long id;
     private String name;
     private int stockQuantity;
 
-    public StockProduct(Long id, String name, int stockQuantity) {
-        this.id = id;
-        this.name = name;
-        this.stockQuantity = stockQuantity;
+    @Autowired
+    public StockProduct() {
     }
 
     public boolean hasEnoughStock(int quantityStockProduct, int quantityToCheck) {

@@ -12,8 +12,10 @@ import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.api.apibackend.modules.Auth.Application.services.IAnonymizationService;
+
 @Component
-public class AnonymizationService implements StringEncryptor {
+public class AnonymizationService implements StringEncryptor, IAnonymizationService {
     private StandardPBEStringEncryptor stringEncryptor;
 
     @Autowired
@@ -26,7 +28,7 @@ public class AnonymizationService implements StringEncryptor {
         return stringEncryptor.encrypt(cpf.replaceAll("\\d(?=\\d{" + digitsToKeep + "})", "*"));
     }
 
-    public String anonymizeNome(String nome) {
+    public String anonymizeName(String nome) {
         return stringEncryptor.encrypt("NomeAnonimo");
     }
 

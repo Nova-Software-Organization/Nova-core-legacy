@@ -6,13 +6,13 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.api.apibackend.modules.Cart.Application.services.DiscountService;
+import com.api.apibackend.modules.Cart.Application.services.IDiscountService;
 import com.api.apibackend.modules.Coupon.Infra.entity.CouponEntity;
 import com.api.apibackend.modules.Coupon.Infra.repository.CouponRepository;
 import com.api.apibackend.shared.error.exception.InvalidArgumentException;
 
 @Service
-public class DiscountServiceImpl implements DiscountService {
+public class DiscountServiceImpl implements IDiscountService {
     private final CouponRepository couponRepository;
     private final CartServiceImpl cartService;
 

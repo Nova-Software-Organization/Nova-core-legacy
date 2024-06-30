@@ -12,10 +12,11 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "color", uniqueConstraints = {
-    @UniqueConstraint(name = "color_hex_uindex", columnNames = {"hex"}),
-    @UniqueConstraint(name = "color_name_uindex", columnNames = {"name"})
+    @UniqueConstraint(name = "color_hex_uindex", columnNames = {"hexadecimal"}),
+    @UniqueConstraint(name = "color_name_uindex", columnNames = {"nome"})
 })
 public class ColorEntity {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;

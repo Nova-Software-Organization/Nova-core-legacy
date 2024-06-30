@@ -145,7 +145,7 @@ public class CustomerEntity implements Serializable {
     /**
      * Lista de carrinhos associados ao cliente.
      */
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
     private CartEntity cartEntity;
 
     public CustomerEntity(CustomerDTO customerDTO) {
@@ -161,4 +161,5 @@ public class CustomerEntity implements Serializable {
     }
 
     public CustomerEntity() {}
+
 }

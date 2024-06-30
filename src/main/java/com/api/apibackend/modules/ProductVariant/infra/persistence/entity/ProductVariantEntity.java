@@ -8,7 +8,7 @@
 package com.api.apibackend.modules.ProductVariant.infra.persistence.entity;
 
 import com.api.apibackend.modules.Color.infra.persistence.entity.ColorEntity;
-import com.api.apibackend.modules.Product.Domain.model.Product;
+import com.api.apibackend.modules.Product.Infra.persistence.entity.ProductEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -32,7 +32,7 @@ public class ProductVariantEntity {
 
   @ManyToOne
   @JoinColumn(name = "product_id")
-  private Product product;
+  private ProductEntity product;
 
   @ManyToOne
   @JoinColumn(name = "color_id")

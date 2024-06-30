@@ -22,22 +22,33 @@ import com.api.apibackend.modules.Stock.Domain.model.StockProduct;
 
 @Service
 public class StockProductUseCase {
-    private ProductRepository productRepository;
-    private StockProduct stockProduct;
+
+    private final ProductRepository productRepository;
+    private final StockProduct stockProduct;
 
     @Autowired
-    public StockProductUseCase(ProductRepository productRepository) {
+    public StockProductUseCase(ProductRepository productRepository, StockProduct stockProduct) {
         this.productRepository = productRepository;
+        this.stockProduct = stockProduct;
     }
 
+    /**
+     * Verifica a quantidade de estoque dos produtos.
+     * 
+     * @param productCheckQuantities Lista de produtos a serem verificados com suas quantidades.
+     * @return Lista de IDs dos produtos que estão indisponíveis em estoque.
+     * @throws CartNotFoundException Se ocorrer algum erro ao verificar o estoque.
+     */
     public List<Long> checkProductStock(List<ProductCheckQuantity> productCheckQuantities)
             throws CartNotFoundException {
         List<Long> unavailableProducts = new ArrayList<>();
         try {
+            // Extrai todos os IDs de produtos a serem verificados
             List<Long> allProductIds = productCheckQuantities.stream()
                     .flatMap(productQuantity -> productQuantity.getIdProduct().stream())
                     .collect(Collectors.toList());
 
+            // Obtém os produtos do repositório com base nos IDs
             List<ProductEntity> products = productRepository.findByIds(allProductIds);
             for (ProductCheckQuantity productCheckQuantity : productCheckQuantities) {
                 List<Long> idProducts = productCheckQuantity.getIdProduct();
@@ -58,7 +69,7 @@ public class StockProductUseCase {
 
             return unavailableProducts;
         } catch (Exception e) {
-            throw new CartNotFoundException("Erro ao verificar o estoque do produto");
+            throw new CartNotFoundException("Erro ao verificar o estoque do produto", e);
         }
     }
 }

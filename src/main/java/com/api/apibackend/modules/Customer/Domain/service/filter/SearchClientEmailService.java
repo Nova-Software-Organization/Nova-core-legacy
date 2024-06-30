@@ -26,7 +26,7 @@ public class SearchClientEmailService {
     }
 
     public Optional<CustomerEntity> searchClientByEmail(String email) {
-        Optional<CustomerEntity> clientByEmail = customerRepository.findByEmailOptional(email);
+        Optional<CustomerEntity> clientByEmail = Optional.ofNullable(customerRepository.findByEmail(email));
 
         if (clientByEmail.isPresent()) {
             CustomerEntity customerEntity = clientByEmail.get();

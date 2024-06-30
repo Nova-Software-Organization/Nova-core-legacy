@@ -7,9 +7,11 @@
  */
 package com.api.apibackend.modules.ProductCategory.Application.DTOs;
 
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
 public class ProductCategoryDTO {
     private String name;
     private int status;

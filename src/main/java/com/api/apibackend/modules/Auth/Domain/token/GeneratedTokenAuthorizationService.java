@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import com.api.apibackend.modules.Auth.Domain.Enum.CustomGrantedAuthority;
 import com.api.apibackend.modules.Auth.Domain.exception.GenerateTokenErrorException;
 import com.api.apibackend.modules.Auth.Domain.exception.InvalidGenerateTokenException;
+import com.api.apibackend.modules.Auth.Domain.repository.IGeneratedTokenAuthorizationService;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
@@ -25,7 +26,7 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 
 @Service
 @Component
-public class GeneratedTokenAuthorizationService {
+public class GeneratedTokenAuthorizationService implements IGeneratedTokenAuthorizationService {
     private String secret = "12345678";
 
     public String generateToken(String username, Set<CustomGrantedAuthority> customGrantedAuthorities) throws GenerateTokenErrorException {
@@ -61,7 +62,7 @@ public class GeneratedTokenAuthorizationService {
         }
     }
 
-    private Date dateExpiration() {
+    public Date dateExpiration() {
         return new Date(System.currentTimeMillis() + 3600000);
     }
 }

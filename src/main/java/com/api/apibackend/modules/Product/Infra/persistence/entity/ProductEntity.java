@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.context.annotation.Lazy;
+import org.springframework.data.annotation.CreatedDate;
 
 import com.api.apibackend.modules.Midia.infra.persistence.entity.MidiaEntity;
 import com.api.apibackend.modules.Price.infra.entity.PriceEntity;
@@ -36,6 +37,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import java.time.LocalDateTime;
 
 @Lazy
 @Data
@@ -147,4 +149,7 @@ public class ProductEntity implements Serializable {
      */
     @Column(name = "comprimento")
     private BigDecimal length;
+
+    @CreatedDate
+    private LocalDateTime dateCreated;
 }

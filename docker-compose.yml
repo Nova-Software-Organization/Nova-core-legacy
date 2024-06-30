@@ -1,34 +1,21 @@
-version: '3.8'
+version: '3.2'
 
 networks:
   gv-network:
     driver: bridge
 
-volumes:
-  prometheus_data:
-
 services:
   mysql:
     container_name: nova-core-mysql
-    image: mysql:latest
+    image: bitnami/mariadb:latest
     ports:
-      - "3306:3306"
+      - "3307:3306"
     environment:
-      - MYSQL_ROOT_PASSWORD=admin
-      - MYSQL_DATABASE=novaecommerce
+      - MARIADB_DATABASE=novaecommerce
+      - MARIADB_ROOT_USER=root
+      - MARIADB_ROOT_PASSWORD=admin
     networks:
       - gv-network
-
-  prometheus:
-    container_name: prometheus
-    image: prom/prometheus:latest
-    volumes:
-      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
-      - prometheus_data:/prometheus
-    networks:
-      - gv-network
-    ports:
-      - "9090:9090"
 
   redis:
     container_name: nova-core-redis
