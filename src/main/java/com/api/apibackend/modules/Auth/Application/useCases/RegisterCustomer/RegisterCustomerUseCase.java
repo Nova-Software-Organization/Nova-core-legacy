@@ -19,9 +19,6 @@ import com.api.apibackend.modules.Auth.Domain.authentication.AutheticationRegist
 import com.api.apibackend.modules.Customer.Application.DTOs.registration.CustomerAddressDTO;
 import com.api.apibackend.modules.Customer.Application.DTOs.registration.CustomerDTO;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 @Service
 public class RegisterCustomerUseCase {
     private AutheticationRegisterService autheticationRegister;

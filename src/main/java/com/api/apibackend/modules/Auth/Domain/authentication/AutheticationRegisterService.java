@@ -91,8 +91,7 @@ public class AutheticationRegisterService implements IAutheticationRegister {
     @Transactional
     public ResponseEntity<ResponseMessageDTO> register(
             CustomerDTO customerDTO,
-            CustomerAddressDTO customerAddressDTO
-    ) {
+            CustomerAddressDTO customerAddressDTO) {
         try {
             List<String> emailValidation = autheticationValidationServiceHandler.isValidEmail(customerDTO.getEmail());
             String passwordValidation = autheticationValidationServiceHandler
@@ -147,8 +146,8 @@ public class AutheticationRegisterService implements IAutheticationRegister {
             String jwtToken = generatedTokenAuthorizationService.generateToken(newUserEntity.getUsername(), userRoles);
             newCustomerEntity.setUser(newUserEntity);
             publishCustomerCreatedEvent(savedClient.getId());
-            
-            //Create event for sending email
+
+            // Create event for sending email
             AuthCreated user = new AuthCreated(this, savedClient.getId());
             eventPublisher.publishEvent(user);
 

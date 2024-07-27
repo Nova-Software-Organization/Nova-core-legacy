@@ -20,7 +20,7 @@ import lombok.Data;
 @Data
 public class ProductDTO {
     private Long idProduct;
-    private String name;    
+    private String name;
     private String description;
     private int status;
     private String sku;
